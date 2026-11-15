@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="none" width="100%" height="100%">
+  <defs>
+    <filter id="footer9Blur" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="95" />
+    </filter>
+
+    <linearGradient id="baseBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#000000" />
+      <stop offset="45%" stop-color="#010D3B" />
+      <stop offset="100%" stop-color="#010D3B" />
+    </linearGradient>
+
+    <linearGradient id="navyArchGrad" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#010D3B" />
+      <stop offset="50%" stop-color="#1A2552" />
+      <stop offset="100%" stop-color="#2B3F8C" />
+    </linearGradient>
+
+    <linearGradient id="redArchGrad" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#FF3B3A" />
+      <stop offset="42%" stop-color="#DE0302" />
+      <stop offset="100%" stop-color="#B80201" />
+    </linearGradient>
+  </defs>
+
+  <!-- Deep Black to Brand Navy Base -->
+  <rect width="1600" height="1000" fill="url(#baseBg)" />
+
+  <g filter="url(#footer9Blur)">
+    <!-- Top Left & Top Right Deep Black Vignette Wings (matches original footer-9-bg.avif corners) -->
+    <path d="M -200 -200 L 750 -200 L -200 620 Z" fill="#000000" />
+    <path d="M 1800 -200 L 850 -200 L 1800 620 Z" fill="#000000" />
+
+    <!-- Outer Brand Navy Arch -->
+    <path
+      d="M -250 920 C 180 560, 460 60, 770 60 C 1080 60, 1380 560, 1850 920 L 1850 1150 L -250 1150 Z"
+      fill="url(#navyArchGrad)"
+    />
+
+    <!-- Mid-Upper Navy-80 Luminous Dome -->
+    <path
+      d="M -180 940 C 240 620, 490 220, 765 220 C 1040 220, 1310 620, 1780 940 Z"
+      fill="#1A2552"
+    />
+
+    <!-- Center White + Red-10 Crest Glow (matches the bright horizon arch in footer-9-bg.avif) -->
+    <path
+      d="M -120 980 C 310 740, 520 430, 760 430 C 1000 430, 1240 740, 1720 980 L 1720 1120 L -120 1120 Z"
+      fill="#FDEBEB"
+      opacity="0.95"
+    />
+    <ellipse cx="760" cy="575" rx="340" ry="135" fill="#FFFFFF" opacity="0.92" />
+
+    <!-- Bottom SASH Brand Red Arch Wave (matches the pink/red bottom arch in footer-9-bg.avif) -->
+    <path
+      d="M -220 1040 C 230 810, 495 515, 760 515 C 1025 515, 1310 810, 1820 1040 L 1820 1250 L -220 1250 Z"
+      fill="url(#redArchGrad)"
+    />
+
+    <!-- Deep Brand Red Core along the bottom edge -->
+    <ellipse cx="760" cy="960" rx="920" ry="250" fill="#DE0302" />
+    <ellipse cx="760" cy="1040" rx="760" ry="160" fill="#B80201" />
+  </g>
+</svg>
+

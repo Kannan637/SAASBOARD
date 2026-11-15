@@ -1,26 +1,334 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Strict SASH Broadband Brand Tokens */
+  --brand-red: #DE0302;
+  --brand-red-hover: #B80201;
+  --brand-navy: #010D3B;
+  --white: #FFFFFF;
+  --black: #000000;
+
+  /* Derived Brand Tints */
+  --navy-80: #1A2552;
+  --red-10: #FDEBEB;
+  --neutral-600: #4A4F63;
+  --neutral-100: #F3F4F7;
+
+  /* Typography & Layout Tokens */
+  --container-max: 1180px;
+  --radius-card: 14px;
+  --radius-pill: 10px;
+  --radius-banner: 24px;
+  --shadow-subtle: none;
+
+  /* Shadcn UI Mappings to SASH Brand */
+  --background: #FFFFFF;
+  --foreground: #010D3B;
+  --card: #FFFFFF;
+  --card-foreground: #010D3B;
+  --popover: #FFFFFF;
+  --popover-foreground: #010D3B;
+  --primary: #DE0302;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F3F4F7;
+  --secondary-foreground: #010D3B;
+  --muted: #F3F4F7;
+  --muted-foreground: #4A4F63;
+  --accent: #FDEBEB;
+  --accent-foreground: #010D3B;
+  --destructive: #DE0302;
+  --border: #E2E5EE;
+  --input: #E2E5EE;
+  --ring: #DE0302;
+  --radius: 0.875rem;
+
+  /* LoadingState ink & surface tokens mapped to SASH Brand */
+  --ink: #010D3B;
+  --ink-3: #4A4F63;
+  --tooltip-bg: #010D3B;
+  --tooltip-muted: rgba(255, 255, 255, 0.72);
+  --shadow-overlay: 0 18px 40px rgba(1, 13, 59, 0.16);
 }
 
 @theme inline {
+  --color-brand-red: var(--brand-red);
+  --color-brand-red-hover: var(--brand-red-hover);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-white: var(--white);
+  --color-brand-black: var(--black);
+  --color-navy-80: var(--navy-80);
+  --color-red-10: var(--red-10);
+  --color-neutral-600: var(--neutral-600);
+  --color-neutral-100: var(--neutral-100);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-ink-3: var(--ink-3);
+  --shadow-overlay: var(--shadow-overlay);
+
+  --font-sans: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 600;
+  --font-weight-extrabold: 600;
+
+  --radius-sm: 0.25rem;
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-size: 16px;
+    line-height: 1.6;
+    scroll-behavior: auto;
+    @apply font-sans text-brand-navy bg-white;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-brand-red selection:text-white;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  h1, h2 {
+    letter-spacing: -0.025em;
+    font-weight: 400;
+    line-height: 1.08;
+  }
+
+  h3, h4, h5, h6, strong, b {
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    line-height: 1.18;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 4.1vw, 4.25rem);
+  }
+
+  h2 {
+    font-size: clamp(1.85rem, 3.2vw, 2.75rem);
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 2vw, 1.4rem);
+  }
+
+  /* Strict WCAG 2.1 AA Focus Outline: 3px brand red with 3px offset */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  summary:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 3px solid var(--brand-red) !important;
+    outline-offset: 3px !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom utility classes for SASH Design System */
+.container-sash {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.section-padding {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+}
+
+.eyebrow-label {
+  display: inline-flex;
+  min-height: 1.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: rgba(253, 235, 235, 0.8);
+  padding: 0.25rem 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.75rem;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-navy);
+  box-shadow: 0 1px 1px rgba(1, 13, 59, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.bg-brand-navy .eyebrow-label {
+  background-color: rgba(255, 255, 255, 0.14);
+  color: var(--white);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.card-sash {
+  border-radius: var(--radius-card);
+}
+
+.banner-sash {
+  border-radius: var(--radius-banner);
+}
+
+/* Hero-17 Button Style carried across all sections with SASH Brand Colors */
+.btn-pill {
+  border-radius: 0.25rem;
+  padding: 0.625rem 1.5rem;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-transform: none;
+  letter-spacing: normal;
+  min-height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition:
+    background-color 0.2s ease-out,
+    background-image 0.2s ease-out,
+    border-color 0.2s ease-out,
+    color 0.2s ease-out,
+    transform 0.2s ease-out,
+    box-shadow 0.2s ease-out,
+    opacity 0.2s ease-out;
+}
+
+.btn-pill:active {
+  transform: scale(0.96);
+}
+
+.btn-primary-red {
+  background-image: linear-gradient(to bottom, var(--brand-red), var(--brand-red-hover));
+  background-color: var(--brand-red);
+  color: var(--white);
+  box-shadow: 0 6px 20px var(--red-10);
+  outline: 2px solid rgba(255, 255, 255, 0.2);
+  outline-offset: -2px;
+}
+
+.btn-primary-red:hover {
+  background-image: linear-gradient(to bottom, var(--brand-red-hover), #990201);
+  background-color: var(--brand-red-hover);
+}
+
+.bg-brand-navy .btn-primary-red {
+  background-image: linear-gradient(to bottom, var(--brand-red), var(--brand-red-hover));
+  background-color: var(--brand-red);
+  color: var(--white);
+  box-shadow: 0 6px 20px rgba(222, 3, 2, 0.25);
+}
+
+.bg-brand-navy .btn-primary-red:hover {
+  background-image: linear-gradient(to bottom, var(--brand-red-hover), #990201);
+  background-color: var(--brand-red-hover);
+}
+
+.btn-secondary-navy {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-secondary-navy:hover {
+  background-color: var(--white);
+  color: var(--brand-navy);
+}
+
+.btn-ghost-white {
+  background-color: transparent;
+  color: var(--brand-navy);
+  border: 1px solid rgba(1, 13, 59, 0.2);
+}
+
+.btn-ghost-white:hover {
+  background-color: var(--neutral-100);
+  color: var(--brand-navy);
+}
+
+/* LoadingState pixel-grid, shimmer label & pop-in keyframes */
+@keyframes pixel-on {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  45% {
+    opacity: 1;
+    background-color: var(--brand-red);
+  }
+}
+
+@keyframes shimmer-text {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
 }
