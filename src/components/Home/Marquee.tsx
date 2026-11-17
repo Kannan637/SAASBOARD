@@ -125,45 +125,10 @@ function MarqueeLogoTrack({
 export default function Marquee() {
     return (
         <section
-            id="about"
             data-apple-manual="true"
-            aria-labelledby="partner-marquee-heading"
-            className="bg-white text-brand-navy py-16 md:py-24 overflow-hidden"
+            aria-label="Partner and client logos"
+            className="bg-white text-brand-navy py-12 md:py-16 overflow-hidden"
         >
-            <div className="container-sash mb-12 md:mb-14">
-                <AppleReveal className="grid grid-cols-1 lg:grid-cols-12">
-                    <div className="lg:col-span-10 lg:col-start-2 flex flex-col items-center text-center">
-                        <p className="eyebrow-label text-brand-red mb-3">
-                            About Us &amp; Our Clients
-                        </p>
-                        <h2
-                            id="partner-marquee-heading"
-                            className="text-brand-navy text-[clamp(1.85rem,3.2vw,2.75rem)] leading-[1.15] font-semibold tracking-normal mb-4"
-                        >
-                            About{" "}
-                            <span className="text-brand-red">SASH Broadband</span>{" "}
-                            &amp; Our Clients
-                        </h2>
-
-                        <p className="text-neutral-600 text-sm sm:text-base md:text-[17px] leading-relaxed max-w-3xl mx-auto">
-                            <strong className="font-semibold text-brand-navy">
-                                SASH Broadband Private Limited
-                            </strong>{" "}
-                            is a licensed{" "}
-                            <strong className="font-semibold text-brand-navy">
-                                Class–B Internet Service Provider (ISP) in Tamil Nadu
-                            </strong>
-                            , driven by a young, dynamic team dedicated to quality internet
-                            service. We deliver next-generation internet, telecom, and optical
-                            solutions for both domestic households and corporate
-                            enterprises—complete with end-to-end connectivity and last-mile
-                            patching via direct fiber and wireless links to ensure business
-                            productivity, continuity, and lasting customer trust.
-                        </p>
-                    </div>
-                </AppleReveal>
-            </div>
-
             {/* Full-width two-row counter-scrolling marquee stage with soft side fades */}
             <div className="relative mx-auto max-w-[1440px]">
                 <div

@@ -7,7 +7,7 @@ import Business from "@/components/Home/Business";
 import Faq from "@/components/Home/Faq";
 import Contactus from "@/components/Home/Contactus";
 import Speed from "@/components/Home/Speed";
-import Marquee from "@/components/Home/Marquee";
+import Aboutus from "@/components/Home/Aboutus";
 import Testimonial from "@/components/Home/Testimonial";
 
 const homepageJsonLd = {
@@ -79,7 +79,7 @@ export default function Home() {
       <WhySash />
       <Service />
       <Business />
-      <Marquee />
+      <Aboutus />
       <Testimonial />
       <Speed />
       <Faq />
