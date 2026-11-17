@@ -183,12 +183,12 @@ function StackingCard({
     offset: ["start start", "end start"],
   });
 
-  // Left-side title & description animate upwards as user scrolls through the card
-  const textY = useTransform(scrollYProgress, [0, 0.85], [0, -85]);
+  // Left-side title & description animate upwards and fade out cleanly before next card overlays
+  const textY = useTransform(scrollYProgress, [0, 0.85], [0, -100]);
   const textOpacity = useTransform(
     scrollYProgress,
-    [0, 0.7, 0.95],
-    [1, 1, 0.4]
+    [0, 0.45, 0.8],
+    [1, 1, 0]
   );
 
   return (
@@ -197,7 +197,7 @@ function StackingCard({
       style={{
         zIndex: (index + 1) * 10,
       }}
-      className="sticky top-14 sm:top-16 w-full h-[1080px] bg-white flex items-center justify-center px-4 sm:px-8 lg:px-12 select-none border-0 shadow-none overflow-hidden"
+      className="sticky top-14 sm:top-16 w-full h-[1080px] bg-transparent flex items-center justify-center px-4 sm:px-8 lg:px-12 select-none border-0 shadow-none overflow-hidden"
     >
       {/* 12-Column Grid Layout: 5 Columns Left (Animated), 7 Columns Right (Centered) */}
       <div className="grid grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center w-full max-w-6xl mx-auto">
