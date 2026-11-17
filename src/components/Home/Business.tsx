@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Zap, Wifi, Network, ShieldCheck } from "lucide-react";
 import { AppleReveal } from "@/components/ui/apple-scroll";
 
@@ -81,8 +82,16 @@ const MAP_LOGO_PINS: MapLogoPin[] = [
   },
 ];
 
+interface BusinessCardData {
+  id: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  dashboard: React.ReactNode;
+}
+
 export default function Business() {
-  const cards = [
+  const cards: BusinessCardData[] = [
     {
       id: "leased-line",
       eyebrow: "ENTERPRISE LEASED LINE",
@@ -145,42 +154,77 @@ export default function Business() {
           </p>
         </AppleReveal>
 
-        {/* Card Stack Effect on Scroll: Width 100%, Height 1080px, No Shadow, No Border */}
+        {/* Card Stack Overlay on Scroll: 12-Grid Structure, Left Title/Description Moves Upwards, Right Container Stays Centered */}
         <div className="relative pb-16 sm:pb-24">
           {cards.map((card, idx) => (
-            <div
-              key={card.id}
-              style={{
-                zIndex: (idx + 1) * 10,
-              }}
-              className="sticky top-14 sm:top-16 w-full h-[1080px] bg-white flex items-center justify-center px-4 sm:px-8 lg:px-12 select-none border-0 shadow-none transition-transform"
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center w-full max-w-6xl mx-auto">
-                {/* Left Content Column (Strictly matching shared_img: eyebrow, title, description only) */}
-                <div className="lg:col-span-5 flex flex-col justify-center">
-                  <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-blue-600 mb-3 sm:mb-4 block">
-                    {card.eyebrow}
-                  </span>
-                  <h3 className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[42px] leading-[1.15] tracking-normal mb-4 sm:mb-5">
-                    {card.title}
-                  </h3>
-                  <p className="text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal max-w-lg">
-                    {card.description}
-                  </p>
-                </div>
-
-                {/* Right Visual Container (shared_img blue gradient rounded container) */}
-                <div className="lg:col-span-7">
-                  <div className="rounded-[28px] sm:rounded-[32px] bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#2563EB] p-4 sm:p-6 lg:p-7 shadow-[0px_16px_40px_rgba(37,99,235,0.18)] border border-blue-200/50 select-none">
-                    {card.dashboard}
-                  </div>
-                </div>
-              </div>
-            </div>
+            <StackingCard key={card.id} card={card} index={idx} />
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+/* ========================================================================= */
+/* INDIVIDUAL STACKING CARD WITH 12-GRID & SCROLL-LINKED UPWARD TEXT MOTION  */
+/* ========================================================================= */
+function StackingCard({
+  card,
+  index,
+}: {
+  card: BusinessCardData;
+  index: number;
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Track the scroll of this specific 1080px card through the viewport
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Left-side title & description animate upwards as user scrolls through the card
+  const textY = useTransform(scrollYProgress, [0, 0.85], [0, -85]);
+  const textOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.7, 0.95],
+    [1, 1, 0.4]
+  );
+
+  return (
+    <div
+      ref={cardRef}
+      style={{
+        zIndex: (index + 1) * 10,
+      }}
+      className="sticky top-14 sm:top-16 w-full h-[1080px] bg-white flex items-center justify-center px-4 sm:px-8 lg:px-12 select-none border-0 shadow-none overflow-hidden"
+    >
+      {/* 12-Column Grid Layout: 5 Columns Left (Animated), 7 Columns Right (Centered) */}
+      <div className="grid grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center w-full max-w-6xl mx-auto">
+        {/* Left Column (5 of 12 cols): Title & Description glide upwards on scroll */}
+        <motion.div
+          style={{ y: textY, opacity: textOpacity }}
+          className="col-span-12 lg:col-span-5 flex flex-col justify-center will-change-transform"
+        >
+          <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-blue-600 mb-3 sm:mb-4 block">
+            {card.eyebrow}
+          </span>
+          <h3 className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[42px] leading-[1.15] tracking-normal mb-4 sm:mb-5">
+            {card.title}
+          </h3>
+          <p className="text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal max-w-lg">
+            {card.description}
+          </p>
+        </motion.div>
+
+        {/* Right Column (7 of 12 cols): Dashboard Container stays centered */}
+        <div className="col-span-12 lg:col-span-7 flex items-center justify-center">
+          <div className="w-full rounded-[28px] sm:rounded-[32px] bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#2563EB] p-4 sm:p-6 lg:p-7 shadow-[0px_16px_40px_rgba(37,99,235,0.18)] border border-blue-200/50 select-none">
+            {card.dashboard}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
