@@ -116,9 +116,80 @@ function UseCaseCard({
   );
 }
 
+function ServiceCard({ service }: { service: (typeof SERVICES_LIST)[number] }) {
+  return (
+    <article
+      data-apple-manual="true"
+      className="rounded-xl w-full bg-white border border-neutral-100 p-6 sm:p-7 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] hover:shadow-[0px_8px_24px_rgba(5,5,6,0.08)]"
+    >
+      <div>
+        <div className="w-12 h-12 flex items-center justify-center mb-4">
+          <Image
+            src={service.iconSrc}
+            alt={service.title}
+            width={48}
+            height={48}
+            className="w-full h-full object-contain"
+          />
+        </div>
+        <h3 className="text-brand-navy font-semibold text-lg sm:text-xl mb-2 tracking-normal">
+          {service.title}
+        </h3>
+        <p className="text-neutral-600 text-sm font-normal leading-relaxed line-clamp-2 mb-5">
+          {service.description}
+        </p>
+      </div>
+
+      <div>
+        <Link
+          href={service.href}
+          className="inline-flex items-center gap-1.5 font-medium text-sm text-brand-red hover:underline py-1"
+          aria-label={`Explore ${service.title}`}
+        >
+          <span>Explore</span>
+          <svg
+            className="w-4 h-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.25"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </Link>
+      </div>
+    </article>
+  );
+}
+
 export default function Service() {
+  const [serviceApi, setServiceApi] = useState<CarouselApi>();
+  const [activeServiceSlide, setActiveServiceSlide] = useState(0);
+
   const [lifestyleApi, setLifestyleApi] = useState<CarouselApi>();
   const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    if (!serviceApi) return;
+
+    const updateActive = () => {
+      setActiveServiceSlide(serviceApi.selectedScrollSnap());
+    };
+
+    const rafId = window.requestAnimationFrame(updateActive);
+    serviceApi.on("select", updateActive);
+    serviceApi.on("reInit", updateActive);
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      serviceApi.off("select", updateActive);
+      serviceApi.off("reInit", updateActive);
+    };
+  }, [serviceApi]);
 
   useEffect(() => {
     if (!lifestyleApi) return;
@@ -161,54 +232,64 @@ export default function Service() {
             </p>
           </AppleReveal>
 
-          <AppleStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Mobile & Tablet Carousel (< md) */}
+          <div className="md:hidden">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              setApi={setServiceApi}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4 py-1">
+                {SERVICES_LIST.map((service) => (
+                  <CarouselItem
+                    key={service.title}
+                    className="pl-4 basis-[86%] sm:basis-[60%] flex"
+                  >
+                    <ServiceCard service={service} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+
+              {/* Navigation Controls: Arrows + Dots */}
+              <div className="mt-6 flex items-center justify-between gap-4">
+                <div className="flex items-center gap-2">
+                  <CarouselPrevious className="relative inset-0 size-9 rounded-lg border border-border/80 bg-white text-brand-navy hover:border-brand-navy/30 hover:bg-neutral-100 transition-colors cursor-pointer" />
+                  <CarouselNext className="relative inset-0 size-9 rounded-lg border-transparent bg-brand-red text-white shadow-[0_4px_12px_rgba(222,3,2,0.25)] hover:bg-brand-red-hover transition-all cursor-pointer" />
+                </div>
+
+                <div
+                  className="flex items-center gap-1.5"
+                  role="tablist"
+                  aria-label="Service carousel pagination"
+                >
+                  {SERVICES_LIST.map((service, idx) => (
+                    <button
+                      key={service.title}
+                      type="button"
+                      role="tab"
+                      aria-selected={activeServiceSlide === idx}
+                      aria-label={`Show ${service.title}`}
+                      onClick={() => serviceApi?.scrollTo(idx)}
+                      className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+                        activeServiceSlide === idx
+                          ? "w-6 bg-brand-red"
+                          : "w-2 bg-neutral-300 hover:bg-neutral-400"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </Carousel>
+          </div>
+
+          {/* Desktop Grid (>= md) */}
+          <AppleStagger className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {SERVICES_LIST.map((service) => (
               <AppleStaggerItem key={service.title} className="flex">
-                <article
-                  data-apple-manual="true"
-                  className="rounded-xl w-full bg-white border border-neutral-100 p-6 sm:p-7 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] hover:shadow-[0px_8px_24px_rgba(5,5,6,0.08)]"
-                >
-                  <div>
-                    <div className="w-12 h-12 flex items-center justify-center mb-4">
-                      <Image
-                        src={service.iconSrc}
-                        alt={service.title}
-                        width={48}
-                        height={48}
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                    <h3 className="text-brand-navy font-semibold text-lg sm:text-xl mb-2 tracking-normal">
-                      {service.title}
-                    </h3>
-                    <p className="text-neutral-600 text-sm font-normal leading-relaxed line-clamp-2 mb-5">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  <div>
-                    <Link
-                      href={service.href}
-                      className="inline-flex items-center gap-1.5 font-medium text-sm text-brand-red hover:underline py-1"
-                      aria-label={`Explore ${service.title}`}
-                    >
-                      <span>Explore</span>
-                      <svg
-                        className="w-4 h-4"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.25"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden="true"
-                      >
-                        <path d="M5 12h14" />
-                        <path d="m12 5 7 7-7 7" />
-                      </svg>
-                    </Link>
-                  </div>
-                </article>
+                <ServiceCard service={service} />
               </AppleStaggerItem>
             ))}
           </AppleStagger>

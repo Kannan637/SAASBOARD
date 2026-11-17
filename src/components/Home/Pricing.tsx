@@ -140,11 +140,10 @@ export default function Pricing() {
               <article
                 data-apple-manual="true"
                 aria-label={`${plan.name} - ${plan.price} ${plan.period}`}
-                className={`rounded-xl p-6 sm:p-7 flex flex-col justify-between relative w-full transition-transform duration-300 hover:-translate-y-1.5 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] hover:shadow-[0px_8px_24px_rgba(5,5,6,0.08)] ${
-                  plan.featured
+                className={`rounded-xl p-6 sm:p-7 flex flex-col justify-between relative w-full transition-transform duration-300 hover:-translate-y-1.5 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] hover:shadow-[0px_8px_24px_rgba(5,5,6,0.08)] ${plan.featured
                     ? "bg-brand-navy text-white border-2 border-brand-red/80 shadow-[0_18px_45px_rgba(1,13,59,0.22)]"
                     : "bg-white text-brand-navy border border-neutral-100"
-                }`}
+                  }`}
               >
                 {plan.featured && (
                   <div
@@ -174,60 +173,53 @@ export default function Pricing() {
                   {/* Plan Title & Speed Pill */}
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <h3
-                      className={`font-semibold text-xl sm:text-2xl tracking-normal ${
-                        plan.featured ? "text-white" : "text-brand-navy"
-                      }`}
+                      className={`font-semibold text-xl sm:text-2xl tracking-normal ${plan.featured ? "text-white" : "text-brand-navy"
+                        }`}
                     >
                       {plan.name}
                     </h3>
                     <span
-                      className={`px-2.5 py-0.5 rounded-full text-xs font-semibold shrink-0 ${
-                        plan.featured
+                      className={`px-2.5 py-0.5 rounded-full text-xs font-semibold shrink-0 ${plan.featured
                           ? "bg-white/15 text-white border border-white/25 backdrop-blur-xs"
                           : "bg-neutral-100 text-brand-navy"
-                      }`}
+                        }`}
                     >
                       {plan.speed}
                     </span>
                   </div>
 
                   <p
-                    className={`text-sm mb-5 min-h-[40px] font-normal leading-relaxed ${
-                      plan.featured ? "text-white/85" : "text-neutral-600"
-                    }`}
+                    className={`text-sm mb-5 min-h-[40px] font-normal leading-relaxed ${plan.featured ? "text-white/85" : "text-neutral-600"
+                      }`}
                   >
                     {plan.description}
                   </p>
 
                   {/* Price Display */}
                   <div
-                    className={`pb-5 mb-5 border-b ${
-                      plan.featured ? "border-white/20" : "border-neutral-100"
-                    }`}
+                    className={`pb-5 mb-5 border-b ${plan.featured ? "border-white/20" : "border-neutral-100"
+                      }`}
                   >
                     <div className="flex items-baseline gap-2">
                       <span
-                        className={`text-3xl sm:text-4xl font-semibold tracking-tight ${
-                          plan.featured ? "text-white" : "text-brand-navy"
-                        }`}
+                        className={`text-3xl sm:text-4xl font-semibold tracking-tight ${plan.featured ? "text-white" : "text-brand-navy"
+                          }`}
                       >
                         {plan.price}
                       </span>
                       <span
-                        className={`font-normal text-sm sm:text-base ${
-                          plan.featured ? "text-white/80" : "text-neutral-600"
-                        }`}
+                        className={`font-normal text-sm sm:text-base ${plan.featured ? "text-white/80" : "text-neutral-600"
+                          }`}
                       >
                         {plan.period}
                       </span>
                     </div>
                     {plan.speedNote && (
                       <p
-                        className={`text-xs font-medium mt-2 px-2.5 py-1 rounded-lg ${
-                          plan.featured
+                        className={`text-xs font-medium mt-2 px-2.5 py-1 rounded-lg ${plan.featured
                             ? "text-white bg-white/15"
                             : "text-brand-red bg-red-10"
-                        }`}
+                          }`}
                       >
                         Note: {plan.speedNote}
                       </p>
@@ -239,14 +231,12 @@ export default function Pricing() {
                     {plan.features.map((feature) => (
                       <li
                         key={feature}
-                        className={`flex items-start gap-2.5 text-sm font-normal ${
-                          plan.featured ? "text-white" : "text-brand-navy"
-                        }`}
+                        className={`flex items-start gap-2.5 text-sm font-normal ${plan.featured ? "text-white" : "text-brand-navy"
+                          }`}
                       >
                         <svg
-                          className={`w-4 h-4 shrink-0 mt-0.5 ${
-                            plan.featured ? "text-white" : "text-brand-red"
-                          }`}
+                          className={`w-4 h-4 shrink-0 mt-0.5 ${plan.featured ? "text-white" : "text-brand-red"
+                            }`}
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
@@ -267,11 +257,10 @@ export default function Pricing() {
                 <button
                   type="button"
                   onClick={() => handleSelectPlan(plan)}
-                  className={`relative z-10 btn-pill btn-primary-red w-full h-10 text-sm font-medium cursor-pointer ${
-                    plan.featured
+                  className={`relative z-10 btn-pill btn-primary-red w-full h-10 text-sm font-medium cursor-pointer ${plan.featured
                       ? "shadow-[0_8px_24px_rgba(0,0,0,0.35)] ring-1 ring-white/25"
                       : ""
-                  }`}
+                    }`}
                 >
                   <span>Order this plan</span>
                   <svg
