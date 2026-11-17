@@ -145,27 +145,26 @@ export default function Business() {
           </p>
         </AppleReveal>
 
-        {/* Card Stack Effect on Scroll */}
-        <div className="relative pb-24 sm:pb-32">
+        {/* Card Stack Effect on Scroll: Width 100%, Height 1080px, No Shadow, No Border */}
+        <div className="relative pb-16 sm:pb-24">
           {cards.map((card, idx) => (
             <div
               key={card.id}
               style={{
-                top: `calc(5rem + ${idx * 22}px)`,
                 zIndex: (idx + 1) * 10,
               }}
-              className="sticky rounded-[32px] sm:rounded-[36px] bg-white border border-neutral-200/90 shadow-[0_20px_50px_rgba(1,13,59,0.12),0_4px_12px_rgba(1,13,59,0.04)] p-6 sm:p-8 lg:p-10 mb-20 sm:mb-28 lg:mb-36 last:mb-0 transition-transform will-change-transform"
+              className="sticky top-14 sm:top-16 w-full h-[1080px] bg-white flex items-center justify-center px-4 sm:px-8 lg:px-12 select-none border-0 shadow-none transition-transform"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center w-full max-w-6xl mx-auto">
                 {/* Left Content Column (Strictly matching shared_img: eyebrow, title, description only) */}
                 <div className="lg:col-span-5 flex flex-col justify-center">
                   <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-blue-600 mb-3 sm:mb-4 block">
                     {card.eyebrow}
                   </span>
-                  <h3 className="text-brand-navy font-semibold text-2xl sm:text-3xl lg:text-[38px] leading-[1.18] tracking-normal mb-3 sm:mb-4">
+                  <h3 className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[42px] leading-[1.15] tracking-normal mb-4 sm:mb-5">
                     {card.title}
                   </h3>
-                  <p className="text-neutral-600 text-sm sm:text-base lg:text-[16px] leading-relaxed font-normal max-w-lg">
+                  <p className="text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal max-w-lg">
                     {card.description}
                   </p>
                 </div>
