@@ -26,14 +26,11 @@ const FOOTER_NAV_LINKS = [
   { label: "Intranet", href: "/intranet" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
-  { label: "Sitemap", href: "/sitemap" },
 ];
 
 const FOOTER_LEGAL_LINKS = [
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms of Service", href: "/terms-of-service" },
-  { label: "HTML Sitemap", href: "/sitemap" },
-  { label: "XML Sitemap", href: "/sitemap.xml" },
 ];
 
 export default function Footer() {

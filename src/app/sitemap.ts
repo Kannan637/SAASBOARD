@@ -24,7 +24,6 @@ const SEO_ROUTES: RouteConfig[] = [
   { path: "/cctv", changeFrequency: "weekly", priority: 0.85 },
   { path: "/contact", changeFrequency: "monthly", priority: 0.85 },
   { path: "/about", changeFrequency: "monthly", priority: 0.8 },
-  { path: "/sitemap", changeFrequency: "weekly", priority: 0.75 },
   { path: "/privacy-policy", changeFrequency: "yearly", priority: 0.5 },
   { path: "/terms-of-service", changeFrequency: "yearly", priority: 0.5 },
 ];

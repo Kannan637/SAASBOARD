@@ -77,9 +77,10 @@ export default function Home() {
       <Hero />
       <Pricing />
       <WhySash />
+      <Aboutus />
       <Service />
       <Business />
-      <Aboutus />
+
       <Testimonial />
       <Speed />
       <Faq />
