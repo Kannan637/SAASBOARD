@@ -190,7 +190,7 @@ export default function Business() {
             </div>
           </AppleReveal>
 
-          {/* Right Column: Dotted Tamil Nadu Map with 7 Static Logo Circles */}
+          {/* Right Column: Tamil Nadu Halftone Silhouette Map with 7 Static Logo Circles */}
           <AppleReveal className="lg:col-span-6 flex flex-col items-center justify-center">
             <div className="relative w-full max-w-[460px] sm:max-w-[500px] aspect-square flex items-center justify-center select-none">
               {/* Soft Radial Ambient Glow */}
@@ -199,11 +199,11 @@ export default function Business() {
                 className="pointer-events-none absolute inset-4 rounded-full bg-[radial-gradient(circle_at_center,rgba(222,3,2,0.06)_0%,rgba(1,13,59,0.03)_50%,transparent_75%)] blur-2xl"
               />
 
-              {/* Dotted Tamil Nadu State Map */}
+              {/* Tamil Nadu Halftone Silhouette Map */}
               <div className="relative w-full h-full">
                 <Image
-                  src="/map/Dotted Tamil Nadu State Map.png"
-                  alt="Dotted Tamil Nadu State Map showing SASH Broadband network reach"
+                  src="/map/Tamil Nadu Halftone Silhouette.png"
+                  alt="Tamil Nadu Halftone Silhouette Map showing SASH Broadband network reach"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-contain select-none pointer-events-none drop-shadow-[0px_4px_12px_rgba(0,0,0,0.05)]"
