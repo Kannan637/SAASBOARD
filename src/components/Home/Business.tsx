@@ -2,21 +2,13 @@
 
 import React from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import {
-  ArrowRight,
-  CheckCircle2,
-  Activity,
-  TrendingUp,
   Network,
   ShieldCheck,
-  Video,
-  Lock,
   Wifi,
   Zap,
 } from "lucide-react";
 import { AppleReveal } from "@/components/ui/apple-scroll";
-import { Button } from "@/components/ui/button";
 
 interface MapLogoPin {
   id: string;
@@ -95,31 +87,6 @@ const MAP_LOGO_PINS: MapLogoPin[] = [
 ];
 
 export default function Business() {
-  const router = useRouter();
-
-  const handleServiceQuote = (serviceName: string) => {
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(
-        new CustomEvent("sash:select-plan", {
-          detail: {
-            planName: serviceName,
-            price: "Custom",
-            speed: "Enterprise / Leased Line",
-            interest: serviceName,
-          },
-        })
-      );
-      const contactEl = document.getElementById("contact");
-      if (contactEl) {
-        contactEl.scrollIntoView({ behavior: "smooth" });
-      } else {
-        router.push(
-          `/contact?interest=${encodeURIComponent(serviceName)}`
-        );
-      }
-    }
-  };
-
   return (
     <section
       id="business"
@@ -155,53 +122,20 @@ export default function Business() {
           <AppleReveal>
             <div className="rounded-3xl border border-neutral-200/90 bg-white p-6 sm:p-8 lg:p-10 shadow-[0px_2px_8px_rgba(5,5,6,0.04)] transition-shadow duration-300 hover:shadow-[0px_12px_32px_rgba(1,13,59,0.08)]">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
-                {/* Left Content Column */}
+                {/* Left Content Column (shared_img: eyebrow, title, description only) */}
                 <div className="lg:col-span-5 flex flex-col justify-center">
-                  <div className="inline-flex items-center gap-1.5 self-start rounded-full bg-red-10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-red mb-3">
-                    <Activity className="size-3.5" aria-hidden="true" />
-                    <span>SLA-Backed Fibre</span>
-                  </div>
-                  <h3 className="text-brand-navy font-semibold text-2xl sm:text-3xl lg:text-[34px] leading-tight tracking-normal mb-3.5">
+                  <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-brand-red mb-3 sm:mb-4 block">
+                    Enterprise Leased Line
+                  </span>
+                  <h3 className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[40px] leading-[1.18] tracking-normal mb-4 sm:mb-5">
                     Uninterrupted secure communications
                   </h3>
-                  <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-normal mb-6">
+                  <p className="text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal max-w-lg">
                     Dedicated uncontended 1:1 symmetrical fibre with 99.9%
                     SLA-backed uptime, sub-5ms low latency, and dual-ring failover
                     to keep your banking transactions, ERP syncing, and
                     mission-critical operations online 24/7.
                   </p>
-
-                  <ul className="space-y-2.5 mb-8 text-xs sm:text-sm text-neutral-700">
-                    <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="size-4 text-brand-red shrink-0" />
-                      <span>99.9% Guaranteed uptime SLA with penalty rebates</span>
-                    </li>
-                    <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="size-4 text-brand-red shrink-0" />
-                      <span>1:1 Symmetrical bandwidth up to 10 Gbps</span>
-                    </li>
-                    <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="size-4 text-brand-red shrink-0" />
-                      <span>Dual-ring optical path automatic failover</span>
-                    </li>
-                    <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="size-4 text-brand-red shrink-0" />
-                      <span>Static IP routing with 24/7 dedicated NOC monitoring</span>
-                    </li>
-                  </ul>
-
-                  <div>
-                    <Button
-                      onClick={() =>
-                        handleServiceQuote("Uninterrupted secure communications")
-                      }
-                      size="lg"
-                      className="cursor-pointer font-medium"
-                    >
-                      <span>Get Leased Line Quote</span>
-                      <ArrowRight className="size-4 ml-1.5" />
-                    </Button>
-                  </div>
                 </div>
 
                 {/* Right Visual Container (shared_img aesthetic) */}
@@ -465,51 +399,20 @@ export default function Business() {
           <AppleReveal>
             <div className="rounded-3xl border border-neutral-200/90 bg-white p-6 sm:p-8 lg:p-10 shadow-[0px_2px_8px_rgba(5,5,6,0.04)] transition-shadow duration-300 hover:shadow-[0px_12px_32px_rgba(1,13,59,0.08)]">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
-                {/* Left Content Column */}
+                {/* Left Content Column (shared_img: eyebrow, title, description only) */}
                 <div className="lg:col-span-5 flex flex-col justify-center">
-                  <div className="inline-flex items-center gap-1.5 self-start rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700 mb-3">
-                    <TrendingUp className="size-3.5" aria-hidden="true" />
-                    <span>Business Broadband</span>
-                  </div>
-                  <h3 className="text-brand-navy font-semibold text-2xl sm:text-3xl lg:text-[34px] leading-tight tracking-normal mb-3.5">
+                  <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-blue-600 mb-3 sm:mb-4 block">
+                    SME Broadband
+                  </span>
+                  <h3 className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[40px] leading-[1.18] tracking-normal mb-4 sm:mb-5">
                     Scalable SME plans
                   </h3>
-                  <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-normal mb-6">
+                  <p className="text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal max-w-lg">
                     High-bandwidth business fibre packages engineered for retail
                     stores, multi-counter clinics, corporate branches, and growing
                     teams. Scale bandwidth seamlessly on demand without disruption
                     or tariff surprises.
                   </p>
-
-                  <ul className="space-y-2.5 mb-8 text-xs sm:text-sm text-neutral-700">
-                    <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="size-4 text-brand-red shrink-0" />
-                      <span>On-demand instant bandwidth scaling (100 Mbps to 1 Gbps)</span>
-                    </li>
-                    <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="size-4 text-brand-red shrink-0" />
-                      <span>Quality of Service (QoS) prioritizes POS &amp; Cloud ERP</span>
-                    </li>
-                    <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="size-4 text-brand-red shrink-0" />
-                      <span>Truly unlimited monthly commercial data (zero FUP)</span>
-                    </li>
-                    <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="size-4 text-brand-red shrink-0" />
-                      <span>Guaranteed 2-year price-lock tariff protection</span>
-                    </li>
-                  </ul>
-
-                  <div>
-                    <Button
-                      onClick={() => handleServiceQuote("Scalable SME plans")}
-                      size="lg"
-                      className="cursor-pointer font-medium"
-                    >
-                      <span>Explore SME Plans</span>
-                      <ArrowRight className="size-4 ml-1.5" />
-                    </Button>
-                  </div>
                 </div>
 
                 {/* Right Visual Container (shared_img aesthetic) */}
@@ -760,51 +663,20 @@ export default function Business() {
           <AppleReveal>
             <div className="rounded-3xl border border-neutral-200/90 bg-white p-6 sm:p-8 lg:p-10 shadow-[0px_2px_8px_rgba(5,5,6,0.04)] transition-shadow duration-300 hover:shadow-[0px_12px_32px_rgba(1,13,59,0.08)]">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
-                {/* Left Content Column */}
+                {/* Left Content Column (shared_img: eyebrow, title, description only) */}
                 <div className="lg:col-span-5 flex flex-col justify-center">
-                  <div className="inline-flex items-center gap-1.5 self-start rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-indigo-700 mb-3">
-                    <Network className="size-3.5" aria-hidden="true" />
-                    <span>Multi-Site Optical WAN</span>
-                  </div>
-                  <h3 className="text-brand-navy font-semibold text-2xl sm:text-3xl lg:text-[34px] leading-tight tracking-normal mb-3.5">
+                  <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-indigo-600 mb-3 sm:mb-4 block">
+                    Multi-Site Optical WAN
+                  </span>
+                  <h3 className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[40px] leading-[1.18] tracking-normal mb-4 sm:mb-5">
                     Private intranet
                   </h3>
-                  <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-normal mb-6">
+                  <p className="text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal max-w-lg">
                     Direct branch-to-branch secure intranet connectivity across
                     Tamil Nadu without public internet traversal. Link your
                     headquarters, factories, warehouses, and branch offices over an
                     isolated optical circuit.
                   </p>
-
-                  <ul className="space-y-2.5 mb-8 text-xs sm:text-sm text-neutral-700">
-                    <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="size-4 text-brand-red shrink-0" />
-                      <span>Zero public web exposure with private VLAN tunneling</span>
-                    </li>
-                    <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="size-4 text-brand-red shrink-0" />
-                      <span>Sub-10ms inter-city latency across Tamil Nadu nodes</span>
-                    </li>
-                    <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="size-4 text-brand-red shrink-0" />
-                      <span>High-speed branch-to-branch file &amp; ERP synchronization</span>
-                    </li>
-                    <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="size-4 text-brand-red shrink-0" />
-                      <span>Dedicated enterprise SLAs with 24/7 route protection</span>
-                    </li>
-                  </ul>
-
-                  <div>
-                    <Button
-                      onClick={() => handleServiceQuote("Private intranet")}
-                      size="lg"
-                      className="cursor-pointer font-medium"
-                    >
-                      <span>Plan Private Intranet</span>
-                      <ArrowRight className="size-4 ml-1.5" />
-                    </Button>
-                  </div>
                 </div>
 
                 {/* Right Visual Container: Featuring Tamil Nadu Halftone Map in Dashboard */}
@@ -1001,50 +873,19 @@ export default function Business() {
           <AppleReveal>
             <div className="rounded-3xl border border-neutral-200/90 bg-white p-6 sm:p-8 lg:p-10 shadow-[0px_2px_8px_rgba(5,5,6,0.04)] transition-shadow duration-300 hover:shadow-[0px_12px_32px_rgba(1,13,59,0.08)]">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
-                {/* Left Content Column */}
+                {/* Left Content Column (shared_img: eyebrow, title, description only) */}
                 <div className="lg:col-span-5 flex flex-col justify-center">
-                  <div className="inline-flex items-center gap-1.5 self-start rounded-full bg-red-10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-red mb-3">
-                    <Video className="size-3.5" aria-hidden="true" />
-                    <span>Premises Surveillance</span>
-                  </div>
-                  <h3 className="text-brand-navy font-semibold text-2xl sm:text-3xl lg:text-[34px] leading-tight tracking-normal mb-3.5">
+                  <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-brand-red mb-3 sm:mb-4 block">
+                    Premises Surveillance
+                  </span>
+                  <h3 className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[40px] leading-[1.18] tracking-normal mb-4 sm:mb-5">
                     CCTV for premises
                   </h3>
-                  <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-normal mb-6">
+                  <p className="text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal max-w-lg">
                     Commercial HD IP CCTV surveillance with 24/7 centralized cloud
                     and NVR storage, AI motion &amp; intrusion detection, night
                     vision clarity, and real-time remote mobile live feeds.
                   </p>
-
-                  <ul className="space-y-2.5 mb-8 text-xs sm:text-sm text-neutral-700">
-                    <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="size-4 text-brand-red shrink-0" />
-                      <span>Commercial-grade 4K &amp; 1080p Ultra-HD IP cameras</span>
-                    </li>
-                    <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="size-4 text-brand-red shrink-0" />
-                      <span>Dual local NVR + encrypted 30-day cloud recording</span>
-                    </li>
-                    <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="size-4 text-brand-red shrink-0" />
-                      <span>AI human &amp; vehicle motion detection alerts</span>
-                    </li>
-                    <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="size-4 text-brand-red shrink-0" />
-                      <span>Multi-user secure mobile app &amp; desktop live monitoring</span>
-                    </li>
-                  </ul>
-
-                  <div>
-                    <Button
-                      onClick={() => handleServiceQuote("CCTV for premises")}
-                      size="lg"
-                      className="cursor-pointer font-medium"
-                    >
-                      <span>Get CCTV Solutions</span>
-                      <ArrowRight className="size-4 ml-1.5" />
-                    </Button>
-                  </div>
                 </div>
 
                 {/* Right Visual Container (shared_img aesthetic) */}
