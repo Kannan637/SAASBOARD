@@ -82,16 +82,18 @@ const MAP_LOGO_PINS: MapLogoPin[] = [
   },
 ];
 
-interface BusinessCardData {
+interface BusinessFeatureSection {
   id: string;
   eyebrow: string;
   title: string;
   description: string;
   dashboard: React.ReactNode;
+  gradientClass: string;
+  isReversed: boolean; // Alternating layout
 }
 
 export default function Business() {
-  const cards: BusinessCardData[] = [
+  const features: BusinessFeatureSection[] = [
     {
       id: "leased-line",
       eyebrow: "ENTERPRISE LEASED LINE",
@@ -99,6 +101,9 @@ export default function Business() {
       description:
         "Dedicated uncontended 1:1 symmetrical fibre with 99.9% SLA-backed uptime, sub-5ms low latency, and dual-ring failover to keep your banking transactions, ERP syncing, and mission-critical operations online 24/7.",
       dashboard: <LeasedLineDashboard />,
+      gradientClass:
+        "bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#2563EB] shadow-[0px_20px_50px_rgba(37,99,235,0.18)] border border-blue-200/50",
+      isReversed: false, // Text Left, Dashboard Right
     },
     {
       id: "sme-plans",
@@ -107,6 +112,9 @@ export default function Business() {
       description:
         "High-bandwidth business fibre packages engineered for retail stores, multi-counter clinics, corporate branches, and growing teams. Scale bandwidth seamlessly on demand without disruption or tariff surprises.",
       dashboard: <SmeDashboard />,
+      gradientClass:
+        "bg-gradient-to-b from-[#EBF6FF] via-[#D8EEFE] to-[#0284C7] shadow-[0px_20px_50px_rgba(2,132,199,0.18)] border border-sky-200/50",
+      isReversed: true, // Dashboard Left, Text Right (Alternating!)
     },
     {
       id: "private-intranet",
@@ -115,6 +123,9 @@ export default function Business() {
       description:
         "Direct branch-to-branch secure intranet connectivity across Tamil Nadu without public internet traversal. Link your headquarters, factories, warehouses, and branch offices over an isolated optical circuit.",
       dashboard: <IntranetDashboard />,
+      gradientClass:
+        "bg-gradient-to-b from-[#EEF2FF] via-[#DBE4FE] to-[#4338CA] shadow-[0px_20px_50px_rgba(67,56,202,0.18)] border border-indigo-200/50",
+      isReversed: false, // Text Left, Dashboard Right
     },
     {
       id: "cctv-surveillance",
@@ -123,6 +134,9 @@ export default function Business() {
       description:
         "Commercial HD IP CCTV surveillance with 24/7 centralized cloud and NVR storage, AI motion & intrusion detection, night vision clarity, and real-time remote mobile live feeds.",
       dashboard: <CctvDashboard />,
+      gradientClass:
+        "bg-gradient-to-b from-[#FFF1F1] via-[#FEE2E2] to-[#DC2626] shadow-[0px_20px_50px_rgba(220,38,38,0.16)] border border-red-200/50",
+      isReversed: true, // Dashboard Left, Text Right (Alternating!)
     },
   ];
 
@@ -131,11 +145,11 @@ export default function Business() {
       id="business"
       data-apple-manual="true"
       aria-labelledby="business-heading"
-      className="bg-white text-brand-navy section-padding relative overflow-visible"
+      className="bg-white text-brand-navy section-padding relative overflow-hidden"
     >
-      <div className="container-sash relative overflow-visible">
+      <div className="container-sash">
         {/* Section Header */}
-        <AppleReveal className="max-w-3xl mx-auto text-center flex flex-col items-center mb-12 sm:mb-16 lg:mb-20">
+        <AppleReveal className="max-w-3xl mx-auto text-center flex flex-col items-center mb-16 sm:mb-20 lg:mb-28">
           <div className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 border border-blue-200/60 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 mb-3.5">
             ENTERPRISES &amp; SMES
           </div>
@@ -154,10 +168,10 @@ export default function Business() {
           </p>
         </AppleReveal>
 
-        {/* Card Stack Overlay on Scroll: 12-Grid Structure, Left Title/Description Moves Upwards, Right Container Stays Centered */}
-        <div className="relative pb-16 sm:pb-24">
-          {cards.map((card, idx) => (
-            <StackingCard key={card.id} card={card} index={idx} />
+        {/* Feature Sections: Alternating Left/Right Layout + Scroll-Triggered Reveal + Parallax */}
+        <div className="space-y-24 sm:space-y-32 lg:space-y-40">
+          {features.map((feature) => (
+            <FeatureRow key={feature.id} feature={feature} />
           ))}
         </div>
       </div>
@@ -166,63 +180,71 @@ export default function Business() {
 }
 
 /* ========================================================================= */
-/* INDIVIDUAL STACKING CARD WITH 12-GRID & SCROLL-LINKED UPWARD TEXT MOTION  */
+/* FEATURE ROW COMPONENT: 12-Grid + Fade-Up Text + Parallax Scale Dashboard  */
 /* ========================================================================= */
-function StackingCard({
-  card,
-  index,
-}: {
-  card: BusinessCardData;
-  index: number;
-}) {
-  const cardRef = useRef<HTMLDivElement>(null);
+function FeatureRow({ feature }: { feature: BusinessFeatureSection }) {
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Track the scroll of this specific 1080px card through the viewport
+  // Parallax tracking: moves dashboard slightly slower than scroll
   const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ["start start", "end start"],
+    target: containerRef,
+    offset: ["start end", "end start"],
   });
 
-  // Left-side title & description animate upwards and fade out cleanly before next card overlays
-  const textY = useTransform(scrollYProgress, [0, 0.85], [0, -100]);
-  const textOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.45, 0.8],
-    [1, 1, 0]
-  );
+  const dashboardY = useTransform(scrollYProgress, [0, 1], [-25, 25]);
 
   return (
     <div
-      ref={cardRef}
-      style={{
-        zIndex: (index + 1) * 10,
-      }}
-      className="sticky top-14 sm:top-16 w-full h-[1080px] bg-transparent flex items-center justify-center px-4 sm:px-8 lg:px-12 select-none border-0 shadow-none overflow-hidden"
+      ref={containerRef}
+      className="grid grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center w-full max-w-6xl mx-auto"
     >
-      {/* 12-Column Grid Layout: 5 Columns Left (Animated), 7 Columns Right (Centered) */}
-      <div className="grid grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center w-full max-w-6xl mx-auto">
-        {/* Left Column (5 of 12 cols): Title & Description glide upwards on scroll */}
-        <motion.div
-          style={{ y: textY, opacity: textOpacity }}
-          className="col-span-12 lg:col-span-5 flex flex-col justify-center will-change-transform"
+      {/* Text Column (5 of 12 cols): Fade-Up Reveal */}
+      <motion.div
+        initial={{ opacity: 0, y: 36 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className={`col-span-12 lg:col-span-5 flex flex-col justify-center ${
+          feature.isReversed ? "lg:order-2" : "lg:order-1"
+        }`}
+      >
+        <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-blue-600 mb-3 sm:mb-4 block">
+          {feature.eyebrow}
+        </span>
+        <h3 className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[42px] leading-[1.15] tracking-normal mb-4 sm:mb-5">
+          {feature.title}
+        </h3>
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{
+            duration: 0.6,
+            delay: 0.12,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          className="text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal max-w-lg"
         >
-          <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-blue-600 mb-3 sm:mb-4 block">
-            {card.eyebrow}
-          </span>
-          <h3 className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[42px] leading-[1.15] tracking-normal mb-4 sm:mb-5">
-            {card.title}
-          </h3>
-          <p className="text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal max-w-lg">
-            {card.description}
-          </p>
-        </motion.div>
+          {feature.description}
+        </motion.p>
+      </motion.div>
 
-        {/* Right Column (7 of 12 cols): Dashboard Container stays centered */}
-        <div className="col-span-12 lg:col-span-7 flex items-center justify-center">
-          <div className="w-full rounded-[28px] sm:rounded-[32px] bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#2563EB] p-4 sm:p-6 lg:p-7 shadow-[0px_16px_40px_rgba(37,99,235,0.18)] border border-blue-200/50 select-none">
-            {card.dashboard}
-          </div>
-        </div>
+      {/* Dashboard Column (7 of 12 cols): Scale from 0.92 to 1 + Parallax Movement */}
+      <div
+        className={`col-span-12 lg:col-span-7 flex items-center justify-center ${
+          feature.isReversed ? "lg:order-1" : "lg:order-2"
+        }`}
+      >
+        <motion.div
+          style={{ y: dashboardY }}
+          initial={{ opacity: 0, scale: 0.92 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className={`w-full rounded-[28px] sm:rounded-[32px] ${feature.gradientClass} p-4 sm:p-6 lg:p-7 select-none will-change-transform`}
+        >
+          {feature.dashboard}
+        </motion.div>
       </div>
     </div>
   );
@@ -262,7 +284,7 @@ function LeasedLineDashboard() {
             </span>
           </div>
 
-          {/* 10 Vertical Availability Bars */}
+          {/* 10 Animated Availability Bars */}
           <div className="flex items-end justify-between gap-1.5 h-12 pt-2 border-t border-neutral-200/60">
             {[94, 98, 100, 96, 100, 100, 97, 100, 100, 100].map(
               (height, idx) => (
@@ -270,9 +292,16 @@ function LeasedLineDashboard() {
                   key={idx}
                   className="flex-1 flex flex-col items-center gap-1 h-full justify-end"
                 >
-                  <div
-                    style={{ height: `${height}%` }}
-                    className={`w-full rounded-xs transition-all duration-300 ${
+                  <motion.div
+                    initial={{ height: 0 }}
+                    whileInView={{ height: `${height}%` }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.6,
+                      delay: idx * 0.04,
+                      ease: "easeOut",
+                    }}
+                    className={`w-full rounded-xs ${
                       idx === 9
                         ? "bg-brand-red"
                         : idx % 2 === 0
@@ -306,11 +335,15 @@ function LeasedLineDashboard() {
                 viewBox="0 0 60 20"
                 fill="none"
               >
-                <path
+                <motion.path
                   d="M0 16 L12 14 L24 8 L36 11 L48 4 L60 2"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
                 />
               </svg>
             </div>
@@ -334,11 +367,15 @@ function LeasedLineDashboard() {
                 viewBox="0 0 60 20"
                 fill="none"
               >
-                <path
+                <motion.path
                   d="M0 18 L14 12 L28 15 L40 6 L50 8 L60 3"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
                 />
               </svg>
             </div>
@@ -346,7 +383,7 @@ function LeasedLineDashboard() {
         </div>
       </div>
 
-      {/* Bottom Row: Throughput Area Graph & Insights Panel */}
+      {/* Bottom Row: Animated Throughput Area Graph & Insights Panel */}
       <div className="grid grid-cols-1 sm:grid-cols-12 gap-3.5">
         <div className="sm:col-span-8 rounded-xl border border-neutral-100 bg-[#FAFBFC] p-3.5">
           <div className="flex items-center justify-between mb-2">
@@ -412,17 +449,25 @@ function LeasedLineDashboard() {
                 d="M0,75 C40,70 70,55 110,60 C150,65 180,45 220,50 C260,20 280,30 320,15 L320,90 L0,90 Z"
                 fill="url(#blueAreaGrad)"
               />
-              <path
+              <motion.path
                 d="M0,75 C40,70 70,55 110,60 C150,65 180,45 220,50 C260,20 280,30 320,15"
                 fill="none"
                 stroke="#2563EB"
                 strokeWidth="2.2"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.4, ease: "easeOut" }}
               />
-              <path
+              <motion.path
                 d="M0,82 C50,80 90,65 140,70 C190,40 230,55 270,35 C295,45 310,38 320,30"
                 fill="none"
                 stroke="#DE0302"
                 strokeWidth="1.8"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.6, ease: "easeOut" }}
               />
             </svg>
           </div>
@@ -491,9 +536,16 @@ function SmeDashboard() {
                 key={idx}
                 className="flex-1 flex flex-col items-center gap-1 h-full justify-end"
               >
-                <div
-                  style={{ height: `${height}%` }}
-                  className={`w-full rounded-xs transition-all duration-300 ${
+                <motion.div
+                  initial={{ height: 0 }}
+                  whileInView={{ height: `${height}%` }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.6,
+                    delay: idx * 0.04,
+                    ease: "easeOut",
+                  }}
+                  className={`w-full rounded-xs ${
                     idx === 4 ? "bg-brand-red" : "bg-sky-500"
                   }`}
                 />
@@ -521,11 +573,15 @@ function SmeDashboard() {
                 viewBox="0 0 60 20"
                 fill="none"
               >
-                <path
+                <motion.path
                   d="M0 15 L12 11 L24 14 L36 8 L48 10 L60 4"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
                 />
               </svg>
             </div>
@@ -549,11 +605,15 @@ function SmeDashboard() {
                 viewBox="0 0 60 20"
                 fill="none"
               >
-                <path
+                <motion.path
                   d="M0 16 L15 10 L30 12 L42 6 L52 7 L60 2"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
                 />
               </svg>
             </div>
@@ -627,17 +687,25 @@ function SmeDashboard() {
                 d="M0,70 C50,65 90,40 140,55 C190,70 230,35 270,40 C295,25 310,30 320,18 L320,90 L0,90 Z"
                 fill="url(#skyAreaGrad)"
               />
-              <path
+              <motion.path
                 d="M0,70 C50,65 90,40 140,55 C190,70 230,35 270,40 C295,25 310,30 320,18"
                 fill="none"
                 stroke="#0284C7"
                 strokeWidth="2.2"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.4, ease: "easeOut" }}
               />
-              <path
+              <motion.path
                 d="M0,82 C45,78 85,60 135,68 C185,55 225,50 265,45 C295,40 310,35 320,28"
                 fill="none"
                 stroke="#4A4F63"
                 strokeWidth="1.6"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.6, ease: "easeOut" }}
               />
             </svg>
           </div>
@@ -710,9 +778,16 @@ function IntranetDashboard() {
                 key={idx}
                 className="flex-1 flex flex-col items-center gap-1 h-full justify-end"
               >
-                <div
-                  style={{ height: `${height}%` }}
-                  className={`w-full rounded-xs transition-all duration-300 ${
+                <motion.div
+                  initial={{ height: 0 }}
+                  whileInView={{ height: `${height}%` }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.6,
+                    delay: idx * 0.05,
+                    ease: "easeOut",
+                  }}
+                  className={`w-full rounded-xs ${
                     idx === 0 ? "bg-brand-red" : "bg-indigo-600"
                   }`}
                 />
@@ -740,11 +815,15 @@ function IntranetDashboard() {
                 viewBox="0 0 60 20"
                 fill="none"
               >
-                <path
+                <motion.path
                   d="M0 16 L12 12 L24 8 L36 10 L48 5 L60 2"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
                 />
               </svg>
             </div>
@@ -768,11 +847,15 @@ function IntranetDashboard() {
                 viewBox="0 0 60 20"
                 fill="none"
               >
-                <path
+                <motion.path
                   d="M0 18 L14 14 L28 10 L40 8 L52 4 L60 2"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
                 />
               </svg>
             </div>
@@ -882,9 +965,16 @@ function CctvDashboard() {
                 key={idx}
                 className="flex-1 flex flex-col items-center gap-1 h-full justify-end"
               >
-                <div
-                  style={{ height: `${height}%` }}
-                  className="w-full rounded-xs bg-brand-red transition-all duration-300"
+                <motion.div
+                  initial={{ height: 0 }}
+                  whileInView={{ height: `${height}%` }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.6,
+                    delay: idx * 0.05,
+                    ease: "easeOut",
+                  }}
+                  className="w-full rounded-xs bg-brand-red"
                 />
               </div>
             ))}
@@ -910,11 +1000,15 @@ function CctvDashboard() {
                 viewBox="0 0 60 20"
                 fill="none"
               >
-                <path
+                <motion.path
                   d="M0 16 L12 10 L24 14 L36 8 L48 10 L60 3"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
                 />
               </svg>
             </div>
@@ -938,11 +1032,15 @@ function CctvDashboard() {
                 viewBox="0 0 60 20"
                 fill="none"
               >
-                <path
+                <motion.path
                   d="M0 18 L15 12 L30 14 L42 8 L52 6 L60 2"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
                 />
               </svg>
             </div>
