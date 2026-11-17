@@ -5,13 +5,13 @@ const SITE_URL = "https://www.sashbroadband.com";
 interface RouteConfig {
   path: string;
   changeFrequency:
-  | "always"
-  | "hourly"
-  | "daily"
-  | "weekly"
-  | "monthly"
-  | "yearly"
-  | "never";
+    | "always"
+    | "hourly"
+    | "daily"
+    | "weekly"
+    | "monthly"
+    | "yearly"
+    | "never";
   priority: number;
 }
 
@@ -30,30 +30,12 @@ const SEO_ROUTES: RouteConfig[] = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = [
-    "",
-    "/about",
-    "/broadband-services",
-    "/lease-line",
-    "/sme-internet",
-    "/cctv",
-    "/intranet",
-    "/contact",
-    "/privacy-policy",
-    "/terms-of-service",
-  ];
   const lastModified = new Date();
 
-  return routes.map((route) => ({
-    url: `${SITE_URL}${route}`,
-    lastModified: new Date(),
-    changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1.0 : route === "/broadband-services" ? 0.9 : 0.8,
-    return SEO_ROUTES.map((route) => ({
-      url: `${SITE_URL}${route.path}`,
-      lastModified,
-      changeFrequency: route.changeFrequency,
-      priority: route.priority,
-    }));
-  }
-
+  return SEO_ROUTES.map((route) => ({
+    url: `${SITE_URL}${route.path}`,
+    lastModified,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
+  }));
+}
