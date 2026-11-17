@@ -191,7 +191,7 @@ export default function Testimonials1({
     >
       <div className="container-sash">
         {/* Centered Section Header */}
-        <AppleReveal className="flex flex-col items-center text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+        <AppleReveal className="flex flex-col items-center text-center max-w-2xl mx-auto mb-12 sm:mb-16 lg:mb-20">
           {/* Eyebrow Pill Tag matching Juspay reference */}
           <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#EFF4FE] text-[#2563EB] mb-3.5">
             {eyebrow}
@@ -274,9 +274,9 @@ export default function Testimonials1({
                 animate="center"
                 exit="exit"
                 aria-label={`Testimonial from ${current.author}`}
-                className="rounded-[24px] sm:rounded-[28px] bg-white border border-border/80 shadow-[0_20px_50px_rgba(1,13,59,0.08),0_1px_3px_rgba(1,13,59,0.04)] p-6 sm:p-8 md:p-10 transition-shadow duration-300 min-h-[380px] sm:min-h-[420px] md:min-h-[460px] flex flex-col justify-center"
+                className="rounded-[24px] sm:rounded-[28px] bg-white border border-border/80 shadow-[0_20px_50px_rgba(1,13,59,0.08),0_1px_3px_rgba(1,13,59,0.04)] p-7 sm:p-9 md:p-12 transition-shadow duration-300 min-h-[380px] sm:min-h-[420px] md:min-h-[460px] flex flex-col justify-center"
               >
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-7 sm:gap-8 lg:gap-10 items-stretch">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-9 lg:gap-11 items-stretch">
                   {/* Left Column: Footer-style gradient backdrop behind company logo */}
                   <div className="md:col-span-5 flex">
                     <div className="relative w-full h-full min-h-[260px] sm:min-h-[300px] md:min-h-[340px] lg:min-h-[360px] rounded-[20px] sm:rounded-[22px] overflow-hidden flex items-center justify-center p-6 sm:p-8 border border-brand-navy/20 shadow-inner">
@@ -383,7 +383,7 @@ export default function Testimonials1({
 
         {/* 5. Pagination Indicator Dots using brand-red & border */}
         <div
-          className="mt-10 sm:mt-12 flex items-center justify-center gap-2"
+          className="mt-12 sm:mt-16 flex items-center justify-center gap-2"
           role="tablist"
           aria-label="Testimonials pagination"
         >

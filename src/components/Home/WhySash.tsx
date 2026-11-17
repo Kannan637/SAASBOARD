@@ -784,7 +784,7 @@ export function BroadbandFeatures() {
     >
       <div className="container-sash">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center flex flex-col items-center mb-10 sm:mb-14 px-2 sm:px-0">
+        <div className="max-w-3xl mx-auto text-center flex flex-col items-center mb-12 sm:mb-16 lg:mb-20 px-2 sm:px-0">
           <p className="eyebrow-label text-brand-red mb-3.5">
             Broadband Infrastructure
           </p>
@@ -806,7 +806,7 @@ export function BroadbandFeatures() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
-          className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-3.5 lg:gap-4 items-stretch"
+          className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 lg:gap-7 items-stretch"
         >
           {/* Row 1 Left: 8 cols */}
           <FibreSpeedCard />

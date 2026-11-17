@@ -120,7 +120,7 @@ function ServiceCard({ service }: { service: (typeof SERVICES_LIST)[number] }) {
   return (
     <article
       data-apple-manual="true"
-      className="rounded-xl w-full bg-white border border-neutral-100 p-6 sm:p-7 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] hover:shadow-[0px_8px_24px_rgba(5,5,6,0.08)]"
+      className="rounded-xl w-full bg-white border border-neutral-100 p-7 sm:p-8 lg:p-9 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] hover:shadow-[0px_8px_24px_rgba(5,5,6,0.08)]"
     >
       <div>
         <div className="w-12 h-12 flex items-center justify-center mb-4">
@@ -219,7 +219,7 @@ export default function Service() {
         className="bg-neutral-100 text-brand-navy section-padding"
       >
         <div className="container-sash">
-          <AppleReveal className="max-w-2xl mx-auto text-center flex flex-col items-center mb-10 sm:mb-14">
+          <AppleReveal className="max-w-2xl mx-auto text-center flex flex-col items-center mb-12 sm:mb-16 lg:mb-20">
             <p className="eyebrow-label text-brand-red mb-3.5">
               Complete Network Portfolio
             </p>
@@ -286,7 +286,7 @@ export default function Service() {
           </div>
 
           {/* Desktop Grid (>= md) */}
-          <AppleStagger className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AppleStagger className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
             {SERVICES_LIST.map((service) => (
               <AppleStaggerItem key={service.title} className="flex">
                 <ServiceCard service={service} />
@@ -317,7 +317,7 @@ export default function Service() {
         </div>
 
         <div className="container-sash relative z-10">
-          <AppleReveal className="max-w-2xl mx-auto text-center flex flex-col items-center mb-10 sm:mb-14">
+          <AppleReveal className="max-w-2xl mx-auto text-center flex flex-col items-center mb-12 sm:mb-16 lg:mb-20">
             <p className="eyebrow-label text-white/80 mb-3.5">
               Built Around Your Lifestyle
             </p>
@@ -383,7 +383,7 @@ export default function Service() {
           </div>
 
           {/* Desktop Grid (>= lg) */}
-          <AppleStagger className="hidden lg:grid lg:grid-cols-4 gap-6">
+          <AppleStagger className="hidden lg:grid lg:grid-cols-4 gap-6 sm:gap-7 lg:gap-8">
             {CONNECTION_USE_CASES.map((item) => (
               <AppleStaggerItem key={item.label} className="flex">
                 <UseCaseCard item={item} />
@@ -392,8 +392,8 @@ export default function Service() {
           </AppleStagger>
 
           {/* 7. CTA Banner (Red background, White text, 20px rounded container with Apple scroll-scale) */}
-          <AppleScrollScale className="mt-16 md:mt-24">
-            <div className="banner-sash rounded-2xl bg-brand-red text-white p-8 sm:p-12 lg:p-14 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+          <AppleScrollScale className="mt-20 md:mt-28 lg:mt-32">
+            <div className="banner-sash rounded-2xl bg-brand-red text-white p-10 sm:p-14 lg:p-16 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
               <div className="max-w-xl">
                 <h2 className="text-white mb-3 font-semibold text-2xl sm:text-3xl lg:text-4xl tracking-normal">
                   Ready to upgrade your connection?

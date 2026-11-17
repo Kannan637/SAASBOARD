@@ -128,9 +128,9 @@ export default function Aboutus() {
             id="about"
             data-apple-manual="true"
             aria-labelledby="partner-marquee-heading"
-            className="bg-white text-brand-navy py-16 md:py-24 overflow-hidden"
+            className="bg-white text-brand-navy py-20 md:py-28 lg:py-32 overflow-hidden"
         >
-            <div className="container-sash mb-12 md:mb-14">
+            <div className="container-sash mb-14 sm:mb-16 lg:mb-20">
                 <AppleReveal className="grid grid-cols-1 lg:grid-cols-12">
                     <div className="lg:col-span-10 lg:col-start-2 flex flex-col items-center text-center">
                         <p className="eyebrow-label text-brand-red mb-3.5">
@@ -175,7 +175,7 @@ export default function Aboutus() {
                     className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 sm:w-28 bg-gradient-to-l from-white via-white/85 to-transparent"
                 />
 
-                <div className="space-y-4 sm:space-y-5">
+                <div className="space-y-5 sm:space-y-6 lg:space-y-7">
                     {/* Top Marquee Row: Right to Left */}
                     <MarqueeLogoTrack
                         logos={TOP_ROW_LOGOS}

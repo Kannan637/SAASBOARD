@@ -77,7 +77,7 @@ export default function Faq() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <div className="container-sash max-w-4xl">
-        <AppleReveal className="text-center max-w-2xl mx-auto flex flex-col items-center mb-10 sm:mb-14">
+        <AppleReveal className="text-center max-w-2xl mx-auto flex flex-col items-center mb-12 sm:mb-16 lg:mb-20">
           <p className="eyebrow-label text-brand-red mb-3.5">
             Common Questions
           </p>
@@ -90,7 +90,7 @@ export default function Faq() {
           </p>
         </AppleReveal>
 
-        <AppleStagger className="space-y-3">
+        <AppleStagger className="space-y-4 sm:space-y-4.5">
           {HOMEPAGE_FAQS.map((item, idx) => {
             const isOpen = openIndex === idx;
 
@@ -107,7 +107,7 @@ export default function Faq() {
                     aria-expanded={isOpen}
                     aria-controls={`faq-answer-${idx}`}
                     onClick={() => handleToggle(idx)}
-                    className={`w-full text-left cursor-pointer px-5 sm:px-6 py-4 flex items-center justify-between gap-4 font-semibold text-sm sm:text-base tracking-normal transition-colors min-h-[52px] ${
+                    className={`w-full text-left cursor-pointer px-6 sm:px-7 py-5 flex items-center justify-between gap-4 font-semibold text-sm sm:text-base tracking-normal transition-colors min-h-[56px] ${
                       isOpen
                         ? "text-brand-red"
                         : "text-brand-navy hover:text-brand-red"
@@ -149,7 +149,7 @@ export default function Faq() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <div className="px-5 sm:px-6 pb-4 pt-1 text-neutral-600 text-sm font-normal leading-relaxed border-t border-neutral-100/80">
+                      <div className="px-6 sm:px-7 pb-6 pt-2 text-neutral-600 text-sm font-normal leading-relaxed border-t border-neutral-100/80">
                         <p>{item.answer}</p>
                       </div>
                     </div>

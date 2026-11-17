@@ -478,10 +478,10 @@ export default function Hero() {
       <section
         data-apple-manual="true"
         aria-label="SASH Broadband Customer Promises"
-        className="bg-brand-red text-white py-8"
+        className="bg-brand-red text-white py-9 sm:py-10 lg:py-12"
       >
         <div className="container-sash">
-          <AppleStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <AppleStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-7">
             {PROMISE_ITEMS.map((item) => (
               <AppleStaggerItem
                 key={item.title}

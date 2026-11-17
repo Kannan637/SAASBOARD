@@ -120,7 +120,7 @@ export default function Business() {
     >
       <div className="container-sash">
         {/* Centered Section Header */}
-        <AppleReveal className="max-w-3xl mx-auto text-center flex flex-col items-center mb-10 sm:mb-14">
+        <AppleReveal className="max-w-3xl mx-auto text-center flex flex-col items-center mb-12 sm:mb-16 lg:mb-20">
           <p className="eyebrow-label text-brand-red mb-3.5">
             For Enterprises &amp; SMEs
           </p>
@@ -138,11 +138,11 @@ export default function Business() {
           </p>
         </AppleReveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-20 items-center">
           {/* Left Column: Checklist & CTA */}
           <AppleReveal className="lg:col-span-6 flex flex-col justify-center">
             <ul
-              className="space-y-4 mb-8"
+              className="space-y-4.5 mb-10"
               aria-label="Business connectivity capabilities"
             >
               {BUSINESS_CHECKLIST.map((item) => (

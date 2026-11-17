@@ -117,7 +117,7 @@ export default function Pricing() {
     >
       <div className="container-sash">
         {/* Section Header */}
-        <AppleReveal className="max-w-2xl mx-auto text-center flex flex-col items-center mb-10 sm:mb-14">
+        <AppleReveal className="max-w-2xl mx-auto text-center flex flex-col items-center mb-12 sm:mb-16 lg:mb-20">
           <p className="eyebrow-label text-brand-red mb-3.5">
             Transparent Fibre Tariffs
           </p>
@@ -131,7 +131,7 @@ export default function Pricing() {
         </AppleReveal>
 
         {/* Three Cards in a Row on Desktop, Stacked on Mobile */}
-        <AppleStagger className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+        <AppleStagger className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 items-stretch">
           {BROADBAND_PLANS.map((plan) => (
             <AppleStaggerItem
               key={plan.id}
@@ -140,7 +140,7 @@ export default function Pricing() {
               <article
                 data-apple-manual="true"
                 aria-label={`${plan.name} - ${plan.price} ${plan.period}`}
-                className={`rounded-xl p-6 sm:p-7 flex flex-col justify-between relative w-full transition-transform duration-300 hover:-translate-y-1.5 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] hover:shadow-[0px_8px_24px_rgba(5,5,6,0.08)] ${plan.featured
+                className={`rounded-xl p-7 sm:p-8 lg:p-9 flex flex-col justify-between relative w-full transition-transform duration-300 hover:-translate-y-1.5 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] hover:shadow-[0px_8px_24px_rgba(5,5,6,0.08)] ${plan.featured
                     ? "bg-brand-navy text-white border-2 border-brand-red/80 shadow-[0_18px_45px_rgba(1,13,59,0.22)]"
                     : "bg-white text-brand-navy border border-neutral-100"
                   }`}

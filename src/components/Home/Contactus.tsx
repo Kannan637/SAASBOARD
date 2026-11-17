@@ -244,7 +244,7 @@ export default function Contactus({
     >
       <div className="container-sash">
         {/* Centered Section Header */}
-        <AppleReveal className="max-w-2xl mx-auto text-center flex flex-col items-center mb-10 sm:mb-14">
+        <AppleReveal className="max-w-2xl mx-auto text-center flex flex-col items-center mb-12 sm:mb-16 lg:mb-20">
           <p className="eyebrow-label mb-3.5">Contact &amp; Location</p>
           <h2
             id="contact-heading"
@@ -260,7 +260,7 @@ export default function Contactus({
         </AppleReveal>
 
         {/* Unified Outer Container with Footer Background; Right Side Form Container in White */}
-        <div className="relative overflow-hidden rounded-2xl bg-brand-navy p-6 sm:p-8 lg:p-10 mb-10 lg:mb-12 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)]">
+        <div className="relative overflow-hidden rounded-2xl bg-brand-navy p-7 sm:p-10 lg:p-12 xl:p-14 mb-14 lg:mb-16 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)]">
           {/* Footer-Matching Gradient & Arch Background */}
           <div
             aria-hidden="true"
@@ -279,12 +279,12 @@ export default function Contactus({
             <div className="absolute inset-x-0 top-0 h-28 bg-linear-to-b from-black/75 via-black/25 to-transparent" />
           </div>
 
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-14 items-stretch">
             {/* Left Column (6 of 12 cols): SASH Office Location & Contact Details on Footer Background */}
             <div className="lg:col-span-6 flex">
               <div className="w-full p-2 sm:p-4 lg:p-6 flex flex-col justify-between divide-y divide-white/15 text-white">
                 {/* Registered Office Address */}
-                <div className="flex items-start gap-4 pb-6">
+                <div className="flex items-start gap-4 pb-7">
                   <div className="w-10 h-10 rounded-lg bg-brand-red text-white flex items-center justify-center shrink-0 mt-0.5">
                     <MapPin className="w-4 h-4" aria-hidden="true" />
                   </div>
@@ -308,7 +308,7 @@ export default function Contactus({
                 </div>
 
                 {/* Phone (Tap to call) */}
-                <div className="flex items-start gap-4 py-6">
+                <div className="flex items-start gap-4 py-7">
                   <div className="w-10 h-10 rounded-lg bg-brand-red text-white flex items-center justify-center shrink-0 mt-0.5">
                     <Phone className="w-4 h-4" aria-hidden="true" />
                   </div>
@@ -328,7 +328,7 @@ export default function Contactus({
                 </div>
 
                 {/* Email */}
-                <div className="flex items-start gap-4 py-6">
+                <div className="flex items-start gap-4 py-7">
                   <div className="w-10 h-10 rounded-lg bg-brand-red text-white flex items-center justify-center shrink-0 mt-0.5">
                     <Mail className="w-4 h-4" aria-hidden="true" />
                   </div>
@@ -348,7 +348,7 @@ export default function Contactus({
                 </div>
 
                 {/* Office Hours & 24/7 Support */}
-                <div className="flex items-start gap-4 pt-6">
+                <div className="flex items-start gap-4 pt-7">
                   <div className="w-10 h-10 rounded-lg bg-brand-red text-white flex items-center justify-center shrink-0 mt-0.5">
                     <Clock className="w-4 h-4" aria-hidden="true" />
                   </div>
@@ -366,7 +366,7 @@ export default function Contactus({
 
             {/* Right Column (6 of 12 cols): White Form Container */}
             <div className="lg:col-span-6 flex">
-              <div className="w-full rounded-2xl bg-white p-6 sm:p-8 lg:p-9 flex flex-col shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)]">
+              <div className="w-full rounded-2xl bg-white p-7 sm:p-9 lg:p-10 xl:p-11 flex flex-col shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)]">
                 {/* Form Header */}
                 <div className="pb-5 mb-6 border-b border-brand-navy/10">
                   <span className="inline-flex min-h-7 items-center justify-center rounded-full bg-red-10 px-3 font-mono text-xs font-semibold uppercase tracking-wider text-brand-red mb-2">
@@ -423,9 +423,9 @@ export default function Contactus({
                 <form
                   onSubmit={handleSubmit}
                   noValidate
-                  className="flex-1 flex flex-col justify-between gap-4"
+                  className="flex-1 flex flex-col justify-between gap-5"
                 >
-                  <div className="space-y-4">
+                  <div className="space-y-4.5">
                     {/* 1 & 2: Name + Number */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
