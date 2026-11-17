@@ -200,13 +200,13 @@ export default function Testimonials1({
           {/* Heading */}
           <h2
             id="testimonials-heading"
-            className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15]"
+            className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3.5"
           >
             {heading}
           </h2>
 
           {description && (
-            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-normal mt-3.5">
+            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-normal">
               {description}
             </p>
           )}

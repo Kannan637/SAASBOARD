@@ -148,11 +148,11 @@ export default function Service() {
         className="bg-neutral-100 text-brand-navy section-padding"
       >
         <div className="container-sash">
-          <AppleReveal className="max-w-2xl mb-8 sm:mb-10">
-            <p className="eyebrow-label text-brand-red mb-3">
+          <AppleReveal className="max-w-2xl mx-auto text-center flex flex-col items-center mb-10 sm:mb-14">
+            <p className="eyebrow-label text-brand-red mb-3.5">
               Complete Network Portfolio
             </p>
-            <h2 id="services-heading" className="text-brand-navy mb-3 font-semibold text-2xl sm:text-3xl lg:text-[32px] tracking-normal leading-[1.2]">
+            <h2 id="services-heading" className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3.5">
               Connectivity for every need
             </h2>
             <p className="text-neutral-600 text-sm sm:text-base font-normal leading-relaxed">
@@ -236,11 +236,11 @@ export default function Service() {
         </div>
 
         <div className="container-sash relative z-10">
-          <AppleReveal className="max-w-2xl mb-8 sm:mb-10">
-            <p className="eyebrow-label text-white/80 mb-3">
+          <AppleReveal className="max-w-2xl mx-auto text-center flex flex-col items-center mb-10 sm:mb-14">
+            <p className="eyebrow-label text-white/80 mb-3.5">
               Built Around Your Lifestyle
             </p>
-            <h2 id="use-cases-heading" className="text-white mb-3 font-semibold text-2xl sm:text-3xl lg:text-[32px] tracking-normal leading-[1.2]">
+            <h2 id="use-cases-heading" className="text-white font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3.5">
               Get more from your connection
             </h2>
             <p className="text-white/85 text-sm sm:text-base font-normal leading-relaxed">

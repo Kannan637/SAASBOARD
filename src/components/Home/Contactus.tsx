@@ -244,11 +244,11 @@ export default function Contactus({
     >
       <div className="container-sash">
         {/* Centered Section Header */}
-        <AppleReveal className="max-w-2xl mx-auto text-center mb-8 sm:mb-10">
-          <p className="eyebrow-label mb-3">Contact &amp; Location</p>
+        <AppleReveal className="max-w-2xl mx-auto text-center flex flex-col items-center mb-10 sm:mb-14">
+          <p className="eyebrow-label mb-3.5">Contact &amp; Location</p>
           <h2
             id="contact-heading"
-            className="text-brand-navy text-2xl sm:text-3xl lg:text-[32px] leading-[1.2] font-semibold tracking-normal text-balance mb-3"
+            className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] text-balance mb-3.5"
           >
             Get connected with{" "}
             <span className="text-brand-red">SASH Broadband</span>

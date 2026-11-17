@@ -77,11 +77,11 @@ export default function Faq() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <div className="container-sash max-w-4xl">
-        <AppleReveal className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-          <p className="eyebrow-label text-brand-red mb-3">
+        <AppleReveal className="text-center max-w-2xl mx-auto flex flex-col items-center mb-10 sm:mb-14">
+          <p className="eyebrow-label text-brand-red mb-3.5">
             Common Questions
           </p>
-          <h2 id="faq-heading" className="text-brand-navy mb-3 font-semibold text-2xl sm:text-3xl lg:text-[32px] tracking-normal leading-[1.2]">
+          <h2 id="faq-heading" className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3.5">
             Frequently asked questions
           </h2>
           <p className="text-neutral-600 text-sm sm:text-base font-normal leading-relaxed">

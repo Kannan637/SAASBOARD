@@ -784,12 +784,12 @@ export function BroadbandFeatures() {
     >
       <div className="container-sash">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center flex flex-col items-center mb-8 sm:mb-10 px-2 sm:px-0">
-          <p className="eyebrow-label text-brand-red mb-3">
+        <div className="max-w-3xl mx-auto text-center flex flex-col items-center mb-10 sm:mb-14 px-2 sm:px-0">
+          <p className="eyebrow-label text-brand-red mb-3.5">
             Broadband Infrastructure
           </p>
 
-          <h2 id="why-sash-heading" className="text-brand-navy mb-3 text-2xl sm:text-3xl lg:text-[32px] font-semibold tracking-normal leading-[1.2]">
+          <h2 id="why-sash-heading" className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3.5">
             Internet built for{" "}
             <span className="text-brand-red">everything you do.</span>
           </h2>

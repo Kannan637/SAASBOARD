@@ -133,12 +133,12 @@ export default function Aboutus() {
             <div className="container-sash mb-12 md:mb-14">
                 <AppleReveal className="grid grid-cols-1 lg:grid-cols-12">
                     <div className="lg:col-span-10 lg:col-start-2 flex flex-col items-center text-center">
-                        <p className="eyebrow-label text-brand-red mb-3">
+                        <p className="eyebrow-label text-brand-red mb-3.5">
                             About Us &amp; Our Clients
                         </p>
                         <h2
                             id="partner-marquee-heading"
-                            className="text-brand-navy text-[clamp(1.85rem,3.2vw,2.75rem)] leading-[1.15] font-semibold tracking-normal mb-4"
+                            className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3.5"
                         >
                             About{" "}
                             <span className="text-brand-red">SASH Broadband</span>{" "}

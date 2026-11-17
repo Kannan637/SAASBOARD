@@ -119,27 +119,30 @@ export default function Business() {
       className="bg-white text-brand-navy section-padding overflow-hidden"
     >
       <div className="container-sash">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Left Column: Text & Checklist */}
-          <AppleReveal className="lg:col-span-6 flex flex-col justify-center">
-            <p className="eyebrow-label text-brand-red mb-3">
-              For Enterprises &amp; SMEs
-            </p>
-            <h2
-              id="business-heading"
-              className="text-brand-navy mb-4 font-semibold text-2xl sm:text-3xl lg:text-[32px] tracking-normal leading-[1.2]"
-            >
-              Enterprise-grade connectivity for Tamil Nadu businesses
-            </h2>
-            <p className="text-neutral-600 text-sm sm:text-base mb-6 font-normal leading-relaxed">
-              Keep your billing systems, cloud ERP, multi-branch operations, and
-              IP surveillance online without interruption. We design custom fibre
-              solutions for offices, factories, schools, clinics, and retail
-              chains.
-            </p>
+        {/* Centered Section Header */}
+        <AppleReveal className="max-w-3xl mx-auto text-center flex flex-col items-center mb-10 sm:mb-14">
+          <p className="eyebrow-label text-brand-red mb-3.5">
+            For Enterprises &amp; SMEs
+          </p>
+          <h2
+            id="business-heading"
+            className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3.5"
+          >
+            Enterprise-grade connectivity for Tamil Nadu businesses
+          </h2>
+          <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-normal">
+            Keep your billing systems, cloud ERP, multi-branch operations, and
+            IP surveillance online without interruption. We design custom fibre
+            solutions for offices, factories, schools, clinics, and retail
+            chains.
+          </p>
+        </AppleReveal>
 
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* Left Column: Checklist & CTA */}
+          <AppleReveal className="lg:col-span-6 flex flex-col justify-center">
             <ul
-              className="space-y-3 mb-8"
+              className="space-y-4 mb-8"
               aria-label="Business connectivity capabilities"
             >
               {BUSINESS_CHECKLIST.map((item) => (
