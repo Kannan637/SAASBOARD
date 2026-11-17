@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
 import { Zap, Wifi, Network, ShieldCheck } from "lucide-react";
 import { AppleReveal } from "@/components/ui/apple-scroll";
 
@@ -82,98 +81,51 @@ const MAP_LOGO_PINS: MapLogoPin[] = [
   },
 ];
 
-interface BusinessServiceItem {
-  id: string;
-  tabLabel: string;
-  eyebrow: string;
-  title: string;
-  description: string;
-}
-
-const BUSINESS_SERVICES: BusinessServiceItem[] = [
-  {
-    id: "leased-line",
-    tabLabel: "Leased Line",
-    eyebrow: "ENTERPRISE LEASED LINE",
-    title: "Uninterrupted secure communications",
-    description:
-      "Dedicated uncontended 1:1 symmetrical fibre with 99.9% SLA-backed uptime, sub-5ms low latency, and dual-ring failover to keep your banking transactions, ERP syncing, and mission-critical operations online 24/7.",
-  },
-  {
-    id: "sme-plans",
-    tabLabel: "SME Plans",
-    eyebrow: "SME BROADBAND",
-    title: "Scalable SME plans",
-    description:
-      "High-bandwidth business fibre packages engineered for retail stores, multi-counter clinics, corporate branches, and growing teams. Scale bandwidth seamlessly on demand without disruption or tariff surprises.",
-  },
-  {
-    id: "private-intranet",
-    tabLabel: "Private Intranet",
-    eyebrow: "MULTI-SITE WAN",
-    title: "Private intranet",
-    description:
-      "Direct branch-to-branch secure intranet connectivity across Tamil Nadu without public internet traversal. Link your headquarters, factories, warehouses, and branch offices over an isolated optical circuit.",
-  },
-  {
-    id: "cctv-surveillance",
-    tabLabel: "CCTV Premises",
-    eyebrow: "PREMISES SURVEILLANCE",
-    title: "CCTV for premises",
-    description:
-      "Commercial HD IP CCTV surveillance with 24/7 centralized cloud and NVR storage, AI motion & intrusion detection, night vision clarity, and real-time remote mobile live feeds.",
-  },
-];
-
 export default function Business() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  // Desktop: IntersectionObserver to update activeIndex as user scrolls down the page
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-
-    itemRefs.current.forEach((el, index) => {
-      if (!el) return;
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setActiveIndex(index);
-          }
-        },
-        {
-          rootMargin: "-25% 0px -45% 0px",
-          threshold: 0.1,
-        }
-      );
-      observer.observe(el);
-      observers.push(observer);
-    });
-
-    return () => {
-      observers.forEach((obs) => obs.disconnect());
-    };
-  }, []);
-
-  const scrollToItem = (idx: number) => {
-    setActiveIndex(idx);
-    if (itemRefs.current[idx]) {
-      itemRefs.current[idx]?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-    }
-  };
+  const cards = [
+    {
+      id: "leased-line",
+      eyebrow: "ENTERPRISE LEASED LINE",
+      title: "Uninterrupted secure communications",
+      description:
+        "Dedicated uncontended 1:1 symmetrical fibre with 99.9% SLA-backed uptime, sub-5ms low latency, and dual-ring failover to keep your banking transactions, ERP syncing, and mission-critical operations online 24/7.",
+      dashboard: <LeasedLineDashboard />,
+    },
+    {
+      id: "sme-plans",
+      eyebrow: "SME BROADBAND",
+      title: "Scalable SME plans",
+      description:
+        "High-bandwidth business fibre packages engineered for retail stores, multi-counter clinics, corporate branches, and growing teams. Scale bandwidth seamlessly on demand without disruption or tariff surprises.",
+      dashboard: <SmeDashboard />,
+    },
+    {
+      id: "private-intranet",
+      eyebrow: "MULTI-SITE WAN",
+      title: "Private intranet",
+      description:
+        "Direct branch-to-branch secure intranet connectivity across Tamil Nadu without public internet traversal. Link your headquarters, factories, warehouses, and branch offices over an isolated optical circuit.",
+      dashboard: <IntranetDashboard />,
+    },
+    {
+      id: "cctv-surveillance",
+      eyebrow: "PREMISES SURVEILLANCE",
+      title: "CCTV for premises",
+      description:
+        "Commercial HD IP CCTV surveillance with 24/7 centralized cloud and NVR storage, AI motion & intrusion detection, night vision clarity, and real-time remote mobile live feeds.",
+      dashboard: <CctvDashboard />,
+    },
+  ];
 
   return (
     <section
       id="business"
       data-apple-manual="true"
       aria-labelledby="business-heading"
-      className="bg-white text-brand-navy section-padding overflow-hidden relative"
+      className="bg-white text-brand-navy section-padding relative overflow-visible"
     >
-      <div className="container-sash">
-        {/* Section Header (matching Image 1 layout & typography) */}
+      <div className="container-sash relative overflow-visible">
+        {/* Section Header */}
         <AppleReveal className="max-w-3xl mx-auto text-center flex flex-col items-center mb-12 sm:mb-16 lg:mb-20">
           <div className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 border border-blue-200/60 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 mb-3.5">
             ENTERPRISES &amp; SMES
@@ -193,131 +145,40 @@ export default function Business() {
           </p>
         </AppleReveal>
 
-        {/* =================================================================== */}
-        {/* MOBILE VIEW (lg:hidden): Tab Switcher + Card Preview                */}
-        {/* =================================================================== */}
-        <div className="lg:hidden">
-          {/* Mobile Tab Selector */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 no-scrollbar">
-            {BUSINESS_SERVICES.map((service, idx) => {
-              const isSelected = activeIndex === idx;
-              return (
-                <button
-                  key={service.id}
-                  type="button"
-                  onClick={() => setActiveIndex(idx)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide whitespace-nowrap transition-colors cursor-pointer ${
-                    isSelected
-                      ? "bg-blue-600 text-white shadow-sm"
-                      : "bg-neutral-100 text-neutral-600 hover:text-brand-navy"
-                  }`}
-                >
-                  {service.tabLabel}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Active Mobile Text Content */}
-          <div className="mb-6">
-            <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 mb-2 block">
-              {BUSINESS_SERVICES[activeIndex].eyebrow}
-            </span>
-            <h3 className="text-brand-navy font-semibold text-2xl sm:text-3xl leading-snug mb-3">
-              {BUSINESS_SERVICES[activeIndex].title}
-            </h3>
-            <p className="text-neutral-600 text-sm leading-relaxed">
-              {BUSINESS_SERVICES[activeIndex].description}
-            </p>
-          </div>
-
-          {/* Mobile Blue Rounded Container */}
-          <div className="rounded-[28px] sm:rounded-[32px] bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#2563EB] p-4 sm:p-6 shadow-[0px_16px_40px_rgba(37,99,235,0.18)] border border-blue-200/50 relative overflow-hidden select-none">
-            <div className="w-full">
-              {activeIndex === 0 && <LeasedLineDashboard />}
-              {activeIndex === 1 && <SmeDashboard />}
-              {activeIndex === 2 && <IntranetDashboard />}
-              {activeIndex === 3 && <CctvDashboard />}
-            </div>
-          </div>
-        </div>
-
-        {/* =================================================================== */}
-        {/* DESKTOP VIEW (hidden lg:block): Sticky Scroll Showcase (Images 1-4) */}
-        {/* =================================================================== */}
-        <div className="hidden lg:grid lg:grid-cols-12 gap-12 xl:gap-16 items-start relative">
-          {/* Left Column (5 of 12 cols): Scrolling Content Blocks */}
-          <div className="lg:col-span-5 space-y-48 py-16">
-            {BUSINESS_SERVICES.map((service, idx) => {
-              const isActive = activeIndex === idx;
-              return (
-                <div
-                  key={service.id}
-                  ref={(el) => {
-                    itemRefs.current[idx] = el;
-                  }}
-                  onClick={() => scrollToItem(idx)}
-                  className={`transition-all duration-300 cursor-pointer select-none ${
-                    isActive
-                      ? "opacity-100 translate-x-1"
-                      : "opacity-35 hover:opacity-75"
-                  }`}
-                >
-                  {/* Eyebrow Label */}
+        {/* Card Stack Effect on Scroll */}
+        <div className="relative pb-24 sm:pb-32">
+          {cards.map((card, idx) => (
+            <div
+              key={card.id}
+              style={{
+                top: `calc(5rem + ${idx * 22}px)`,
+                zIndex: (idx + 1) * 10,
+              }}
+              className="sticky rounded-[32px] sm:rounded-[36px] bg-white border border-neutral-200/90 shadow-[0_20px_50px_rgba(1,13,59,0.12),0_4px_12px_rgba(1,13,59,0.04)] p-6 sm:p-8 lg:p-10 mb-20 sm:mb-28 lg:mb-36 last:mb-0 transition-transform will-change-transform"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
+                {/* Left Content Column (Strictly matching shared_img: eyebrow, title, description only) */}
+                <div className="lg:col-span-5 flex flex-col justify-center">
                   <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-blue-600 mb-3 sm:mb-4 block">
-                    {service.eyebrow}
+                    {card.eyebrow}
                   </span>
-
-                  {/* Title */}
-                  <h3 className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[40px] leading-[1.18] tracking-normal mb-4 sm:mb-5">
-                    {service.title}
+                  <h3 className="text-brand-navy font-semibold text-2xl sm:text-3xl lg:text-[38px] leading-[1.18] tracking-normal mb-3 sm:mb-4">
+                    {card.title}
                   </h3>
-
-                  {/* Description */}
-                  <p className="text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal max-w-lg">
-                    {service.description}
+                  <p className="text-neutral-600 text-sm sm:text-base lg:text-[16px] leading-relaxed font-normal max-w-lg">
+                    {card.description}
                   </p>
                 </div>
-              );
-            })}
-          </div>
 
-          {/* Right Column (7 of 12 cols): Persistent Sticky Blue Rounded Container */}
-          <div className="lg:col-span-7 sticky top-28 h-fit">
-            <div className="rounded-[36px] bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#2563EB] p-6 sm:p-8 xl:p-9 shadow-[0px_20px_60px_rgba(37,99,235,0.18)] border border-blue-200/50 relative overflow-hidden select-none min-h-[500px] flex items-center justify-center">
-              {/* Subtle Atmospheric Top & Bottom Fade Overlays */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-[#F2F8FF]/80 to-transparent z-10"
-              />
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[#2563EB]/40 to-transparent z-10"
-              />
-
-              {/* Animated Sliding Card Container (matching transitions in Images 2, 3, 4) */}
-              <div className="w-full relative z-0">
-                <AnimatePresence mode="popLayout" initial={false}>
-                  <motion.div
-                    key={activeIndex}
-                    initial={{ opacity: 0, y: 70, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -70, scale: 0.98 }}
-                    transition={{
-                      duration: 0.45,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    className="w-full"
-                  >
-                    {activeIndex === 0 && <LeasedLineDashboard />}
-                    {activeIndex === 1 && <SmeDashboard />}
-                    {activeIndex === 2 && <IntranetDashboard />}
-                    {activeIndex === 3 && <CctvDashboard />}
-                  </motion.div>
-                </AnimatePresence>
+                {/* Right Visual Container (shared_img blue gradient rounded container) */}
+                <div className="lg:col-span-7">
+                  <div className="rounded-[28px] sm:rounded-[32px] bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#2563EB] p-4 sm:p-6 lg:p-7 shadow-[0px_16px_40px_rgba(37,99,235,0.18)] border border-blue-200/50 select-none">
+                    {card.dashboard}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
