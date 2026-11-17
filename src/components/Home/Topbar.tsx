@@ -298,36 +298,36 @@ export default function Topbar() {
             : "border-b border-neutral-100"
         }`}
       >
-        <div className="container-sash h-16 sm:h-20 flex items-center justify-between gap-3">
+        <div className="container-sash h-14 sm:h-16 flex items-center justify-between gap-3">
           {/* Brand Logo */}
           <Link
             href="/"
             onClick={() => handleNavClick("/")}
-            className="inline-flex items-center py-1.5 shrink-0 transition-opacity hover:opacity-90"
+            className="inline-flex items-center py-1 shrink-0 transition-opacity hover:opacity-90"
             aria-label="SASH Broadband Private Limited - Home"
           >
             <Image
               src="/Logo/sashbroadband.png"
               alt="SASH Broadband - High Speed Networks"
-              width={150}
-              height={68}
+              width={140}
+              height={60}
               priority
-              className="h-10 sm:h-12 md:h-14 w-auto object-contain"
+              className="h-9 sm:h-10 md:h-11 w-auto object-contain"
             />
           </Link>
 
           {/* Desktop Navigation */}
           <nav
             aria-label="Primary navigation"
-            className="hidden lg:flex items-center gap-1 xl:gap-2"
+            className="hidden lg:flex items-center gap-1"
           >
             {/* Home */}
             <Link
               href="/"
               onClick={() => handleNavClick("/")}
-              className={`px-3.5 py-2 rounded-sm text-sm sm:text-base font-normal transition-colors min-h-[40px] inline-flex items-center ${
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center ${
                 pathname === "/" && activeSection === "home"
-                  ? "text-brand-red font-medium"
+                  ? "text-brand-red font-semibold"
                   : "text-brand-navy hover:text-brand-red"
               }`}
             >
@@ -338,9 +338,9 @@ export default function Topbar() {
             <Link
               href="/#plans"
               onClick={() => handleNavClick("/#plans")}
-              className={`px-3.5 py-2 rounded-sm text-sm sm:text-base font-normal transition-colors min-h-[40px] inline-flex items-center ${
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center ${
                 pathname === "/" && activeSection === "plans"
-                  ? "text-brand-red font-medium"
+                  ? "text-brand-red font-semibold"
                   : "text-brand-navy hover:text-brand-red"
               }`}
             >
@@ -359,9 +359,9 @@ export default function Topbar() {
                 onClick={() => setServicesOpen((prev) => !prev)}
                 aria-expanded={servicesOpen}
                 aria-haspopup="menu"
-                className={`px-3.5 py-2 rounded-sm text-sm sm:text-base font-normal transition-colors min-h-[40px] inline-flex items-center gap-1.5 cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center gap-1.5 cursor-pointer ${
                   servicesOpen || isServicePage
-                    ? "text-brand-red font-medium"
+                    ? "text-brand-red font-semibold"
                     : "text-brand-navy hover:text-brand-red"
                 }`}
               >
@@ -386,7 +386,7 @@ export default function Topbar() {
               <div
                 role="menu"
                 aria-label="SASH Broadband Services"
-                className={`absolute left-0 mt-1.5 w-88 rounded-[16px] bg-white border border-brand-navy/10 p-2 shadow-[0_18px_40px_rgba(1,13,59,0.12)] z-50 transition-all duration-200 origin-top-left ${
+                className={`absolute left-0 mt-1.5 w-88 rounded-xl bg-white border border-brand-navy/10 p-2 shadow-[0px_8px_24px_rgba(5,5,6,0.08)] z-50 transition-all duration-200 origin-top-left ${
                   servicesOpen
                     ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
                     : "opacity-0 -translate-y-2 scale-95 pointer-events-none"
@@ -400,7 +400,7 @@ export default function Topbar() {
                       href={item.href}
                       role="menuitem"
                       onClick={() => handleNavClick(item.href)}
-                      className={`flex items-center gap-3.5 p-3 rounded-[10px] transition-colors group ${
+                      className={`flex items-center gap-3.5 p-3 rounded-lg transition-colors group ${
                         isActive
                           ? "bg-red-10/70 border border-brand-red/30"
                           : "hover:bg-neutral-100"
@@ -437,9 +437,9 @@ export default function Topbar() {
             <Link
               href="/about"
               onClick={() => handleNavClick("/about")}
-              className={`px-3.5 py-2 rounded-sm text-sm sm:text-base font-normal transition-colors min-h-[40px] inline-flex items-center ${
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center ${
                 pathname === "/about"
-                  ? "text-brand-red font-medium"
+                  ? "text-brand-red font-semibold"
                   : "text-brand-navy hover:text-brand-red"
               }`}
             >
@@ -450,9 +450,9 @@ export default function Topbar() {
             <Link
               href="/#faq"
               onClick={() => handleNavClick("/#faq")}
-              className={`px-3.5 py-2 rounded-sm text-sm sm:text-base font-normal transition-colors min-h-[40px] inline-flex items-center ${
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center ${
                 pathname === "/" && activeSection === "faq"
-                  ? "text-brand-red font-medium"
+                  ? "text-brand-red font-semibold"
                   : "text-brand-navy hover:text-brand-red"
               }`}
             >
@@ -463,10 +463,10 @@ export default function Topbar() {
             <Link
               href="/contact"
               onClick={() => handleNavClick("/contact")}
-              className={`px-3.5 py-2 rounded-sm text-sm sm:text-base font-normal transition-colors min-h-[40px] inline-flex items-center ${
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center ${
                 pathname === "/contact" ||
                 (pathname === "/" && activeSection === "contact")
-                  ? "text-brand-red font-medium"
+                  ? "text-brand-red font-semibold"
                   : "text-brand-navy hover:text-brand-red"
               }`}
             >
@@ -479,7 +479,7 @@ export default function Topbar() {
             <Link
               href="/#contact"
               onClick={() => handleNavClick("/#contact")}
-              className="group/cta btn-pill btn-primary-red text-sm font-normal"
+              className="group/cta btn-pill btn-primary-red text-sm font-medium"
             >
               <span>Check availability</span>
               <svg
@@ -503,7 +503,7 @@ export default function Topbar() {
             <a
               href="tel:+919003009353"
               aria-label="Call SASH Broadband"
-              className="inline-flex items-center justify-center w-10 h-10 rounded-sm bg-red-10 text-brand-red hover:bg-brand-red hover:text-white transition-colors"
+              className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-red-10 text-brand-red hover:bg-brand-red hover:text-white transition-colors"
             >
               <svg
                 className="w-5 h-5"
@@ -525,7 +525,7 @@ export default function Topbar() {
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation-drawer"
               aria-label={mobileMenuOpen ? "Close main menu" : "Open main menu"}
-              className="inline-flex items-center justify-center w-11 h-11 rounded-sm border border-brand-navy/15 text-brand-navy hover:bg-neutral-100 transition-colors cursor-pointer"
+              className="inline-flex items-center justify-center w-11 h-11 rounded-lg border border-brand-navy/15 text-brand-navy hover:bg-neutral-100 transition-colors cursor-pointer"
             >
               {mobileMenuOpen ? (
                 <svg
@@ -584,9 +584,9 @@ export default function Topbar() {
               <Link
                 href="/"
                 onClick={() => handleNavClick("/")}
-                className={`px-4 py-3 rounded-sm text-base font-normal min-h-[46px] flex items-center justify-between transition-colors ${
+                className={`px-4 py-3 rounded-lg text-base font-medium min-h-[46px] flex items-center justify-between transition-colors ${
                   pathname === "/" && activeSection === "home"
-                    ? "bg-red-10 text-brand-red font-medium"
+                    ? "bg-red-10 text-brand-red"
                     : "text-brand-navy hover:bg-neutral-100"
                 }`}
               >
@@ -597,9 +597,9 @@ export default function Topbar() {
               <Link
                 href="/#plans"
                 onClick={() => handleNavClick("/#plans")}
-                className={`px-4 py-3 rounded-sm text-base font-normal min-h-[46px] flex items-center justify-between transition-colors ${
+                className={`px-4 py-3 rounded-lg text-base font-medium min-h-[46px] flex items-center justify-between transition-colors ${
                   pathname === "/" && activeSection === "plans"
-                    ? "bg-red-10 text-brand-red font-medium"
+                    ? "bg-red-10 text-brand-red"
                     : "text-brand-navy hover:bg-neutral-100"
                 }`}
               >
@@ -607,12 +607,12 @@ export default function Topbar() {
               </Link>
 
               {/* Mobile Services Accordion */}
-              <div className="rounded-[14px] bg-neutral-100/80 border border-brand-navy/8 p-2 my-1">
+              <div className="rounded-xl bg-neutral-100/80 border border-brand-navy/8 p-2 my-1">
                 <button
                   type="button"
                   onClick={() => setMobileServicesOpen((prev) => !prev)}
                   aria-expanded={mobileServicesOpen}
-                  className="w-full px-2.5 py-2 flex items-center justify-between text-xs font-mono uppercase tracking-wider font-medium text-brand-navy cursor-pointer"
+                  className="w-full px-2.5 py-2 flex items-center justify-between text-xs font-mono uppercase tracking-wider font-semibold text-brand-navy cursor-pointer"
                 >
                   <span className={isServicePage ? "text-brand-red font-semibold" : ""}>
                     Our Services
@@ -642,7 +642,7 @@ export default function Topbar() {
                           key={item.href}
                           href={item.href}
                           onClick={() => handleNavClick(item.href)}
-                          className={`p-2.5 rounded-sm bg-white border min-h-[48px] flex items-center gap-3 transition-colors ${
+                          className={`p-2.5 rounded-lg bg-white border min-h-[48px] flex items-center gap-3 transition-colors ${
                             isActive
                               ? "border-brand-red bg-red-10/40"
                               : "border-neutral-100 hover:border-brand-red/30"
@@ -657,13 +657,13 @@ export default function Topbar() {
                           />
                           <div className="min-w-0 flex-1">
                             <p
-                              className={`text-sm truncate font-normal ${
-                                isActive ? "text-brand-red font-medium" : "text-brand-navy"
+                              className={`text-sm truncate font-medium ${
+                                isActive ? "text-brand-red" : "text-brand-navy"
                               }`}
                             >
                               {item.name}
                             </p>
-                            <p className="text-xs text-neutral-600 truncate">
+                            <p className="text-xs text-neutral-600 truncate font-normal">
                               {item.desc}
                             </p>
                           </div>
@@ -678,9 +678,9 @@ export default function Topbar() {
               <Link
                 href="/about"
                 onClick={() => handleNavClick("/about")}
-                className={`px-4 py-3 rounded-sm text-base font-normal min-h-[46px] flex items-center justify-between transition-colors ${
+                className={`px-4 py-3 rounded-lg text-base font-medium min-h-[46px] flex items-center justify-between transition-colors ${
                   pathname === "/about"
-                    ? "bg-red-10 text-brand-red font-medium"
+                    ? "bg-red-10 text-brand-red"
                     : "text-brand-navy hover:bg-neutral-100"
                 }`}
               >
@@ -691,9 +691,9 @@ export default function Topbar() {
               <Link
                 href="/#faq"
                 onClick={() => handleNavClick("/#faq")}
-                className={`px-4 py-3 rounded-sm text-base font-normal min-h-[46px] flex items-center justify-between transition-colors ${
+                className={`px-4 py-3 rounded-lg text-base font-medium min-h-[46px] flex items-center justify-between transition-colors ${
                   pathname === "/" && activeSection === "faq"
-                    ? "bg-red-10 text-brand-red font-medium"
+                    ? "bg-red-10 text-brand-red"
                     : "text-brand-navy hover:bg-neutral-100"
                 }`}
               >
@@ -704,10 +704,10 @@ export default function Topbar() {
               <Link
                 href="/contact"
                 onClick={() => handleNavClick("/contact")}
-                className={`px-4 py-3 rounded-sm text-base font-normal min-h-[46px] flex items-center justify-between transition-colors ${
+                className={`px-4 py-3 rounded-lg text-base font-medium min-h-[46px] flex items-center justify-between transition-colors ${
                   pathname === "/contact" ||
                   (pathname === "/" && activeSection === "contact")
-                    ? "bg-red-10 text-brand-red font-medium"
+                    ? "bg-red-10 text-brand-red"
                     : "text-brand-navy hover:bg-neutral-100"
                 }`}
               >
@@ -720,13 +720,13 @@ export default function Topbar() {
               <Link
                 href="/#contact"
                 onClick={() => handleNavClick("/#contact")}
-                className="btn-pill btn-primary-red w-full text-center text-sm sm:text-base font-normal"
+                className="btn-pill btn-primary-red w-full text-center text-sm sm:text-base font-medium"
               >
                 Check availability
               </Link>
               <a
                 href="tel:+919003009353"
-                className="btn-pill btn-ghost-white w-full text-center text-sm sm:text-base font-normal"
+                className="btn-pill btn-ghost-white w-full text-center text-sm sm:text-base font-medium"
               >
                 <svg
                   className="w-4 h-4 text-brand-red"

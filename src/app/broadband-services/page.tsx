@@ -3,6 +3,12 @@ import Link from "next/link";
 import Pricing from "@/components/Home/Pricing";
 import Faq from "@/components/Home/Faq";
 import Contactus from "@/components/Home/Contactus";
+import {
+  ServiceDeliverablesSection,
+  ServiceHero,
+  SingleClientMarquee,
+  type ServiceDeliverableItem,
+} from "@/components/Service/ServicePageTemplate";
 
 export const metadata: Metadata = {
   title: "Unlimited Fibre Broadband Plans in Tamil Nadu",
@@ -14,28 +20,28 @@ export const metadata: Metadata = {
   },
 };
 
-const INSTALLATION_STEPS = [
+const INSTALLATION_STEPS: ServiceDeliverableItem[] = [
   {
-    step: "01",
     title: "Address Feasibility Check",
+    tag: "Step 01",
     description:
-      "Share your street address or pincode in Thiruvallur or Tamil Nadu via our callback form or WhatsApp.",
+      "Share your street address or pincode in Thiruvallur or Tamil Nadu via our enquiry form or WhatsApp.",
   },
   {
-    step: "02",
     title: "Select Your Fibre Plan",
+    tag: "Step 02",
     description:
       "Choose between our Personal Pack (50 Mbps), Family Pack (100 Mbps), or custom high-speed tiers up to 1 Gbps.",
   },
   {
-    step: "03",
     title: "Free Fibre Drop & Router Setup",
+    tag: "Step 03",
     description:
       "Our local technicians run an optical fibre cable to your home and configure your Wi-Fi router at zero setup cost.",
   },
   {
-    step: "04",
     title: "Instant Activation & Speed Test",
+    tag: "Step 04",
     description:
       "We verify signal strength and speed across your devices before handing over your active connection.",
   },
@@ -44,90 +50,57 @@ const INSTALLATION_STEPS = [
 export default function BroadbandServicesPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-brand-navy text-white section-padding">
-        <div className="container-sash max-w-4xl">
-          <nav aria-label="Breadcrumb" className="text-sm text-white/75 mb-4">
-            <ol className="flex items-center gap-2">
-              <li>
-                <Link href="/" className="hover:underline text-white">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li aria-current="page" className="text-white font-bold">
-                Broadband Services
-              </li>
-            </ol>
-          </nav>
-          <p className="eyebrow-label text-white/80 mb-3">
-            FTTH Home &amp; Office Broadband
-          </p>
-          <h1 className="text-white mb-6">
-            Unlimited fibre broadband built for modern households
-          </h1>
-          <p className="text-white/90 text-lg md:text-xl max-w-2xl mb-8">
-            Say goodbye to buffering and mid-month data caps. Get pure optical
-            fibre internet delivered directly to your home with free setup and
-            multi-year tariff protection.
-          </p>
-          <Link href="#contact" className="btn-pill btn-primary-red">
-            Book free installation
-          </Link>
-        </div>
-      </section>
+      {/* Dedicated Service Hero: Left Content + Right Icon Showcase */}
+      <ServiceHero
+        breadcrumbLabel="Broadband Services"
+        eyebrow="TAMIL NADU'S FTTH FIBRE NETWORK"
+        titlePrefix="Faster speeds."
+        titleHighlight="Just for you."
+        description="That's the SASH Fibre Broadband advantage — unlimited data, free installation, and speeds up to 1 Gbps across Thiruvallur & Tamil Nadu."
+        ctaText="Upgrade at ₹650"
+        ctaHref="#contact"
+        secondaryCtaText="View Plans"
+        secondaryCtaHref="#plans"
+        iconSrc="/Service/BroadBand.webp"
+        iconAlt="SASH Fibre Broadband service icon"
+      />
+
+      {/* Single-Row Client Logo Marquee */}
+      <SingleClientMarquee />
 
       {/* Plans & Pricing */}
       <Pricing />
 
       {/* 4-Step Installation Process */}
-      <section className="bg-brand-navy text-white section-padding">
+      <ServiceDeliverablesSection
+        eyebrow="Simple Onboarding"
+        heading="How our 4-step free installation works"
+        subtitle="Fast, clean optical fibre installation by our local Tiruvallur engineering team."
+        items={INSTALLATION_STEPS}
+      />
+
+      {/* OTT and IPTV Anchor Section */}
+      <section
+        id="ott-iptv"
+        data-apple-manual="true"
+        className="bg-white pb-16 md:pb-24"
+      >
         <div className="container-sash">
-          <div className="max-w-2xl mb-14">
-            <p className="eyebrow-label text-white/80 mb-3">
-              Simple Onboarding
-            </p>
-            <h2 className="text-white mb-4">
-              How our 4-step free installation works
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {INSTALLATION_STEPS.map((item) => (
-              <div
-                key={item.step}
-                className="rounded-[14px] bg-navy-80 border border-white/15 p-7"
-              >
-                <span className="inline-block px-3.5 py-1 rounded-full bg-brand-red text-white text-sm font-extrabold mb-5">
-                  Step {item.step}
-                </span>
-                <h3 className="text-white font-extrabold text-xl mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-white/85 text-base">{item.description}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* OTT and IPTV Anchor Section */}
-          <div
-            id="ott-iptv"
-            className="mt-16 rounded-[24px] bg-navy-80 border border-white/15 p-8 sm:p-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6"
-          >
+          <div className="rounded-2xl bg-brand-navy text-white border border-brand-navy/15 p-8 sm:p-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)]">
             <div className="max-w-2xl">
-              <span className="inline-block px-3.5 py-1 rounded-full bg-brand-red text-white text-xs font-extrabold uppercase tracking-wider mb-3">
+              <span className="inline-block px-3.5 py-1 rounded-full bg-brand-red text-white text-xs font-semibold uppercase tracking-wider mb-2.5">
                 OTT &amp; IPTV Ready
               </span>
-              <h3 className="text-white text-2xl font-extrabold mb-2">
+              <h3 className="text-white !text-lg sm:!text-xl font-semibold mb-1.5 tracking-normal">
                 Ready for 4K Smart TVs, OTT Apps, and Digital IPTV
               </h3>
-              <p className="text-white/85 text-base">
-                Our low-latency optical network supports high-bitrate 4K streaming
-                and IPTV set-top boxes without frame drops. Ask our team about
-                available entertainment bundles in your area.
+              <p className="text-white/80 text-xs sm:text-sm leading-relaxed font-normal">
+                Our low-latency optical network supports high-bitrate 4K
+                streaming and IPTV set-top boxes without frame drops. Ask our
+                team about available entertainment bundles in your area.
               </p>
             </div>
-            <Link href="#contact" className="btn-pill btn-primary-red shrink-0">
+            <Link href="#contact" className="btn-pill btn-primary-red shrink-0 rounded-lg font-medium">
               Enquire about OTT &amp; IPTV
             </Link>
           </div>

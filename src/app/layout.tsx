@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import { Urbanist } from "next/font/google";
 import "./globals.css";
 import Topbar from "@/components/Home/Topbar";
 import Footer from "@/components/Home/Footer";
 import { AppleSmoothScrollProvider } from "@/components/ui/apple-scroll";
 import { SlowConnectionLoader } from "@/components/ui/loading-state";
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const urbanist = Urbanist({
+  variable: "--font-urbanist",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   display: "swap",
@@ -20,6 +20,11 @@ export const metadata: Metadata = {
   title: {
     default: "Internet Service Provider in Tamil Nadu | SASH Broadband",
     template: "%s | SASH Broadband",
+  },
+  icons: {
+    icon: "/Logo/Favicon.png",
+    shortcut: "/Logo/Favicon.png",
+    apple: "/Logo/Favicon.png",
   },
   description:
     "Fast FTTH fibre broadband up to 1 Gbps, leased lines, SME internet & CCTV in Thiruvallur and Tamil Nadu. Unlimited data, free setup—check availability today!",
@@ -128,7 +133,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-IN" className={`${dmSans.variable} h-full antialiased`}>
+    <html lang="en-IN" className={`${urbanist.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-white text-brand-navy font-normal">
         <script
           type="application/ld+json"

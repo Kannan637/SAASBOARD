@@ -98,17 +98,17 @@ function UseCaseCard({
   return (
     <article
       data-apple-manual="true"
-      className="h-full w-full rounded-[14px] bg-navy-80/75 backdrop-blur-md border border-white/15 p-7 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5"
+      className="h-full w-full rounded-xl bg-navy-80/75 backdrop-blur-md border border-white/15 p-6 sm:p-7 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5"
     >
       <div>
         {/* Red label with white text (passes WCAG AA contrast) */}
-        <span className="inline-block px-3.5 py-1 rounded-full bg-brand-red text-white text-xs font-extrabold uppercase tracking-wider mb-5">
+        <span className="inline-block px-3 py-0.5 rounded-full bg-brand-red text-white text-xs font-semibold uppercase tracking-wider mb-4">
           {item.label}
         </span>
-        <h3 className="text-white font-extrabold text-xl mb-3">
+        <h3 className="text-white font-semibold text-lg sm:text-xl mb-2 tracking-normal">
           {item.title}
         </h3>
-        <p className="text-white/85 text-base leading-relaxed">
+        <p className="text-white/85 text-sm font-normal leading-relaxed">
           {item.description}
         </p>
       </div>
@@ -148,40 +148,40 @@ export default function Service() {
         className="bg-neutral-100 text-brand-navy section-padding"
       >
         <div className="container-sash">
-          <AppleReveal className="max-w-2xl mb-14">
+          <AppleReveal className="max-w-2xl mb-8 sm:mb-10">
             <p className="eyebrow-label text-brand-red mb-3">
               Complete Network Portfolio
             </p>
-            <h2 id="services-heading" className="text-brand-navy mb-4">
+            <h2 id="services-heading" className="text-brand-navy mb-3 font-semibold text-2xl sm:text-3xl lg:text-[32px] tracking-normal leading-[1.2]">
               Connectivity for every need
             </h2>
-            <p className="text-neutral-600 text-base md:text-lg">
+            <p className="text-neutral-600 text-sm sm:text-base font-normal leading-relaxed">
               From unlimited home fibre broadband to enterprise leased lines and
               premises CCTV surveillance across Tamil Nadu.
             </p>
           </AppleReveal>
 
-          <AppleStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+          <AppleStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {SERVICES_LIST.map((service) => (
               <AppleStaggerItem key={service.title} className="flex">
                 <article
                   data-apple-manual="true"
-                  className="card-sash w-full bg-white border border-neutral-100 p-7 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5"
+                  className="rounded-xl w-full bg-white border border-neutral-100 p-6 sm:p-7 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] hover:shadow-[0px_8px_24px_rgba(5,5,6,0.08)]"
                 >
                   <div>
-                    <div className="w-14 h-14 flex items-center justify-center mb-5">
+                    <div className="w-12 h-12 flex items-center justify-center mb-4">
                       <Image
                         src={service.iconSrc}
                         alt={service.title}
-                        width={56}
-                        height={56}
+                        width={48}
+                        height={48}
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <h3 className="text-brand-navy font-extrabold text-xl mb-2.5">
+                    <h3 className="text-brand-navy font-semibold text-lg sm:text-xl mb-2 tracking-normal">
                       {service.title}
                     </h3>
-                    <p className="text-neutral-600 text-base line-clamp-2 mb-6">
+                    <p className="text-neutral-600 text-sm font-normal leading-relaxed line-clamp-2 mb-5">
                       {service.description}
                     </p>
                   </div>
@@ -189,7 +189,7 @@ export default function Service() {
                   <div>
                     <Link
                       href={service.href}
-                      className="inline-flex items-center gap-2 font-bold text-brand-red hover:underline py-2 min-h-[44px]"
+                      className="inline-flex items-center gap-1.5 font-medium text-sm text-brand-red hover:underline py-1"
                       aria-label={`Explore ${service.title}`}
                     >
                       <span>Explore</span>
@@ -236,14 +236,14 @@ export default function Service() {
         </div>
 
         <div className="container-sash relative z-10">
-          <AppleReveal className="max-w-2xl mb-14">
+          <AppleReveal className="max-w-2xl mb-8 sm:mb-10">
             <p className="eyebrow-label text-white/80 mb-3">
               Built Around Your Lifestyle
             </p>
-            <h2 id="use-cases-heading" className="text-white mb-4">
+            <h2 id="use-cases-heading" className="text-white mb-3 font-semibold text-2xl sm:text-3xl lg:text-[32px] tracking-normal leading-[1.2]">
               Get more from your connection
             </h2>
-            <p className="text-white/85 text-base md:text-lg">
+            <p className="text-white/85 text-sm sm:text-base font-normal leading-relaxed">
               Whether your household streams in 4K or your office runs cloud POS
               systems, our fibre network adapts to every demand.
             </p>
@@ -272,8 +272,8 @@ export default function Service() {
 
               <div className="mt-6 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-2">
-                  <CarouselPrevious className="relative inset-0 size-10 rounded-sm border border-white/25 bg-brand-navy/70 text-white hover:border-white hover:bg-white/15 hover:text-white transition-colors cursor-pointer" />
-                  <CarouselNext className="relative inset-0 size-10 rounded-sm border-transparent bg-linear-to-b from-brand-red to-brand-red-hover text-white shadow-[0_6px_20px_rgba(222,3,2,0.35)] outline-2 -outline-offset-2 outline-white/20 hover:from-brand-red-hover hover:to-brand-red-hover hover:text-white transition-all cursor-pointer" />
+                  <CarouselPrevious className="relative inset-0 size-10 rounded-lg border border-white/25 bg-brand-navy/70 text-white hover:border-white hover:bg-white/15 hover:text-white transition-colors cursor-pointer" />
+                  <CarouselNext className="relative inset-0 size-10 rounded-lg border-transparent bg-linear-to-b from-brand-red to-brand-red-hover text-white shadow-[0_6px_20px_rgba(222,3,2,0.35)] outline-2 -outline-offset-2 outline-white/20 hover:from-brand-red-hover hover:to-brand-red-hover hover:text-white transition-all cursor-pointer" />
                 </div>
 
                 <div
@@ -310,14 +310,14 @@ export default function Service() {
             ))}
           </AppleStagger>
 
-          {/* 7. CTA Banner (Red background, White text, 24px rounded container with Apple scroll-scale) */}
+          {/* 7. CTA Banner (Red background, White text, 20px rounded container with Apple scroll-scale) */}
           <AppleScrollScale className="mt-16 md:mt-24">
-            <div className="banner-sash bg-brand-red text-white p-8 sm:p-12 lg:p-14 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+            <div className="banner-sash rounded-2xl bg-brand-red text-white p-8 sm:p-12 lg:p-14 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
               <div className="max-w-xl">
-                <h2 className="text-white mb-3">
+                <h2 className="text-white mb-3 font-semibold text-2xl sm:text-3xl lg:text-4xl tracking-normal">
                   Ready to upgrade your connection?
                 </h2>
-                <p className="text-white/95 text-base md:text-lg font-medium">
+                <p className="text-white/95 text-base md:text-lg font-normal leading-relaxed">
                   Check fibre availability in your street in Thiruvallur or anywhere
                   in Tamil Nadu and get free installation on your new plan.
                 </p>
@@ -326,7 +326,7 @@ export default function Service() {
               <div className="flex flex-wrap items-center gap-4 w-full lg:w-auto shrink-0">
                 <Link
                   href="#contact"
-                  className="btn-pill bg-linear-to-b from-brand-navy to-navy-80 text-white shadow-[0_6px_20px_rgba(1,13,59,0.22)] outline-2 -outline-offset-2 outline-white/20 hover:from-navy-80 hover:to-navy-80 w-full sm:w-auto"
+                  className="btn-pill bg-linear-to-b from-brand-navy to-navy-80 text-white shadow-[0_6px_20px_rgba(1,13,59,0.22)] outline-2 -outline-offset-2 outline-white/20 hover:from-navy-80 hover:to-navy-80 w-full sm:w-auto rounded-lg font-medium"
                 >
                   <span>Check availability</span>
                   <svg
@@ -347,7 +347,7 @@ export default function Service() {
                   href="https://wa.me/919003009353?text=Hi%20SASH%20Broadband%2C%20I%20would%20like%20to%20check%20fibre%20availability%20at%20my%20location."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-pill border border-white/40 bg-white/10 text-white hover:bg-white hover:text-brand-navy w-full sm:w-auto"
+                  className="btn-pill border border-white/40 bg-white/10 text-white hover:bg-white hover:text-brand-navy w-full sm:w-auto rounded-lg font-medium"
                 >
                   <span>Chat on WhatsApp</span>
                 </a>

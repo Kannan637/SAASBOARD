@@ -77,27 +77,27 @@ export default function Faq() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <div className="container-sash max-w-4xl">
-        <AppleReveal className="text-center max-w-2xl mx-auto mb-14">
+        <AppleReveal className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
           <p className="eyebrow-label text-brand-red mb-3">
             Common Questions
           </p>
-          <h2 id="faq-heading" className="text-brand-navy mb-4">
+          <h2 id="faq-heading" className="text-brand-navy mb-3 font-semibold text-2xl sm:text-3xl lg:text-[32px] tracking-normal leading-[1.2]">
             Frequently asked questions
           </h2>
-          <p className="text-neutral-600 text-base md:text-lg">
+          <p className="text-neutral-600 text-sm sm:text-base font-normal leading-relaxed">
             Everything you need to know about SASH Broadband plans, installation,
             and enterprise services in Tamil Nadu.
           </p>
         </AppleReveal>
 
-        <AppleStagger className="space-y-4">
+        <AppleStagger className="space-y-3">
           {HOMEPAGE_FAQS.map((item, idx) => {
             const isOpen = openIndex === idx;
 
             return (
               <AppleStaggerItem key={item.question}>
                 <div
-                  className={`card-sash bg-white border overflow-hidden transition-colors duration-200 ${
+                  className={`rounded-xl bg-white border overflow-hidden transition-colors duration-200 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] ${
                     isOpen ? "border-brand-red/30" : "border-neutral-100"
                   }`}
                 >
@@ -107,7 +107,7 @@ export default function Faq() {
                     aria-expanded={isOpen}
                     aria-controls={`faq-answer-${idx}`}
                     onClick={() => handleToggle(idx)}
-                    className={`w-full text-left cursor-pointer px-6 sm:px-8 py-5 flex items-center justify-between gap-4 font-extrabold text-lg transition-colors min-h-[60px] ${
+                    className={`w-full text-left cursor-pointer px-5 sm:px-6 py-4 flex items-center justify-between gap-4 font-semibold text-sm sm:text-base tracking-normal transition-colors min-h-[52px] ${
                       isOpen
                         ? "text-brand-red"
                         : "text-brand-navy hover:text-brand-red"
@@ -116,14 +116,14 @@ export default function Faq() {
                     <span>{item.question}</span>
                     <span
                       aria-hidden="true"
-                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors duration-200 ${
+                      className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-colors duration-200 ${
                         isOpen
                           ? "bg-brand-red text-white"
                           : "bg-neutral-100 text-brand-navy"
                       }`}
                     >
                       <svg
-                        className={`w-4 h-4 transition-transform duration-200 ${
+                        className={`w-3.5 h-3.5 transition-transform duration-200 ${
                           isOpen ? "rotate-180" : "rotate-0"
                         }`}
                         viewBox="0 0 24 24"
@@ -149,7 +149,7 @@ export default function Faq() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <div className="px-6 sm:px-8 pb-6 pt-1 text-neutral-600 text-base leading-relaxed border-t border-neutral-100/80">
+                      <div className="px-5 sm:px-6 pb-4 pt-1 text-neutral-600 text-sm font-normal leading-relaxed border-t border-neutral-100/80">
                         <p>{item.answer}</p>
                       </div>
                     </div>

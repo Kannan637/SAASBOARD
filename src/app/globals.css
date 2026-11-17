@@ -19,10 +19,10 @@
   --neutral-100: #F3F4F7;
 
   /* Typography & Layout Tokens */
-  --container-max: 1180px;
-  --radius-card: 14px;
-  --radius-pill: 10px;
-  --radius-banner: 24px;
+  --container-max: 1200px;
+  --radius-card: 12px;
+  --radius-pill: 9999px;
+  --radius-banner: 20px;
   --shadow-subtle: none;
 
   /* Shadcn UI Mappings to SASH Brand */
@@ -44,7 +44,10 @@
   --border: #E2E5EE;
   --input: #E2E5EE;
   --ring: #DE0302;
-  --radius: 0.875rem;
+  --radius: 0.5rem;
+  --chart-1: var(--brand-red);
+  --chart-foreground: var(--brand-navy);
+  --chart-foreground-muted: var(--neutral-600);
 
   /* LoadingState ink & surface tokens mapped to SASH Brand */
   --ink: #010D3B;
@@ -87,8 +90,9 @@
   --color-ink-3: var(--ink-3);
   --shadow-overlay: var(--shadow-overlay);
 
-  --font-sans: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
-  --font-heading: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-urbanist), "Urbanist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-heading: var(--font-urbanist), "Urbanist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-mono: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
@@ -96,9 +100,10 @@
   --font-weight-extrabold: 600;
 
   --radius-sm: 0.25rem;
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
 }
 
 @layer base {
@@ -117,6 +122,7 @@
     html {
       scroll-behavior: auto;
     }
+
     *,
     *::before,
     *::after {
@@ -129,32 +135,57 @@
 
   body {
     @apply bg-background text-foreground antialiased selection:bg-brand-red selection:text-white;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    /* 14px Body MD per Juspay */
+    line-height: 1.25rem;
+    /* 20px line-height per Juspay */
     font-weight: 400;
-    line-height: 1.6;
+    letter-spacing: 0;
   }
 
-  h1, h2 {
-    letter-spacing: -0.025em;
-    font-weight: 400;
-    line-height: 1.08;
+  p {
+    letter-spacing: 0;
   }
 
-  h3, h4, h5, h6, strong, b {
-    letter-spacing: -0.02em;
-    font-weight: 500;
-    line-height: 1.18;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong,
+  b {
+    font-family: var(--font-heading);
+    letter-spacing: 0;
   }
 
   h1 {
-    font-size: clamp(2.4rem, 4.1vw, 4.25rem);
+    /* Juspay Display MD/LG: 56px-64px desktop, 36px-44px mobile, semibold 600 */
+    font-size: clamp(2.25rem, 3.8vw, 3.5rem);
+    font-weight: 600;
+    line-height: 1.12;
   }
 
   h2 {
-    font-size: clamp(1.85rem, 3.2vw, 2.75rem);
+    /* Juspay Heading 2XL / XL: 32px-40px desktop, 26px-30px mobile */
+    font-size: clamp(1.625rem, 2.6vw, 2.25rem);
+    font-weight: 600;
+    line-height: 1.18;
   }
 
   h3 {
-    font-size: clamp(1.25rem, 2vw, 1.4rem);
+    /* Juspay Heading LG / MD: 20px-24px */
+    font-size: clamp(1.25rem, 1.6vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.33;
+  }
+
+  h4 {
+    /* Juspay Heading SM: 18px */
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.33;
   }
 
   /* Strict WCAG 2.1 AA Focus Outline: 3px brand red with 3px offset */
@@ -170,14 +201,28 @@
   }
 }
 
-/* Custom utility classes for SASH Design System */
+/* Custom utility classes for SASH Design System (Juspay Layout & Spacing) */
 .container-sash {
   width: 100%;
   max-width: var(--container-max);
   margin-left: auto;
   margin-right: auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width: 640px) {
+  .container-sash {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-sash {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 }
 
 .section-padding {
@@ -187,34 +232,34 @@
 
 @media (min-width: 768px) {
   .section-padding {
-    padding-top: 96px;
-    padding-bottom: 96px;
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
 }
 
 .eyebrow-label {
   display: inline-flex;
-  min-height: 1.75rem;
+  min-height: 24px;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  border-radius: 0.25rem;
-  background-color: rgba(253, 235, 235, 0.8);
-  padding: 0.25rem 0.75rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 0.75rem;
-  line-height: 1;
+  gap: 6px;
+  border-radius: 9999px;
+  background-color: rgba(253, 235, 235, 0.85);
+  padding: 3px 10px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 16px;
   font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--brand-navy);
-  box-shadow: 0 1px 1px rgba(1, 13, 59, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  box-shadow: 0 1px 1px rgba(1, 13, 59, 0.05);
 }
 
 .bg-brand-navy .eyebrow-label {
   background-color: rgba(255, 255, 255, 0.14);
   color: var(--white);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
 }
 
 .card-sash {
@@ -225,32 +270,54 @@
   border-radius: var(--radius-banner);
 }
 
-/* Hero-17 Button Style carried across all sections with SASH Brand Colors */
+/* Juspay Button Architecture: 8px radius, heights 32/36/40px, font 14px weight 500 */
 .btn-pill {
-  border-radius: 0.25rem;
-  padding: 0.625rem 1.5rem;
-  font-weight: 400;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+  border-radius: 8px;
+  height: 36px;
+  padding-left: 14px;
+  padding-right: 14px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
   text-transform: none;
-  letter-spacing: normal;
-  min-height: 2.5rem;
+  letter-spacing: 0;
+  white-space: nowrap;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 8px;
+  user-select: none;
   transition:
     background-color 0.2s ease-out,
     background-image 0.2s ease-out,
     border-color 0.2s ease-out,
     color 0.2s ease-out,
-    transform 0.2s ease-out,
+    transform 0.15s ease-out,
     box-shadow 0.2s ease-out,
     opacity 0.2s ease-out;
 }
 
+.btn-pill-lg {
+  height: 40px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 14px;
+  line-height: 20px;
+  gap: 8px;
+}
+
+.btn-pill-sm {
+  height: 32px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 12px;
+  line-height: 18px;
+  gap: 6px;
+}
+
 .btn-pill:active {
-  transform: scale(0.96);
+  transform: scale(0.97);
 }
 
 .btn-primary-red {
@@ -303,10 +370,12 @@
 
 /* LoadingState pixel-grid, shimmer label & pop-in keyframes */
 @keyframes pixel-on {
+
   0%,
   100% {
     opacity: 0.15;
   }
+
   45% {
     opacity: 1;
     background-color: var(--brand-red);
@@ -317,6 +386,7 @@
   0% {
     background-position: 200% 0;
   }
+
   100% {
     background-position: -200% 0;
   }
@@ -327,6 +397,7 @@
     opacity: 0;
     transform: translate3d(0, 6px, 0) scale(0.96);
   }
+
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);

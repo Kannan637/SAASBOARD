@@ -312,45 +312,45 @@ export default function Hero() {
                 transition={{ duration: 0.5, ease: APPLE_EASE }}
                 className="my-auto max-w-xl"
               >
-                {/* Hero-17 Eyebrow Badge */}
-                <div className="inline-flex min-h-7 items-center justify-center gap-2 rounded-sm bg-red-10/80 px-3 text-xs leading-none font-medium font-mono text-brand-navy shadow-[0_1px_1px_rgba(1,13,59,0.06),inset_0_1px_0_rgba(255,255,255,0.55)]">
+                {/* Hero Eyebrow Badge (Juspay Body XS / Pill Badge) */}
+                <div className="inline-flex min-h-6 items-center justify-center gap-1.5 rounded-full bg-red-10/85 px-3 py-1 text-xs leading-none font-medium text-brand-navy shadow-[0_1px_1px_rgba(1,13,59,0.06)]">
                   {currentSlide.eyebrow}
                 </div>
 
-                {/* Hero-17 Heading Style */}
+                {/* Hero Heading Style (Urbanist Display MD: 48px-52px, 600 semibold, line-height 1.1) */}
                 <h1
                   id="hero-heading"
-                  className="mt-5 text-[clamp(2.4rem,3.6vw,4.1rem)] leading-[1.03] font-normal tracking-tight text-balance text-brand-navy"
+                  className="mt-4 text-3xl sm:text-4xl lg:text-[52px] leading-[1.1] font-semibold tracking-normal text-balance text-brand-navy"
                 >
-                  <span className="inline-block mr-[0.22em]">
+                  <span className="inline-block mr-[0.2em] font-semibold">
                     {currentSlide.headlinePrefix}
                   </span>
-                  <span className="inline-block font-normal text-brand-red">
+                  <span className="inline-block font-semibold text-brand-red">
                     {currentSlide.headlineHighlight}
                   </span>
                 </h1>
 
-                {/* Hero-17 Description Style */}
-                <p className="mt-5 max-w-md text-sm sm:text-base leading-6 font-normal text-pretty text-neutral-600">
+                {/* Hero Description Style (Juspay Body LG: 16px, 400 regular, line-height 24px) */}
+                <p className="mt-4 max-w-md text-sm sm:text-base leading-relaxed font-normal text-pretty text-neutral-600">
                   {currentSlide.subtitle}
                 </p>
 
-                {/* Hero-17 Primary & Secondary CTA Buttons with SASH Brand Colors */}
-                <div className="mt-7 flex flex-wrap items-center gap-4">
+                {/* Juspay Buttons: h-10 px-4, 8px radius, 14px font, 500 weight */}
+                <div className="mt-6 flex flex-wrap items-center gap-3">
                   <Link
                     href={currentSlide.ctaHref}
-                    className="group/primary inline-flex min-h-10 items-center justify-center gap-2 rounded-sm bg-linear-to-b from-brand-red to-brand-red-hover px-6 text-sm font-normal text-white shadow-[0_6px_20px_var(--color-red-10)] outline-2 -outline-offset-2 outline-white/20 transition-[background-color,transform,box-shadow] duration-200 ease-out hover:from-brand-red-hover hover:to-brand-red-hover hover:bg-brand-red-hover active:scale-[0.96]"
+                    className="group/primary inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-linear-to-b from-brand-red to-brand-red-hover px-4 text-sm font-medium text-white shadow-[0_6px_20px_var(--color-red-10)] outline-2 -outline-offset-2 outline-white/20 transition-[background-color,transform,box-shadow] duration-150 ease-out hover:from-brand-red-hover hover:to-brand-red-hover hover:bg-brand-red-hover active:scale-[0.97]"
                   >
                     {currentSlide.ctaText}
-                    <ArrowRight className="size-3.5 transition-transform duration-200 ease-out group-hover/primary:translate-x-0.5" />
+                    <ArrowRight className="size-3.5 transition-transform duration-150 ease-out group-hover/primary:translate-x-0.5" />
                   </Link>
 
                   <Link
                     href={currentSlide.secondaryCtaHref}
-                    className="group/process inline-flex min-h-10 items-center justify-center gap-2 px-2 text-sm font-normal text-brand-navy transition-[opacity,transform] duration-200 ease-out hover:opacity-75 active:scale-[0.96]"
+                    className="group/process inline-flex h-10 items-center justify-center gap-2 px-3 text-sm font-medium text-brand-navy transition-[opacity,transform] duration-150 ease-out hover:opacity-75 active:scale-[0.97]"
                   >
                     {currentSlide.secondaryCtaText}
-                    <Play className="size-3 fill-current transition-transform duration-200 ease-out group-hover/process:scale-110" />
+                    <Play className="size-3 fill-current transition-transform duration-150 ease-out group-hover/process:scale-110" />
                   </Link>
                 </div>
               </motion.div>
@@ -365,7 +365,7 @@ export default function Hero() {
                 type="button"
                 onClick={handlePrev}
                 aria-label="Previous slide"
-                className="w-9 h-9 rounded-sm border border-brand-navy/20 text-brand-navy/80 hover:border-brand-navy hover:text-brand-navy flex items-center justify-center transition-[color,border-color,transform] duration-200 ease-out active:scale-[0.96] cursor-pointer"
+                className="w-9 h-9 rounded-lg border border-brand-navy/20 text-brand-navy/80 hover:border-brand-navy hover:text-brand-navy flex items-center justify-center transition-[color,border-color,transform] duration-200 ease-out active:scale-[0.96] cursor-pointer"
               >
                 <svg
                   className="w-4 h-4"
@@ -393,7 +393,7 @@ export default function Hero() {
                 type="button"
                 onClick={handleNext}
                 aria-label="Next slide"
-                className="w-9 h-9 rounded-sm bg-linear-to-b from-brand-red to-brand-red-hover text-white shadow-[0_4px_14px_var(--color-red-10)] outline-2 -outline-offset-2 outline-white/20 hover:from-brand-red-hover hover:to-brand-red-hover hover:bg-brand-red-hover flex items-center justify-center transition-[background-color,transform,box-shadow] duration-200 ease-out active:scale-[0.96] cursor-pointer"
+                className="w-9 h-9 rounded-lg bg-linear-to-b from-brand-red to-brand-red-hover text-white shadow-[0_4px_14px_var(--color-red-10)] outline-2 -outline-offset-2 outline-white/20 hover:from-brand-red-hover hover:to-brand-red-hover hover:bg-brand-red-hover flex items-center justify-center transition-[background-color,transform,box-shadow] duration-200 ease-out active:scale-[0.96] cursor-pointer"
               >
                 <svg
                   className="w-4 h-4"
@@ -443,7 +443,7 @@ export default function Hero() {
             <LeftEdgeCutoutMask />
 
             {/* Floating Service Icon Badge on Right Photo */}
-            <div className="absolute bottom-5 right-5 z-20 rounded-sm bg-white/95 border border-neutral-100 px-3.5 py-2 flex items-center gap-2.5 shadow-[0_4px_14px_rgba(1,13,59,0.08)]">
+            <div className="absolute bottom-5 right-5 z-20 rounded-xl bg-white/95 border border-neutral-100 px-3.5 py-2 flex items-center gap-2.5 shadow-[0_4px_14px_rgba(1,13,59,0.08)]">
               <Image
                 src={currentSlide.serviceIcon}
                 alt={currentSlide.serviceLabel}
@@ -485,12 +485,12 @@ export default function Hero() {
             {PROMISE_ITEMS.map((item) => (
               <AppleStaggerItem
                 key={item.title}
-                className="flex items-center gap-3.5 bg-[#B80201] rounded-[14px] px-5 py-4 border border-white/25"
+                className="flex items-center gap-3.5 bg-[#B80201] rounded-xl px-5 py-4 border border-white/25"
               >
                 <div className="w-11 h-11 rounded-full bg-brand-navy flex items-center justify-center shrink-0">
                   {item.icon}
                 </div>
-                <span className="font-normal text-sm sm:text-base leading-snug text-white">
+                <span className="font-medium text-sm sm:text-base leading-snug text-white">
                   {item.title}
                 </span>
               </AppleStaggerItem>

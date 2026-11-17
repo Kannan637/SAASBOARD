@@ -23,20 +23,20 @@ export default function TermsOfServicePage() {
               </Link>
             </li>
             <li aria-hidden="true">/</li>
-            <li aria-current="page" className="text-brand-red font-bold">
+            <li aria-current="page" className="text-brand-red font-medium">
               Terms of Service
             </li>
           </ol>
         </nav>
 
-        <span className="inline-block px-3.5 py-1 rounded-full bg-red-10 text-brand-red text-xs font-extrabold uppercase tracking-wider mb-4">
+        <span className="inline-block px-3.5 py-1 rounded-full bg-red-10 text-brand-red text-xs font-semibold uppercase tracking-wider mb-4">
           Legal Document Framework (For Client Legal Review)
         </span>
-        <h1 className="text-brand-navy mb-6">Terms of Service</h1>
+        <h1 className="text-brand-navy font-semibold tracking-tight text-3xl sm:text-4xl mb-6">Terms of Service</h1>
 
-        <div className="space-y-8 text-neutral-600 text-base leading-relaxed">
+        <div className="space-y-8 text-neutral-600 text-base font-normal leading-relaxed">
           <div>
-            <h2 className="text-brand-navy text-2xl font-extrabold mb-2">
+            <h2 className="text-brand-navy text-xl sm:text-2xl font-semibold tracking-normal mb-2">
               1. Service Availability &amp; Feasibility
             </h2>
             <p>
@@ -48,7 +48,7 @@ export default function TermsOfServicePage() {
           </div>
 
           <div>
-            <h2 className="text-brand-navy text-2xl font-extrabold mb-2">
+            <h2 className="text-brand-navy text-xl sm:text-2xl font-semibold tracking-normal mb-2">
               2. Tariffs, Billing &amp; Price Lock
             </h2>
             <p>
@@ -60,7 +60,7 @@ export default function TermsOfServicePage() {
           </div>
 
           <div>
-            <h2 className="text-brand-navy text-2xl font-extrabold mb-2">
+            <h2 className="text-brand-navy text-xl sm:text-2xl font-semibold tracking-normal mb-2">
               3. Customer Premises Equipment (CPE) &amp; Installation
             </h2>
             <p>
@@ -70,7 +70,7 @@ export default function TermsOfServicePage() {
           </div>
 
           <div>
-            <h2 className="text-brand-navy text-2xl font-extrabold mb-2">
+            <h2 className="text-brand-navy text-xl sm:text-2xl font-semibold tracking-normal mb-2">
               4. Acceptable Use Policy
             </h2>
             <p>
@@ -81,7 +81,7 @@ export default function TermsOfServicePage() {
           </div>
 
           <div>
-            <h2 className="text-brand-navy text-2xl font-extrabold mb-2">
+            <h2 className="text-brand-navy text-xl sm:text-2xl font-semibold tracking-normal mb-2">
               5. Registered Office &amp; Support Contact
             </h2>
             <p>
@@ -89,14 +89,14 @@ export default function TermsOfServicePage() {
               Nagar, Thiruvallur, 602001, Tamil Nadu. Phone:{" "}
               <a
                 href="tel:+919003009353"
-                className="font-bold text-brand-navy underline"
+                className="font-medium text-brand-navy underline"
               >
                 +91 90030 09353
               </a>{" "}
               | Email:{" "}
               <a
                 href="mailto:sashbroadband@gmail.com"
-                className="font-bold text-brand-navy underline"
+                className="font-medium text-brand-navy underline"
               >
                 sashbroadband@gmail.com
               </a>

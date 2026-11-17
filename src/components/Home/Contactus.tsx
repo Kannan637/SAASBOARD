@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import {
   AppleReveal,
-  AppleScrollScale,
 } from "@/components/ui/apple-scroll";
 import { Button } from "@/components/ui/button";
 
@@ -230,7 +229,7 @@ export default function Contactus({
   };
 
   const baseInputClass = (hasError?: boolean) =>
-    `w-full h-11 pl-10 pr-3.5 rounded-sm bg-white border text-sm sm:text-base font-normal text-brand-navy placeholder:text-neutral-600/55 transition-[border-color,box-shadow] duration-150 focus:outline-none focus:ring-3 ${
+    `w-full h-10 pl-9 pr-3.5 rounded-lg bg-white border text-sm font-normal text-brand-navy placeholder:text-neutral-600/55 transition-[border-color,box-shadow] duration-150 focus:outline-none focus:ring-3 ${
       hasError
         ? "border-brand-red focus:border-brand-red focus:ring-brand-red/15"
         : "border-brand-navy/15 hover:border-brand-navy/30 focus:border-brand-red focus:ring-brand-red/12"
@@ -245,23 +244,23 @@ export default function Contactus({
     >
       <div className="container-sash">
         {/* Centered Section Header */}
-        <AppleReveal className="max-w-2xl mx-auto text-center mb-12 md:mb-14">
+        <AppleReveal className="max-w-2xl mx-auto text-center mb-8 sm:mb-10">
           <p className="eyebrow-label mb-3">Contact &amp; Location</p>
           <h2
             id="contact-heading"
-            className="text-brand-navy text-[clamp(2rem,3.3vw,2.9rem)] leading-[1.06] font-normal tracking-tight text-balance mb-3"
+            className="text-brand-navy text-2xl sm:text-3xl lg:text-[32px] leading-[1.2] font-semibold tracking-normal text-balance mb-3"
           >
             Get connected with{" "}
             <span className="text-brand-red">SASH Broadband</span>
           </h2>
-          <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
+          <p className="text-neutral-600 text-sm sm:text-base font-normal leading-relaxed">
             Select your preferred plan or service below and send us a message.
             Our team in Tiruvallur District will reach out promptly.
           </p>
         </AppleReveal>
 
         {/* Unified Outer Container with Footer Background; Right Side Form Container in White */}
-        <div className="relative overflow-hidden rounded-[28px] bg-brand-navy p-6 sm:p-8 lg:p-10 mb-10 lg:mb-12">
+        <div className="relative overflow-hidden rounded-2xl bg-brand-navy p-6 sm:p-8 lg:p-10 mb-10 lg:mb-12 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)]">
           {/* Footer-Matching Gradient & Arch Background */}
           <div
             aria-hidden="true"
@@ -282,25 +281,25 @@ export default function Contactus({
 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
             {/* Left Column (6 of 12 cols): SASH Office Location & Contact Details on Footer Background */}
-            <AppleReveal className="lg:col-span-6 h-full">
-              <div className="h-full p-2 sm:p-4 lg:p-6 flex flex-col justify-between divide-y divide-white/15 text-white">
+            <div className="lg:col-span-6 flex">
+              <div className="w-full p-2 sm:p-4 lg:p-6 flex flex-col justify-between divide-y divide-white/15 text-white">
                 {/* Registered Office Address */}
                 <div className="flex items-start gap-4 pb-6">
-                  <div className="w-10 h-10 rounded-sm bg-brand-red text-white flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-brand-red text-white flex items-center justify-center shrink-0 mt-0.5">
                     <MapPin className="w-4 h-4" aria-hidden="true" />
                   </div>
-                  <div>
-                    <h3 className="text-white font-medium text-base">
+                  <div className="min-w-0">
+                    <h3 className="text-white !text-base sm:!text-lg font-semibold leading-snug tracking-normal">
                       {SASH_OFFICE_NAME}
                     </h3>
-                    <address className="not-italic text-white/80 text-sm mt-1 leading-relaxed">
+                    <address className="not-italic text-white/80 text-sm mt-1.5 leading-relaxed font-normal">
                       {SASH_OFFICE_ADDRESS}
                     </address>
                     <a
                       href={SASH_GOOGLE_MAPS_SEARCH_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-2.5 inline-flex items-center gap-1.5 text-xs font-medium text-white hover:text-brand-red transition-colors underline underline-offset-4"
+                      className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-white hover:text-brand-red transition-colors underline underline-offset-4"
                     >
                       <span>Open in Google Maps</span>
                       <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
@@ -310,17 +309,17 @@ export default function Contactus({
 
                 {/* Phone (Tap to call) */}
                 <div className="flex items-start gap-4 py-6">
-                  <div className="w-10 h-10 rounded-sm bg-brand-red text-white flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-brand-red text-white flex items-center justify-center shrink-0 mt-0.5">
                     <Phone className="w-4 h-4" aria-hidden="true" />
                   </div>
-                  <div>
-                    <h3 className="text-white font-medium text-base">
+                  <div className="min-w-0">
+                    <h3 className="text-white !text-base sm:!text-lg font-semibold leading-snug tracking-normal">
                       Phone (Tap to call)
                     </h3>
                     <p className="mt-1">
                       <a
                         href="tel:+919003009353"
-                        className="text-white font-medium text-lg hover:underline tabular-nums"
+                        className="text-white font-medium text-base sm:text-lg hover:underline tabular-nums"
                       >
                         +91 90030 09353
                       </a>
@@ -330,17 +329,17 @@ export default function Contactus({
 
                 {/* Email */}
                 <div className="flex items-start gap-4 py-6">
-                  <div className="w-10 h-10 rounded-sm bg-brand-red text-white flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-brand-red text-white flex items-center justify-center shrink-0 mt-0.5">
                     <Mail className="w-4 h-4" aria-hidden="true" />
                   </div>
-                  <div>
-                    <h3 className="text-white font-medium text-base">
+                  <div className="min-w-0">
+                    <h3 className="text-white !text-base sm:!text-lg font-semibold leading-snug tracking-normal">
                       Email Support &amp; Sales
                     </h3>
                     <p className="mt-1">
                       <a
                         href="mailto:sashbroadband@gmail.com"
-                        className="text-white/90 font-normal text-sm sm:text-base underline underline-offset-4 hover:text-white transition-colors"
+                        className="text-white/90 font-normal text-sm sm:text-base underline underline-offset-4 hover:text-white transition-colors break-all"
                       >
                         sashbroadband@gmail.com
                       </a>
@@ -350,305 +349,324 @@ export default function Contactus({
 
                 {/* Office Hours & 24/7 Support */}
                 <div className="flex items-start gap-4 pt-6">
-                  <div className="w-10 h-10 rounded-sm bg-brand-red text-white flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-brand-red text-white flex items-center justify-center shrink-0 mt-0.5">
                     <Clock className="w-4 h-4" aria-hidden="true" />
                   </div>
-                  <div>
-                    <h3 className="text-white font-medium text-base">
+                  <div className="min-w-0">
+                    <h3 className="text-white !text-base sm:!text-lg font-semibold leading-snug tracking-normal">
                       Office Hours &amp; Support
                     </h3>
-                    <p className="text-white/80 text-sm mt-1">
+                    <p className="text-white/80 text-sm mt-1 font-normal leading-relaxed">
                       Mon – Sat, 9:00 AM to 6:00 PM &bull; 24/7 Customer Support
                     </p>
                   </div>
                 </div>
               </div>
-            </AppleReveal>
+            </div>
 
             {/* Right Column (6 of 12 cols): White Form Container */}
-            <AppleScrollScale className="lg:col-span-6 h-full">
-              <div className="h-full rounded-[20px] bg-white p-6 sm:p-8 lg:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.28)] flex flex-col justify-between">
-              {/* Form Header */}
-              <div className="pb-6 mb-6 border-b border-brand-navy/10">
-                <p className="eyebrow-label mb-2">Enquiry Form</p>
-                <h3 className="text-brand-navy font-normal tracking-tight text-2xl sm:text-[1.75rem] leading-snug">
-                  Send us a message
-                </h3>
-              </div>
+            <div className="lg:col-span-6 flex">
+              <div className="w-full rounded-2xl bg-white p-6 sm:p-8 lg:p-9 flex flex-col shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)]">
+                {/* Form Header */}
+                <div className="pb-5 mb-6 border-b border-brand-navy/10">
+                  <span className="inline-flex min-h-7 items-center justify-center rounded-full bg-red-10 px-3 font-mono text-xs font-semibold uppercase tracking-wider text-brand-red mb-2">
+                    Enquiry Form
+                  </span>
+                  <h3 className="text-brand-navy !text-xl sm:!text-2xl font-semibold tracking-normal leading-snug">
+                    Send us a message
+                  </h3>
+                </div>
 
-              {/* Accessible Live Status Region */}
-              <div aria-live="polite" aria-atomic="true">
-                {submittedSuccess && (
-                  <div
-                    role="status"
-                    className="mb-6 p-5 sm:p-6 rounded-[18px] bg-brand-navy text-white border border-brand-red/60"
-                  >
-                    <div className="flex items-start gap-3.5">
-                      <span className="w-9 h-9 rounded-sm bg-brand-red text-white flex items-center justify-center shrink-0 mt-0.5">
-                        <CheckCircle2 className="w-5 h-5" aria-hidden="true" />
-                      </span>
+                {/* Accessible Live Status Region */}
+                {(submittedSuccess || errors.form) && (
+                  <div aria-live="polite" aria-atomic="true" className="mb-5">
+                    {submittedSuccess && (
+                      <div
+                        role="status"
+                        className="p-4 sm:p-5 rounded-xl bg-brand-navy text-white border border-brand-red/60"
+                      >
+                        <div className="flex items-start gap-3">
+                          <span className="w-8 h-8 rounded-lg bg-brand-red text-white flex items-center justify-center shrink-0 mt-0.5">
+                            <CheckCircle2 className="w-4 h-4" aria-hidden="true" />
+                          </span>
+                          <div>
+                            <p className="text-sm sm:text-base font-medium text-white">
+                              Thank you! Your message has been sent.
+                            </p>
+                            <p className="text-xs sm:text-sm text-white/85 mt-1 font-normal">
+                              Our team will contact you shortly, or call us
+                              directly at{" "}
+                              <a
+                                href="tel:+919003009353"
+                                className="font-medium underline text-white"
+                              >
+                                +91 90030 09353
+                              </a>
+                              .
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {errors.form && (
+                      <div
+                        role="alert"
+                        className="p-4 rounded-lg bg-red-10 border border-brand-red/40 text-brand-red font-medium text-sm"
+                      >
+                        {errors.form}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                <form
+                  onSubmit={handleSubmit}
+                  noValidate
+                  className="flex-1 flex flex-col justify-between gap-4"
+                >
+                  <div className="space-y-4">
+                    {/* 1 & 2: Name + Number */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <p className="text-base sm:text-lg font-medium text-white">
-                          Thank you! Your message has been sent.
-                        </p>
-                        <p className="text-sm text-white/85 mt-1">
-                          Our team will contact you shortly, or call us directly
-                          at{" "}
-                          <a
-                            href="tel:+919003009353"
-                            className="font-medium underline text-white"
+                        <label
+                          htmlFor="lead-fullName"
+                          className="block text-xs sm:text-sm font-medium text-brand-navy mb-1.5"
+                        >
+                          Name <span className="text-brand-red">*</span>
+                        </label>
+                        <div className="relative">
+                          <User
+                            className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-navy/45"
+                            aria-hidden="true"
+                          />
+                          <input
+                            id="lead-fullName"
+                            name="fullName"
+                            type="text"
+                            required
+                            autoComplete="name"
+                            value={form.fullName}
+                            onChange={(e) => {
+                              setForm({ ...form, fullName: e.target.value });
+                              if (errors.fullName)
+                                setErrors({ ...errors, fullName: undefined });
+                            }}
+                            aria-invalid={Boolean(errors.fullName)}
+                            aria-describedby={
+                              errors.fullName ? "error-fullName" : undefined
+                            }
+                            placeholder="Enter your name"
+                            className={baseInputClass(Boolean(errors.fullName))}
+                          />
+                        </div>
+                        {errors.fullName && (
+                          <p
+                            id="error-fullName"
+                            role="alert"
+                            className="mt-1 text-xs font-medium text-brand-red"
                           >
-                            +91 90030 09353
-                          </a>
-                          .
-                        </p>
+                            {errors.fullName}
+                          </p>
+                        )}
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="lead-mobile"
+                          className="block text-xs sm:text-sm font-medium text-brand-navy mb-1.5"
+                        >
+                          Number <span className="text-brand-red">*</span>
+                        </label>
+                        <div className="relative">
+                          <Phone
+                            className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-navy/45"
+                            aria-hidden="true"
+                          />
+                          <input
+                            id="lead-mobile"
+                            name="mobile"
+                            type="tel"
+                            required
+                            autoComplete="tel"
+                            value={form.mobile}
+                            onChange={(e) => {
+                              setForm({ ...form, mobile: e.target.value });
+                              if (errors.mobile)
+                                setErrors({ ...errors, mobile: undefined });
+                            }}
+                            aria-invalid={Boolean(errors.mobile)}
+                            aria-describedby={
+                              errors.mobile ? "error-mobile" : undefined
+                            }
+                            placeholder="+91 90030 09353"
+                            className={baseInputClass(Boolean(errors.mobile))}
+                          />
+                        </div>
+                        {errors.mobile && (
+                          <p
+                            id="error-mobile"
+                            role="alert"
+                            className="mt-1 text-xs font-medium text-brand-red"
+                          >
+                            {errors.mobile}
+                          </p>
+                        )}
                       </div>
                     </div>
-                  </div>
-                )}
 
-                {errors.form && (
-                  <div
-                    role="alert"
-                    className="mb-6 p-4 rounded-sm bg-red-10 border border-brand-red/40 text-brand-red font-medium text-sm"
-                  >
-                    {errors.form}
+                    {/* 3 & 4: Dropdown Plan Options + Email */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label
+                          htmlFor="lead-selectedPlan"
+                          className="block text-xs sm:text-sm font-medium text-brand-navy mb-1.5"
+                        >
+                          Plan Options <span className="text-brand-red">*</span>
+                        </label>
+                        <div className="relative">
+                          <select
+                            id="lead-selectedPlan"
+                            name="selectedPlan"
+                            value={form.selectedPlan}
+                            onChange={(e) => {
+                              setForm({ ...form, selectedPlan: e.target.value });
+                              if (errors.selectedPlan)
+                                setErrors({
+                                  ...errors,
+                                  selectedPlan: undefined,
+                                });
+                            }}
+                            aria-invalid={Boolean(errors.selectedPlan)}
+                            aria-describedby={
+                              errors.selectedPlan
+                                ? "error-selectedPlan"
+                                : undefined
+                            }
+                            className={`w-full h-10 pl-3.5 pr-9 truncate appearance-none rounded-lg bg-white border text-sm font-normal text-brand-navy transition-[border-color,box-shadow] duration-150 focus:outline-none focus:ring-3 cursor-pointer ${
+                              errors.selectedPlan
+                                ? "border-brand-red focus:border-brand-red focus:ring-brand-red/15"
+                                : "border-brand-navy/15 hover:border-brand-navy/30 focus:border-brand-red focus:ring-brand-red/12"
+                            }`}
+                          >
+                            {PLAN_DROPDOWN_OPTIONS.map((planOption) => (
+                              <option
+                                key={planOption}
+                                value={planOption}
+                                className="bg-white text-brand-navy"
+                              >
+                                {planOption}
+                              </option>
+                            ))}
+                          </select>
+                          <ChevronDown
+                            className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-navy/55"
+                            aria-hidden="true"
+                          />
+                        </div>
+                        {errors.selectedPlan && (
+                          <p
+                            id="error-selectedPlan"
+                            role="alert"
+                            className="mt-1 text-xs font-medium text-brand-red"
+                          >
+                            {errors.selectedPlan}
+                          </p>
+                        )}
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="lead-email"
+                          className="block text-xs sm:text-sm font-medium text-brand-navy mb-1.5"
+                        >
+                          Email
+                        </label>
+                        <div className="relative">
+                          <Mail
+                            className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-navy/45"
+                            aria-hidden="true"
+                          />
+                          <input
+                            id="lead-email"
+                            name="email"
+                            type="email"
+                            autoComplete="email"
+                            value={form.email}
+                            onChange={(e) => {
+                              setForm({ ...form, email: e.target.value });
+                              if (errors.email)
+                                setErrors({ ...errors, email: undefined });
+                            }}
+                            aria-invalid={Boolean(errors.email)}
+                            aria-describedby={
+                              errors.email ? "error-email" : undefined
+                            }
+                            placeholder="you@example.com"
+                            className={baseInputClass(Boolean(errors.email))}
+                          />
+                        </div>
+                        {errors.email && (
+                          <p
+                            id="error-email"
+                            role="alert"
+                            className="mt-1 text-xs font-medium text-brand-red"
+                          >
+                            {errors.email}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* 5: Message */}
+                    <div>
+                      <label
+                        htmlFor="lead-message"
+                        className="block text-xs sm:text-sm font-medium text-brand-navy mb-1.5"
+                      >
+                        Message
+                      </label>
+                      <textarea
+                        id="lead-message"
+                        name="message"
+                        rows={4}
+                        value={form.message}
+                        onChange={(e) =>
+                          setForm({ ...form, message: e.target.value })
+                        }
+                        placeholder="Write your message or installation address details..."
+                        className="w-full p-3.5 rounded-lg bg-white border border-brand-navy/15 hover:border-brand-navy/30 focus:border-brand-red focus:ring-3 focus:ring-brand-red/12 focus:outline-none text-sm font-normal text-brand-navy placeholder:text-neutral-600/55 transition-[border-color,box-shadow] duration-150 resize-none"
+                      />
+                    </div>
                   </div>
-                )}
+
+                  {/* Send Message Submit CTA Button */}
+                  <div className="pt-2">
+                    <Button
+                      type="submit"
+                      size="lg"
+                      disabled={isSubmitting}
+                      className="w-full group/primary cursor-pointer font-medium"
+                    >
+                      <span>
+                        {isSubmitting ? "Sending message..." : "Send Message"}
+                      </span>
+                      <ArrowRight
+                        className="size-4 transition-transform duration-200 ease-out group-hover/primary:translate-x-0.5"
+                        aria-hidden="true"
+                      />
+                    </Button>
+                  </div>
+                </form>
               </div>
-
-              <form onSubmit={handleSubmit} noValidate className="space-y-5">
-                {/* 1 & 2: Name + Number */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-                  <div>
-                    <label
-                      htmlFor="lead-fullName"
-                      className="block text-sm font-medium text-brand-navy mb-1.5"
-                    >
-                      Name <span className="text-brand-red">*</span>
-                    </label>
-                    <div className="relative">
-                      <User
-                        className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-navy/45"
-                        aria-hidden="true"
-                      />
-                      <input
-                        id="lead-fullName"
-                        name="fullName"
-                        type="text"
-                        required
-                        autoComplete="name"
-                        value={form.fullName}
-                        onChange={(e) => {
-                          setForm({ ...form, fullName: e.target.value });
-                          if (errors.fullName)
-                            setErrors({ ...errors, fullName: undefined });
-                        }}
-                        aria-invalid={Boolean(errors.fullName)}
-                        aria-describedby={
-                          errors.fullName ? "error-fullName" : undefined
-                        }
-                        placeholder="Enter your name"
-                        className={baseInputClass(Boolean(errors.fullName))}
-                      />
-                    </div>
-                    {errors.fullName && (
-                      <p
-                        id="error-fullName"
-                        role="alert"
-                        className="mt-1.5 text-xs sm:text-sm font-medium text-brand-red"
-                      >
-                        {errors.fullName}
-                      </p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="lead-mobile"
-                      className="block text-sm font-medium text-brand-navy mb-1.5"
-                    >
-                      Number <span className="text-brand-red">*</span>
-                    </label>
-                    <div className="relative">
-                      <Phone
-                        className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-navy/45"
-                        aria-hidden="true"
-                      />
-                      <input
-                        id="lead-mobile"
-                        name="mobile"
-                        type="tel"
-                        required
-                        autoComplete="tel"
-                        value={form.mobile}
-                        onChange={(e) => {
-                          setForm({ ...form, mobile: e.target.value });
-                          if (errors.mobile)
-                            setErrors({ ...errors, mobile: undefined });
-                        }}
-                        aria-invalid={Boolean(errors.mobile)}
-                        aria-describedby={
-                          errors.mobile ? "error-mobile" : undefined
-                        }
-                        placeholder="+91 90030 09353"
-                        className={baseInputClass(Boolean(errors.mobile))}
-                      />
-                    </div>
-                    {errors.mobile && (
-                      <p
-                        id="error-mobile"
-                        role="alert"
-                        className="mt-1.5 text-xs sm:text-sm font-medium text-brand-red"
-                      >
-                        {errors.mobile}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                {/* 3 & 4: Dropdown Plan Options + Email */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-                  <div>
-                    <label
-                      htmlFor="lead-selectedPlan"
-                      className="block text-sm font-medium text-brand-navy mb-1.5"
-                    >
-                      Plan Options <span className="text-brand-red">*</span>
-                    </label>
-                    <div className="relative">
-                      <select
-                        id="lead-selectedPlan"
-                        name="selectedPlan"
-                        value={form.selectedPlan}
-                        onChange={(e) => {
-                          setForm({ ...form, selectedPlan: e.target.value });
-                          if (errors.selectedPlan)
-                            setErrors({ ...errors, selectedPlan: undefined });
-                        }}
-                        aria-invalid={Boolean(errors.selectedPlan)}
-                        aria-describedby={
-                          errors.selectedPlan ? "error-selectedPlan" : undefined
-                        }
-                        className={`w-full h-11 pl-3.5 pr-10 appearance-none rounded-sm bg-white border text-sm sm:text-base font-normal text-brand-navy transition-[border-color,box-shadow] duration-150 focus:outline-none focus:ring-3 cursor-pointer ${
-                          errors.selectedPlan
-                            ? "border-brand-red focus:border-brand-red focus:ring-brand-red/15"
-                            : "border-brand-navy/15 hover:border-brand-navy/30 focus:border-brand-red focus:ring-brand-red/12"
-                        }`}
-                      >
-                        {PLAN_DROPDOWN_OPTIONS.map((planOption) => (
-                          <option key={planOption} value={planOption}>
-                            {planOption}
-                          </option>
-                        ))}
-                      </select>
-                      <ChevronDown
-                        className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-navy/55"
-                        aria-hidden="true"
-                      />
-                    </div>
-                    {errors.selectedPlan && (
-                      <p
-                        id="error-selectedPlan"
-                        role="alert"
-                        className="mt-1.5 text-xs sm:text-sm font-medium text-brand-red"
-                      >
-                        {errors.selectedPlan}
-                      </p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="lead-email"
-                      className="block text-sm font-medium text-brand-navy mb-1.5"
-                    >
-                      Email
-                    </label>
-                    <div className="relative">
-                      <Mail
-                        className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-navy/45"
-                        aria-hidden="true"
-                      />
-                      <input
-                        id="lead-email"
-                        name="email"
-                        type="email"
-                        autoComplete="email"
-                        value={form.email}
-                        onChange={(e) => {
-                          setForm({ ...form, email: e.target.value });
-                          if (errors.email)
-                            setErrors({ ...errors, email: undefined });
-                        }}
-                        aria-invalid={Boolean(errors.email)}
-                        aria-describedby={
-                          errors.email ? "error-email" : undefined
-                        }
-                        placeholder="you@example.com"
-                        className={baseInputClass(Boolean(errors.email))}
-                      />
-                    </div>
-                    {errors.email && (
-                      <p
-                        id="error-email"
-                        role="alert"
-                        className="mt-1.5 text-xs sm:text-sm font-medium text-brand-red"
-                      >
-                        {errors.email}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                {/* 5: Message */}
-                <div>
-                  <label
-                    htmlFor="lead-message"
-                    className="block text-sm font-medium text-brand-navy mb-1.5"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="lead-message"
-                    name="message"
-                    rows={4}
-                    value={form.message}
-                    onChange={(e) =>
-                      setForm({ ...form, message: e.target.value })
-                    }
-                    placeholder="Write your message or installation address details..."
-                    className="w-full p-3.5 rounded-sm bg-white border border-brand-navy/15 hover:border-brand-navy/30 focus:border-brand-red focus:ring-3 focus:ring-brand-red/12 focus:outline-none text-sm sm:text-base font-normal text-brand-navy placeholder:text-neutral-600/55 transition-[border-color,box-shadow] duration-150"
-                  />
-                </div>
-
-                {/* Send Message Submit CTA Button */}
-                <div className="pt-1">
-                  <Button
-                    type="submit"
-                    size="lg"
-                    disabled={isSubmitting}
-                    className="w-full group/primary cursor-pointer"
-                  >
-                    <span>
-                      {isSubmitting ? "Sending message..." : "Send Message"}
-                    </span>
-                    <ArrowRight
-                      className="size-4 transition-transform duration-200 ease-out group-hover/primary:translate-x-0.5"
-                      aria-hidden="true"
-                    />
-                  </Button>
-                </div>
-              </form>
             </div>
-          </AppleScrollScale>
           </div>
         </div>
 
         {/* Full-Width 12-Column Google Map Row */}
         <div className="grid grid-cols-1 lg:grid-cols-12">
           <AppleReveal className="lg:col-span-12">
-            <div className="rounded-[24px] overflow-hidden border border-brand-navy/10 bg-neutral-100 h-[360px] sm:h-[420px] w-full">
+            <div className="rounded-2xl overflow-hidden border border-brand-navy/10 bg-neutral-100 h-[360px] sm:h-[420px] w-full">
               <iframe
                 title="Sash Broadband Pvt Ltd Google Map Location - Kondancheri, Perambakkam, Tiruvallur District 631402"
                 src={SASH_GOOGLE_MAPS_EMBED_URL}

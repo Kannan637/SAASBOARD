@@ -88,7 +88,7 @@ function MarqueeLogoTrack({
             {logos.map((logo) => (
                 <div
                     key={`${isDuplicate ? "dup" : "orig"}-${logo.id}`}
-                    className="h-20 w-40 sm:h-22 sm:w-44 shrink-0 rounded-[14px] bg-white  px-4 py-3 flex items-center justify-center transition-[border-color,transform] duration-200 hover:border-brand-red/35 hover:-translate-y-0.5"
+                    className="h-20 w-40 sm:h-22 sm:w-44 shrink-0 rounded-xl bg-white px-4 py-3 flex items-center justify-center border border-border/80 transition-[border-color,transform] duration-200 hover:border-brand-red/35 hover:-translate-y-0.5"
                 >
                     <Image
                         src={logo.src}
@@ -130,34 +130,22 @@ export default function Marquee() {
             aria-labelledby="partner-marquee-heading"
             className="bg-white text-brand-navy py-16 md:py-24 overflow-hidden"
         >
-            <div className="container-sash mb-14 md:mb-16">
-                <AppleReveal className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-                    {/* Left Column (5 of 12 cols): Eyebrow, Heading & ISP Credential */}
-                    <div className="lg:col-span-5">
+            <div className="container-sash mb-12 md:mb-14">
+                <AppleReveal className="grid grid-cols-1 lg:grid-cols-12">
+                    <div className="lg:col-span-10 lg:col-start-2 flex flex-col items-center text-center">
                         <p className="eyebrow-label text-brand-red mb-3">
                             About Us &amp; Our Clients
                         </p>
                         <h2
                             id="partner-marquee-heading"
-                            className="text-brand-navy text-[clamp(1.85rem,3.2vw,2.75rem)] leading-[1.08] font-normal tracking-tight mb-5"
+                            className="text-brand-navy text-[clamp(1.85rem,3.2vw,2.75rem)] leading-[1.15] font-semibold tracking-normal mb-4"
                         >
                             About{" "}
                             <span className="text-brand-red">SASH Broadband</span>{" "}
                             &amp; Our Clients
                         </h2>
 
-                        <div className="inline-flex items-center gap-2.5 rounded-[12px] bg-neutral-100 px-4 py-2.5 text-xs sm:text-sm font-medium text-brand-navy">
-                            <span
-                                className="h-2 w-2 rounded-full bg-brand-red shrink-0"
-                                aria-hidden="true"
-                            />
-                            <span>Licensed Class–B ISP • Tamil Nadu</span>
-                        </div>
-                    </div>
-
-                    {/* Right Column (7 of 12 cols): Condensed About Us Copy & 3-Pillar Grid */}
-                    <div className="lg:col-span-7 space-y-6">
-                        <p className="text-neutral-600 text-sm sm:text-base md:text-[17px] leading-relaxed">
+                        <p className="text-neutral-600 text-sm sm:text-base md:text-[17px] leading-relaxed max-w-3xl mx-auto">
                             <strong className="font-semibold text-brand-navy">
                                 SASH Broadband Private Limited
                             </strong>{" "}
@@ -172,44 +160,6 @@ export default function Marquee() {
                             patching via direct fiber and wireless links to ensure business
                             productivity, continuity, and lasting customer trust.
                         </p>
-
-                        <div className="grid grid-cols-1 sm:grid-cols-12 gap-3.5">
-                            <div className="sm:col-span-4 rounded-[14px] bg-neutral-100/80 p-4">
-                                <p className="text-xs font-mono uppercase tracking-wider text-brand-red mb-1">
-                                    01 / Licenced ISP
-                                </p>
-                                <h3 className="text-sm font-semibold text-brand-navy mb-1">
-                                    Class–B Tamil Nadu
-                                </h3>
-                                <p className="text-xs text-neutral-600 leading-relaxed">
-                                    Young, dynamic team built around customer time and trust.
-                                </p>
-                            </div>
-
-                            <div className="sm:col-span-4 rounded-[14px] bg-neutral-100/80 p-4">
-                                <p className="text-xs font-mono uppercase tracking-wider text-brand-red mb-1">
-                                    02 / Last-Mile
-                                </p>
-                                <h3 className="text-sm font-semibold text-brand-navy mb-1">
-                                    Fiber &amp; Wireless
-                                </h3>
-                                <p className="text-xs text-neutral-600 leading-relaxed">
-                                    End-to-end connectivity with direct fiber and wireless links.
-                                </p>
-                            </div>
-
-                            <div className="sm:col-span-4 rounded-[14px] bg-neutral-100/80 p-4">
-                                <p className="text-xs font-mono uppercase tracking-wider text-brand-red mb-1">
-                                    03 / Coverage
-                                </p>
-                                <h3 className="text-sm font-semibold text-brand-navy mb-1">
-                                    Domestic &amp; Corporate
-                                </h3>
-                                <p className="text-xs text-neutral-600 leading-relaxed">
-                                    Reliable internet &amp; telecom powering business continuity.
-                                </p>
-                            </div>
-                        </div>
                     </div>
                 </AppleReveal>
             </div>

@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Contactus from "@/components/Home/Contactus";
+import {
+  ServiceDeliverablesSection,
+  ServiceHero,
+  SingleClientMarquee,
+  type ServiceDeliverableItem,
+} from "@/components/Service/ServicePageTemplate";
+import { AppleReveal } from "@/components/ui/apple-scroll";
 
 export const metadata: Metadata = {
   title: "SME Business Internet Plans in Tamil Nadu",
@@ -12,99 +18,139 @@ export const metadata: Metadata = {
   },
 };
 
+const SME_CAPABILITIES: ServiceDeliverableItem[] = [
+  {
+    title: "Business Traffic Priority Routing",
+    tag: "Low Latency",
+    description:
+      "Optimised optical routing ensures uninterrupted POS billing, cloud ERP sync, and crystal-clear multi-seat video conferencing.",
+  },
+  {
+    title: "Unlimited Price Lock Protection",
+    tag: "Fixed Tariff",
+    description:
+      "Shield your monthly IT budget with our Corporate Pack unlimited price lock starting at ₹1,499/month with GST billing.",
+  },
+  {
+    title: "24/7 Commercial Field Dispatch",
+    tag: "Priority Support",
+    description:
+      "Dedicated commercial desk and local field splicers in Thiruvallur District for faster mean time to repair.",
+  },
+  {
+    title: "Static IP & NVR Port Forwarding",
+    tag: "Ready for CCTV/VPN",
+    description:
+      "Pre-configured support for remote CCTV monitoring, branch VPN tunnels, and hosted accounting servers.",
+  },
+];
+
 export default function SmeInternetPage() {
   return (
     <>
-      <section className="bg-brand-navy text-white section-padding">
-        <div className="container-sash max-w-4xl">
-          <nav aria-label="Breadcrumb" className="text-sm text-white/75 mb-4">
-            <ol className="flex items-center gap-2">
-              <li>
-                <Link href="/" className="hover:underline text-white">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li aria-current="page" className="text-white font-bold">
-                SME Internet
-              </li>
-            </ol>
-          </nav>
-          <p className="eyebrow-label text-white/80 mb-3">
-            Small &amp; Medium Enterprise Broadband
-          </p>
-          <h1 className="text-white mb-6">
-            Reliable business internet that grows with your team
-          </h1>
-          <p className="text-white/90 text-lg md:text-xl max-w-2xl mb-8">
-            Purpose-built for retail outlets, clinics, accounting firms, and
-            growing offices that need priority routing, GST invoicing, and rapid
-            field support.
-          </p>
-          <Link href="#contact" className="btn-pill btn-primary-red">
-            Get an SME business quote
-          </Link>
-        </div>
-      </section>
+      <ServiceHero
+        breadcrumbLabel="SME Internet"
+        eyebrow="HIGH-UPTIME BUSINESS BROADBAND"
+        titlePrefix="Built for growing"
+        titleHighlight="businesses."
+        description="That's the SME Internet advantage — priority routing, symmetrical bandwidth, and price lock for offices & retail."
+        ctaText="Explore SME Plans"
+        ctaHref="#sme-comparison"
+        secondaryCtaText="Request Callback"
+        secondaryCtaHref="#contact"
+        iconSrc="/Service/SME Internet.webp"
+        iconAlt="SASH SME Business Internet icon"
+      />
 
-      <section className="bg-white text-brand-navy section-padding">
+      {/* Single-Row Client Logo Marquee */}
+      <SingleClientMarquee />
+
+      <ServiceDeliverablesSection
+        eyebrow="Built for Productivity"
+        heading="Commercial connectivity engineered for SMEs"
+        items={SME_CAPABILITIES}
+      />
+
+      <section
+        id="sme-comparison"
+        data-apple-manual="true"
+        className="bg-neutral-100 text-brand-navy section-padding"
+      >
         <div className="container-sash">
-          <div className="max-w-2xl mb-12">
-            <p className="eyebrow-label text-brand-red mb-3">
-              Home vs SME Plans
-            </p>
-            <h2 className="text-brand-navy mb-4">
-              How SME Broadband compares with Home Plans
-            </h2>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <AppleReveal className="lg:col-span-4">
+              <p className="eyebrow-label text-brand-red mb-2.5">
+                Home vs SME Plans
+              </p>
+              <h2 className="text-brand-navy !text-lg sm:!text-xl font-normal tracking-tight mb-2.5">
+                How SME Broadband compares with Home Plans
+              </h2>
+              <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-normal">
+                Upgrade from residential broadband to dedicated business
+                stability, priority fault dispatch, and GST-compliant billing.
+              </p>
+            </AppleReveal>
 
-          <div className="overflow-x-auto card-sash border border-neutral-100">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-brand-navy text-white">
-                  <th className="p-5 font-extrabold">Feature</th>
-                  <th className="p-5 font-extrabold">Home Broadband</th>
-                  <th className="p-5 font-extrabold">SME Business Plans</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-neutral-100 text-base">
-                <tr className="bg-white">
-                  <td className="p-5 font-bold">Monthly Data &amp; Bandwidth</td>
-                  <td className="p-5 text-neutral-600">Unlimited</td>
-                  <td className="p-5 font-semibold text-brand-navy">
-                    Unlimited with business traffic priority
-                  </td>
-                </tr>
-                <tr className="bg-neutral-100/50">
-                  <td className="p-5 font-bold">Price Lock Protection</td>
-                  <td className="p-5 text-neutral-600">1 to 2 Years</td>
-                  <td className="p-5 font-semibold text-brand-navy">
-                    Unlimited Price Lock (Corporate Pack ₹1,499/mo)
-                  </td>
-                </tr>
-                <tr className="bg-white">
-                  <td className="p-5 font-bold">Support Response</td>
-                  <td className="p-5 text-neutral-600">24/7 Customer Support</td>
-                  <td className="p-5 font-semibold text-brand-navy">
-                    24/7 Priority Commercial Field Dispatch
-                  </td>
-                </tr>
-                <tr className="bg-neutral-100/50">
-                  <td className="p-5 font-bold">Static IP &amp; CCTV Port Forwarding</td>
-                  <td className="p-5 text-neutral-600">Optional Add-on</td>
-                  <td className="p-5 font-semibold text-brand-navy">
-                    Supported for POS, NVR/CCTV &amp; VPN
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <div className="lg:col-span-8">
+              <div className="overflow-x-auto card-sash bg-white border border-brand-navy/10">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="bg-brand-navy text-white text-xs sm:text-sm">
+                      <th className="p-4 sm:p-5 font-medium">Feature</th>
+                      <th className="p-4 sm:p-5 font-medium">Home Broadband</th>
+                      <th className="p-4 sm:p-5 font-medium">SME Business Plans</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-neutral-100 text-xs sm:text-sm">
+                    <tr className="bg-white">
+                      <td className="p-4 sm:p-5 font-medium text-brand-navy">
+                        Monthly Data &amp; Bandwidth
+                      </td>
+                      <td className="p-4 sm:p-5 text-neutral-600">Unlimited</td>
+                      <td className="p-4 sm:p-5 font-normal text-brand-navy">
+                        Unlimited with business traffic priority
+                      </td>
+                    </tr>
+                    <tr className="bg-neutral-100/50">
+                      <td className="p-4 sm:p-5 font-medium text-brand-navy">
+                        Price Lock Protection
+                      </td>
+                      <td className="p-4 sm:p-5 text-neutral-600">1 to 2 Years</td>
+                      <td className="p-4 sm:p-5 font-normal text-brand-navy">
+                        Unlimited Price Lock (Corporate Pack ₹1,499/mo)
+                      </td>
+                    </tr>
+                    <tr className="bg-white">
+                      <td className="p-4 sm:p-5 font-medium text-brand-navy">
+                        Support Response
+                      </td>
+                      <td className="p-4 sm:p-5 text-neutral-600">
+                        24/7 Customer Support
+                      </td>
+                      <td className="p-4 sm:p-5 font-normal text-brand-navy">
+                        24/7 Priority Commercial Field Dispatch
+                      </td>
+                    </tr>
+                    <tr className="bg-neutral-100/50">
+                      <td className="p-4 sm:p-5 font-medium text-brand-navy">
+                        Static IP &amp; CCTV Port Forwarding
+                      </td>
+                      <td className="p-4 sm:p-5 text-neutral-600">Optional Add-on</td>
+                      <td className="p-4 sm:p-5 font-normal text-brand-navy">
+                        Supported for POS, NVR/CCTV &amp; VPN
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <Contactus
         defaultInterest="Business or SME"
-        defaultPlan="SME Business Internet / Corporate Pack (₹1,499/mo)"
+        defaultPlan="SME Business Internet"
       />
     </>
   );

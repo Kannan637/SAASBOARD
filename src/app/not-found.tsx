@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <section className="bg-brand-navy text-white section-padding min-h-[70vh] flex items-center">
       <div className="container-sash max-w-2xl text-center">
-        <span className="inline-block px-4 py-1.5 rounded-full bg-brand-red text-white text-xs font-extrabold uppercase tracking-wider mb-6">
+        <span className="inline-block px-4 py-1.5 rounded-full bg-brand-red text-white text-xs font-semibold uppercase tracking-wider mb-6">
           Error 404 • Page Not Found
         </span>
         <h1 className="text-white mb-4">

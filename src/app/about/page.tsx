@@ -50,7 +50,7 @@ export default function AboutPage() {
                 </Link>
               </li>
               <li aria-hidden="true">/</li>
-              <li aria-current="page" className="text-white font-bold">
+              <li aria-current="page" className="text-white font-medium">
                 About Us
               </li>
             </ol>
@@ -59,19 +59,19 @@ export default function AboutPage() {
           <p className="eyebrow-label text-white/80 mb-3">
             SASH Broadband Private Limited
           </p>
-          <h1 className="text-white mb-6">
+          <h1 className="text-white mb-6 font-semibold text-3xl sm:text-4xl lg:text-5xl tracking-normal leading-[1.12]">
             Connecting homes and businesses across Tamil Nadu with pure fibre
           </h1>
-          <p className="text-white/90 text-lg md:text-xl max-w-2xl mb-8">
+          <p className="text-white/90 text-lg md:text-xl max-w-2xl mb-8 font-normal leading-relaxed">
             Headquartered in Jaya Nagar, Thiruvallur, SASH Broadband builds and
             operates reliable optical fibre networks designed for everyday speed,
             honest pricing, and local engineering support.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Link href="#contact" className="btn-pill btn-primary-red">
+            <Link href="#contact" className="btn-pill btn-primary-red font-medium rounded-lg">
               Check availability
             </Link>
-            <Link href="/#plans" className="btn-pill btn-secondary-navy">
+            <Link href="/#plans" className="btn-pill btn-secondary-navy font-medium rounded-lg">
               View broadband plans
             </Link>
           </div>
@@ -83,10 +83,10 @@ export default function AboutPage() {
         <div className="container-sash grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-7">
             <p className="eyebrow-label text-brand-red mb-3">About Us</p>
-            <h2 className="text-brand-navy mb-4">
+            <h2 className="text-brand-navy mb-4 font-semibold text-2xl sm:text-3xl tracking-normal">
               A Class–B Tamil Nadu ISP built on speed, continuity, and trust
             </h2>
-            <p className="text-neutral-600 text-base mb-4">
+            <p className="text-neutral-600 text-base mb-4 font-normal leading-relaxed">
               SASH Broadband Private Limited is a licensed Class–B Internet
               Service Provider (ISP) in Tamil Nadu, driven by a young, dynamic
               team committed to delivering high-quality connectivity. We support
@@ -94,7 +94,7 @@ export default function AboutPage() {
               communications services that power productivity and business
               continuity.
             </p>
-            <p className="text-neutral-600 text-base">
+            <p className="text-neutral-600 text-base font-normal leading-relaxed">
               We provide next-generation internet, telecommunication, and optical
               solutions—complete with end-to-end connectivity and last-mile
               patching via direct fiber and wireless links—setting a higher
@@ -102,12 +102,12 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="lg:col-span-5 card-sash bg-neutral-100 p-8 border border-neutral-100 space-y-6">
+          <div className="lg:col-span-5 rounded-xl bg-neutral-100 p-8 border border-neutral-100 space-y-6 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)]">
             <div>
-              <h3 className="text-brand-navy font-extrabold text-xl mb-2">
+              <h3 className="text-brand-navy font-semibold text-lg sm:text-xl mb-2 tracking-normal">
                 Our Mission
               </h3>
-              <p className="text-neutral-600 text-base">
+              <p className="text-neutral-600 text-base font-normal leading-relaxed">
                 To deliver reliable, high-speed internet, optical, and
                 telecommunication solutions for domestic and corporate clients
                 with transparent pricing and end-to-end last-mile fiber and
@@ -116,20 +116,20 @@ export default function AboutPage() {
             </div>
 
             <div className="pt-6 border-t border-brand-navy/10">
-              <h3 className="text-brand-navy font-extrabold text-xl mb-2">
+              <h3 className="text-brand-navy font-semibold text-lg sm:text-xl mb-2 tracking-normal">
                 Licensing &amp; Coverage
               </h3>
-              <p className="text-neutral-600 text-base">
+              <p className="text-neutral-600 text-base font-normal leading-relaxed">
                 SASH Broadband Private Limited operates as an authorised
                 Class–B Internet Service Provider (ISP) across Tamil Nadu.
               </p>
             </div>
 
             <div className="pt-6 border-t border-brand-navy/10">
-              <h3 className="text-brand-navy font-extrabold text-xl mb-2">
+              <h3 className="text-brand-navy font-semibold text-lg sm:text-xl mb-2 tracking-normal">
                 Our Team &amp; Operations
               </h3>
-              <p className="text-neutral-600 text-base">
+              <p className="text-neutral-600 text-base font-normal leading-relaxed">
                 Our team comprises fibre splicing specialists, network operations
                 centre (NOC) engineers, CCTV installation technicians, and a
                 dedicated customer desk at Jaya Nagar, Thiruvallur.

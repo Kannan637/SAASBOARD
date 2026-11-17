@@ -333,7 +333,7 @@ export function Footer9({
       >
         <div className="flex min-h-[420px] flex-col justify-between gap-10 pt-12 pb-10 sm:min-h-[460px] sm:pt-16 md:min-h-[500px] lg:flex-row lg:items-start lg:gap-16">
           <div className="flex flex-1 flex-col justify-between gap-8">
-            <h2 className="text-primary-foreground max-w-2xl text-4xl leading-tight font-normal tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+            <h2 className="text-primary-foreground max-w-2xl text-4xl leading-tight font-semibold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
               {heading.split('\n').map((line, i) => (
                 <motion.span variants={itemVariants} key={i} className="block">
                   {line}
@@ -346,7 +346,7 @@ export function Footer9({
               href={emailHref}
               className="group inline-flex items-center gap-2 self-start"
             >
-              <span className="text-primary-foreground/80 group-hover:text-primary-foreground text-sm font-normal tracking-wide transition-colors duration-200 sm:text-base">
+              <span className="text-primary-foreground/80 group-hover:text-primary-foreground text-sm font-medium tracking-normal transition-colors duration-200 sm:text-base">
                 {email}
               </span>
               <span className="text-primary-foreground/80 group-hover:text-primary-foreground flex items-center justify-center transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
@@ -369,7 +369,7 @@ export function Footer9({
                   href={link.href}
                   target={link.href.startsWith('http') ? '_blank' : undefined}
                   rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="text-primary-foreground/70 hover:text-primary-foreground text-sm font-normal transition-colors duration-200"
+                  className="text-primary-foreground/70 hover:text-primary-foreground text-sm font-medium transition-colors duration-200"
                 >
                   {link.label}
                 </a>
@@ -396,7 +396,7 @@ export function Footer9({
                   <a
                     key={link.label}
                     href={link.href}
-                    className="text-sm font-normal text-white/90 transition-colors duration-200 hover:text-white"
+                    className="text-sm font-medium text-white/90 transition-colors duration-200 hover:text-white"
                   >
                     {link.label}
                   </a>
