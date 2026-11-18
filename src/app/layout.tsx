@@ -137,21 +137,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-IN" className={`${urbanist.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-[#F6F5FA] text-brand-navy font-normal relative before:content-[''] before:fixed before:inset-0 before:pointer-events-none before:z-0 before:bg-[repeating-linear-gradient(135deg,rgba(80,70,120,0.05)_0px,rgba(80,70,120,0.05)_1px,transparent_1px,transparent_6px)] before:[mask-image:linear-gradient(to_bottom,black,transparent)] before:[-webkit-mask-image:linear-gradient(to_bottom,black,transparent)]">
+      <body className="min-h-full flex flex-col bg-transparent text-brand-navy font-normal relative">
+        {/* Dedicated Fixed Viewport Diagonal Pinstripe Background Layer */}
+        <div
+          aria-hidden="true"
+          className="fixed inset-0 -z-10 pointer-events-none bg-[#F8F8FC] bg-fixed bg-[repeating-linear-gradient(135deg,rgba(37,58,123,0.045)_0px,rgba(37,58,123,0.045)_0.75px,transparent_0.75px,transparent_3.5px)]"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ispJsonLd) }}
         />
-        <div className="relative z-10 flex min-h-full flex-1 flex-col">
-          <Topbar />
-          <AppleSmoothScrollProvider>
-            <main id="main-content" className="flex-1">
-              {children}
-            </main>
-          </AppleSmoothScrollProvider>
-          <Footer />
-          <SlowConnectionLoader />
-        </div>
+        <Topbar />
+        <AppleSmoothScrollProvider>
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
+        </AppleSmoothScrollProvider>
+        <Footer />
+        <SlowConnectionLoader />
       </body>
     </html>
   );

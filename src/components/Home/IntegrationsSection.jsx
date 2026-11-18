@@ -354,7 +354,7 @@ export default function IntegrationsSection() {
   return (
     <section
       aria-labelledby="integrations-heading"
-      className="relative w-full overflow-hidden bg-[#F6F5FA] py-[88px] md:py-[120px] px-4 sm:px-6 before:content-[''] before:pointer-events-none before:absolute before:inset-0 before:bg-[repeating-linear-gradient(135deg,rgba(80,70,120,0.05)_0px,rgba(80,70,120,0.05)_1px,transparent_1px,transparent_6px)] before:[mask-image:linear-gradient(to_bottom,black,transparent)] before:[-webkit-mask-image:linear-gradient(to_bottom,black,transparent)]"
+      className="relative w-full overflow-hidden bg-[#F1F1FA] py-[88px] md:py-[120px] px-4 sm:px-6"
     >
       {/* Font & Keyframes Injection */}
       <style>{`

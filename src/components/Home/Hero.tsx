@@ -296,7 +296,7 @@ export default function Hero() {
         aria-labelledby="hero-heading"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
-        className="w-full lg:h-[64vh] lg:min-h-[520px] lg:max-h-[620px] bg-transparent text-brand-navy relative overflow-hidden font-sans antialiased"
+        className="w-full lg:h-[64vh] lg:min-h-[520px] lg:max-h-[620px] bg-white text-brand-navy relative overflow-hidden font-sans antialiased"
       >
         <div className="w-full h-full grid grid-cols-1 lg:grid-cols-12 items-stretch">
           {/* Left Content Column (7 of 12 columns on desktop) */}
