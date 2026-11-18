@@ -400,44 +400,54 @@ const SUPPORT_ORBIT_ITEMS = [
   {
     id: "whatsapp",
     label: "WhatsApp",
-    icon: <WhatsAppIcon className="w-4.5 h-4.5 text-[#25D366]" />,
-    left: "100%",
-    top: "50%",
+    icon: (
+      <WhatsAppIcon className="w-6.5 h-6.5 min-[360px]:w-7 min-[360px]:h-7 text-[#25D366]" />
+    ),
+    left: "50%",
+    top: "0%",
   },
   {
     id: "phone",
     label: "Direct Call",
-    icon: <PhoneCall className="w-4.5 h-4.5 text-[#DE0302]" />,
-    left: "65.45%",
-    top: "97.55%",
+    icon: (
+      <PhoneCall className="w-6 h-6 min-[360px]:w-6.5 min-[360px]:h-6.5 text-[#DE0302]" />
+    ),
+    left: "97.6%",
+    top: "34.5%",
   },
   {
-    id: "messenger",
-    label: "Messenger",
-    icon: <MessengerIcon className="w-4.5 h-4.5 text-[#0084FF]" />,
-    left: "9.55%",
-    top: "79.39%",
+    id: "message",
+    label: "Live Message",
+    icon: (
+      <MessageSquare className="w-6 h-6 min-[360px]:w-6.5 min-[360px]:h-6.5 text-[#0084FF]" />
+    ),
+    left: "79.4%",
+    top: "90.5%",
   },
   {
     id: "support",
-    label: "NOC Desk",
-    icon: <Headphones className="w-4.5 h-4.5 text-brand-navy" />,
-    left: "9.55%",
-    top: "20.61%",
+    label: "24/7 NOC Desk",
+    icon: (
+      <Headphones className="w-6 h-6 min-[360px]:w-6.5 min-[360px]:h-6.5 text-brand-navy" />
+    ),
+    left: "20.6%",
+    top: "90.5%",
   },
   {
     id: "chat",
-    label: "Live Chat",
-    icon: <MessageSquare className="w-4.5 h-4.5 text-brand-red" />,
-    left: "65.45%",
-    top: "2.45%",
+    label: "Helpdesk Chat",
+    icon: (
+      <MessageSquare className="w-6 h-6 min-[360px]:w-6.5 min-[360px]:h-6.5 text-brand-red" />
+    ),
+    left: "2.4%",
+    top: "34.5%",
   },
 ] as const;
 
 /**
  * Card 04 — 24/7 Local Support (Bottom-Center: 4 of 12 columns on desktop)
- * Clean support hub with rotating communication channel icons (WhatsApp, Direct Call,
- * Messenger, NOC Desk, Live Chat) orbiting around the central SASH brand mark.
+ * Features rotating communication icons (WhatsApp, Phone, Message, NOC Desk, Chat)
+ * prominently sized and orbiting around the central SASH brand hub.
  */
 export function SupportCard() {
   const shouldReduceMotion = useReducedMotion();
@@ -449,7 +459,7 @@ export function SupportCard() {
       cardClassName="flex flex-col justify-between p-0 overflow-hidden"
     >
       <CardContent className="p-0 flex-1 flex flex-col justify-between overflow-hidden">
-        {/* Top Status Stage with Support Network Hub (Edge-to-Edge) */}
+        {/* Top Status Stage with Rotating Communication Orbit (Edge-to-Edge) */}
         <div
           className={`relative w-full h-[210px] min-[360px]:h-[225px] sm:h-[240px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support`}
         >
@@ -465,18 +475,22 @@ export function SupportCard() {
               <Headphones className="w-3.5 h-3.5" aria-hidden="true" />
               <span>24/7 NOC Desk</span>
             </span>
+            <span className="inline-flex min-h-6 items-center gap-1 rounded-full bg-white/85 backdrop-blur-xs px-2.5 font-mono text-[9.5px] min-[360px]:text-[10px] font-medium text-brand-navy border border-brand-navy/10 shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse" />
+              <span>Instant Response</span>
+            </span>
           </div>
 
-          {/* Support Network Stage - Positioned Higher, No Shadow on Icons */}
-          <div className="pointer-events-auto absolute top-[92px] min-[360px]:top-[98px] sm:top-[104px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] min-[360px]:w-[260px] min-[360px]:h-[260px] sm:w-[280px] sm:h-[280px] flex items-center justify-center">
-            {/* Clean Circular Orbit Guide Track */}
-            <div className="pointer-events-none absolute w-[185px] h-[185px] sm:w-[205px] sm:h-[205px] rounded-full border border-brand-navy/12" />
+          {/* Rotating Orbit Stage with Prominently Sized Channel Icons */}
+          <div className="pointer-events-auto absolute top-[118px] min-[360px]:top-[125px] sm:top-[132px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[270px] h-[270px] min-[360px]:w-[290px] min-[360px]:h-[290px] sm:w-[310px] sm:h-[310px] flex items-center justify-center">
+            {/* Circular Orbit Guide Track */}
+            <div className="pointer-events-none absolute w-[205px] h-[205px] min-[360px]:w-[220px] min-[360px]:h-[220px] sm:w-[235px] sm:h-[235px] rounded-full border border-brand-navy/15" />
 
-            {/* Orbiting Communication Channel Icons (No Shadow) */}
+            {/* Rotating Orbit Container with Counter-Rotating Communication Icons */}
             <motion.div
               animate={shouldReduceMotion ? undefined : { rotate: 360 }}
               transition={{ duration: 24, ease: "linear", repeat: Infinity }}
-              className="absolute w-[185px] h-[185px] sm:w-[205px] sm:h-[205px] rounded-full"
+              className="absolute w-[205px] h-[205px] min-[360px]:w-[220px] min-[360px]:h-[220px] sm:w-[235px] sm:h-[235px] rounded-full"
             >
               {SUPPORT_ORBIT_ITEMS.map((item) => (
                 <div
@@ -487,7 +501,7 @@ export function SupportCard() {
                     top: item.top,
                   }}
                 >
-                  {/* Counter-rotate each icon so it stays upright at all angles, with NO shadow */}
+                  {/* Counter-rotate each icon so it stays upright at all angles */}
                   <motion.div
                     animate={shouldReduceMotion ? undefined : { rotate: -360 }}
                     transition={{
@@ -495,7 +509,7 @@ export function SupportCard() {
                       ease: "linear",
                       repeat: Infinity,
                     }}
-                    className="w-8 h-8 min-[360px]:w-9 min-[360px]:h-9 sm:w-10 sm:h-10 rounded-full bg-white border border-brand-navy/15 flex items-center justify-center transition-transform duration-200 hover:scale-110"
+                    className="w-12 h-12 min-[360px]:w-13 min-[360px]:h-13 sm:w-14 sm:h-14 rounded-full bg-white shadow-[0_6px_20px_rgba(1,13,59,0.14)] border border-brand-navy/10 flex items-center justify-center transition-transform duration-200 hover:scale-115 cursor-pointer"
                     title={item.label}
                   >
                     {item.icon}
@@ -504,14 +518,14 @@ export function SupportCard() {
               ))}
             </motion.div>
 
-            {/* Center SASH Hub Badge (Clean, No Shadow) */}
+            {/* Center SASH Hub Badge */}
             <div className="relative z-20 flex flex-col items-center justify-center">
-              <div className="relative w-12 h-12 min-[360px]:w-14 min-[360px]:h-14 sm:w-16 sm:h-16 rounded-full bg-white border border-brand-navy/15 flex items-center justify-center p-2.5 transition-transform duration-300 group-hover/support:scale-105">
+              <div className="relative w-13 h-13 min-[360px]:w-15 min-[360px]:h-15 sm:w-16 sm:h-16 rounded-full bg-white shadow-[0_6px_20px_rgba(1,13,59,0.14)] border border-brand-navy/10 flex items-center justify-center p-2.5 transition-transform duration-300 group-hover/support:scale-105">
                 <Image
                   src="/Logo/Favicon.png"
                   alt="SASH"
-                  width={44}
-                  height={44}
+                  width={48}
+                  height={48}
                   priority
                   className="w-full h-full object-contain select-none"
                 />
