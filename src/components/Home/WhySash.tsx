@@ -34,10 +34,10 @@ import {
 const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const CARD_BG_GRADIENT =
-  "bg-[linear-gradient(145deg,#FFFFFF_0%,#F5F7FB_40%,#ECEFF7_100%)]";
+  "bg-[radial-gradient(circle_at_50%_40%,#FFFFFF_0%,#F5F8FC_45%,#E7EDF6_75%,#DBE4F0_100%)]";
 
 const CARD_BOTTOM_BLEND =
-  "pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.4)_45%,#FFFFFF_100%)]";
+  "pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.5)_45%,#FFFFFF_100%)]";
 
 const gridContainerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -84,9 +84,9 @@ export function FeatureCard({
         shouldReduceMotion
           ? undefined
           : {
-              y: -6,
-              transition: { duration: 0.28, ease: "easeOut" },
-            }
+            y: -6,
+            transition: { duration: 0.28, ease: "easeOut" },
+          }
       }
       aria-label={ariaLabel}
       className={`group/bento flex flex-col h-full ${className}`}
@@ -255,12 +255,13 @@ export function RouterSetupCard() {
 
           {/* Centered Router Product Visual */}
           <div className="relative z-20 flex-1 flex flex-col items-center justify-center my-auto py-1">
-            <div className="relative w-24 h-24 min-[360px]:w-28 min-[360px]:h-28 sm:w-32 sm:h-32 flex items-center justify-center drop-shadow-[0_12px_24px_rgba(1,13,59,0.28)] transition-transform duration-300 ease-out group-hover/router:scale-[1.05]">
+            <div className="relative w-36 h-36 min-[360px]:w-44 min-[360px]:h-44 sm:w-52 sm:h-52 flex items-center justify-center drop-shadow-[0_16px_32px_rgba(1,13,59,0.26)] transition-transform duration-300 ease-out group-hover/router:scale-[1.06]">
               <Image
                 src="/Service/BroadBand.webp"
                 alt="Pre-configured dual-band Wi-Fi router"
-                width={136}
-                height={136}
+                width={220}
+                height={220}
+                priority
                 className="w-full h-full object-contain select-none"
               />
             </div>
@@ -367,15 +368,15 @@ export function LicensedISPCARD() {
 function ClickCursorIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none">
-      {/* 3 Radiating Click Sparks at top-left */}
-      <line x1="5" y1="2.5" x2="5" y2="4.5" stroke="#5B64E8" strokeWidth="2" strokeLinecap="round" />
-      <line x1="2" y1="5.5" x2="3.5" y2="7" stroke="#5B64E8" strokeWidth="2" strokeLinecap="round" />
-      <line x1="8.5" y1="5.5" x2="7" y2="7" stroke="#5B64E8" strokeWidth="2" strokeLinecap="round" />
-      {/* Violet cursor pointer */}
+      {/* 3 Radiating Click Sparks at top-left in Brand Red */}
+      <line x1="5" y1="2.5" x2="5" y2="4.5" stroke="#DE0302" strokeWidth="2" strokeLinecap="round" />
+      <line x1="2" y1="5.5" x2="3.5" y2="7" stroke="#DE0302" strokeWidth="2" strokeLinecap="round" />
+      <line x1="8.5" y1="5.5" x2="7" y2="7" stroke="#DE0302" strokeWidth="2" strokeLinecap="round" />
+      {/* Brand Navy cursor pointer */}
       <path
         d="M5.5 8L15 15.5L11 16.2L12.8 20.2L10.5 21.2L8.7 17.2L5.5 19.5V8Z"
-        fill="#5B64E8"
-        stroke="#5B64E8"
+        fill="#010D3B"
+        stroke="#010D3B"
         strokeWidth="1"
         strokeLinejoin="round"
       />
@@ -389,17 +390,17 @@ function SupportHeadsetIcon({ className = "w-5 h-5" }: { className?: string }) {
       {/* Headset arc */}
       <path
         d="M4 12.5C4 8.08 7.58 4.5 12 4.5C16.42 4.5 20 8.08 20 12.5"
-        stroke="#5B64E8"
+        stroke="#010D3B"
         strokeWidth="2"
         strokeLinecap="round"
       />
       {/* Ear cushions */}
-      <rect x="2.5" y="11" width="3" height="5.5" rx="1.5" fill="#5B64E8" />
-      <rect x="18.5" y="11" width="3" height="5.5" rx="1.5" fill="#5B64E8" />
-      {/* Speech bubble in the center */}
+      <rect x="2.5" y="11" width="3" height="5.5" rx="1.5" fill="#010D3B" />
+      <rect x="18.5" y="11" width="3" height="5.5" rx="1.5" fill="#010D3B" />
+      {/* Speech bubble in the center in Brand Red */}
       <path
         d="M8.5 9.5H15.5C16.33 9.5 17 10.17 17 11V14C17 14.83 16.33 15.5 15.5 15.5H11.5L8.5 17.5V15.5C7.67 15.5 7 14.83 7 14V11C7 10.17 7.67 9.5 8.5 9.5Z"
-        fill="#5B64E8"
+        fill="#DE0302"
       />
       {/* Dots inside chat bubble */}
       <circle cx="10" cy="12.5" r="0.75" fill="white" />
@@ -411,7 +412,7 @@ function SupportHeadsetIcon({ className = "w-5 h-5" }: { className?: string }) {
 
 function HelpQuestionBadge() {
   return (
-    <div className="w-5.5 h-5.5 rounded-full bg-[#5B64E8] flex items-center justify-center text-white font-bold text-[11px] leading-none shadow-xs select-none">
+    <div className="w-5.5 h-5.5 rounded-full bg-brand-navy flex items-center justify-center text-white font-bold text-[11px] leading-none shadow-xs select-none">
       ?
     </div>
   );
@@ -472,12 +473,12 @@ export function SupportCard() {
       <CardContent className="p-0 flex-1 flex flex-col justify-between overflow-hidden">
         {/* Top Status Stage with Concentric Radar Orbit (Edge-to-Edge) */}
         <div
-          className="relative w-full h-[220px] min-[360px]:h-[235px] sm:h-[250px] overflow-hidden bg-[radial-gradient(circle_at_center,#F4F6FF_0%,#E9EEFF_45%,#DDE5FC_75%,#ECEFF7_100%)] flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support"
+          className={`relative w-full h-[220px] min-[360px]:h-[235px] sm:h-[250px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support`}
         >
           {/* Smooth Blend at the Meeting Point */}
           <div aria-hidden="true" className={`${CARD_BOTTOM_BLEND} z-10`} />
 
-          {/* Top Badges Bar: 24/7 NOC Desk */}
+          {/* Top Badges Bar: 24/7 Local Support Desk */}
           <div className="relative z-30 w-full flex items-center justify-between gap-2 pointer-events-none">
             <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-red px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs">
               <Headphones className="w-3.5 h-3.5" aria-hidden="true" />
@@ -487,10 +488,10 @@ export function SupportCard() {
 
           {/* Concentric Radar Waves & Orbiting Satellites Stage */}
           <div className="pointer-events-auto absolute z-20 top-[125px] min-[360px]:top-[132px] sm:top-[140px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[270px] h-[270px] min-[360px]:w-[290px] min-[360px]:h-[290px] sm:w-[310px] sm:h-[310px] flex items-center justify-center">
-            {/* Concentric Radar Ripple Rings matching shared image */}
-            <div className="pointer-events-none absolute w-[240px] h-[240px] rounded-full border border-[#818CF8]/25 bg-[#EEF2FF]/20" />
-            <div className="pointer-events-none absolute w-[176px] h-[176px] rounded-full border border-[#818CF8]/30 bg-[#E0E7FF]/25" />
-            <div className="pointer-events-none absolute w-[114px] h-[114px] rounded-full border border-[#818CF8]/35 bg-[#C7D2FE]/25" />
+            {/* Concentric Radar Ripple Rings matching Brand Navy and Apple styling */}
+            <div className="pointer-events-none absolute w-[240px] h-[240px] rounded-full border border-brand-navy/12 bg-brand-navy/[0.015]" />
+            <div className="pointer-events-none absolute w-[176px] h-[176px] rounded-full border border-brand-navy/18 bg-brand-navy/[0.025]" />
+            <div className="pointer-events-none absolute w-[114px] h-[114px] rounded-full border border-brand-navy/25 bg-brand-navy/[0.04]" />
 
             {/* Subtle Expanding Radar Pulse Wave */}
             {!shouldReduceMotion && (
@@ -504,7 +505,7 @@ export function SupportCard() {
                   repeat: Infinity,
                   ease: "easeOut",
                 }}
-                className="pointer-events-none absolute w-[114px] h-[114px] rounded-full border border-[#6366F1]/40"
+                className="pointer-events-none absolute w-[114px] h-[114px] rounded-full border border-brand-red/35"
               />
             )}
 
@@ -531,7 +532,7 @@ export function SupportCard() {
                       ease: "linear",
                       repeat: Infinity,
                     }}
-                    className="w-10 h-10 min-[360px]:w-10.5 min-[360px]:h-10.5 sm:w-11 sm:h-11 rounded-full bg-white shadow-[0_6px_18px_rgba(91,100,232,0.22),0_1px_3px_rgba(0,0,0,0.06)] border border-white/90 flex items-center justify-center transition-transform duration-200 hover:scale-115 cursor-pointer"
+                    className="w-10 h-10 min-[360px]:w-10.5 min-[360px]:h-10.5 sm:w-11 sm:h-11 rounded-full bg-white shadow-[0_6px_18px_rgba(1,13,59,0.12),0_1px_3px_rgba(0,0,0,0.06)] border border-brand-navy/10 flex items-center justify-center transition-transform duration-200 hover:scale-115 cursor-pointer"
                     title={item.label}
                   >
                     {item.icon}
@@ -540,21 +541,21 @@ export function SupportCard() {
               ))}
             </motion.div>
 
-            {/* Center Glossy 3D Blue-Purple Avatar Sphere matching shared image */}
+            {/* Center Glossy 3D Brand Avatar Sphere */}
             <motion.div
               animate={
                 shouldReduceMotion
                   ? undefined
                   : {
-                      scale: [1, 1.04, 1],
-                    }
+                    scale: [1, 1.04, 1],
+                  }
               }
               transition={{
                 duration: 3.6,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="relative z-30 w-16 h-16 min-[360px]:w-17 min-[360px]:h-17 sm:w-18 sm:h-18 rounded-full bg-[radial-gradient(circle_at_35%_28%,#8F9BFF_0%,#5B64E8_45%,#3C43BF_100%)] shadow-[0_12px_28px_rgba(91,100,232,0.45),0_4px_10px_rgba(60,67,191,0.35),inset_0_2px_4px_rgba(255,255,255,0.7),inset_0_-3px_6px_rgba(0,0,0,0.22)] flex items-center justify-center p-3 select-none"
+              className="relative z-30 w-16 h-16 min-[360px]:w-17 min-[360px]:h-17 sm:w-18 sm:h-18 rounded-full bg-[radial-gradient(circle_at_35%_28%,#22357A_0%,#010D3B_60%,#000720_100%)] shadow-[0_14px_30px_rgba(1,13,59,0.36),0_4px_10px_rgba(1,13,59,0.22),inset_0_2px_4px_rgba(255,255,255,0.55),inset_0_-3px_6px_rgba(0,0,0,0.3)] flex items-center justify-center p-3 select-none"
             >
               <CenterAvatarIcon className="w-8 h-8 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]" />
             </motion.div>
@@ -670,37 +671,37 @@ export function PriceLockCard() {
                 variants={
                   shouldReduceMotion
                     ? {
-                        enter: { opacity: 0 },
-                        center: { opacity: 1, transition: { duration: 0.3 } },
-                        exit: { opacity: 0, transition: { duration: 0.2 } },
-                      }
+                      enter: { opacity: 0 },
+                      center: { opacity: 1, transition: { duration: 0.3 } },
+                      exit: { opacity: 0, transition: { duration: 0.2 } },
+                    }
                     : {
-                        enter: (dir: number) => ({
-                          x: dir >= 0 ? 80 : -80,
-                          opacity: 0,
-                          scale: 0.88,
-                        }),
-                        center: {
-                          x: 0,
-                          opacity: 1,
-                          scale: 1,
-                          transition: {
-                            x: { type: "spring", stiffness: 320, damping: 30 },
-                            opacity: { duration: 0.28 },
-                            scale: { duration: 0.28 },
-                          },
+                      enter: (dir: number) => ({
+                        x: dir >= 0 ? 80 : -80,
+                        opacity: 0,
+                        scale: 0.88,
+                      }),
+                      center: {
+                        x: 0,
+                        opacity: 1,
+                        scale: 1,
+                        transition: {
+                          x: { type: "spring", stiffness: 320, damping: 30 },
+                          opacity: { duration: 0.28 },
+                          scale: { duration: 0.28 },
                         },
-                        exit: (dir: number) => ({
-                          x: dir >= 0 ? -80 : 80,
-                          opacity: 0,
-                          scale: 0.88,
-                          transition: {
-                            x: { type: "spring", stiffness: 320, damping: 30 },
-                            opacity: { duration: 0.22 },
-                            scale: { duration: 0.22 },
-                          },
-                        }),
-                      }
+                      },
+                      exit: (dir: number) => ({
+                        x: dir >= 0 ? -80 : 80,
+                        opacity: 0,
+                        scale: 0.88,
+                        transition: {
+                          x: { type: "spring", stiffness: 320, damping: 30 },
+                          opacity: { duration: 0.22 },
+                          scale: { duration: 0.22 },
+                        },
+                      }),
+                    }
                 }
                 initial="enter"
                 animate="center"
@@ -740,11 +741,10 @@ export function PriceLockCard() {
                 type="button"
                 onClick={() => handleSelect(idx)}
                 aria-label={`View ${service.label}`}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  idx === activeIndex
+                className={`h-1.5 rounded-full transition-all duration-300 ${idx === activeIndex
                     ? "w-4 bg-brand-red shadow-[0_0_8px_rgba(222,3,2,0.85)]"
                     : "w-1.5 bg-brand-navy/35 hover:bg-brand-navy/70"
-                }`}
+                  }`}
               />
             ))}
           </div>
