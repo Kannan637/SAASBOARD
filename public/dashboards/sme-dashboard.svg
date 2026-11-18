@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <rect width="800" height="600" rx="24" fill="#F8FAFC"/>
+  <!-- Top Bar -->
+  <rect x="28" y="24" width="744" height="52" rx="12" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <circle cx="54" cy="50" r="8" fill="#059669"/>
+  <text x="72" y="55" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#0F172A">SME Bandwidth &amp; Cloud QoS Console</text>
+  <rect x="616" y="36" width="140" height="28" rx="14" fill="#ECFDF5"/>
+  <text x="634" y="54" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#047857">2-Yr Price Lock</text>
+
+  <!-- Left Card: Bandwidth Allocation -->
+  <rect x="28" y="96" width="460" height="220" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="50" y="130" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#64748B">PEAK WORKDAY UTILIZATION</text>
+  <text x="50" y="172" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#0F172A">342 Mbps</text>
+  <text x="235" y="170" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#059669">/ 500 Mbps Burst</text>
+
+  <!-- Bars -->
+  <rect x="50" y="245" width="32" height="48" rx="6" fill="#A7F3D0"/>
+  <rect x="92" y="230" width="32" height="63" rx="6" fill="#6EE7B7"/>
+  <rect x="134" y="212" width="32" height="81" rx="6" fill="#34D399"/>
+  <rect x="176" y="196" width="32" height="97" rx="6" fill="#10B981"/>
+  <rect x="218" y="185" width="32" height="108" rx="6" fill="#059669"/>
+  <rect x="260" y="198" width="32" height="95" rx="6" fill="#10B981"/>
+  <rect x="302" y="208" width="32" height="85" rx="6" fill="#34D399"/>
+  <rect x="344" y="220" width="32" height="73" rx="6" fill="#6EE7B7"/>
+  <rect x="386" y="236" width="32" height="57" rx="6" fill="#A7F3D0"/>
+  <rect x="428" y="202" width="32" height="91" rx="6" fill="#059669"/>
+
+  <!-- Right Stack -->
+  <rect x="508" y="96" width="264" height="102" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="528" y="128" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">CONNECTED ENDPOINTS</text>
+  <text x="528" y="168" font-family="system-ui, sans-serif" font-size="30" font-weight="700" fill="#0F172A">48 Devices</text>
+
+  <rect x="508" y="214" width="264" height="102" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="528" y="246" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">CLOUD ERP &amp; POS QOS</text>
+  <text x="528" y="286" font-family="system-ui, sans-serif" font-size="30" font-weight="700" fill="#059669">99.85%</text>
+
+  <!-- Bottom Traffic Priority Table -->
+  <rect x="28" y="336" width="744" height="236" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="50" y="374" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#0F172A">Priority Application Traffic Shaping (Zero FUP Throttling)</text>
+
+  <rect x="50" y="398" width="700" height="44" rx="10" fill="#F8FAFC"/>
+  <text x="68" y="425" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#0F172A">1. POS Billing &amp; Payment Gateways</text>
+  <rect x="440" y="413" width="200" height="12" rx="6" fill="#E2E8F0"/>
+  <rect x="440" y="413" width="188" height="12" rx="6" fill="#059669"/>
+  <text x="660" y="425" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#059669"> Critical</text>
+
+  <rect x="50" y="452" width="700" height="44" rx="10" fill="#F8FAFC"/>
+  <text x="68" y="479" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#0F172A">2. Cloud ERP, Inventory &amp; CRM Sync</text>
+  <rect x="440" y="467" width="200" height="12" rx="6" fill="#E2E8F0"/>
+  <rect x="440" y="467" width="165" height="12" rx="6" fill="#10B981"/>
+  <text x="660" y="479" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#059669"> High</text>
+
+  <rect x="50" y="506" width="700" height="44" rx="10" fill="#F8FAFC"/>
+  <text x="68" y="533" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#0F172A">3. HD Video Conferencing &amp; VoIP</text>
+  <rect x="440" y="521" width="200" height="12" rx="6" fill="#E2E8F0"/>
+  <rect x="440" y="521" width="145" height="12" rx="6" fill="#34D399"/>
+  <text x="660" y="533" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#059669"> Priority</text>
+</svg>

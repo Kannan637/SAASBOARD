@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <rect width="800" height="600" rx="24" fill="#F8FAFC"/>
+  <!-- Top Bar -->
+  <rect x="28" y="24" width="744" height="52" rx="12" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <circle cx="54" cy="50" r="8" fill="#DE0302"/>
+  <text x="72" y="55" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Premises HD IP CCTV Command Center</text>
+  <rect x="620" y="36" width="136" height="28" rx="14" fill="#FEE2E2"/>
+  <circle cx="638" cy="50" r="4" fill="#DE0302"/>
+  <text x="650" y="54" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#B91C1C">16 / 16 LIVE</text>
+
+  <!-- 2x2 Camera Matrix -->
+  <rect x="28" y="96" width="465" height="330" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+  
+  <!-- Cam 01 -->
+  <rect x="44" y="112" width="218" height="142" rx="10" fill="#0F172A"/>
+  <text x="58" y="134" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#E2E8F0">CAM 01 • Main Warehouse</text>
+  <circle cx="242" cy="129" r="4" fill="#EF4444"/>
+  <path d="M58,215 L105,180 L155,205 L205,165 L248,195" stroke="#38BDF8" stroke-width="2" fill="none" opacity="0.45"/>
+  <text x="58" y="238" font-family="monospace" font-size="10" fill="#94A3B8">4K 60FPS • AI CLEAR</text>
+
+  <!-- Cam 02 -->
+  <rect x="275" y="112" width="202" height="142" rx="10" fill="#0F172A"/>
+  <text x="289" y="134" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#E2E8F0">CAM 02 • Server Corridor</text>
+  <circle cx="458" cy="129" r="4" fill="#EF4444"/>
+  <path d="M289,210 L340,175 L395,195 L460,160" stroke="#34D399" stroke-width="2" fill="none" opacity="0.45"/>
+  <text x="289" y="238" font-family="monospace" font-size="10" fill="#94A3B8">1080P • ACCESS LOCKED</text>
+
+  <!-- Cam 03 -->
+  <rect x="44" y="268" width="218" height="142" rx="10" fill="#0F172A"/>
+  <text x="58" y="290" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#E2E8F0">CAM 03 • Loading Bay</text>
+  <circle cx="242" cy="285" r="4" fill="#EF4444"/>
+  <rect x="85" y="315" width="90" height="52" rx="4" stroke="#22C55E" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+  <text x="93" y="310" font-family="monospace" font-size="9" fill="#22C55E">VEHICLE VERIFIED</text>
+  <text x="58" y="394" font-family="monospace" font-size="10" fill="#94A3B8">4K 60FPS • SMART IR</text>
+
+  <!-- Cam 04 -->
+  <rect x="275" y="268" width="202" height="142" rx="10" fill="#0F172A"/>
+  <text x="289" y="290" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#E2E8F0">CAM 04 • Reception</text>
+  <circle cx="458" cy="285" r="4" fill="#EF4444"/>
+  <path d="M289,365 L350,340 L410,355 L460,330" stroke="#F59E0B" stroke-width="2" fill="none" opacity="0.45"/>
+  <text x="289" y="394" font-family="monospace" font-size="10" fill="#94A3B8">1080P • AUDIO ACTIVE</text>
+
+  <!-- Right Side Storage & AI -->
+  <rect x="513" y="96" width="259" height="156" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="533" y="130" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">CLOUD &amp; NVR RETENTION</text>
+  <text x="533" y="176" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#0F172A">30 Days HD</text>
+  <text x="533" y="212" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#16A34A">Dual Redundant Backup</text>
+
+  <rect x="513" y="270" width="259" height="156" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="533" y="304" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">AI MOTION ACCURACY</text>
+  <text x="533" y="350" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#DE0302">99.9%</text>
+  <text x="533" y="386" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">0 False Intrusion Alarms</text>
+
+  <!-- Bottom Timeline -->
+  <rect x="28" y="446" width="744" height="126" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="50" y="482" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#0F172A">24-Hour Continuous Recording Stream (Encrypted Mobile &amp; Web Access)</text>
+  <rect x="50" y="504" width="700" height="22" rx="6" fill="#FEE2E2"/>
+  <rect x="50" y="504" width="665" height="22" rx="6" fill="#DE0302"/>
+  <text x="50" y="548" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#64748B">00:00</text>
+  <text x="220" y="548" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#64748B">06:00</text>
+  <text x="390" y="548" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#64748B">12:00</text>
+  <text x="560" y="548" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#64748B">18:00</text>
+  <text x="712" y="548" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#DE0302">LIVE</text>
+</svg>

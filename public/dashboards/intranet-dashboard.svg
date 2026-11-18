@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <rect width="800" height="600" rx="24" fill="#F8FAFC"/>
+  <!-- Top Bar -->
+  <rect x="28" y="24" width="744" height="52" rx="12" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <circle cx="54" cy="50" r="8" fill="#7C3AED"/>
+  <text x="72" y="55" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Tamil Nadu Multi-Site Private WAN Topology</text>
+  <rect x="610" y="36" width="146" height="28" rx="14" fill="#F3E8FF"/>
+  <text x="628" y="54" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#6D28D9">AES-256 Tunnel</text>
+
+  <!-- Topology Map Box -->
+  <rect x="28" y="96" width="465" height="476" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="50" y="132" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Regional Optical Mesh (7 Active Hubs)</text>
+  <text x="50" y="154" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#64748B">Isolated L2/L3 MPLS VLAN — 0.00% Public Web Exposure</text>
+
+  <!-- Mesh Lines -->
+  <line x1="260" y1="230" x2="140" y2="310" stroke="#A78BFA" stroke-width="2.5" stroke-dasharray="5 5"/>
+  <line x1="260" y1="230" x2="370" y2="300" stroke="#7C3AED" stroke-width="3"/>
+  <line x1="260" y1="230" x2="220" y2="410" stroke="#7C3AED" stroke-width="3"/>
+  <line x1="260" y1="230" x2="350" y2="430" stroke="#A78BFA" stroke-width="2.5" stroke-dasharray="5 5"/>
+  <line x1="140" y1="310" x2="220" y2="410" stroke="#C4B5FD" stroke-width="2"/>
+  <line x1="370" y1="300" x2="350" y2="430" stroke="#C4B5FD" stroke-width="2"/>
+  <line x1="220" y1="410" x2="265" y2="510" stroke="#7C3AED" stroke-width="2.5"/>
+
+  <!-- HQ Node -->
+  <circle cx="260" cy="230" r="34" fill="#7C3AED" fill-opacity="0.15"/>
+  <circle cx="260" cy="230" r="22" fill="#7C3AED"/>
+  <text x="260" y="235" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">HQ</text>
+  <text x="260" y="280" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#0F172A">Thiruvallur / Chennai</text>
+
+  <!-- Branch Nodes -->
+  <circle cx="140" cy="310" r="16" fill="#FFFFFF" stroke="#7C3AED" stroke-width="4"/>
+  <text x="140" y="344" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#334155">Vellore Plant</text>
+
+  <circle cx="370" cy="300" r="16" fill="#FFFFFF" stroke="#7C3AED" stroke-width="4"/>
+  <text x="370" y="334" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#334155">Salem Hub</text>
+
+  <circle cx="220" cy="410" r="16" fill="#FFFFFF" stroke="#7C3AED" stroke-width="4"/>
+  <text x="220" y="444" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#334155">Coimbatore</text>
+
+  <circle cx="350" cy="430" r="16" fill="#FFFFFF" stroke="#7C3AED" stroke-width="4"/>
+  <text x="350" y="464" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#334155">Trichy Depot</text>
+
+  <circle cx="265" cy="510" r="16" fill="#FFFFFF" stroke="#7C3AED" stroke-width="4"/>
+  <text x="265" y="544" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#334155">Madurai South</text>
+
+  <!-- Right Column Telemetry -->
+  <rect x="513" y="96" width="259" height="145" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="533" y="130" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">INTER-BRANCH LATENCY</text>
+  <text x="533" y="176" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#0F172A">2.1 ms</text>
+  <text x="533" y="210" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#16A34A">Direct Optical Layer-2</text>
+
+  <rect x="513" y="261" width="259" height="145" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="533" y="295" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">ERP &amp; DATABASE SYNC</text>
+  <text x="533" y="341" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#7C3AED">99.99%</text>
+  <text x="533" y="375" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">Zero Public Internet Hop</text>
+
+  <rect x="513" y="426" width="259" height="146" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="533" y="460" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">ACTIVE TUNNEL STATUS</text>
+  <text x="533" y="502" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#0F172A">7 / 7 Online</text>
+  <text x="533" y="538" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#16A34A">24/7 NOC Route Guard</text>
+</svg>
