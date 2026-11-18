@@ -34,7 +34,7 @@ import {
 const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const CARD_BG_GRADIENT =
-  "bg-gradient-to-br from-[#F8FAFF] via-[#E5EDFF] via-[#F4DDE2] to-[#DE0302] bg-[linear-gradient(to_bottom_right,#F8FAFF_0%,#E5EDFF_36%,#F4DDE2_68%,#DE0302_100%)]";
+  "bg-[linear-gradient(to_bottom_right,#F8FAFF_0%,#E5EDFF_36%,#F4DDE2_68%,#DE0302_100%)]";
 
 const gridContainerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -89,7 +89,7 @@ export function FeatureCard({
       className={`group/bento flex flex-col h-full ${className}`}
     >
       <Card
-        className={`relative w-full h-full flex flex-col justify-between banner-sash ${CARD_BG_GRADIENT} text-brand-navy border-0 rounded-2xl shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] hover:shadow-[0px_8px_24px_rgba(5,5,6,0.08)] overflow-hidden py-0 gap-0 ring-0 transition-all duration-300 ${cardClassName}`}
+        className={`relative w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-brand-navy/10 rounded-2xl shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] hover:shadow-[0px_8px_24px_rgba(5,5,6,0.08)] overflow-hidden py-0 gap-0 ring-0 transition-all duration-300 ${cardClassName}`}
       >
         {children}
       </Card>
@@ -145,12 +145,6 @@ export function FibreSpeedCard() {
         <div
           className={`relative w-full overflow-hidden ${CARD_BG_GRADIENT} pt-3 min-[360px]:pt-4 sm:pt-6 px-3 flex justify-center`}
         >
-          {/* Meeting Point Smooth Blend into Bottom White Section */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-10 sm:h-12 bg-gradient-to-t from-white via-white/80 to-transparent z-20 pointer-events-none"
-          />
-
           {/* iPhone Hardware Mockup (Top-Center Aligned Speed Meter) */}
           <div className="relative z-10 mx-auto w-[270px] min-[360px]:w-[300px] sm:w-[340px] shrink-0">
             {/* Visible Viewport Window */}
@@ -242,12 +236,6 @@ export function RouterSetupCard() {
         <div
           className={`relative w-full h-[220px] min-[360px]:h-[252px] sm:h-[293px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/router`}
         >
-          {/* Meeting Point Smooth Blend into Bottom White Section */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white z-10 pointer-events-none"
-          />
-
           {/* Top Badges Bar: ₹0 Setup Cost */}
           <div className="relative z-20 w-full flex items-center justify-between gap-2">
             <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-red px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs">
@@ -322,12 +310,6 @@ export function LicensedISPCARD() {
         <div
           className={`relative w-full h-[210px] min-[360px]:h-[225px] sm:h-[240px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/globe`}
         >
-          {/* Smooth Blend at the Meeting Point */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-10 sm:h-12 bg-gradient-to-t from-white via-white/80 to-transparent z-10 pointer-events-none"
-          />
-
           {/* Top Badges Bar: Tamil Nadu Circle */}
           <div className="relative z-30 w-full flex items-center justify-between gap-2 pointer-events-none">
             <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-red px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs">
@@ -463,12 +445,6 @@ export function SupportCard() {
         <div
           className={`relative w-full h-[210px] min-[360px]:h-[225px] sm:h-[240px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support`}
         >
-          {/* Smooth Blend at the Meeting Point */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-10 sm:h-12 bg-gradient-to-t from-white via-white/80 to-transparent z-10 pointer-events-none"
-          />
-
           {/* Top Badges Bar: 24/7 NOC Desk */}
           <div className="relative z-30 w-full flex items-center justify-between gap-2 pointer-events-none">
             <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-red px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs">
@@ -617,12 +593,6 @@ export function PriceLockCard() {
           onMouseLeave={() => setIsHovered(false)}
           className={`relative w-full h-[200px] min-[360px]:h-[215px] sm:h-[230px] ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/carousel overflow-hidden`}
         >
-          {/* Smooth Blend at the Meeting Point */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white pointer-events-none"
-          />
-
           {/* Carousel Top Header: ₹650/mo Price */}
           <div className="relative z-20 w-full flex items-center justify-end">
             <span className="inline-flex min-h-6 items-center rounded-full bg-brand-navy px-2.5 text-xs sm:text-sm font-semibold text-white tabular-nums shadow-xs">

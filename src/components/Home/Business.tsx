@@ -31,7 +31,7 @@ const PINSTRIPE_SECTION_BG =
   "bg-transparent";
 
 const FRAME_GRADIENT =
-  "bg-gradient-to-br from-[#F8FAFF] via-[#E5EDFF] via-[#F4DDE2] to-[#DE0302] bg-[linear-gradient(to_bottom_right,#F8FAFF_0%,#E5EDFF_36%,#F4DDE2_68%,#DE0302_100%)]";
+  "bg-[linear-gradient(to_bottom_right,#F8FAFF_0%,#E5EDFF_36%,#F4DDE2_68%,#DE0302_100%)]";
 
 export const DEFAULT_BUSINESS_SLIDES: ShowcaseSlide[] = [
   {
