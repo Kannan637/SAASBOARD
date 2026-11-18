@@ -42,7 +42,6 @@ export default function Topbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(true);
   const [servicesOpen, setServicesOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("home");
 
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -59,19 +58,6 @@ export default function Topbar() {
     });
     return () => window.cancelAnimationFrame(rafId);
   }, [pathname]);
-
-  // Elevation shadow on scroll
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 12);
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Homepage scroll spy for responsive active link indicators
   useEffect(() => {
@@ -290,14 +276,8 @@ export default function Topbar() {
         </div>
       </div>
 
-      {/* Responsive Sticky Navbar with Scroll Elevation */}
-      <header
-        className={`sticky top-0 z-50 bg-white/95 backdrop-blur-md transition-[box-shadow,border-color,background-color] duration-200 ${
-          isScrolled
-            ? "border-b border-brand-navy/10 shadow-[0_4px_20px_rgba(1,13,59,0.06)]"
-            : "border-b border-neutral-100"
-        }`}
-      >
+      {/* Responsive Navbar */}
+      <header className="relative z-50 bg-white border-b border-neutral-100">
         <div className="container-sash h-14 sm:h-16 flex items-center justify-between gap-3">
           {/* Brand Logo */}
           <Link

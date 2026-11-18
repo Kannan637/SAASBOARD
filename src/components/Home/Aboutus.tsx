@@ -128,7 +128,7 @@ export default function Aboutus() {
             id="about"
             data-apple-manual="true"
             aria-labelledby="partner-marquee-heading"
-            className="bg-white text-brand-navy section-padding overflow-hidden"
+            className="bg-white text-brand-navy py-20 md:py-28 lg:py-32 overflow-hidden"
         >
             <div className="container-sash mb-14 sm:mb-16 lg:mb-20">
                 <AppleReveal className="grid grid-cols-1 lg:grid-cols-12">
