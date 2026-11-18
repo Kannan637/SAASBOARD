@@ -459,7 +459,7 @@ export default function Topbar() {
             <Link
               href="/#contact"
               onClick={() => handleNavClick("/#contact")}
-              className="group/cta btn-pill btn-primary-red text-sm font-medium"
+              className="group/cta btn-pill btn-primary-red text-base font-medium"
             >
               <span>Check availability</span>
               <svg

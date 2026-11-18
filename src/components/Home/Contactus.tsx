@@ -646,7 +646,7 @@ export default function Contactus({
                       type="submit"
                       size="lg"
                       disabled={isSubmitting}
-                      className="w-full group/primary cursor-pointer font-medium rounded-full"
+                      className="w-full h-12 min-h-[48px] text-base group/primary cursor-pointer font-medium rounded-full"
                     >
                       <span>
                         {isSubmitting ? "Sending message..." : "Send Message"}

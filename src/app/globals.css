@@ -136,10 +136,10 @@
   body {
     @apply bg-transparent text-foreground antialiased selection:bg-brand-red selection:text-white;
     font-family: var(--font-sans);
-    font-size: 0.875rem;
-    /* 14px Body MD per Juspay */
-    line-height: 1.25rem;
-    /* 20px line-height per Juspay */
+    font-size: 1rem;
+    /* 16px base font size */
+    line-height: 1.5rem;
+    /* 24px base line-height */
     font-weight: 400;
     letter-spacing: 0;
   }
@@ -287,16 +287,17 @@
   border-radius: var(--radius-banner);
 }
 
-/* Apple Pill Button Architecture: Full pill curvature, heights 32/36/40px, font 14px weight 500 */
+/* Apple Pill Button Architecture: Full pill curvature, standard height 48px, base font 16px weight 500 */
 .btn-pill {
   border-radius: 9999px;
-  height: 36px;
-  padding-left: 14px;
-  padding-right: 14px;
+  height: 48px;
+  min-height: 48px;
+  padding-left: 20px;
+  padding-right: 20px;
   font-family: var(--font-sans);
   font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 24px;
   text-transform: none;
   letter-spacing: 0;
   white-space: nowrap;
@@ -316,20 +317,22 @@
 }
 
 .btn-pill-lg {
-  height: 40px;
-  padding-left: 16px;
-  padding-right: 16px;
-  font-size: 14px;
-  line-height: 20px;
+  height: 48px;
+  min-height: 48px;
+  padding-left: 24px;
+  padding-right: 24px;
+  font-size: 16px;
+  line-height: 24px;
   gap: 8px;
 }
 
 .btn-pill-sm {
-  height: 32px;
-  padding-left: 12px;
-  padding-right: 12px;
-  font-size: 12px;
-  line-height: 18px;
+  height: 44px;
+  min-height: 44px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 15px;
+  line-height: 22px;
   gap: 6px;
 }
 

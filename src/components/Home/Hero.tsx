@@ -267,22 +267,22 @@ export default function Hero() {
                   {currentSlide.subtitle}
                 </p>
 
-                {/* Apple Buttons: h-10 px-5, full pill radius, 14px font, 500 weight */}
+                {/* Apple Buttons: h-12 min-h-[48px] px-6, full pill radius, 16px font, 500 weight */}
                 <div className="mt-6 flex flex-wrap items-center gap-3">
                   <Link
                     href={currentSlide.ctaHref}
-                    className="group/primary inline-flex h-10 items-center justify-center gap-2 rounded-full bg-linear-to-b from-brand-red to-brand-red-hover px-5 text-sm font-medium text-white shadow-[0_6px_20px_var(--color-red-10)] outline-2 -outline-offset-2 outline-white/20 transition-[background-color,transform,box-shadow] duration-150 ease-out hover:from-brand-red-hover hover:to-brand-red-hover hover:bg-brand-red-hover active:scale-[0.97]"
+                    className="group/primary inline-flex h-12 min-h-[48px] items-center justify-center gap-2.5 rounded-full bg-linear-to-b from-brand-red to-brand-red-hover px-6 text-base font-medium text-white shadow-[0_6px_20px_var(--color-red-10)] outline-2 -outline-offset-2 outline-white/20 transition-[background-color,transform,box-shadow] duration-150 ease-out hover:from-brand-red-hover hover:to-brand-red-hover hover:bg-brand-red-hover active:scale-[0.97]"
                   >
                     {currentSlide.ctaText}
-                    <ArrowRight className="size-3.5 transition-transform duration-150 ease-out group-hover/primary:translate-x-0.5" />
+                    <ArrowRight className="size-4 transition-transform duration-150 ease-out group-hover/primary:translate-x-0.5" />
                   </Link>
 
                   <Link
                     href={currentSlide.secondaryCtaHref}
-                    className="group/process inline-flex h-10 items-center justify-center gap-2 px-4 rounded-full text-sm font-medium text-brand-navy transition-[opacity,transform] duration-150 ease-out hover:opacity-75 active:scale-[0.97]"
+                    className="group/process inline-flex h-12 min-h-[48px] items-center justify-center gap-2.5 px-5 rounded-full text-base font-medium text-brand-navy transition-[opacity,transform] duration-150 ease-out hover:opacity-75 active:scale-[0.97]"
                   >
                     {currentSlide.secondaryCtaText}
-                    <Play className="size-3 fill-current transition-transform duration-150 ease-out group-hover/process:scale-110" />
+                    <Play className="size-3.5 fill-current transition-transform duration-150 ease-out group-hover/process:scale-110" />
                   </Link>
                 </div>
               </motion.div>
