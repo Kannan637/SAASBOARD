@@ -1,64 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
-  <rect width="800" height="600" rx="24" fill="#F8FAFC"/>
-  <!-- Top Bar -->
-  <rect x="28" y="24" width="744" height="52" rx="12" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <circle cx="54" cy="50" r="8" fill="#DE0302"/>
-  <text x="72" y="55" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Premises HD IP CCTV Command Center</text>
-  <rect x="620" y="36" width="136" height="28" rx="14" fill="#FEE2E2"/>
-  <circle cx="638" cy="50" r="4" fill="#DE0302"/>
-  <text x="650" y="54" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#B91C1C">16 / 16 LIVE</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <filter id="shadcnCardShadow" x="-10%" y="-10%" width="120%" height="125%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#010D3B" flood-opacity="0.08" />
+    </filter>
+  </defs>
 
-  <!-- 2x2 Camera Matrix -->
-  <rect x="28" y="96" width="465" height="330" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
-  
-  <!-- Cam 01 -->
-  <rect x="44" y="112" width="218" height="142" rx="10" fill="#0F172A"/>
-  <text x="58" y="134" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#E2E8F0">CAM 01 • Main Warehouse</text>
-  <circle cx="242" cy="129" r="4" fill="#EF4444"/>
-  <path d="M58,215 L105,180 L155,205 L205,165 L248,195" stroke="#38BDF8" stroke-width="2" fill="none" opacity="0.45"/>
-  <text x="58" y="238" font-family="monospace" font-size="10" fill="#94A3B8">4K 60FPS • AI CLEAR</text>
+  <!-- Single shadcn/ui Card Component -->
+  <rect x="40" y="30" width="720" height="440" rx="20" fill="#FFFFFF" stroke="#E2E5EE" stroke-width="1.5" filter="url(#shadcnCardShadow)" />
 
-  <!-- Cam 02 -->
-  <rect x="275" y="112" width="202" height="142" rx="10" fill="#0F172A"/>
-  <text x="289" y="134" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#E2E8F0">CAM 02 • Server Corridor</text>
-  <circle cx="458" cy="129" r="4" fill="#EF4444"/>
-  <path d="M289,210 L340,175 L395,195 L460,160" stroke="#34D399" stroke-width="2" fill="none" opacity="0.45"/>
-  <text x="289" y="238" font-family="monospace" font-size="10" fill="#94A3B8">1080P • ACCESS LOCKED</text>
+  <!-- CardHeader: Eyebrow, Title, Subtitle & Live Status Badge -->
+  <rect x="70" y="56" width="186" height="26" rx="13" fill="#FDEBEB" />
+  <text x="163" y="73" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="11" font-weight="600" fill="#DE0302" letter-spacing="0.5">24/7 PREMISES SURVEILLANCE</text>
 
-  <!-- Cam 03 -->
-  <rect x="44" y="268" width="218" height="142" rx="10" fill="#0F172A"/>
-  <text x="58" y="290" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#E2E8F0">CAM 03 • Loading Bay</text>
-  <circle cx="242" cy="285" r="4" fill="#EF4444"/>
-  <rect x="85" y="315" width="90" height="52" rx="4" stroke="#22C55E" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
-  <text x="93" y="310" font-family="monospace" font-size="9" fill="#22C55E">VEHICLE VERIFIED</text>
-  <text x="58" y="394" font-family="monospace" font-size="10" fill="#94A3B8">4K 60FPS • SMART IR</text>
+  <text x="70" y="112" font-family="Urbanist, system-ui, sans-serif" font-size="22" font-weight="600" fill="#010D3B">Commercial IP Camera Console</text>
+  <text x="70" y="134" font-family="Urbanist, system-ui, sans-serif" font-size="14" font-weight="400" fill="#4A4F63">30-Day NVR cloud retention with AI perimeter detection &amp; live mobile streaming</text>
 
-  <!-- Cam 04 -->
-  <rect x="275" y="268" width="202" height="142" rx="10" fill="#0F172A"/>
-  <text x="289" y="290" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#E2E8F0">CAM 04 • Reception</text>
-  <circle cx="458" cy="285" r="4" fill="#EF4444"/>
-  <path d="M289,365 L350,340 L410,355 L460,330" stroke="#F59E0B" stroke-width="2" fill="none" opacity="0.45"/>
-  <text x="289" y="394" font-family="monospace" font-size="10" fill="#94A3B8">1080P • AUDIO ACTIVE</text>
+  <!-- Live Recording Indicator Badge (Right Header) -->
+  <rect x="576" y="56" width="154" height="32" rx="16" fill="#FDEBEB" />
+  <circle cx="594" cy="72" r="4.5" fill="#DE0302" />
+  <text x="608" y="76" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="600" fill="#DE0302">16 / 16 Cameras Live</text>
 
-  <!-- Right Side Storage & AI -->
-  <rect x="513" y="96" width="259" height="156" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <text x="533" y="130" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">CLOUD &amp; NVR RETENTION</text>
-  <text x="533" y="176" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#0F172A">30 Days HD</text>
-  <text x="533" y="212" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#16A34A">Dual Redundant Backup</text>
+  <!-- Card Separator Line -->
+  <line x1="70" y1="154" x2="730" y2="154" stroke="#E2E5EE" stroke-width="1" />
 
-  <rect x="513" y="270" width="259" height="156" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <text x="533" y="304" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">AI MOTION ACCURACY</text>
-  <text x="533" y="350" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#DE0302">99.9%</text>
-  <text x="533" y="386" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">0 False Intrusion Alarms</text>
+  <!-- The Single Core Element: High-Definition Live Camera Viewport Console -->
+  <rect x="70" y="174" width="660" height="236" rx="14" fill="#010D3B" />
 
-  <!-- Bottom Timeline -->
-  <rect x="28" y="446" width="744" height="126" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <text x="50" y="482" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#0F172A">24-Hour Continuous Recording Stream (Encrypted Mobile &amp; Web Access)</text>
-  <rect x="50" y="504" width="700" height="22" rx="6" fill="#FEE2E2"/>
-  <rect x="50" y="504" width="665" height="22" rx="6" fill="#DE0302"/>
-  <text x="50" y="548" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#64748B">00:00</text>
-  <text x="220" y="548" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#64748B">06:00</text>
-  <text x="390" y="548" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#64748B">12:00</text>
-  <text x="560" y="548" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#64748B">18:00</text>
-  <text x="712" y="548" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#DE0302">LIVE</text>
+  <!-- Video Player Header Overlay inside Viewport -->
+  <text x="94" y="206" font-family="Urbanist, system-ui, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF">CAM 01 • Main Logistics &amp; Production Facility</text>
+  <rect x="618" y="190" width="94" height="22" rx="11" fill="#DE0302" />
+  <text x="665" y="205" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="10" font-weight="700" fill="#FFFFFF">● 4K LIVE REC</text>
+
+  <!-- Perspective Horizon & Grid Lines in Video -->
+  <line x1="94" y1="340" x2="686" y2="340" stroke="#1A2552" stroke-width="1.5" />
+  <line x1="94" y1="290" x2="686" y2="290" stroke="#1A2552" stroke-width="1" stroke-dasharray="4 4" />
+  <path d="M 120 340 L 260 260 M 660 340 L 520 260" stroke="#1A2552" stroke-width="1.5" />
+
+  <!-- AI Smart Detection Bounding Box -->
+  <rect x="260" y="235" width="260" height="105" rx="8" stroke="#16A34A" stroke-width="2" stroke-dasharray="8 5" fill="#16A34A" fill-opacity="0.08" />
+
+  <!-- Corner Aim Markers -->
+  <path d="M 260 247 L 260 235 L 272 235" stroke="#16A34A" stroke-width="3" fill="none" />
+  <path d="M 520 247 L 520 235 L 508 235" stroke="#16A34A" stroke-width="3" fill="none" />
+  <path d="M 260 328 L 260 340 L 272 340" stroke="#16A34A" stroke-width="3" fill="none" />
+  <path d="M 520 328 L 520 340 L 508 340" stroke="#16A34A" stroke-width="3" fill="none" />
+
+  <!-- AI Detection Label Badge -->
+  <rect x="282" y="222" width="216" height="22" rx="5" fill="#16A34A" />
+  <text x="390" y="237" text-anchor="middle" font-family="'SF Mono', Menlo, monospace" font-size="10" font-weight="700" fill="#FFFFFF">AI SMART DETECTION • PERIMETER CLEAR</text>
+
+  <!-- Target Object Silhouette Indicator -->
+  <circle cx="390" cy="275" r="14" fill="#FFFFFF" fill-opacity="0.12" stroke="#16A34A" stroke-width="1.5" />
+  <path d="M 370 315 C 370 295 410 295 410 315 Z" fill="#FFFFFF" fill-opacity="0.12" />
+
+  <!-- Viewport Telemetry Status Bar -->
+  <text x="94" y="388" font-family="'SF Mono', Menlo, monospace" font-size="11" font-weight="500" fill="#FFFFFF" opacity="0.75">IR NIGHT VISION: ON  |  BITRATE: 8.4 Mbps  |  ENCRYPTION: AES-256  |  RETENTION: 30D</text>
+
+  <!-- Bottom Badges Row -->
+  <rect x="70" y="424" width="206" height="30" rx="8" fill="#F3F4F7" />
+  <text x="173" y="443" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="600" fill="#010D3B">✓ 30-Day NVR Cloud Backup</text>
+
+  <rect x="290" y="424" width="204" height="30" rx="8" fill="#F3F4F7" />
+  <text x="392" y="443" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="600" fill="#010D3B">✓ 99.9% AI Accuracy</text>
+
+  <rect x="508" y="424" width="222" height="30" rx="8" fill="#F3F4F7" />
+  <text x="619" y="443" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="600" fill="#010D3B">✓ Live Mobile &amp; Web View</text>
 </svg>

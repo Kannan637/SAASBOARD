@@ -1,58 +1,64 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
-  <rect width="800" height="600" rx="24" fill="#F8FAFC"/>
-  <!-- Top Bar -->
-  <rect x="28" y="24" width="744" height="52" rx="12" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <circle cx="54" cy="50" r="8" fill="#059669"/>
-  <text x="72" y="55" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#0F172A">SME Bandwidth &amp; Cloud QoS Console</text>
-  <rect x="616" y="36" width="140" height="28" rx="14" fill="#ECFDF5"/>
-  <text x="634" y="54" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#047857">2-Yr Price Lock</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <filter id="shadcnCardShadow" x="-10%" y="-10%" width="120%" height="125%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#010D3B" flood-opacity="0.08" />
+    </filter>
+    <filter id="thumbShadow" x="-40%" y="-40%" width="180%" height="180%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#010D3B" flood-opacity="0.22" />
+    </filter>
+  </defs>
 
-  <!-- Left Card: Bandwidth Allocation -->
-  <rect x="28" y="96" width="460" height="220" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <text x="50" y="130" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#64748B">PEAK WORKDAY UTILIZATION</text>
-  <text x="50" y="172" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#0F172A">342 Mbps</text>
-  <text x="235" y="170" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#059669">/ 500 Mbps Burst</text>
+  <!-- Single shadcn/ui Card Component -->
+  <rect x="40" y="30" width="720" height="440" rx="20" fill="#FFFFFF" stroke="#E2E5EE" stroke-width="1.5" filter="url(#shadcnCardShadow)" />
 
-  <!-- Bars -->
-  <rect x="50" y="245" width="32" height="48" rx="6" fill="#A7F3D0"/>
-  <rect x="92" y="230" width="32" height="63" rx="6" fill="#6EE7B7"/>
-  <rect x="134" y="212" width="32" height="81" rx="6" fill="#34D399"/>
-  <rect x="176" y="196" width="32" height="97" rx="6" fill="#10B981"/>
-  <rect x="218" y="185" width="32" height="108" rx="6" fill="#059669"/>
-  <rect x="260" y="198" width="32" height="95" rx="6" fill="#10B981"/>
-  <rect x="302" y="208" width="32" height="85" rx="6" fill="#34D399"/>
-  <rect x="344" y="220" width="32" height="73" rx="6" fill="#6EE7B7"/>
-  <rect x="386" y="236" width="32" height="57" rx="6" fill="#A7F3D0"/>
-  <rect x="428" y="202" width="32" height="91" rx="6" fill="#059669"/>
+  <!-- CardHeader: Eyebrow, Title, Subtitle & Price Lock Badge -->
+  <rect x="70" y="56" width="168" height="26" rx="13" fill="#FDEBEB" />
+  <text x="154" y="73" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="11" font-weight="600" fill="#DE0302" letter-spacing="0.5">ON-DEMAND BANDWIDTH</text>
 
-  <!-- Right Stack -->
-  <rect x="508" y="96" width="264" height="102" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <text x="528" y="128" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">CONNECTED ENDPOINTS</text>
-  <text x="528" y="168" font-family="system-ui, sans-serif" font-size="30" font-weight="700" fill="#0F172A">48 Devices</text>
+  <text x="70" y="112" font-family="Urbanist, system-ui, sans-serif" font-size="22" font-weight="600" fill="#010D3B">Business Bandwidth Scaler</text>
+  <text x="70" y="134" font-family="Urbanist, system-ui, sans-serif" font-size="14" font-weight="400" fill="#4A4F63">Scale bandwidth instantly with priority QoS &amp; 2-year price protection</text>
 
-  <rect x="508" y="214" width="264" height="102" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <text x="528" y="246" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">CLOUD ERP &amp; POS QOS</text>
-  <text x="528" y="286" font-family="system-ui, sans-serif" font-size="30" font-weight="700" fill="#059669">99.85%</text>
+  <!-- Price Lock Status Badge (Right Header) -->
+  <rect x="584" y="56" width="146" height="32" rx="16" fill="#010D3B" />
+  <text x="657" y="76" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">2-Yr Tariff Protected</text>
 
-  <!-- Bottom Traffic Priority Table -->
-  <rect x="28" y="336" width="744" height="236" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <text x="50" y="374" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#0F172A">Priority Application Traffic Shaping (Zero FUP Throttling)</text>
+  <!-- Card Separator Line -->
+  <line x1="70" y1="154" x2="730" y2="154" stroke="#E2E5EE" stroke-width="1" />
 
-  <rect x="50" y="398" width="700" height="44" rx="10" fill="#F8FAFC"/>
-  <text x="68" y="425" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#0F172A">1. POS Billing &amp; Payment Gateways</text>
-  <rect x="440" y="413" width="200" height="12" rx="6" fill="#E2E8F0"/>
-  <rect x="440" y="413" width="188" height="12" rx="6" fill="#059669"/>
-  <text x="660" y="425" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#059669"> Critical</text>
+  <!-- Primary Metric: Active Bandwidth Allocation -->
+  <text x="70" y="218" font-family="Urbanist, system-ui, sans-serif" font-size="54" font-weight="700" fill="#010D3B">300</text>
+  <text x="176" y="218" font-family="Urbanist, system-ui, sans-serif" font-size="26" font-weight="600" fill="#DE0302">Mbps</text>
+  <text x="70" y="244" font-family="Urbanist, system-ui, sans-serif" font-size="13" font-weight="500" fill="#4A4F63">Active SME Allocation  •  Engineered for Up to 50 Concurrent Devices</text>
 
-  <rect x="50" y="452" width="700" height="44" rx="10" fill="#F8FAFC"/>
-  <text x="68" y="479" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#0F172A">2. Cloud ERP, Inventory &amp; CRM Sync</text>
-  <rect x="440" y="467" width="200" height="12" rx="6" fill="#E2E8F0"/>
-  <rect x="440" y="467" width="165" height="12" rx="6" fill="#10B981"/>
-  <text x="660" y="479" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#059669"> High</text>
+  <!-- Interactive shadcn/ui Slider Control -->
+  <!-- Slider Track -->
+  <rect x="70" y="280" width="660" height="12" rx="6" fill="#F3F4F7" />
+  <!-- Slider Active Range Fill -->
+  <rect x="70" y="280" width="360" height="12" rx="6" fill="#DE0302" />
 
-  <rect x="50" y="506" width="700" height="44" rx="10" fill="#F8FAFC"/>
-  <text x="68" y="533" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#0F172A">3. HD Video Conferencing &amp; VoIP</text>
-  <rect x="440" y="521" width="200" height="12" rx="6" fill="#E2E8F0"/>
-  <rect x="440" y="521" width="145" height="12" rx="6" fill="#34D399"/>
-  <text x="660" y="533" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#059669"> Priority</text>
+  <!-- Slider Thumb with Active Ring -->
+  <circle cx="430" cy="286" r="14" fill="#FFFFFF" stroke="#DE0302" stroke-width="4.5" filter="url(#thumbShadow)" />
+  <circle cx="430" cy="286" r="4.5" fill="#010D3B" />
+
+  <!-- Slider Tick Marks & Step Labels -->
+  <circle cx="76" cy="286" r="2.5" fill="#FFFFFF" />
+  <circle cx="250" cy="286" r="2.5" fill="#FFFFFF" />
+  <circle cx="430" cy="286" r="2" fill="#FFFFFF" opacity="0" />
+  <circle cx="580" cy="286" r="2.5" fill="#4A4F63" opacity="0.4" />
+  <circle cx="724" cy="286" r="2.5" fill="#4A4F63" opacity="0.4" />
+
+  <text x="70" y="322" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="500" fill="#4A4F63">100 Mbps</text>
+  <text x="430" y="322" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="13" font-weight="700" fill="#DE0302">300 Mbps (Growth)</text>
+  <text x="580" y="322" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="500" fill="#4A4F63">500 Mbps</text>
+  <text x="730" y="322" text-anchor="end" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="500" fill="#4A4F63">1 Gbps</text>
+
+  <!-- Bottom Feature Badges Row -->
+  <rect x="70" y="374" width="206" height="34" rx="10" fill="#F3F4F7" />
+  <text x="173" y="395" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="600" fill="#010D3B">✓ POS &amp; Cloud ERP Priority</text>
+
+  <rect x="290" y="374" width="204" height="34" rx="10" fill="#F3F4F7" />
+  <text x="392" y="395" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="600" fill="#010D3B">✓ Zero FUP Throttling</text>
+
+  <rect x="508" y="374" width="222" height="34" rx="10" fill="#F3F4F7" />
+  <text x="619" y="395" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="600" fill="#010D3B">✓ Wi-Fi 6 Router Included</text>
 </svg>

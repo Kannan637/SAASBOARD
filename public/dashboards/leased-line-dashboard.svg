@@ -1,50 +1,67 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
-  <rect width="800" height="600" rx="24" fill="#F8FAFC"/>
-  <!-- Top Bar -->
-  <rect x="28" y="24" width="744" height="52" rx="12" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <circle cx="54" cy="50" r="8" fill="#2563EB"/>
-  <text x="72" y="55" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#0F172A">SASH Enterprise ILL Telemetry</text>
-  <rect x="640" y="36" width="116" height="28" rx="14" fill="#DCFCE7"/>
-  <circle cx="656" cy="50" r="4" fill="#16A34A"/>
-  <text x="668" y="54" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#15803D">99.98% SLA</text>
-
-  <!-- KPI Row -->
-  <rect x="28" y="96" width="234" height="130" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <text x="48" y="126" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">DEDICATED THROUGHPUT</text>
-  <text x="48" y="168" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#0F172A">1.00 Gbps</text>
-  <text x="48" y="198" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#16A34A">1:1 Symmetrical Fibre</text>
-
-  <rect x="283" y="96" width="234" height="130" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <text x="303" y="126" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">CORE LATENCY</text>
-  <text x="303" y="168" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#0F172A">3.8 ms</text>
-  <text x="303" y="198" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#2563EB">0.00% Packet Loss</text>
-
-  <rect x="538" y="96" width="234" height="130" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <text x="558" y="126" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">DUAL-RING FAILOVER</text>
-  <text x="558" y="168" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#0F172A">Active</text>
-  <text x="558" y="198" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#16A34A">&lt; 50ms Auto-Switch</text>
-
-  <!-- Main Chart Card -->
-  <rect x="28" y="246" width="744" height="326" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <text x="52" y="284" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#0F172A">Real-Time Symmetrical Traffic (Upload vs Download)</text>
-  <rect x="560" y="266" width="90" height="26" rx="8" fill="#EFF6FF"/>
-  <text x="576" y="283" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#2563EB">Download</text>
-  <rect x="660" y="266" width="88" height="26" rx="8" fill="#FEF2F2"/>
-  <text x="682" y="283" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#DC2626">Upload</text>
-
-  <line x1="52" y1="330" x2="748" y2="330" stroke="#F1F5F9" stroke-width="1.5"/>
-  <line x1="52" y1="395" x2="748" y2="395" stroke="#F1F5F9" stroke-width="1.5"/>
-  <line x1="52" y1="460" x2="748" y2="460" stroke="#F1F5F9" stroke-width="1.5"/>
-  <line x1="52" y1="525" x2="748" y2="525" stroke="#F1F5F9" stroke-width="1.5"/>
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
   <defs>
-    <linearGradient id="illGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#2563EB" stop-opacity="0.28"/>
-      <stop offset="100%" stop-color="#2563EB" stop-opacity="0.0"/>
+    <filter id="shadcnCardShadow" x="-10%" y="-10%" width="120%" height="125%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#010D3B" flood-opacity="0.08" />
+    </filter>
+    <linearGradient id="trafficGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#DE0302" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#DE0302" stop-opacity="0.0" />
     </linearGradient>
   </defs>
 
-  <path d="M52,470 C140,450 210,390 300,405 C390,420 460,350 550,365 C640,310 700,335 748,300 L748,525 L52,525 Z" fill="url(#illGrad)"/>
-  <path d="M52,470 C140,450 210,390 300,405 C390,420 460,350 550,365 C640,310 700,335 748,300" fill="none" stroke="#2563EB" stroke-width="4" stroke-linecap="round"/>
-  <path d="M52,490 C150,475 230,425 320,435 C410,380 490,400 580,350 C650,365 705,345 748,328" fill="none" stroke="#DE0302" stroke-width="3" stroke-dasharray="8 6" stroke-linecap="round"/>
+  <!-- Single shadcn/ui Card Component -->
+  <rect x="40" y="30" width="720" height="440" rx="20" fill="#FFFFFF" stroke="#E2E5EE" stroke-width="1.5" filter="url(#shadcnCardShadow)" />
+
+  <!-- CardHeader: Eyebrow, Title, Subtitle & Live Status Badge -->
+  <rect x="70" y="56" width="166" height="26" rx="13" fill="#FDEBEB" />
+  <text x="153" y="73" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="11" font-weight="600" fill="#DE0302" letter-spacing="0.5">1:1 SYMMETRICAL FIBRE</text>
+
+  <text x="70" y="112" font-family="Urbanist, system-ui, sans-serif" font-size="22" font-weight="600" fill="#010D3B">Dedicated Bandwidth Telemetry</text>
+  <text x="70" y="134" font-family="Urbanist, system-ui, sans-serif" font-size="14" font-weight="400" fill="#4A4F63">Real-time enterprise throughput with SLA guarantee</text>
+
+  <!-- Live SLA Indicator Badge (Right Header) -->
+  <rect x="578" y="56" width="152" height="32" rx="16" fill="#F3F4F7" stroke="#E2E5EE" stroke-width="1" />
+  <circle cx="596" cy="72" r="4.5" fill="#16A34A" />
+  <text x="610" y="76" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="600" fill="#010D3B">99.98% SLA Active</text>
+
+  <!-- Card Separator Line -->
+  <line x1="70" y1="154" x2="730" y2="154" stroke="#E2E5EE" stroke-width="1" />
+
+  <!-- Primary Metric: Large Throughput Display -->
+  <text x="70" y="218" font-family="Urbanist, system-ui, sans-serif" font-size="54" font-weight="700" fill="#010D3B">1.00</text>
+  <text x="182" y="218" font-family="Urbanist, system-ui, sans-serif" font-size="26" font-weight="600" fill="#DE0302">Gbps</text>
+
+  <!-- Performance Badges Row -->
+  <rect x="272" y="184" width="138" height="28" rx="8" fill="#F3F4F7" />
+  <text x="341" y="202" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="500" fill="#010D3B">Sub-4ms Core Latency</text>
+
+  <rect x="420" y="184" width="134" height="28" rx="8" fill="#F3F4F7" />
+  <text x="487" y="202" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="500" fill="#010D3B">0.00% Packet Loss</text>
+
+  <rect x="564" y="184" width="146" height="28" rx="8" fill="#F3F4F7" />
+  <text x="637" y="202" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="500" fill="#010D3B">Dual-Ring Optical Failover</text>
+
+  <!-- Real-Time Traffic Area Chart Grid -->
+  <line x1="70" y1="285" x2="730" y2="285" stroke="#F3F4F7" stroke-width="1.5" stroke-dasharray="4 4" />
+  <line x1="70" y1="345" x2="730" y2="345" stroke="#F3F4F7" stroke-width="1.5" stroke-dasharray="4 4" />
+  <line x1="70" y1="405" x2="730" y2="405" stroke="#E2E5EE" stroke-width="1.5" />
+
+  <!-- Smooth Area Fill under Curve -->
+  <path d="M 70 380 Q 180 375 260 320 T 450 310 T 610 270 T 730 250 L 730 405 L 70 405 Z" fill="url(#trafficGradient)" />
+
+  <!-- Symmetrical Lines (Download: Navy / Upload: Red) -->
+  <path d="M 70 380 Q 180 375 260 320 T 450 310 T 610 270 T 730 250" fill="none" stroke="#010D3B" stroke-width="3.5" stroke-linecap="round" />
+  <path d="M 70 395 Q 180 390 260 335 T 450 325 T 610 285 T 730 265" fill="none" stroke="#DE0302" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 6" />
+
+  <!-- Active Telemetry Cursor Marker -->
+  <circle cx="610" cy="270" r="5" fill="#FFFFFF" stroke="#010D3B" stroke-width="3" />
+  <circle cx="610" cy="285" r="4" fill="#FFFFFF" stroke="#DE0302" stroke-width="2.5" />
+
+  <!-- Chart Time Labels -->
+  <text x="70" y="430" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="500" fill="#4A4F63">08:00</text>
+  <text x="202" y="430" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="500" fill="#4A4F63">11:00</text>
+  <text x="334" y="430" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="500" fill="#4A4F63">14:00</text>
+  <text x="466" y="430" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="500" fill="#4A4F63">17:00</text>
+  <text x="598" y="430" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="500" fill="#4A4F63">20:00</text>
+  <text x="730" y="430" text-anchor="end" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="600" fill="#DE0302">● LIVE 1.0 Gbps</text>
 </svg>

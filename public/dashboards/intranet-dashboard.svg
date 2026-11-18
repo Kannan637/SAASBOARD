@@ -1,61 +1,77 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
-  <rect width="800" height="600" rx="24" fill="#F8FAFC"/>
-  <!-- Top Bar -->
-  <rect x="28" y="24" width="744" height="52" rx="12" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <circle cx="54" cy="50" r="8" fill="#7C3AED"/>
-  <text x="72" y="55" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Tamil Nadu Multi-Site Private WAN Topology</text>
-  <rect x="610" y="36" width="146" height="28" rx="14" fill="#F3E8FF"/>
-  <text x="628" y="54" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#6D28D9">AES-256 Tunnel</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <filter id="shadcnCardShadow" x="-10%" y="-10%" width="120%" height="125%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#010D3B" flood-opacity="0.08" />
+    </filter>
+  </defs>
 
-  <!-- Topology Map Box -->
-  <rect x="28" y="96" width="465" height="476" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <text x="50" y="132" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Regional Optical Mesh (7 Active Hubs)</text>
-  <text x="50" y="154" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#64748B">Isolated L2/L3 MPLS VLAN — 0.00% Public Web Exposure</text>
+  <!-- Single shadcn/ui Card Component -->
+  <rect x="40" y="30" width="720" height="440" rx="20" fill="#FFFFFF" stroke="#E2E5EE" stroke-width="1.5" filter="url(#shadcnCardShadow)" />
 
-  <!-- Mesh Lines -->
-  <line x1="260" y1="230" x2="140" y2="310" stroke="#A78BFA" stroke-width="2.5" stroke-dasharray="5 5"/>
-  <line x1="260" y1="230" x2="370" y2="300" stroke="#7C3AED" stroke-width="3"/>
-  <line x1="260" y1="230" x2="220" y2="410" stroke="#7C3AED" stroke-width="3"/>
-  <line x1="260" y1="230" x2="350" y2="430" stroke="#A78BFA" stroke-width="2.5" stroke-dasharray="5 5"/>
-  <line x1="140" y1="310" x2="220" y2="410" stroke="#C4B5FD" stroke-width="2"/>
-  <line x1="370" y1="300" x2="350" y2="430" stroke="#C4B5FD" stroke-width="2"/>
-  <line x1="220" y1="410" x2="265" y2="510" stroke="#7C3AED" stroke-width="2.5"/>
+  <!-- CardHeader: Eyebrow, Title, Subtitle & Network Status Badge -->
+  <rect x="70" y="56" width="162" height="26" rx="13" fill="#FDEBEB" />
+  <text x="151" y="73" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="11" font-weight="600" fill="#DE0302" letter-spacing="0.5">PRIVATE OPTICAL WAN</text>
 
-  <!-- HQ Node -->
-  <circle cx="260" cy="230" r="34" fill="#7C3AED" fill-opacity="0.15"/>
-  <circle cx="260" cy="230" r="22" fill="#7C3AED"/>
-  <text x="260" y="235" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">HQ</text>
-  <text x="260" y="280" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#0F172A">Thiruvallur / Chennai</text>
+  <text x="70" y="112" font-family="Urbanist, system-ui, sans-serif" font-size="22" font-weight="600" fill="#010D3B">Inter-Branch Network Topology</text>
+  <text x="70" y="134" font-family="Urbanist, system-ui, sans-serif" font-size="14" font-weight="400" fill="#4A4F63">Isolated Layer-2 VLAN mesh across Tamil Nadu with zero public web exposure</text>
 
-  <!-- Branch Nodes -->
-  <circle cx="140" cy="310" r="16" fill="#FFFFFF" stroke="#7C3AED" stroke-width="4"/>
-  <text x="140" y="344" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#334155">Vellore Plant</text>
+  <!-- Hub Status Badge (Right Header) -->
+  <rect x="588" y="56" width="142" height="32" rx="16" fill="#F3F4F7" stroke="#E2E5EE" stroke-width="1" />
+  <circle cx="606" cy="72" r="4.5" fill="#16A34A" />
+  <text x="620" y="76" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="600" fill="#010D3B">7 / 7 Hubs Online</text>
 
-  <circle cx="370" cy="300" r="16" fill="#FFFFFF" stroke="#7C3AED" stroke-width="4"/>
-  <text x="370" y="334" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#334155">Salem Hub</text>
+  <!-- Card Separator Line -->
+  <line x1="70" y1="154" x2="730" y2="154" stroke="#E2E5EE" stroke-width="1" />
 
-  <circle cx="220" cy="410" r="16" fill="#FFFFFF" stroke="#7C3AED" stroke-width="4"/>
-  <text x="220" y="444" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#334155">Coimbatore</text>
+  <!-- Primary Metric: Core Inter-Site Latency -->
+  <text x="70" y="214" font-family="Urbanist, system-ui, sans-serif" font-size="52" font-weight="700" fill="#010D3B">2.1</text>
+  <text x="156" y="214" font-family="Urbanist, system-ui, sans-serif" font-size="26" font-weight="600" fill="#DE0302">ms</text>
+  <text x="70" y="238" font-family="Urbanist, system-ui, sans-serif" font-size="13" font-weight="500" fill="#4A4F63">Average Inter-Branch Latency  •  Direct Optical Ring</text>
 
-  <circle cx="350" cy="430" r="16" fill="#FFFFFF" stroke="#7C3AED" stroke-width="4"/>
-  <text x="350" y="464" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#334155">Trichy Depot</text>
+  <!-- Security Protocol Badge -->
+  <rect x="548" y="180" width="182" height="28" rx="8" fill="#FDEBEB" />
+  <text x="639" y="198" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="11" font-weight="600" fill="#DE0302">AES-256 Hardware Encrypted</text>
 
-  <circle cx="265" cy="510" r="16" fill="#FFFFFF" stroke="#7C3AED" stroke-width="4"/>
-  <text x="265" y="544" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#334155">Madurai South</text>
+  <!-- Optical Mesh Topology Diagram -->
+  <!-- Connection Lines from Central HQ Node (400, 320) -->
+  <line x1="400" y1="320" x2="160" y2="300" stroke="#010D3B" stroke-width="2.5" stroke-dasharray="6 4" />
+  <line x1="400" y1="320" x2="270" y2="400" stroke="#010D3B" stroke-width="2.5" />
+  <line x1="400" y1="320" x2="530" y2="400" stroke="#010D3B" stroke-width="2.5" />
+  <line x1="400" y1="320" x2="640" y2="300" stroke="#010D3B" stroke-width="2.5" stroke-dasharray="6 4" />
 
-  <!-- Right Column Telemetry -->
-  <rect x="513" y="96" width="259" height="145" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <text x="533" y="130" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">INTER-BRANCH LATENCY</text>
-  <text x="533" y="176" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#0F172A">2.1 ms</text>
-  <text x="533" y="210" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#16A34A">Direct Optical Layer-2</text>
+  <!-- Outer Ring Interconnects between Branches -->
+  <line x1="160" y1="300" x2="270" y2="400" stroke="#E2E5EE" stroke-width="1.5" />
+  <line x1="270" y1="400" x2="530" y2="400" stroke="#E2E5EE" stroke-width="1.5" />
+  <line x1="530" y1="400" x2="640" y2="300" stroke="#E2E5EE" stroke-width="1.5" />
 
-  <rect x="513" y="261" width="259" height="145" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <text x="533" y="295" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">ERP &amp; DATABASE SYNC</text>
-  <text x="533" y="341" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#7C3AED">99.99%</text>
-  <text x="533" y="375" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">Zero Public Internet Hop</text>
+  <!-- Central HQ Node -->
+  <circle cx="400" cy="320" r="38" fill="#FDEBEB" />
+  <circle cx="400" cy="320" r="28" fill="#010D3B" />
+  <circle cx="400" cy="320" r="32" fill="none" stroke="#DE0302" stroke-width="2" stroke-dasharray="4 3" />
+  <text x="400" y="325" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">HQ</text>
+  <text x="400" y="374" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="700" fill="#010D3B">Thiruvallur / Chennai</text>
 
-  <rect x="513" y="426" width="259" height="146" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <text x="533" y="460" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748B">ACTIVE TUNNEL STATUS</text>
-  <text x="533" y="502" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#0F172A">7 / 7 Online</text>
-  <text x="533" y="538" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#16A34A">24/7 NOC Route Guard</text>
+  <!-- Branch Node 1: Vellore Plant -->
+  <circle cx="160" cy="300" r="16" fill="#FFFFFF" stroke="#010D3B" stroke-width="3.5" />
+  <circle cx="160" cy="300" r="5" fill="#DE0302" />
+  <text x="160" y="334" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="11" font-weight="600" fill="#010D3B">Vellore Plant</text>
+  <text x="160" y="350" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="10" font-weight="600" fill="#16A34A">1.8 ms</text>
+
+  <!-- Branch Node 2: Salem Hub -->
+  <circle cx="270" cy="400" r="16" fill="#FFFFFF" stroke="#010D3B" stroke-width="3.5" />
+  <circle cx="270" cy="400" r="5" fill="#DE0302" />
+  <text x="270" y="432" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="11" font-weight="600" fill="#010D3B">Salem Hub</text>
+  <text x="270" y="448" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="10" font-weight="600" fill="#16A34A">2.3 ms</text>
+
+  <!-- Branch Node 3: Trichy Depot -->
+  <circle cx="530" cy="400" r="16" fill="#FFFFFF" stroke="#010D3B" stroke-width="3.5" />
+  <circle cx="530" cy="400" r="5" fill="#DE0302" />
+  <text x="530" y="432" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="11" font-weight="600" fill="#010D3B">Trichy Depot</text>
+  <text x="530" y="448" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="10" font-weight="600" fill="#16A34A">2.6 ms</text>
+
+  <!-- Branch Node 4: Coimbatore -->
+  <circle cx="640" cy="300" r="16" fill="#FFFFFF" stroke="#010D3B" stroke-width="3.5" />
+  <circle cx="640" cy="300" r="5" fill="#DE0302" />
+  <text x="640" y="334" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="11" font-weight="600" fill="#010D3B">Coimbatore</text>
+  <text x="640" y="350" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="10" font-weight="600" fill="#16A34A">3.4 ms</text>
 </svg>
