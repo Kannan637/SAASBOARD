@@ -290,7 +290,7 @@ export default function Business({
             {/* Right Column (Desktop) / Top (Mobile): Fixed Rounded Image Frame */}
             <div className="w-full h-[58%] lg:h-full lg:col-span-7 flex items-center justify-center">
               {/* Fixed Rounded Overflow-Hidden Box (No border) */}
-              <div className="relative w-full h-full rounded-[32px] overflow-hidden bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#2563EB]">
+              <div className="relative w-full h-full rounded-[32px] overflow-hidden bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#DE0302]">
                 {/* Vertical Strip of All Slide Images Sliding Upward */}
                 <motion.div
                   style={{ y: imageStripY }}

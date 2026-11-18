@@ -1,13 +1,12 @@
 import React from "react";
-import Testimonials1 from "@/components/ui/testimonials-1";
+import Testimonials3 from "@/components/ui/testimonials-3";
 
 export default function Testimonial() {
   return (
-    <Testimonials1
-      eyebrow="TRUSTED BY"
-      heading="100+ Tamil Nadu Enterprises"
-      description="Empowering factories, clinics, retail chains, and IT offices across Tamil Nadu with dedicated 1:1 fibre leased lines and guaranteed SLA uptime."
+    <Testimonials3
+      eyebrow="GOOGLE REVIEWS"
+      heading="100+ Tamil Nadu Enterprises & Homes"
+      description="Real 5-star Google reviews from families and enterprises across Chennai, Thiruvallur, Kancheepuram, and Tamil Nadu."
     />
   );
 }
-
