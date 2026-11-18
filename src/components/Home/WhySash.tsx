@@ -34,10 +34,10 @@ import {
 const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const CARD_BG_GRADIENT =
-  "bg-[radial-gradient(circle_at_50%_40%,#FFFFFF_0%,#F5F8FC_45%,#E7EDF6_75%,#DBE4F0_100%)]";
+  "bg-[linear-gradient(145deg,#FDEBEB_0%,#DE0302_52%,#B80201_100%)]";
 
 const CARD_BOTTOM_BLEND =
-  "pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.5)_45%,#FFFFFF_100%)]";
+  "pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.45)_40%,rgba(255,255,255,0.85)_75%,#FFFFFF_100%)]";
 
 const gridContainerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -247,7 +247,7 @@ export function RouterSetupCard() {
 
           {/* Top Badges Bar: ₹0 Setup Cost */}
           <div className="relative z-20 w-full flex items-center justify-between gap-2">
-            <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-red px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs">
+            <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/20">
               <Router className="w-3.5 h-3.5" aria-hidden="true" />
               <span>₹0 Setup Cost</span>
             </span>
@@ -290,11 +290,11 @@ const TAMIL_NADU_ONLY_MARKER: StickerMarker[] = [
     size: 0.12,
     sticker: (
       <div className="flex flex-col items-center pointer-events-none select-none">
-        <span className="text-2xl filter drop-shadow-[0_2px_8px_rgba(222,3,2,0.8)]">
+        <span className="text-2xl filter drop-shadow-[0_2px_8px_rgba(1,13,59,0.6)]">
           📍
         </span>
-        <span className="mt-0.5 inline-flex items-center gap-1 rounded-full bg-brand-red px-2.5 py-0.5 font-mono text-[10px] font-semibold text-white uppercase tracking-wider shadow-lg border border-white/40">
-          <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+        <span className="mt-0.5 inline-flex items-center gap-1 rounded-full bg-brand-navy px-2.5 py-0.5 font-mono text-[10px] font-semibold text-white uppercase tracking-wider shadow-lg border border-white/40">
+          <span className="w-1.5 h-1.5 rounded-full bg-brand-red animate-ping" />
           Tamil Nadu
         </span>
       </div>
@@ -325,8 +325,8 @@ export function LicensedISPCARD() {
 
           {/* Top Badges Bar: Tamil Nadu Circle */}
           <div className="relative z-30 w-full flex items-center justify-between gap-2 pointer-events-none">
-            <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-red px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-red animate-pulse" />
               <span>Tamil Nadu Circle</span>
             </span>
           </div>
@@ -480,7 +480,7 @@ export function SupportCard() {
 
           {/* Top Badges Bar: 24/7 Local Support Desk */}
           <div className="relative z-30 w-full flex items-center justify-between gap-2 pointer-events-none">
-            <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-red px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs">
+            <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/20">
               <Headphones className="w-3.5 h-3.5" aria-hidden="true" />
               <span>24/7 Local Support</span>
             </span>
@@ -488,24 +488,24 @@ export function SupportCard() {
 
           {/* Concentric Radar Waves & Orbiting Satellites Stage */}
           <div className="pointer-events-auto absolute z-20 top-[125px] min-[360px]:top-[132px] sm:top-[140px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[270px] h-[270px] min-[360px]:w-[290px] min-[360px]:h-[290px] sm:w-[310px] sm:h-[310px] flex items-center justify-center">
-            {/* Concentric Radar Ripple Rings matching Brand Navy and Apple styling */}
-            <div className="pointer-events-none absolute w-[240px] h-[240px] rounded-full border border-brand-navy/12 bg-brand-navy/[0.015]" />
-            <div className="pointer-events-none absolute w-[176px] h-[176px] rounded-full border border-brand-navy/18 bg-brand-navy/[0.025]" />
-            <div className="pointer-events-none absolute w-[114px] h-[114px] rounded-full border border-brand-navy/25 bg-brand-navy/[0.04]" />
+            {/* Concentric Radar Ripple Rings matching White/Frosted Apple styling */}
+            <div className="pointer-events-none absolute w-[240px] h-[240px] rounded-full border border-white/25 bg-white/[0.04]" />
+            <div className="pointer-events-none absolute w-[176px] h-[176px] rounded-full border border-white/35 bg-white/[0.07]" />
+            <div className="pointer-events-none absolute w-[114px] h-[114px] rounded-full border border-white/45 bg-white/[0.10]" />
 
             {/* Subtle Expanding Radar Pulse Wave */}
             {!shouldReduceMotion && (
               <motion.div
                 animate={{
                   scale: [1, 1.25, 1.45],
-                  opacity: [0.45, 0.2, 0],
+                  opacity: [0.55, 0.2, 0],
                 }}
                 transition={{
                   duration: 3.2,
                   repeat: Infinity,
                   ease: "easeOut",
                 }}
-                className="pointer-events-none absolute w-[114px] h-[114px] rounded-full border border-brand-red/35"
+                className="pointer-events-none absolute w-[114px] h-[114px] rounded-full border border-white/70"
               />
             )}
 
@@ -532,7 +532,7 @@ export function SupportCard() {
                       ease: "linear",
                       repeat: Infinity,
                     }}
-                    className="w-10 h-10 min-[360px]:w-10.5 min-[360px]:h-10.5 sm:w-11 sm:h-11 rounded-full bg-white shadow-[0_6px_18px_rgba(1,13,59,0.12),0_1px_3px_rgba(0,0,0,0.06)] border border-brand-navy/10 flex items-center justify-center transition-transform duration-200 hover:scale-115 cursor-pointer"
+                    className="w-10 h-10 min-[360px]:w-10.5 min-[360px]:h-10.5 sm:w-11 sm:h-11 rounded-full bg-white shadow-[0_6px_18px_rgba(0,0,0,0.22),0_1px_3px_rgba(0,0,0,0.1)] border border-white/90 flex items-center justify-center transition-transform duration-200 hover:scale-115 cursor-pointer"
                     title={item.label}
                   >
                     {item.icon}
@@ -555,7 +555,7 @@ export function SupportCard() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="relative z-30 w-16 h-16 min-[360px]:w-17 min-[360px]:h-17 sm:w-18 sm:h-18 rounded-full bg-[radial-gradient(circle_at_35%_28%,#22357A_0%,#010D3B_60%,#000720_100%)] shadow-[0_14px_30px_rgba(1,13,59,0.36),0_4px_10px_rgba(1,13,59,0.22),inset_0_2px_4px_rgba(255,255,255,0.55),inset_0_-3px_6px_rgba(0,0,0,0.3)] flex items-center justify-center p-3 select-none"
+              className="relative z-30 w-16 h-16 min-[360px]:w-17 min-[360px]:h-17 sm:w-18 sm:h-18 rounded-full bg-[radial-gradient(circle_at_35%_28%,#22357A_0%,#010D3B_60%,#000720_100%)] shadow-[0_14px_30px_rgba(0,0,0,0.4),0_4px_10px_rgba(1,13,59,0.35),inset_0_2px_4px_rgba(255,255,255,0.65),inset_0_-3px_6px_rgba(0,0,0,0.35)] flex items-center justify-center p-3 select-none"
             >
               <CenterAvatarIcon className="w-8 h-8 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]" />
             </motion.div>
@@ -654,7 +654,7 @@ export function PriceLockCard() {
 
           {/* Carousel Top Header: ₹650/mo Price */}
           <div className="relative z-20 w-full flex items-center justify-end">
-            <span className="inline-flex min-h-6 items-center rounded-full bg-brand-navy px-2.5 text-xs sm:text-sm font-semibold text-white tabular-nums shadow-xs">
+            <span className="inline-flex min-h-6 items-center rounded-full bg-brand-navy px-2.5 text-xs sm:text-sm font-semibold text-white tabular-nums shadow-xs border border-white/20">
               ₹650
               <span className="text-[10px] font-normal text-white/80 ml-0.5">
                 /mo
@@ -742,8 +742,8 @@ export function PriceLockCard() {
                 onClick={() => handleSelect(idx)}
                 aria-label={`View ${service.label}`}
                 className={`h-1.5 rounded-full transition-all duration-300 ${idx === activeIndex
-                    ? "w-4 bg-brand-red shadow-[0_0_8px_rgba(222,3,2,0.85)]"
-                    : "w-1.5 bg-brand-navy/35 hover:bg-brand-navy/70"
+                    ? "w-4 bg-white shadow-[0_0_8px_rgba(255,255,255,0.95)]"
+                    : "w-1.5 bg-white/40 hover:bg-white/70"
                   }`}
               />
             ))}

@@ -40,9 +40,9 @@ export const DEFAULT_BUSINESS_SLIDES: ShowcaseSlide[] = [
     title: "Uninterrupted secure communications",
     description:
       "Dedicated 1:1 symmetrical fibre with 99.9% SLA-backed uptime, sub-5ms latency, and dual-ring automatic failover to keep banking, ERP, and mission-critical operations online 24/7.",
-    imageSrc: "/dashboards/leased-line-dashboard.svg",
+    imageSrc: "/Business/Wi-Fi Network Security Shield.png",
     imageAlt:
-      "SASH Enterprise ILL Telemetry dashboard showing 1 Gbps symmetrical traffic and 99.98% SLA uptime",
+      "Enterprise Leased Line high-speed secure optical connectivity shield",
   },
   {
     id: "scalable-sme",
@@ -50,9 +50,9 @@ export const DEFAULT_BUSINESS_SLIDES: ShowcaseSlide[] = [
     title: "Scalable SME plans",
     description:
       "High-bandwidth business fibre packages engineered for retail counters, clinics, and growing offices. Scale bandwidth on demand with priority Cloud QoS and a 2-year price lock.",
-    imageSrc: "/dashboards/sme-dashboard.svg",
+    imageSrc: "/Business/Ascending Business Plan Cards.png",
     imageAlt:
-      "SME Bandwidth and Cloud QoS Console showing 342 Mbps utilization and priority traffic shaping",
+      "Scalable SME business plans and high-bandwidth fibre packages",
   },
   {
     id: "private-intranet",
@@ -60,9 +60,9 @@ export const DEFAULT_BUSINESS_SLIDES: ShowcaseSlide[] = [
     title: "Private intranet",
     description:
       "Direct branch-to-branch optical WAN connectivity across Tamil Nadu with zero public internet exposure. Link headquarters, factories, and warehouses over hardware-encrypted VLAN tunnels.",
-    imageSrc: "/dashboards/intranet-dashboard.svg",
+    imageSrc: "/Business/Protected Intranet Network Laptop.png",
     imageAlt:
-      "Tamil Nadu Multi-Site Private WAN Topology dashboard connecting 7 active regional hubs",
+      "Protected private intranet multi-site network on laptop display",
   },
   {
     id: "cctv-premises",
@@ -70,9 +70,9 @@ export const DEFAULT_BUSINESS_SLIDES: ShowcaseSlide[] = [
     title: "CCTV for premises",
     description:
       "Commercial 4K & HD IP camera surveillance with 24/7 dual NVR and 30-day encrypted cloud retention, AI human/vehicle motion alerts, and live mobile monitoring.",
-    imageSrc: "/dashboards/cctv-dashboard.svg",
+    imageSrc: "/Business/High-Tech CCTV Building Monitor.png",
     imageAlt:
-      "Premises HD IP CCTV Command Center showing 16 live camera feeds and 30-day cloud retention",
+      "High-tech commercial premises CCTV security and surveillance monitoring console",
   },
 ];
 
