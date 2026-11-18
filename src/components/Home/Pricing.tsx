@@ -141,8 +141,8 @@ export default function Pricing() {
                 data-apple-manual="true"
                 aria-label={`${plan.name} - ${plan.price} ${plan.period}`}
                 className={`rounded-[28px] p-7 sm:p-8 lg:p-9 flex flex-col justify-between relative w-full transition-transform duration-300 hover:-translate-y-1.5 ${plan.featured
-                    ? "bg-brand-navy text-white border border-brand-navy/60 shadow-[0_16px_40px_rgba(1,13,59,0.18)]"
-                    : "bg-white text-brand-navy border border-black/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.02)]"
+                  ? "bg-brand-navy text-white border border-brand-navy/60 shadow-[0_16px_40px_rgba(1,13,59,0.18)]"
+                  : "bg-white text-brand-navy border border-black/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.02)]"
                   }`}
               >
                 {plan.featured && (
@@ -180,8 +180,8 @@ export default function Pricing() {
                     </h3>
                     <span
                       className={`px-2.5 py-0.5 rounded-full text-xs font-semibold shrink-0 ${plan.featured
-                          ? "bg-white/15 text-white border border-white/25 backdrop-blur-xs"
-                          : "bg-neutral-100 text-brand-navy"
+                        ? "bg-white/15 text-white border border-white/25 backdrop-blur-xs"
+                        : "bg-neutral-100 text-brand-navy"
                         }`}
                     >
                       {plan.speed}
@@ -217,8 +217,8 @@ export default function Pricing() {
                     {plan.speedNote && (
                       <p
                         className={`text-xs font-medium mt-2 px-3 py-1 rounded-full ${plan.featured
-                            ? "text-white bg-white/15"
-                            : "text-brand-red bg-red-10"
+                          ? "text-white bg-white/15"
+                          : "text-brand-red bg-red-10"
                           }`}
                       >
                         Note: {plan.speedNote}
@@ -257,9 +257,9 @@ export default function Pricing() {
                 <button
                   type="button"
                   onClick={() => handleSelectPlan(plan)}
-                  className={`relative z-10 btn-pill btn-primary-red w-full h-12 min-h-[48px] text-sm font-medium cursor-pointer ${plan.featured
-                      ? "shadow-[0_8px_24px_rgba(0,0,0,0.35)] ring-1 ring-white/25"
-                      : ""
+                  className={`relative z-10 btn-pill btn-primary-red w-full h-10 text-sm font-medium cursor-pointer ${plan.featured
+                    ? "shadow-[0_8px_24px_rgba(0,0,0,0.35)] ring-1 ring-white/25"
+                    : ""
                     }`}
                 >
                   <span>Order this plan</span>

@@ -1,14 +1,9 @@
 'use client';
 
-import { type ReactNode, useRef, useState } from 'react';
+import { type ReactNode } from 'react';
 import Image from 'next/image';
 import {
   motion,
-  useScroll,
-  useSpring,
-  useTransform,
-  useReducedMotion,
-  type MotionValue,
   type Variants,
 } from 'framer-motion';
 import { Separator } from '@/components/ui/separator';
@@ -111,62 +106,13 @@ const lineSeparatorVariants: Variants = {
 };
 
 /**
- * Dynamic React Scroll-Driven Background Gradient
- * Responds fluidly to the user scrolling into the footer:
- * - Parallax backdrop depth
- * - Rising & expanding electric navy & sapphire aurora dome
- * - Blooming SASH brand red horizon arc & ruby core flare
- * - Radiant horizontal light beam stretching across the crest
- * - Interactive cursor-following glow on hover
+ * Static Footer Background (Zero Animation)
  */
-function FooterScrollGradient({
-  scrollProgress,
+function StaticFooterBackground({
   backgroundImage,
-  mousePos,
 }: {
-  scrollProgress: MotionValue<number>;
   backgroundImage?: string;
-  mousePos: { x: number; y: number; active: boolean };
 }) {
-  const shouldReduceMotion = useReducedMotion();
-
-  // 1. Parallax backdrop shift
-  const bgTranslateY = useTransform(scrollProgress, [0, 1], ["-4%", "4%"]);
-  const bgScale = useTransform(scrollProgress, [0, 1], [1.02, 1.1]);
-  const bgOpacity = useTransform(scrollProgress, [0, 0.4, 1], [0.65, 0.85, 1]);
-
-  // 2. Rising Luminous Dome (Electric Navy + Sapphire Glow)
-  const domeScale = useTransform(scrollProgress, [0, 1], [0.85, 1.18]);
-  const domeY = useTransform(scrollProgress, [0, 1], ["70px", "-30px"]);
-  const domeOpacity = useTransform(
-    scrollProgress,
-    [0, 0.35, 1],
-    [0.35, 0.7, 0.95]
-  );
-
-  // 3. Rising & Expanding SASH Brand Red Arc / Horizon Bloom
-  const redCoreScaleX = useTransform(scrollProgress, [0, 1], [0.65, 1.25]);
-  const redCoreScaleY = useTransform(scrollProgress, [0, 1], [0.7, 1.2]);
-  const redCoreY = useTransform(scrollProgress, [0, 1], ["80px", "-10px"]);
-  const redCoreOpacity = useTransform(
-    scrollProgress,
-    [0, 0.4, 1],
-    [0.3, 0.7, 0.95]
-  );
-
-  // 4. Horizon Light Flare Beam
-  const beamWidth = useTransform(scrollProgress, [0, 1], ["30%", "95%"]);
-  const beamOpacity = useTransform(scrollProgress, [0, 0.35, 1], [0, 0.65, 1]);
-  const beamY = useTransform(scrollProgress, [0, 1], ["40px", "-15px"]);
-
-  // 5. Secondary Ruby Flare Pulse
-  const rubyFlareScale = useTransform(scrollProgress, [0, 1], [0.75, 1.3]);
-  const rubyFlareOpacity = useTransform(
-    scrollProgress,
-    [0, 0.5, 1],
-    [0.25, 0.6, 0.9]
-  );
-
   return (
     <div
       aria-hidden="true"
@@ -175,80 +121,25 @@ function FooterScrollGradient({
       {/* 1. Base Deep Navy to Midnight Obsidian Foundation */}
       <div className="absolute inset-0 bg-linear-to-b from-[#000000] via-[#010D3B] to-[#010722]" />
 
-      {/* 2. Parallax SVG Arch Background from footer-9-sash-bg.svg */}
+      {/* 2. Static SVG Arch Background from footer-9-sash-bg.svg */}
       {backgroundImage && (
-        <motion.div
-          style={{ y: bgTranslateY, scale: bgScale, opacity: bgOpacity }}
-          className="absolute inset-0 h-full w-full will-change-transform"
-        >
+        <div className="absolute inset-0 h-full w-full">
           <Image
             src={backgroundImage}
             alt=""
             fill
             sizes="100vw"
             aria-hidden="true"
-            className="object-cover select-none"
+            className="object-cover select-none opacity-90"
           />
-        </motion.div>
+        </div>
       )}
 
-      {/* 3. Dynamic Reactive Electric Navy & Sapphire Dome Glow */}
-      <motion.div
-        style={{
-          y: domeY,
-          scale: domeScale,
-          opacity: domeOpacity,
-        }}
-        className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-[1250px] max-w-[150vw] h-[520px] rounded-[100%] bg-[radial-gradient(ellipse_at_center,rgba(43,63,140,0.6)_0%,rgba(26,37,82,0.4)_45%,transparent_75%)] blur-3xl will-change-transform"
-      />
+      {/* 3. Static SASH Brand Red Arc / Horizon Bloom */}
+      <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[1100px] max-w-[130vw] h-[360px] rounded-[100%] bg-[radial-gradient(ellipse_at_center,rgba(222,3,2,0.75)_0%,rgba(255,59,58,0.45)_35%,rgba(184,2,1,0.2)_60%,transparent_75%)] blur-2xl pointer-events-none" />
 
-      {/* 4. Dynamic Reactive SASH Brand Red Corona & Core Wave */}
-      <motion.div
-        style={{
-          y: redCoreY,
-          scaleX: redCoreScaleX,
-          scaleY: redCoreScaleY,
-          opacity: redCoreOpacity,
-        }}
-        className="absolute -bottom-36 left-1/2 -translate-x-1/2 w-[1100px] max-w-[130vw] h-[380px] rounded-[100%] bg-[radial-gradient(ellipse_at_center,rgba(222,3,2,0.85)_0%,rgba(255,59,58,0.55)_35%,rgba(184,2,1,0.25)_60%,transparent_75%)] blur-2xl will-change-transform"
-      />
-
-      {/* 5. Central High-Intensity Ruby Flare (Deep bottom center anchor) */}
-      <motion.div
-        style={{
-          scale: rubyFlareScale,
-          opacity: rubyFlareOpacity,
-        }}
-        className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[700px] max-w-[90vw] h-[200px] rounded-[100%] bg-[radial-gradient(ellipse_at_center,rgba(255,90,90,0.9)_0%,rgba(222,3,2,0.75)_40%,transparent_70%)] blur-xl will-change-transform"
-      />
-
-      {/* 6. Reactive Horizon Crest Light Beam (Stretches across the horizon on scroll) */}
-      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none">
-        <motion.div
-          style={{
-            width: beamWidth,
-            opacity: beamOpacity,
-            y: beamY,
-          }}
-          className="h-[3px] bg-linear-to-r from-transparent via-white to-transparent shadow-[0_0_28px_8px_rgba(255,80,80,0.95)] will-change-transform"
-        />
-      </div>
-
-      {/* 7. Interactive Pointer Glow on Hover (Desktop) */}
-      {mousePos.active && !shouldReduceMotion && (
-        <div
-          className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] rounded-full blur-3xl opacity-25 transition-opacity duration-300"
-          style={{
-            left: mousePos.x,
-            top: mousePos.y,
-            background:
-              "radial-gradient(circle, rgba(255,59,58,0.5) 0%, rgba(43,63,140,0.25) 50%, transparent 70%)",
-          }}
-        />
-      )}
-
-      {/* 8. Ambient Top Vignette (Smooth transition from preceding section) */}
-      <div className="absolute inset-x-0 top-0 h-36 bg-linear-to-b from-black/85 via-black/35 to-transparent pointer-events-none" />
+      {/* 4. Ambient Top Vignette */}
+      <div className="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-black/85 via-black/35 to-transparent pointer-events-none" />
     </div>
   );
 }
@@ -264,65 +155,13 @@ export function Footer9({
   navLinks = [],
   copyright = '© 2026 SASH Broadband Private Limited. All rights reserved',
   legalLinks = [],
-  enableScrollGradient = true,
 }: Footer9Props) {
-  const footerRef = useRef<HTMLElement>(null);
-  const [mousePos, setMousePos] = useState({ x: -9999, y: -9999, active: false });
-
-  // Bind scroll progress directly to the footer container in view
-  const { scrollYProgress } = useScroll({
-    target: footerRef,
-    offset: ['start end', 'end end'],
-  });
-
-  // Inertial spring for butter-smooth momentum
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 24,
-    restDelta: 0.001,
-  });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-      active: true,
-    });
-  };
-
-  const handleMouseLeave = () => {
-    setMousePos((prev) => ({ ...prev, active: false }));
-  };
-
   return (
     <footer
-      ref={footerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       className="relative w-full overflow-hidden bg-brand-navy py-12 selection:bg-brand-red selection:text-white"
     >
-      {/* Scroll-Reactive Gradient Background */}
-      {enableScrollGradient ? (
-        <FooterScrollGradient
-          scrollProgress={smoothProgress}
-          backgroundImage={backgroundImage}
-          mousePos={mousePos}
-        />
-      ) : (
-        backgroundImage && (
-          <div className="pointer-events-none absolute inset-0 h-full w-full select-none">
-            <Image
-              src={backgroundImage}
-              alt=""
-              fill
-              sizes="100vw"
-              aria-hidden="true"
-              className="object-cover"
-            />
-          </div>
-        )
-      )}
+      {/* Static Footer Background with Zero Animation */}
+      <StaticFooterBackground backgroundImage={backgroundImage} />
 
       <motion.div
         variants={containerVariants}
