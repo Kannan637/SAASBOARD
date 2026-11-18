@@ -742,7 +742,7 @@ export function BroadbandFeatures() {
     <section
       data-apple-manual="true"
       aria-labelledby="why-sash-heading"
-      className="bg-neutral-100 text-brand-navy section-padding"
+      className="bg-transparent text-brand-navy section-padding"
     >
       <div className="container-sash">
         {/* Section Header */}

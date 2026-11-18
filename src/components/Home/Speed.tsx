@@ -398,7 +398,7 @@ export default function TamilNaduSpeedHero() {
       ref={sectionRef}
       data-apple-manual="true"
       aria-labelledby="speed-showcase-heading"
-      className="relative h-[250vh] w-full bg-white"
+      className="relative h-[250vh] w-full bg-transparent"
     >
       {/* Sticky Viewport Stage: Pins while scrolling 0 Mbps -> 50 Mbps, then moves to next section */}
       <div className="sticky top-20 h-[calc(100vh-5rem)] w-full overflow-hidden flex flex-col justify-end">
@@ -413,9 +413,9 @@ export default function TamilNaduSpeedHero() {
           {/* Center Phone Mockup (75% visible, bottom 25% hidden) */}
           <PhoneMockup smoothProgress={smoothProgress} />
 
-          {/* Seamless White Bottom Fade (matching shared_img bottom dissolve) */}
+          {/* Seamless Bottom Fade */}
           <div
-            className="pointer-events-none absolute bottom-0 inset-x-0 z-30 h-[105px] bg-gradient-to-t from-white via-white/90 to-transparent"
+            className="pointer-events-none absolute bottom-0 inset-x-0 z-30 h-[105px] bg-gradient-to-t from-[#F8F8FC] via-[#F8F8FC]/90 to-transparent"
             aria-hidden="true"
           />
         </div>

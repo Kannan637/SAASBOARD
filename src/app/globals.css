@@ -115,7 +115,7 @@
     font-size: 16px;
     line-height: 1.6;
     scroll-behavior: auto;
-    @apply font-sans text-brand-navy bg-white;
+    @apply font-sans text-brand-navy bg-transparent;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -134,7 +134,7 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased selection:bg-brand-red selection:text-white;
+    @apply bg-transparent text-foreground antialiased selection:bg-brand-red selection:text-white;
     font-family: var(--font-sans);
     font-size: 0.875rem;
     /* 14px Body MD per Juspay */
@@ -142,6 +142,18 @@
     /* 20px line-height per Juspay */
     font-weight: 400;
     letter-spacing: 0;
+  }
+
+  .bg-pinstripe-fixed {
+    background-color: #F8F8FC;
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(37, 58, 123, 0.045) 0px,
+      rgba(37, 58, 123, 0.045) 0.75px,
+      transparent 0.75px,
+      transparent 3.5px
+    );
+    background-attachment: fixed;
   }
 
   p {

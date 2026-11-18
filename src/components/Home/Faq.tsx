@@ -70,7 +70,7 @@ export default function Faq() {
       id="faq"
       data-apple-manual="true"
       aria-labelledby="faq-heading"
-      className="bg-neutral-100 text-brand-navy section-padding"
+      className="bg-transparent text-brand-navy section-padding"
     >
       <script
         type="application/ld+json"

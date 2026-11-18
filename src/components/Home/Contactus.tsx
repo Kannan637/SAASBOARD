@@ -240,7 +240,7 @@ export default function Contactus({
       id="contact"
       data-apple-manual="true"
       aria-labelledby="contact-heading"
-      className="bg-white text-brand-navy section-padding"
+      className="bg-transparent text-brand-navy section-padding"
     >
       <div className="container-sash">
         {/* Centered Section Header */}

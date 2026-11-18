@@ -137,7 +137,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-IN" className={`${urbanist.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-white text-brand-navy font-normal">
+      <body className="min-h-full flex flex-col bg-transparent text-brand-navy font-normal relative">
+        {/* Dedicated Fixed Viewport Diagonal Pinstripe Background Layer */}
+        <div
+          aria-hidden="true"
+          className="fixed inset-0 -z-10 pointer-events-none bg-[#F8F8FC] bg-fixed bg-[repeating-linear-gradient(135deg,rgba(37,58,123,0.045)_0px,rgba(37,58,123,0.045)_0.75px,transparent_0.75px,transparent_3.5px)]"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ispJsonLd) }}

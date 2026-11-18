@@ -28,7 +28,7 @@ export interface BusinessShowcaseProps {
 }
 
 const PINSTRIPE_SECTION_BG =
-  "bg-[#F8F8FC] bg-[repeating-linear-gradient(135deg,rgba(37,58,123,0.05)_0px,rgba(37,58,123,0.05)_1px,transparent_1px,transparent_5px)]";
+  "bg-transparent";
 
 const FRAME_GRADIENT =
   "bg-gradient-to-br from-[#F8FAFF] via-[#E5EDFF] via-[#F4DDE2] to-[#DE0302] bg-[linear-gradient(to_bottom_right,#F8FAFF_0%,#E5EDFF_36%,#F4DDE2_68%,#DE0302_100%)]";

@@ -211,12 +211,12 @@ export default function Service() {
 
   return (
     <>
-      {/* 5. Services Overview (Light Grey background) */}
+      {/* 5. Services Overview */}
       <section
         id="services"
         data-apple-manual="true"
         aria-labelledby="services-heading"
-        className="bg-neutral-100 text-brand-navy section-padding"
+        className="bg-transparent text-brand-navy section-padding"
       >
         <div className="container-sash">
           <AppleReveal className="max-w-2xl mx-auto text-center flex flex-col items-center mb-12 sm:mb-16 lg:mb-20">

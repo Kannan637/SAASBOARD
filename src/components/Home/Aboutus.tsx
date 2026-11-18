@@ -128,7 +128,7 @@ export default function Aboutus() {
             id="about"
             data-apple-manual="true"
             aria-labelledby="partner-marquee-heading"
-            className="bg-white text-brand-navy py-20 md:py-28 lg:py-32 overflow-hidden"
+            className="bg-transparent text-brand-navy py-20 md:py-28 lg:py-32 overflow-hidden"
         >
             <div className="container-sash mb-14 sm:mb-16 lg:mb-20">
                 <AppleReveal className="grid grid-cols-1 lg:grid-cols-12">
@@ -165,16 +165,7 @@ export default function Aboutus() {
             </div>
 
             {/* Full-width two-row counter-scrolling marquee stage with soft side fades */}
-            <div className="relative mx-auto max-w-[1440px]">
-                <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 sm:w-28 bg-gradient-to-r from-white via-white/85 to-transparent"
-                />
-                <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 sm:w-28 bg-gradient-to-l from-white via-white/85 to-transparent"
-                />
-
+            <div className="relative mx-auto max-w-[1440px] [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
                 <div className="space-y-5 sm:space-y-6 lg:space-y-7">
                     {/* Top Marquee Row: Right to Left */}
                     <MarqueeLogoTrack
