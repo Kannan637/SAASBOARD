@@ -336,13 +336,13 @@ export function LicensedISPCARD() {
             </span>
           </div>
 
-          {/* 3D Cobe Globe: Centered directly on Tamil Nadu (lat 13°N, long 80°E), permanently visible */}
+          {/* 3D Cobe Globe: Centered directly on Tamil Nadu (lat 13°N, long 80°E), smoothly rotating */}
           <div className="pointer-events-auto absolute -bottom-[75px] min-[360px]:-bottom-[85px] sm:-bottom-[95px] left-1/2 -translate-x-1/2 w-[340px] h-[340px] min-[360px]:w-[380px] min-[360px]:h-[380px] sm:w-[410px] sm:h-[410px] flex items-center justify-center">
             <GlobeStickers
               markers={TAMIL_NADU_ONLY_MARKER}
               initialPhi={3.36}
               initialTheta={0.05}
-              speed={0}
+              speed={shouldReduceMotion ? 0 : 0.0016}
               dark={1}
               baseColor={[0.8, 0.9, 1]}
               markerColor={[0.871, 0.012, 0.008]}
@@ -395,51 +395,72 @@ function MessengerIcon({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
-const SUPPORT_ORBIT_ITEMS = [
+const SUPPORT_INTERACTIONS = [
   {
     id: "whatsapp",
     label: "WhatsApp",
-    icon: <WhatsAppIcon className="w-4.5 h-4.5 text-[#25D366]" />,
-    left: "100%",
-    top: "50%",
+    channel: "WhatsApp Customer Message",
+    customer: "Karthik R.",
+    location: "Thiruvallur",
+    time: "Just now",
+    accentColor: "#25D366",
+    badgeBg: "bg-emerald-50 text-emerald-700 border-emerald-200/80",
+    iconBg: "bg-[#25D366] text-white",
+    icon: <WhatsAppIcon className="w-3.5 h-3.5" />,
+    customerBubble: "Hi SASH! Need to upgrade my home fiber plan to 100 Mbps.",
+    replyBubble: "Done! 100 Mbps plan activated on your router. 🚀",
+    statusText: "Replied in 32s • Direct NOC",
   },
   {
-    id: "phone",
-    label: "Direct Call",
-    icon: <PhoneCall className="w-4.5 h-4.5 text-[#DE0302]" />,
-    left: "65.45%",
-    top: "97.55%",
+    id: "call",
+    label: "Phone Call",
+    channel: "Customer Support Call",
+    customer: "Meena K.",
+    location: "Red Hills",
+    time: "Live • 00:38",
+    accentColor: "#DE0302",
+    badgeBg: "bg-red-50 text-brand-red border-brand-red/20",
+    iconBg: "bg-brand-red text-white",
+    icon: <PhoneCall className="w-3.5 h-3.5" />,
+    incomingText: "Incoming Customer Line: Thiruvallur Desk",
+    connectedText: "Connected to Senior NOC Engineer",
+    statusText: "Zero IVR delay • Instant pickup",
   },
   {
-    id: "messenger",
-    label: "Messenger",
-    icon: <MessengerIcon className="w-4.5 h-4.5 text-[#0084FF]" />,
-    left: "9.55%",
-    top: "79.39%",
-  },
-  {
-    id: "support",
-    label: "NOC Desk",
-    icon: <Headphones className="w-4.5 h-4.5 text-brand-navy" />,
-    left: "9.55%",
-    top: "20.61%",
-  },
-  {
-    id: "chat",
-    label: "Live Chat",
-    icon: <MessageSquare className="w-4.5 h-4.5 text-brand-red" />,
-    left: "65.45%",
-    top: "2.45%",
+    id: "message",
+    label: "Live Message",
+    channel: "Customer Helpdesk Message",
+    customer: "Suresh Kumar",
+    location: "Gummudipoondi",
+    time: "1m ago",
+    accentColor: "#010D3B",
+    badgeBg: "bg-blue-50 text-blue-700 border-blue-200/80",
+    iconBg: "bg-brand-navy text-white",
+    icon: <MessageSquare className="w-3.5 h-3.5" />,
+    customerBubble: "Need new fiber cable setup for office by 4 PM.",
+    replyBubble: "Field engineer assigned: On-site in 20 mins.",
+    statusText: "Ticket #2841 • Resolved",
   },
 ] as const;
 
 /**
  * Card 04 — 24/7 Local Support (Bottom-Center: 4 of 12 columns on desktop)
- * Features a close-up 45% visible orbital animation: communication icons (WhatsApp,
- * Messenger, Phone, etc.) rotating around a central glowing SASH logo hub.
+ * Sequential simulated customer interaction cards (WhatsApp, Call, Message)
+ * animating one after one with live channel indicators and status pills.
  */
 export function SupportCard() {
-  const shouldReduceMotion = useReducedMotion();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % SUPPORT_INTERACTIONS.length);
+    }, 3600);
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  const active = SUPPORT_INTERACTIONS[currentIndex];
 
   return (
     <FeatureCard
@@ -448,9 +469,11 @@ export function SupportCard() {
       cardClassName="flex flex-col justify-between p-0 overflow-hidden"
     >
       <CardContent className="p-0 flex-1 flex flex-col justify-between overflow-hidden">
-        {/* Top Status Stage with Support Network Hub (Edge-to-Edge) */}
+        {/* Top Status Stage with Live Customer Interactions (Edge-to-Edge) */}
         <div
-          className={`relative w-full h-[210px] min-[360px]:h-[225px] sm:h-[240px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support`}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          className={`relative w-full h-[210px] min-[360px]:h-[225px] sm:h-[240px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-2.5 min-[360px]:p-3 sm:p-3.5 select-none group/support`}
         >
           {/* Smooth Blend at the Meeting Point */}
           <div
@@ -458,64 +481,154 @@ export function SupportCard() {
             className="absolute inset-x-0 bottom-0 h-10 sm:h-12 bg-gradient-to-t from-white via-white/80 to-transparent z-10 pointer-events-none"
           />
 
-          {/* Top Badges Bar: 24/7 NOC Desk */}
-          <div className="relative z-30 w-full flex items-center justify-between gap-2 pointer-events-none">
-            <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-red px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs">
-              <Headphones className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>24/7 NOC Desk</span>
+          {/* Top Channel Tabs Bar: WhatsApp, Phone Call, Message */}
+          <div className="relative z-30 w-full flex items-center justify-between gap-1 pointer-events-auto">
+            <div className="flex items-center gap-1 sm:gap-1.5">
+              {SUPPORT_INTERACTIONS.map((item, idx) => {
+                const isSelected = idx === currentIndex;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => setCurrentIndex(idx)}
+                    className={`inline-flex items-center gap-1 rounded-full px-2 sm:px-2.5 py-0.5 font-mono text-[9px] min-[360px]:text-[10px] font-semibold tracking-wider transition-all duration-200 cursor-pointer ${
+                      isSelected
+                        ? "bg-brand-navy text-white shadow-xs"
+                        : "bg-white/75 text-brand-navy/70 hover:bg-white hover:text-brand-navy border border-brand-navy/10"
+                    }`}
+                  >
+                    <span
+                      className={`w-1.5 h-1.5 rounded-full ${
+                        isSelected
+                          ? item.id === "whatsapp"
+                            ? "bg-[#25D366] animate-pulse"
+                            : item.id === "call"
+                            ? "bg-brand-red animate-ping"
+                            : "bg-blue-500 animate-pulse"
+                          : "bg-neutral-400"
+                      }`}
+                    />
+                    <span>{item.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-red-10 px-2 py-0.5 font-mono text-[9px] min-[360px]:text-[10px] font-semibold text-brand-red uppercase tracking-wider border border-brand-red/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-red animate-pulse" />
+              <span>Live Desk</span>
             </span>
           </div>
 
-          {/* Clean Support Network Stage without Radar Animation */}
-          <div className="pointer-events-auto absolute top-[115px] min-[360px]:top-[125px] sm:top-[132px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] h-[260px] min-[360px]:w-[280px] min-[360px]:h-[280px] sm:w-[310px] sm:h-[310px] flex items-center justify-center">
-            {/* Clean Circular Orbit Guide Track */}
-            <div className="pointer-events-none absolute w-[200px] h-[200px] sm:w-[220px] sm:h-[220px] rounded-full border border-brand-navy/15" />
+          {/* Center Notification Card: Animates One After One */}
+          <div className="relative z-20 flex-1 flex items-center justify-center my-auto py-1">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active.id}
+                initial={{ opacity: 0, y: 12, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -12, scale: 0.96 }}
+                transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full max-w-[325px] sm:max-w-[340px] rounded-2xl bg-white/95 backdrop-blur-md p-2.5 sm:p-3 shadow-[0_6px_20px_rgba(1,13,59,0.1)] border border-brand-navy/10"
+              >
+                {/* Header: Customer Info & Status Tag */}
+                <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-brand-navy/6">
+                  <div className="flex items-center gap-2">
+                    <div
+                      className={`w-6 h-6 sm:w-6.5 sm:h-6.5 rounded-full ${active.iconBg} flex items-center justify-center shrink-0 shadow-xs`}
+                    >
+                      {active.icon}
+                    </div>
+                    <div className="flex flex-col text-left">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[11.5px] sm:text-[12.5px] font-semibold text-brand-navy leading-tight">
+                          {active.customer}
+                        </span>
+                        <span className="text-[9.5px] text-neutral-600/70 font-normal">
+                          • {active.location}
+                        </span>
+                      </div>
+                      <span className="text-[9px] text-neutral-600/75">
+                        {active.channel}
+                      </span>
+                    </div>
+                  </div>
 
-            {/* Orbiting Communication Channel Icons */}
-            <motion.div
-              animate={shouldReduceMotion ? undefined : { rotate: 360 }}
-              transition={{ duration: 24, ease: "linear", repeat: Infinity }}
-              className="absolute w-[200px] h-[200px] sm:w-[220px] sm:h-[220px] rounded-full"
-            >
-              {SUPPORT_ORBIT_ITEMS.map((item) => (
-                <div
-                  key={item.id}
-                  className="absolute -translate-x-1/2 -translate-y-1/2"
-                  style={{
-                    left: item.left,
-                    top: item.top,
-                  }}
-                >
-                  {/* Counter-rotate each icon so it stays upright at all angles */}
-                  <motion.div
-                    animate={shouldReduceMotion ? undefined : { rotate: -360 }}
-                    transition={{
-                      duration: 24,
-                      ease: "linear",
-                      repeat: Infinity,
-                    }}
-                    className="w-8 h-8 min-[360px]:w-9 min-[360px]:h-9 sm:w-10 sm:h-10 rounded-full bg-white shadow-[0_4px_16px_rgba(1,13,59,0.18)] border border-brand-navy/8 flex items-center justify-center transition-transform duration-200 hover:scale-115"
-                    title={item.label}
+                  <span
+                    className={`inline-flex items-center rounded-full px-2 py-0.5 text-[9px] font-medium border ${active.badgeBg}`}
                   >
-                    {item.icon}
-                  </motion.div>
+                    {active.time}
+                  </span>
                 </div>
-              ))}
-            </motion.div>
 
-            {/* Center SASH Hub Badge (Clean, No Radar Animation) */}
-            <div className="relative z-20 flex flex-col items-center justify-center">
-              <div className="relative w-12 h-12 min-[360px]:w-14 min-[360px]:h-14 sm:w-16 sm:h-16 rounded-full bg-white shadow-[0_6px_20px_rgba(1,13,59,0.15)] border border-brand-navy/10 flex items-center justify-center p-2.5 transition-transform duration-300 group-hover/support:scale-105">
-                <Image
-                  src="/Logo/Favicon.png"
-                  alt="SASH"
-                  width={44}
-                  height={44}
-                  priority
-                  className="w-full h-full object-contain select-none"
-                />
-              </div>
-            </div>
+                {/* Content: Customer Message or Call */}
+                {active.id === "call" ? (
+                  <div className="space-y-1.5">
+                    <div className="rounded-xl bg-red-50/90 border border-brand-red/15 px-2.5 py-1.5 flex items-center justify-between">
+                      <div className="flex items-center gap-1.5">
+                        <span className="flex h-2 w-2 rounded-full bg-brand-red animate-ping" />
+                        <span className="text-[10.5px] font-medium text-brand-red truncate max-w-[200px]">
+                          {active.incomingText}
+                        </span>
+                      </div>
+                      {/* Audio waveform */}
+                      <div className="flex items-end gap-0.5 h-3 shrink-0">
+                        <span className="w-0.5 h-2 bg-brand-red rounded-full animate-pulse" />
+                        <span className="w-0.5 h-3 bg-brand-red rounded-full animate-bounce" />
+                        <span className="w-0.5 h-1.5 bg-brand-red rounded-full animate-pulse" />
+                        <span className="w-0.5 h-2.5 bg-brand-red rounded-full animate-bounce" />
+                      </div>
+                    </div>
+                    <div className="rounded-xl bg-neutral-100/90 px-2.5 py-1 flex items-center justify-between">
+                      <span className="text-[10.5px] text-brand-navy font-medium">
+                        {active.connectedText}
+                      </span>
+                      <span className="text-[9px] font-mono text-emerald-600 font-semibold">
+                        Connected
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-1">
+                    {/* Customer Message Bubble */}
+                    <div className="flex items-start">
+                      <div className="rounded-xl rounded-tl-xs bg-neutral-100 px-2.5 py-1 text-[10.5px] text-brand-navy max-w-[90%] leading-snug">
+                        {active.customerBubble}
+                      </div>
+                    </div>
+
+                    {/* NOC Team Reply Bubble */}
+                    <div className="flex items-end justify-end">
+                      <div
+                        className={`rounded-xl rounded-tr-xs px-2.5 py-1 text-[10.5px] max-w-[90%] leading-snug flex items-center gap-1.5 ${
+                          active.id === "whatsapp"
+                            ? "bg-[#DCF8C6] text-[#075E54] border border-[#25D366]/25"
+                            : "bg-blue-50 text-blue-900 border border-blue-200"
+                        }`}
+                      >
+                        <span>{active.replyBubble}</span>
+                        {active.id === "whatsapp" && (
+                          <span className="text-[#34B7F1] text-[10px] font-bold shrink-0">
+                            ✓✓
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Footer Status Pill */}
+                <div className="mt-1.5 pt-1 border-t border-brand-navy/6 flex items-center justify-between text-[9px]">
+                  <span className="text-neutral-600 font-medium flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                    {active.statusText}
+                  </span>
+                  <span className="text-brand-navy/60 font-mono">
+                    24/7 Local Support
+                  </span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
 
