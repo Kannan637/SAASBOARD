@@ -89,7 +89,7 @@ export function FeatureCard({
       className={`group/bento flex flex-col h-full ${className}`}
     >
       <Card
-        className={`relative w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-brand-navy/10 rounded-2xl shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] hover:shadow-[0px_8px_24px_rgba(5,5,6,0.08)] overflow-hidden py-0 gap-0 ring-0 transition-all duration-300 ${cardClassName}`}
+        className={`relative w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-brand-navy/10 rounded-2xl shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] overflow-hidden py-0 gap-0 ring-0 transition-all duration-300 ${cardClassName}`}
       >
         {children}
       </Card>

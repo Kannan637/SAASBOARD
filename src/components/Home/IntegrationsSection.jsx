@@ -182,7 +182,7 @@ export function IntegrationCard({ item }) {
     <div
       role="listitem"
       aria-label={item.ariaLabel}
-      className="group relative z-10 flex h-[105px] w-full md:w-[225px] items-center justify-center rounded-2xl bg-white px-6 border border-[#ECEAF8] border-b-[4px] border-b-[#DDD9F2] shadow-[0_10px_25px_rgba(120,110,200,0.15)] transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_16px_32px_rgba(120,110,200,0.24)] select-none"
+      className="group relative z-10 flex h-[105px] w-full md:w-[225px] items-center justify-center rounded-2xl bg-white px-6 border border-[#ECEAF8] border-b-[4px] border-b-[#DDD9F2] shadow-[0_10px_25px_rgba(120,110,200,0.15)] transition-all duration-200 ease-out hover:-translate-y-1 select-none"
     >
       {item.renderLogo()}
     </div>
