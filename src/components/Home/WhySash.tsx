@@ -364,84 +364,101 @@ export function LicensedISPCARD() {
   );
 }
 
-function WhatsAppIcon({ className = "w-4 h-4" }: { className?: string }) {
+function ClickCursorIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className={className}
-      aria-hidden="true"
-    >
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+    <svg className={className} viewBox="0 0 24 24" fill="none">
+      {/* 3 Radiating Click Sparks at top-left */}
+      <line x1="5" y1="2.5" x2="5" y2="4.5" stroke="#5B64E8" strokeWidth="2" strokeLinecap="round" />
+      <line x1="2" y1="5.5" x2="3.5" y2="7" stroke="#5B64E8" strokeWidth="2" strokeLinecap="round" />
+      <line x1="8.5" y1="5.5" x2="7" y2="7" stroke="#5B64E8" strokeWidth="2" strokeLinecap="round" />
+      {/* Violet cursor pointer */}
+      <path
+        d="M5.5 8L15 15.5L11 16.2L12.8 20.2L10.5 21.2L8.7 17.2L5.5 19.5V8Z"
+        fill="#5B64E8"
+        stroke="#5B64E8"
+        strokeWidth="1"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
 
-function MessengerIcon({ className = "w-4 h-4" }: { className?: string }) {
+function SupportHeadsetIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className={className}
-      aria-hidden="true"
-    >
-      <path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.745 6.616 4.472 8.652v4.237l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm1.191 14.963l-3.056-3.259-5.963 3.259 6.559-6.963 3.13 3.259 5.89-3.259-6.56 6.963z" />
+    <svg className={className} viewBox="0 0 24 24" fill="none">
+      {/* Headset arc */}
+      <path
+        d="M4 12.5C4 8.08 7.58 4.5 12 4.5C16.42 4.5 20 8.08 20 12.5"
+        stroke="#5B64E8"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      {/* Ear cushions */}
+      <rect x="2.5" y="11" width="3" height="5.5" rx="1.5" fill="#5B64E8" />
+      <rect x="18.5" y="11" width="3" height="5.5" rx="1.5" fill="#5B64E8" />
+      {/* Speech bubble in the center */}
+      <path
+        d="M8.5 9.5H15.5C16.33 9.5 17 10.17 17 11V14C17 14.83 16.33 15.5 15.5 15.5H11.5L8.5 17.5V15.5C7.67 15.5 7 14.83 7 14V11C7 10.17 7.67 9.5 8.5 9.5Z"
+        fill="#5B64E8"
+      />
+      {/* Dots inside chat bubble */}
+      <circle cx="10" cy="12.5" r="0.75" fill="white" />
+      <circle cx="12" cy="12.5" r="0.75" fill="white" />
+      <circle cx="14" cy="12.5" r="0.75" fill="white" />
     </svg>
   );
 }
 
-const SUPPORT_ORBIT_ITEMS = [
+function HelpQuestionBadge() {
+  return (
+    <div className="w-5.5 h-5.5 rounded-full bg-[#5B64E8] flex items-center justify-center text-white font-bold text-[11px] leading-none shadow-xs select-none">
+      ?
+    </div>
+  );
+}
+
+function CenterAvatarIcon({ className = "w-7 h-7" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      {/* Head */}
+      <circle cx="12" cy="7" r="4" fill="white" />
+      {/* Shoulders */}
+      <path
+        d="M5 19.5C5 15.91 7.91 13 11.5 13H12.5C16.09 13 19 15.91 19 19.5V20.5H5V19.5Z"
+        fill="white"
+      />
+    </svg>
+  );
+}
+
+const SUPPORT_SATELLITE_ITEMS = [
   {
-    id: "whatsapp",
-    label: "WhatsApp",
-    icon: (
-      <WhatsAppIcon className="w-6.5 h-6.5 min-[360px]:w-7 min-[360px]:h-7 text-[#25D366]" />
-    ),
-    left: "50%",
-    top: "0%",
+    id: "pointer",
+    label: "One-Click Instant Help",
+    icon: <ClickCursorIcon className="w-5 h-5" />,
+    left: "25%",
+    top: "6.7%",
   },
   {
-    id: "phone",
-    label: "Direct Call",
-    icon: (
-      <PhoneCall className="w-6 h-6 min-[360px]:w-6.5 min-[360px]:h-6.5 text-[#DE0302]" />
-    ),
-    left: "97.6%",
-    top: "34.5%",
+    id: "headset",
+    label: "Dedicated Support Agent",
+    icon: <SupportHeadsetIcon className="w-5 h-5" />,
+    left: "99.2%",
+    top: "58.7%",
   },
   {
-    id: "message",
-    label: "Live Message",
-    icon: (
-      <MessageSquare className="w-6 h-6 min-[360px]:w-6.5 min-[360px]:h-6.5 text-[#0084FF]" />
-    ),
-    left: "79.4%",
-    top: "90.5%",
-  },
-  {
-    id: "support",
-    label: "24/7 NOC Desk",
-    icon: (
-      <Headphones className="w-6 h-6 min-[360px]:w-6.5 min-[360px]:h-6.5 text-brand-navy" />
-    ),
-    left: "20.6%",
-    top: "90.5%",
-  },
-  {
-    id: "chat",
-    label: "Helpdesk Chat",
-    icon: (
-      <MessageSquare className="w-6 h-6 min-[360px]:w-6.5 min-[360px]:h-6.5 text-brand-red" />
-    ),
-    left: "2.4%",
-    top: "34.5%",
+    id: "help",
+    label: "24/7 Help Desk",
+    icon: <HelpQuestionBadge />,
+    left: "14.6%",
+    top: "85.4%",
   },
 ] as const;
 
 /**
  * Card 04 — 24/7 Local Support (Bottom-Center: 4 of 12 columns on desktop)
- * Features rotating communication icons (WhatsApp, Phone, Message, NOC Desk, Chat)
- * prominently sized and orbiting around the central SASH brand hub.
+ * Features concentric radar ripple rings, a vibrant 3D central avatar sphere,
+ * and 3 orbiting satellite badges (One-Click Pointer, Headset, Help Desk).
  */
 export function SupportCard() {
   const shouldReduceMotion = useReducedMotion();
@@ -453,9 +470,9 @@ export function SupportCard() {
       cardClassName="flex flex-col justify-between p-0 overflow-hidden"
     >
       <CardContent className="p-0 flex-1 flex flex-col justify-between overflow-hidden">
-        {/* Top Status Stage with Rotating Communication Orbit (Edge-to-Edge) */}
+        {/* Top Status Stage with Concentric Radar Orbit (Edge-to-Edge) */}
         <div
-          className={`relative w-full h-[210px] min-[360px]:h-[225px] sm:h-[240px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support`}
+          className="relative w-full h-[220px] min-[360px]:h-[235px] sm:h-[250px] overflow-hidden bg-[radial-gradient(circle_at_center,#F4F6FF_0%,#E9EEFF_45%,#DDE5FC_75%,#ECEFF7_100%)] flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support"
         >
           {/* Smooth Blend at the Meeting Point */}
           <div aria-hidden="true" className={`${CARD_BOTTOM_BLEND} z-10`} />
@@ -464,22 +481,40 @@ export function SupportCard() {
           <div className="relative z-30 w-full flex items-center justify-between gap-2 pointer-events-none">
             <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-red px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs">
               <Headphones className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>24/7 NOC Desk</span>
+              <span>24/7 Local Support</span>
             </span>
           </div>
 
-          {/* Rotating Orbit Stage with Prominently Sized Channel Icons */}
-          <div className="pointer-events-auto absolute z-20 top-[118px] min-[360px]:top-[125px] sm:top-[132px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[270px] h-[270px] min-[360px]:w-[290px] min-[360px]:h-[290px] sm:w-[310px] sm:h-[310px] flex items-center justify-center">
-            {/* Circular Orbit Guide Track */}
-            <div className="pointer-events-none absolute w-[205px] h-[205px] min-[360px]:w-[220px] min-[360px]:h-[220px] sm:w-[235px] sm:h-[235px] rounded-full border border-brand-navy/15" />
+          {/* Concentric Radar Waves & Orbiting Satellites Stage */}
+          <div className="pointer-events-auto absolute z-20 top-[125px] min-[360px]:top-[132px] sm:top-[140px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[270px] h-[270px] min-[360px]:w-[290px] min-[360px]:h-[290px] sm:w-[310px] sm:h-[310px] flex items-center justify-center">
+            {/* Concentric Radar Ripple Rings matching shared image */}
+            <div className="pointer-events-none absolute w-[240px] h-[240px] rounded-full border border-[#818CF8]/25 bg-[#EEF2FF]/20" />
+            <div className="pointer-events-none absolute w-[176px] h-[176px] rounded-full border border-[#818CF8]/30 bg-[#E0E7FF]/25" />
+            <div className="pointer-events-none absolute w-[114px] h-[114px] rounded-full border border-[#818CF8]/35 bg-[#C7D2FE]/25" />
 
-            {/* Rotating Orbit Container with Counter-Rotating Communication Icons */}
+            {/* Subtle Expanding Radar Pulse Wave */}
+            {!shouldReduceMotion && (
+              <motion.div
+                animate={{
+                  scale: [1, 1.25, 1.45],
+                  opacity: [0.45, 0.2, 0],
+                }}
+                transition={{
+                  duration: 3.2,
+                  repeat: Infinity,
+                  ease: "easeOut",
+                }}
+                className="pointer-events-none absolute w-[114px] h-[114px] rounded-full border border-[#6366F1]/40"
+              />
+            )}
+
+            {/* Rotating Orbit Container with Counter-Rotating Satellite Badges */}
             <motion.div
               animate={shouldReduceMotion ? undefined : { rotate: 360 }}
               transition={{ duration: 24, ease: "linear", repeat: Infinity }}
-              className="absolute w-[205px] h-[205px] min-[360px]:w-[220px] min-[360px]:h-[220px] sm:w-[235px] sm:h-[235px] rounded-full"
+              className="absolute w-[176px] h-[176px] rounded-full"
             >
-              {SUPPORT_ORBIT_ITEMS.map((item) => (
+              {SUPPORT_SATELLITE_ITEMS.map((item) => (
                 <div
                   key={item.id}
                   className="absolute -translate-x-1/2 -translate-y-1/2"
@@ -488,7 +523,7 @@ export function SupportCard() {
                     top: item.top,
                   }}
                 >
-                  {/* Counter-rotate each icon so it stays upright at all angles */}
+                  {/* Counter-rotate each satellite so it remains upright at all angles */}
                   <motion.div
                     animate={shouldReduceMotion ? undefined : { rotate: -360 }}
                     transition={{
@@ -496,7 +531,7 @@ export function SupportCard() {
                       ease: "linear",
                       repeat: Infinity,
                     }}
-                    className="w-12 h-12 min-[360px]:w-13 min-[360px]:h-13 sm:w-14 sm:h-14 rounded-full bg-white shadow-[0_6px_20px_rgba(1,13,59,0.14)] border border-brand-navy/10 flex items-center justify-center transition-transform duration-200 hover:scale-115 cursor-pointer"
+                    className="w-10 h-10 min-[360px]:w-10.5 min-[360px]:h-10.5 sm:w-11 sm:h-11 rounded-full bg-white shadow-[0_6px_18px_rgba(91,100,232,0.22),0_1px_3px_rgba(0,0,0,0.06)] border border-white/90 flex items-center justify-center transition-transform duration-200 hover:scale-115 cursor-pointer"
                     title={item.label}
                   >
                     {item.icon}
@@ -505,19 +540,24 @@ export function SupportCard() {
               ))}
             </motion.div>
 
-            {/* Center SASH Hub Badge */}
-            <div className="relative z-20 flex flex-col items-center justify-center">
-              <div className="relative w-13 h-13 min-[360px]:w-15 min-[360px]:h-15 sm:w-16 sm:h-16 rounded-full bg-white shadow-[0_6px_20px_rgba(1,13,59,0.14)] border border-brand-navy/10 flex items-center justify-center p-2.5 transition-transform duration-300 group-hover/support:scale-105">
-                <Image
-                  src="/Logo/Favicon.png"
-                  alt="SASH"
-                  width={48}
-                  height={48}
-                  priority
-                  className="w-full h-full object-contain select-none"
-                />
-              </div>
-            </div>
+            {/* Center Glossy 3D Blue-Purple Avatar Sphere matching shared image */}
+            <motion.div
+              animate={
+                shouldReduceMotion
+                  ? undefined
+                  : {
+                      scale: [1, 1.04, 1],
+                    }
+              }
+              transition={{
+                duration: 3.6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="relative z-30 w-16 h-16 min-[360px]:w-17 min-[360px]:h-17 sm:w-18 sm:h-18 rounded-full bg-[radial-gradient(circle_at_35%_28%,#8F9BFF_0%,#5B64E8_45%,#3C43BF_100%)] shadow-[0_12px_28px_rgba(91,100,232,0.45),0_4px_10px_rgba(60,67,191,0.35),inset_0_2px_4px_rgba(255,255,255,0.7),inset_0_-3px_6px_rgba(0,0,0,0.22)] flex items-center justify-center p-3 select-none"
+            >
+              <CenterAvatarIcon className="w-8 h-8 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]" />
+            </motion.div>
           </div>
         </div>
 
