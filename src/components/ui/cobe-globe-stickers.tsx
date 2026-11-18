@@ -18,10 +18,12 @@ export interface GlobeStickersProps {
   markerColor?: [number, number, number]
   glowColor?: [number, number, number]
   dark?: number
+  diffuse?: number
   mapBrightness?: number
   initialPhi?: number
   initialTheta?: number
   scale?: number
+  opacity?: number
 }
 
 export const defaultMarkers: StickerMarker[] = [
@@ -79,10 +81,12 @@ export function GlobeStickers({
   markerColor = [0.871, 0.012, 0.008],
   glowColor = [0.871, 0.012, 0.008],
   dark = 0,
+  diffuse = 1.2,
   mapBrightness = 8,
   initialPhi = 0,
   initialTheta = 0.2,
   scale = 1,
+  opacity = 0.85,
 }: GlobeStickersProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const markerEls = useRef<Record<string, HTMLDivElement | null>>({})
@@ -144,7 +148,7 @@ export function GlobeStickers({
         phi: initialPhi,
         theta: initialTheta,
         dark,
-        diffuse: 1.5,
+        diffuse,
         mapSamples: 16000,
         mapBrightness,
         baseColor,
@@ -160,7 +164,7 @@ export function GlobeStickers({
         arcColor: [0.9, 0.4, 0.7],
         arcWidth: 0.5,
         arcHeight: 0.25,
-        opacity: 0.7,
+        opacity,
         scale,
       })
       function animate() {

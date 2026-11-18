@@ -336,17 +336,18 @@ export function LicensedISPCARD() {
             </span>
           </div>
 
-          {/* 3D Cobe Globe: Centered directly on Tamil Nadu (lat 13°N, long 80°E), smoothly rotating */}
+          {/* 3D Cobe Globe: Rotating Light-Theme Globe Matched to Card Gradient */}
           <div className="pointer-events-auto absolute -bottom-[75px] min-[360px]:-bottom-[85px] sm:-bottom-[95px] left-1/2 -translate-x-1/2 w-[340px] h-[340px] min-[360px]:w-[380px] min-[360px]:h-[380px] sm:w-[410px] sm:h-[410px] flex items-center justify-center">
             <GlobeStickers
               markers={TAMIL_NADU_ONLY_MARKER}
               initialPhi={3.36}
               initialTheta={0.05}
-              speed={shouldReduceMotion ? 0 : 0.0016}
-              dark={1}
-              baseColor={[0.8, 0.9, 1]}
+              speed={shouldReduceMotion ? 0 : 0.0022}
+              dark={0}
+              baseColor={[0.94, 0.96, 1]}
               markerColor={[0.871, 0.012, 0.008]}
-              glowColor={[0.871, 0.012, 0.008]}
+              glowColor={[1, 1, 1]}
+              diffuse={1.2}
               mapBrightness={6}
               scale={1.04}
               className="w-full h-full"
