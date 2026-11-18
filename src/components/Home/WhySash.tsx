@@ -151,16 +151,16 @@ export function FibreSpeedCard() {
             className="absolute inset-x-0 bottom-0 h-10 sm:h-12 bg-gradient-to-t from-white via-white/80 to-transparent z-20 pointer-events-none"
           />
 
-          {/* iPhone Hardware Mockup (Visible portion centered on mobile & desktop) */}
+          {/* iPhone Hardware Mockup (Top-Center Aligned Speed Meter) */}
           <div className="relative z-10 mx-auto w-[270px] min-[360px]:w-[300px] sm:w-[340px] shrink-0">
             {/* Visible Viewport Window */}
-            <div className="relative h-[255px] min-[360px]:h-[285px] sm:h-[320px] w-full overflow-hidden">
+            <div className="relative h-[240px] min-[360px]:h-[265px] sm:h-[295px] w-full overflow-hidden">
               {/* Full iPhone Container */}
               <div className="relative h-[530px] min-[360px]:h-[590px] sm:h-[665px] w-full">
                 {/* Inner iOS Screen — Remains White */}
-                <div className="absolute left-[2.9%] right-[2.9%] top-[1.4%] bottom-[1.4%] z-10 overflow-hidden rounded-[38px] min-[360px]:rounded-[46px] sm:rounded-[52px] bg-white flex flex-col">
+                <div className="absolute left-[2.9%] right-[2.9%] top-[1.4%] bottom-[1.4%] z-10 overflow-hidden rounded-[38px] min-[360px]:rounded-[46px] sm:rounded-[52px] bg-white flex flex-col items-center">
                   {/* iOS Status Bar */}
-                  <div className="shrink-0 flex h-[34px] min-[360px]:h-[38px] sm:h-[44px] items-center justify-between px-5 min-[360px]:px-7 sm:px-8 pt-1.5 min-[360px]:pt-2">
+                  <div className="w-full shrink-0 flex h-[34px] min-[360px]:h-[38px] sm:h-[44px] items-center justify-between px-5 min-[360px]:px-7 sm:px-8 pt-1.5 min-[360px]:pt-2">
                     <span className="text-[11px] min-[360px]:text-[12px] sm:text-[13px] font-medium text-brand-navy">
                       9:41
                     </span>
@@ -171,16 +171,9 @@ export function FibreSpeedCard() {
                     </div>
                   </div>
 
-                  {/* Clean Subtitle inside phone screen */}
-                  <div className="shrink-0 text-center pt-0.5 pb-1">
-                    <span className="text-[10px] min-[360px]:text-[11px] font-semibold tracking-wider uppercase text-neutral-600/75">
-                      Live Speedtest
-                    </span>
-                  </div>
-
-                  {/* Bklit Studio Gauge Chart Centered on the White iPhone Screen */}
-                  <div className="flex-1 flex items-center justify-center px-2 min-[360px]:px-3 sm:px-4 pb-14 sm:pb-16">
-                    <div className="w-full max-w-[195px] min-[360px]:max-w-[225px] sm:max-w-[260px] mx-auto flex items-center justify-center">
+                  {/* Bklit Studio Gauge Chart Aligned in Top Center of Phone Screen */}
+                  <div className="w-full flex items-center justify-center pt-0.5 sm:pt-1 px-3 min-[360px]:px-4 sm:px-6">
+                    <div className="w-full max-w-[205px] min-[360px]:max-w-[230px] sm:max-w-[270px] mx-auto flex items-center justify-center">
                       <Gauge
                         value={gaugeValue}
                         centerValue={gaugeCenterValue}
