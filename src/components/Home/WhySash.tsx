@@ -749,8 +749,8 @@ export function PriceLockCard() {
                 onClick={() => handleSelect(idx)}
                 aria-label={`View ${service.label}`}
                 className={`h-1.5 rounded-full transition-all duration-300 ${idx === activeIndex
-                    ? "w-4 bg-brand-red shadow-[0_0_8px_rgba(222,3,2,0.85)]"
-                    : "w-1.5 bg-brand-navy/35 hover:bg-brand-navy/70"
+                  ? "w-4 bg-brand-red shadow-[0_0_8px_rgba(222,3,2,0.85)]"
+                  : "w-1.5 bg-brand-navy/35 hover:bg-brand-navy/70"
                   }`}
               />
             ))}
