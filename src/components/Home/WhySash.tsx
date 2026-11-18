@@ -475,10 +475,6 @@ export function SupportCard() {
               <Headphones className="w-3.5 h-3.5" aria-hidden="true" />
               <span>24/7 NOC Desk</span>
             </span>
-            <span className="inline-flex min-h-6 items-center gap-1 rounded-full bg-white/85 backdrop-blur-xs px-2.5 font-mono text-[9.5px] min-[360px]:text-[10px] font-medium text-brand-navy border border-brand-navy/10 shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse" />
-              <span>Instant Response</span>
-            </span>
           </div>
 
           {/* Rotating Orbit Stage with Prominently Sized Channel Icons */}
