@@ -135,26 +135,14 @@ export function FibreSpeedCard() {
         onMouseLeave={() => setIsHovered(false)}
         className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden"
       >
-        {/* Top iPhone Section with Footer Gradient Background (Edge-to-Edge) */}
-        <div className="relative w-full overflow-hidden bg-brand-navy pt-2.5 min-[360px]:pt-3 sm:pt-4 px-2 flex justify-center">
-          {/* Footer Gradient Background Behind the iPhone */}
+        {/* Top iPhone Section with Gradient Background (Edge-to-Edge) */}
+        <div className="relative w-full overflow-hidden bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#DE0302] pt-2.5 min-[360px]:pt-3 sm:pt-4 px-2 flex justify-center">
+          {/* Smooth Blend into Bottom White Section */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 overflow-hidden select-none"
           >
-            <div className="absolute inset-0 bg-linear-to-b from-[#000000] via-[#010D3B] to-[#010722]" />
-            <Image
-              src="/Footer/footer-9-sash-bg.svg"
-              alt=""
-              fill
-              sizes="(max-width: 1024px) 100vw, 66vw"
-              aria-hidden="true"
-              className="object-cover select-none opacity-95"
-            />
-            <div className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-[700px] max-w-[120%] h-[220px] rounded-[100%] bg-[radial-gradient(ellipse_at_center,rgba(222,3,2,0.8)_0%,rgba(255,59,58,0.45)_40%,transparent_75%)] blur-2xl" />
-
-            {/* Meeting Point Smooth Blend into Bottom White Section */}
-            <div className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-[#010D3B]/20 via-40% via-white/70 via-75% to-white z-20 pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white z-20 pointer-events-none" />
           </div>
 
           {/* iPhone Hardware Mockup (45% visible, bottom 55% hidden at bottom edge; iPhone screen stays white) */}
@@ -244,26 +232,14 @@ export function RouterSetupCard() {
       cardClassName="flex flex-col justify-between p-0 overflow-hidden"
     >
       <CardContent className="p-0 flex-1 flex flex-col justify-between overflow-hidden">
-        {/* Top Visual Stage with Dark Gradient Background (Edge-to-Edge) */}
-        <div className="relative w-full h-[220px] min-[360px]:h-[252px] sm:h-[293px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/router">
-          {/* Footer Gradient Background Behind Router */}
+        {/* Top Visual Stage with Gradient Background (Edge-to-Edge) */}
+        <div className="relative w-full h-[220px] min-[360px]:h-[252px] sm:h-[293px] bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#DE0302] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/router">
+          {/* Smooth Blend into Bottom White Section */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 overflow-hidden select-none"
           >
-            <div className="absolute inset-0 bg-linear-to-b from-[#000000] via-[#010D3B] to-[#010722]" />
-            <Image
-              src="/Footer/footer-9-sash-bg.svg"
-              alt=""
-              fill
-              sizes="(max-width: 1024px) 100vw, 33vw"
-              aria-hidden="true"
-              className="object-cover select-none opacity-95"
-            />
-            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[300px] max-w-[130%] h-[140px] rounded-[100%] bg-[radial-gradient(ellipse_at_center,rgba(222,3,2,0.85)_0%,rgba(255,59,58,0.45)_45%,transparent_75%)] blur-2xl" />
-
-            {/* Meeting Point Smooth Blend into Bottom White Section */}
-            <div className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-[#010D3B]/20 via-35% via-white/70 via-75% to-white z-10 pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white z-10 pointer-events-none" />
           </div>
 
           {/* Top Badges Bar: ₹0 Setup Cost */}
@@ -336,26 +312,14 @@ export function LicensedISPCARD() {
       cardClassName="flex flex-col justify-between p-0 overflow-hidden"
     >
       <CardContent className="p-0 flex-1 flex flex-col justify-between overflow-hidden">
-        {/* Top Globe Visual Stage: 45% Visible Close-Up Globe on Footer Gradient (Edge-to-Edge) */}
-        <div className="relative w-full h-[200px] min-[360px]:h-[215px] sm:h-[230px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/globe">
-          {/* Footer Gradient Background */}
+        {/* Top Globe Visual Stage: 45% Visible Close-Up Globe on Gradient (Edge-to-Edge) */}
+        <div className="relative w-full h-[200px] min-[360px]:h-[215px] sm:h-[230px] bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#DE0302] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/globe">
+          {/* Smooth Blend at the Meeting Point */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 overflow-hidden select-none"
           >
-            <div className="absolute inset-0 bg-linear-to-b from-[#000000] via-[#010D3B] to-[#010722]" />
-            <Image
-              src="/Footer/footer-9-sash-bg.svg"
-              alt=""
-              fill
-              sizes="(max-width: 1024px) 100vw, 33vw"
-              aria-hidden="true"
-              className="object-cover select-none opacity-95"
-            />
-            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[340px] max-w-[130%] h-[150px] rounded-[100%] bg-[radial-gradient(ellipse_at_center,rgba(222,3,2,0.85)_0%,rgba(255,59,58,0.45)_45%,transparent_75%)] blur-2xl" />
-
-            {/* Smooth Blend at the Meeting Point */}
-            <div className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-[#010D3B]/20 via-35% via-white/70 via-75% to-white z-10 pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white z-10 pointer-events-none" />
           </div>
 
           {/* Top Badges Bar: Tamil Nadu Circle (Class-B ISP removed) */}
@@ -469,25 +433,13 @@ export function SupportCard() {
     >
       <CardContent className="p-0 flex-1 flex flex-col justify-between overflow-hidden">
         {/* Top Status Stage with Close-Up Rotating Orbit Animation (Edge-to-Edge) */}
-        <div className="relative w-full h-[200px] min-[360px]:h-[215px] sm:h-[230px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support">
-          {/* Footer Gradient Background */}
+        <div className="relative w-full h-[200px] min-[360px]:h-[215px] sm:h-[230px] bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#DE0302] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support">
+          {/* Smooth Blend at the Meeting Point */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 overflow-hidden select-none"
           >
-            <div className="absolute inset-0 bg-linear-to-b from-[#000000] via-[#010D3B] to-[#010722]" />
-            <Image
-              src="/Footer/footer-9-sash-bg.svg"
-              alt=""
-              fill
-              sizes="(max-width: 1024px) 100vw, 33vw"
-              aria-hidden="true"
-              className="object-cover select-none opacity-95"
-            />
-            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[340px] max-w-[130%] h-[150px] rounded-[100%] bg-[radial-gradient(ellipse_at_center,rgba(222,3,2,0.85)_0%,rgba(255,59,58,0.45)_45%,transparent_75%)] blur-2xl" />
-
-            {/* Smooth Blend at the Meeting Point */}
-            <div className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-[#010D3B]/20 via-35% via-white/70 via-75% to-white z-10 pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white z-10 pointer-events-none" />
           </div>
 
           {/* Top Badges Bar: 24/7 NOC Desk (24/7 Live removed) */}
@@ -640,32 +592,20 @@ export function PriceLockCard() {
           ref={containerRef}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="relative w-full h-[200px] min-[360px]:h-[215px] sm:h-[230px] flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/carousel overflow-hidden"
+          className="relative w-full h-[200px] min-[360px]:h-[215px] sm:h-[230px] bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#DE0302] flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/carousel overflow-hidden"
         >
-          {/* Dark Footer Gradient Background Layers */}
+          {/* Smooth Blend at the Meeting Point: Seamlessly dissolves into the white bottom section */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 overflow-hidden select-none"
           >
-            <div className="absolute inset-0 bg-linear-to-b from-[#000000] via-[#010D3B] to-[#010722]" />
-            <Image
-              src="/Footer/footer-9-sash-bg.svg"
-              alt=""
-              fill
-              sizes="(max-width: 1024px) 100vw, 33vw"
-              aria-hidden="true"
-              className="object-cover select-none opacity-95"
-            />
-            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[340px] max-w-[130%] h-[150px] rounded-[100%] bg-[radial-gradient(ellipse_at_center,rgba(222,3,2,0.85)_0%,rgba(255,59,58,0.45)_45%,transparent_75%)] blur-2xl" />
-
-            {/* Smooth Blend at the Meeting Point: Seamlessly dissolves into the white bottom section */}
-            <div className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-[#010D3B]/20 via-35% via-white/70 via-75% to-white pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white pointer-events-none" />
           </div>
 
-          {/* Carousel Top Header: ₹650/mo Price (1–2 Year Price Lock removed) */}
+          {/* Carousel Top Header: ₹650/mo Price */}
           <div className="relative z-20 w-full flex items-center justify-end">
-            <span className="text-sm sm:text-base font-semibold text-white tabular-nums drop-shadow-sm">
-              ₹650<span className="text-[11px] font-normal text-white/75">/mo</span>
+            <span className="text-sm sm:text-base font-semibold text-brand-navy tabular-nums">
+              ₹650<span className="text-[11px] font-normal text-brand-navy/70">/mo</span>
             </span>
           </div>
 
