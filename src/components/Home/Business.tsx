@@ -27,6 +27,9 @@ export interface BusinessShowcaseProps {
   holdAmount?: number;
 }
 
+const FRAME_GRADIENT =
+  "bg-gradient-to-br from-[#F8FAFF] via-[#E5EDFF] via-[#F4DDE2] to-[#DE0302] bg-[linear-gradient(to_bottom_right,#F8FAFF_0%,#E5EDFF_36%,#F4DDE2_68%,#DE0302_100%)]";
+
 export const DEFAULT_BUSINESS_SLIDES: ShowcaseSlide[] = [
   {
     id: "secure-comms",
@@ -158,72 +161,6 @@ export default function Business({
     (val) => `-${val * 100}%`
   );
 
-  // Accessibility: Reduced motion fallback renders a clean static stacked list
-  if (prefersReducedMotion) {
-    return (
-      <section
-        id="business"
-        aria-labelledby="business-heading"
-        className="bg-white text-brand-navy py-20"
-      >
-        <div className="container-sash">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <p className="eyebrow-label text-brand-red mb-3.5">
-              For Enterprises &amp; SMEs
-            </p>
-            <h2
-              id="business-heading"
-              className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3.5"
-            >
-              Enterprise-grade connectivity for Tamil Nadu businesses
-            </h2>
-            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
-              Keep your billing systems, cloud ERP, multi-branch operations, and
-              IP surveillance online without interruption.
-            </p>
-          </div>
-
-          <div className="space-y-16">
-            {slides.map((slide) => (
-              <div
-                key={slide.id}
-                className="w-full flex flex-col-reverse lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-center"
-              >
-                <div className="lg:col-span-5 flex flex-col justify-center">
-                  {slide.eyebrow && (
-                    <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-blue-600 mb-3 block">
-                      {slide.eyebrow}
-                    </span>
-                  )}
-                  <h3 className="text-brand-navy font-bold text-2xl sm:text-3xl lg:text-[40px] tracking-tight leading-[1.15] mb-4">
-                    {slide.title}
-                  </h3>
-                  <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
-                    {slide.description}
-                  </p>
-                </div>
-
-                <div className="lg:col-span-7 w-full">
-                  <div className="relative w-full h-72 sm:h-96 rounded-[32px] overflow-hidden bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#2563EB] p-4 sm:p-6">
-                    <div className="relative w-full h-full">
-                      <Image
-                        src={slide.imageSrc}
-                        alt={slide.imageAlt}
-                        fill
-                        sizes="(max-width: 1024px) 90vw, 55vw"
-                        className="object-contain"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section
       id="business"
@@ -249,76 +186,122 @@ export default function Business({
         </p>
       </div>
 
-      {/* Tall Scroll Wrapper: height = (numSlides × scrollDistancePerSlide vh) */}
-      <div
-        ref={wrapperRef}
-        style={{ height: `${numSlides * scrollDistancePerSlide}vh` }}
-        className="relative w-full bg-white"
-      >
-        {/* Sticky Full-Screen Section Container (no card border, no background color shift) */}
-        <div className="sticky top-0 h-screen w-full bg-white flex items-center justify-center">
-          <div className="container-sash w-full h-[76vh] sm:h-[72vh] min-h-[480px] max-h-[680px] bg-white border-0 shadow-none overflow-hidden flex flex-col-reverse lg:grid lg:grid-cols-12 gap-6 lg:gap-12 xl:gap-16 items-center relative select-none">
-            {/* Left Column (Desktop) / Bottom (Mobile): Clipped by the section container */}
-            <div className="w-full h-[42%] lg:h-full lg:col-span-5 overflow-hidden relative">
-              <motion.div
-                style={{ y: textStripY }}
-                className="w-full h-full will-change-transform"
-              >
-                {slides.map((slide) => (
-                  <div
-                    key={slide.id}
-                    className="w-full h-full shrink-0 flex flex-col justify-center pr-2 lg:pr-4"
-                  >
-                    {slide.eyebrow && (
-                      <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-blue-600 mb-3 sm:mb-4 block">
-                        {slide.eyebrow}
-                      </span>
-                    )}
+      {prefersReducedMotion ? (
+        /* Accessibility: Reduced motion fallback renders a clean static stacked list */
+        <div ref={wrapperRef} className="container-sash py-12 space-y-16">
+          {slides.map((slide) => (
+            <div
+              key={slide.id}
+              className="w-full flex flex-col-reverse lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-center"
+            >
+              <div className="lg:col-span-5 flex flex-col justify-center">
+                {slide.eyebrow && (
+                  <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-brand-red mb-3 block">
+                    {slide.eyebrow}
+                  </span>
+                )}
+                <h3 className="text-brand-navy font-bold text-2xl sm:text-3xl lg:text-[40px] tracking-tight leading-[1.15] mb-4">
+                  {slide.title}
+                </h3>
+                <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
+                  {slide.description}
+                </p>
+              </div>
 
-                    <h3 className="text-brand-navy font-bold text-2xl sm:text-3xl lg:text-[40px] tracking-tight leading-[1.15] mb-3.5 sm:mb-5">
-                      {slide.title}
-                    </h3>
-
-                    <p className="text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed max-w-md">
-                      {slide.description}
-                    </p>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* Right Column (Desktop) / Top (Mobile): Fixed Rounded Image Frame */}
-            <div className="w-full h-[58%] lg:h-full lg:col-span-7 flex items-center justify-center">
-              {/* Fixed Rounded Overflow-Hidden Box (No border) */}
-              <div className="relative w-full h-full rounded-[32px] overflow-hidden bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#DE0302]">
-                {/* Vertical Strip of All Slide Images Sliding Upward */}
-                <motion.div
-                  style={{ y: imageStripY }}
-                  className="w-full h-full will-change-transform"
+              <div className="lg:col-span-7 w-full">
+                <div
+                  className={`relative w-full h-72 sm:h-96 rounded-[32px] overflow-hidden ${FRAME_GRADIENT} p-4 sm:p-6`}
                 >
-                  {slides.map((slide, idx) => (
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={slide.imageSrc}
+                      alt={slide.imageAlt}
+                      fill
+                      unoptimized
+                      sizes="(max-width: 1024px) 90vw, 55vw"
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        /* Tall Scroll Wrapper: height = (numSlides × scrollDistancePerSlide vh) */
+        <div
+          ref={wrapperRef}
+          style={{ height: `${numSlides * scrollDistancePerSlide}vh` }}
+          className="relative w-full bg-white"
+        >
+          {/* Sticky Full-Screen Section Container */}
+          <div className="sticky top-0 h-screen w-full bg-white flex items-center justify-center">
+            <div className="container-sash w-full h-[78vh] sm:h-[74vh] min-h-[500px] max-h-[680px] bg-white border-0 shadow-none overflow-hidden flex flex-col-reverse lg:grid lg:grid-cols-12 lg:grid-rows-1 gap-6 lg:gap-12 xl:gap-16 items-stretch relative select-none">
+              {/* Left Column (Desktop) / Bottom (Mobile): Clipped by the section container */}
+              <div className="w-full h-[42%] lg:h-full lg:col-span-5 overflow-hidden relative">
+                <motion.div
+                  style={{ y: textStripY }}
+                  className="w-full h-full flex flex-col will-change-transform"
+                >
+                  {slides.map((slide) => (
                     <div
                       key={slide.id}
-                      className="relative w-full h-full shrink-0 p-4 sm:p-6 lg:p-8"
+                      className="w-full h-full shrink-0 flex flex-col justify-center pr-2 lg:pr-4"
                     >
-                      <div className="relative w-full h-full">
-                        <Image
-                          src={slide.imageSrc}
-                          alt={slide.imageAlt}
-                          fill
-                          priority={idx === 0}
-                          sizes="(max-width: 1024px) 90vw, 55vw"
-                          className="object-contain"
-                        />
-                      </div>
+                      {slide.eyebrow && (
+                        <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-brand-red mb-3 sm:mb-4 block">
+                          {slide.eyebrow}
+                        </span>
+                      )}
+
+                      <h3 className="text-brand-navy font-bold text-2xl sm:text-3xl lg:text-[40px] tracking-tight leading-[1.15] mb-3.5 sm:mb-5">
+                        {slide.title}
+                      </h3>
+
+                      <p className="text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed max-w-md">
+                        {slide.description}
+                      </p>
                     </div>
                   ))}
                 </motion.div>
               </div>
+
+              {/* Right Column (Desktop) / Top (Mobile): Fixed Rounded Image Frame */}
+              <div className="w-full h-[58%] lg:h-full lg:col-span-7 flex items-center justify-center">
+                {/* Fixed Rounded Overflow-Hidden Box */}
+                <div
+                  className={`relative w-full h-full min-h-[240px] lg:min-h-[420px] rounded-[32px] overflow-hidden ${FRAME_GRADIENT}`}
+                >
+                  {/* Vertical Strip of All Slide Images Sliding Upward */}
+                  <motion.div
+                    style={{ y: imageStripY }}
+                    className="w-full h-full flex flex-col will-change-transform"
+                  >
+                    {slides.map((slide, idx) => (
+                      <div
+                        key={slide.id}
+                        className="relative w-full h-full shrink-0 p-4 sm:p-6 lg:p-8"
+                      >
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={slide.imageSrc}
+                            alt={slide.imageAlt}
+                            fill
+                            unoptimized
+                            priority={idx === 0}
+                            sizes="(max-width: 1024px) 90vw, 55vw"
+                            className="object-contain"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </motion.div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }
