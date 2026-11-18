@@ -172,7 +172,7 @@ export default function Business({
       className={`${PINSTRIPE_SECTION_BG} text-brand-navy relative`}
     >
       {/* Section Heading */}
-      <div className="container-sash pt-20 sm:pt-28 pb-4 text-center max-w-3xl mx-auto">
+      <div className="max-w-2xl mx-auto text-center flex flex-col items-center pt-16 sm:pt-24 pb-6 sm:pb-8 px-4 sm:px-0">
         <p className="eyebrow-label text-brand-red mb-3.5">
           For Enterprises &amp; SMEs
         </p>
@@ -180,12 +180,12 @@ export default function Business({
           id="business-heading"
           className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3.5"
         >
-          Enterprise-grade connectivity for Tamil Nadu businesses
+          Enterprise-grade connectivity for{" "}
+          <span className="text-brand-red">Tamil Nadu businesses.</span>
         </h2>
-        <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
-          Keep your billing systems, cloud ERP, multi-branch operations, and IP
-          surveillance online without interruption. We design custom fibre
-          solutions for offices, factories, schools, clinics, and retail chains.
+        <p className="text-neutral-600 text-sm sm:text-base max-w-2xl font-normal leading-relaxed">
+          Keep your billing, cloud ERP, and operations online with custom fibre
+          solutions engineered for Tamil Nadu businesses.
         </p>
       </div>
 
