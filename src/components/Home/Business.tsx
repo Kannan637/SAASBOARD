@@ -27,6 +27,9 @@ export interface BusinessShowcaseProps {
   holdAmount?: number;
 }
 
+const PINSTRIPE_SECTION_BG =
+  "bg-[#F8F8FC] bg-[repeating-linear-gradient(135deg,rgba(37,58,123,0.05)_0px,rgba(37,58,123,0.05)_1px,transparent_1px,transparent_5px)]";
+
 const FRAME_GRADIENT =
   "bg-gradient-to-br from-[#F8FAFF] via-[#E5EDFF] via-[#F4DDE2] to-[#DE0302] bg-[linear-gradient(to_bottom_right,#F8FAFF_0%,#E5EDFF_36%,#F4DDE2_68%,#DE0302_100%)]";
 
@@ -166,7 +169,7 @@ export default function Business({
       id="business"
       data-apple-manual="true"
       aria-labelledby="business-heading"
-      className="bg-white text-brand-navy relative"
+      className={`${PINSTRIPE_SECTION_BG} text-brand-navy relative`}
     >
       {/* Section Heading */}
       <div className="container-sash pt-20 sm:pt-28 pb-4 text-center max-w-3xl mx-auto">
@@ -232,11 +235,11 @@ export default function Business({
         <div
           ref={wrapperRef}
           style={{ height: `${numSlides * scrollDistancePerSlide}vh` }}
-          className="relative w-full bg-white"
+          className="relative w-full"
         >
           {/* Sticky Full-Screen Section Container */}
-          <div className="sticky top-0 h-screen w-full bg-white flex items-center justify-center">
-            <div className="container-sash w-full h-[78vh] sm:h-[74vh] min-h-[500px] max-h-[680px] bg-white border-0 shadow-none overflow-hidden flex flex-col-reverse lg:grid lg:grid-cols-12 lg:grid-rows-1 gap-6 lg:gap-12 xl:gap-16 items-stretch relative select-none">
+          <div className="sticky top-0 h-screen w-full flex items-center justify-center">
+            <div className="container-sash w-full h-[78vh] sm:h-[74vh] min-h-[500px] max-h-[680px] border-0 shadow-none overflow-hidden flex flex-col-reverse lg:grid lg:grid-cols-12 lg:grid-rows-1 gap-6 lg:gap-12 xl:gap-16 items-stretch relative select-none">
               {/* Left Column (Desktop) / Bottom (Mobile): Clipped by the section container */}
               <div className="w-full h-[42%] lg:h-full lg:col-span-5 overflow-hidden relative">
                 <motion.div
