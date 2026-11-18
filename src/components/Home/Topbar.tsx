@@ -305,7 +305,7 @@ export default function Topbar() {
             <Link
               href="/"
               onClick={() => handleNavClick("/")}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center ${
+              className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-colors h-11 min-h-[44px] inline-flex items-center ${
                 pathname === "/" && activeSection === "home"
                   ? "text-brand-red font-semibold"
                   : "text-brand-navy hover:text-brand-red"
@@ -318,7 +318,7 @@ export default function Topbar() {
             <Link
               href="/#plans"
               onClick={() => handleNavClick("/#plans")}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center ${
+              className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-colors h-11 min-h-[44px] inline-flex items-center ${
                 pathname === "/" && activeSection === "plans"
                   ? "text-brand-red font-semibold"
                   : "text-brand-navy hover:text-brand-red"
@@ -339,7 +339,7 @@ export default function Topbar() {
                 onClick={() => setServicesOpen((prev) => !prev)}
                 aria-expanded={servicesOpen}
                 aria-haspopup="menu"
-                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center gap-1.5 cursor-pointer ${
+                className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-colors h-11 min-h-[44px] inline-flex items-center gap-1.5 cursor-pointer ${
                   servicesOpen || isServicePage
                     ? "text-brand-red font-semibold"
                     : "text-brand-navy hover:text-brand-red"
@@ -417,7 +417,7 @@ export default function Topbar() {
             <Link
               href="/about"
               onClick={() => handleNavClick("/about")}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center ${
+              className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-colors h-11 min-h-[44px] inline-flex items-center ${
                 pathname === "/about"
                   ? "text-brand-red font-semibold"
                   : "text-brand-navy hover:text-brand-red"
@@ -430,7 +430,7 @@ export default function Topbar() {
             <Link
               href="/#faq"
               onClick={() => handleNavClick("/#faq")}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center ${
+              className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-colors h-11 min-h-[44px] inline-flex items-center ${
                 pathname === "/" && activeSection === "faq"
                   ? "text-brand-red font-semibold"
                   : "text-brand-navy hover:text-brand-red"
@@ -443,7 +443,7 @@ export default function Topbar() {
             <Link
               href="/contact"
               onClick={() => handleNavClick("/contact")}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center ${
+              className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-colors h-11 min-h-[44px] inline-flex items-center ${
                 pathname === "/contact" ||
                 (pathname === "/" && activeSection === "contact")
                   ? "text-brand-red font-semibold"
@@ -459,7 +459,7 @@ export default function Topbar() {
             <Link
               href="/#contact"
               onClick={() => handleNavClick("/#contact")}
-              className="group/cta btn-pill btn-primary-red text-sm font-medium"
+              className="group/cta btn-pill btn-primary-red h-11 min-h-[44px] text-sm font-medium"
             >
               <span>Check availability</span>
               <svg
@@ -483,7 +483,7 @@ export default function Topbar() {
             <a
               href="tel:+919003009353"
               aria-label="Call SASH Broadband"
-              className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-red-10 text-brand-red hover:bg-brand-red hover:text-white transition-colors"
+              className="inline-flex items-center justify-center w-11 h-11 min-w-[44px] min-h-[44px] rounded-lg bg-red-10 text-brand-red hover:bg-brand-red hover:text-white transition-colors"
             >
               <svg
                 className="w-5 h-5"
@@ -700,13 +700,13 @@ export default function Topbar() {
               <Link
                 href="/#contact"
                 onClick={() => handleNavClick("/#contact")}
-                className="btn-pill btn-primary-red w-full text-center text-sm sm:text-base font-medium"
+                className="btn-pill btn-primary-red w-full h-12 min-h-[48px] text-center text-sm sm:text-base font-medium"
               >
                 Check availability
               </Link>
               <a
                 href="tel:+919003009353"
-                className="btn-pill btn-ghost-white w-full text-center text-sm sm:text-base font-medium"
+                className="btn-pill btn-ghost-white w-full h-12 min-h-[48px] text-center text-sm sm:text-base font-medium"
               >
                 <svg
                   className="w-4 h-4 text-brand-red"

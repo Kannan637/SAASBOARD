@@ -100,7 +100,7 @@ export default function BroadbandServicesPage() {
                 team about available entertainment bundles in your area.
               </p>
             </div>
-            <Link href="#contact" className="btn-pill btn-primary-red shrink-0 rounded-lg font-medium">
+            <Link href="#contact" className="btn-pill btn-pill-lg btn-primary-red shrink-0 rounded-full font-medium">
               Enquire about OTT &amp; IPTV
             </Link>
           </div>

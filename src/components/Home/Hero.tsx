@@ -267,11 +267,11 @@ export default function Hero() {
                   {currentSlide.subtitle}
                 </p>
 
-                {/* Apple Buttons: h-10 px-5, full pill radius, 14px font, 500 weight */}
+                {/* Apple Buttons: 48px height (h-12 min-h-[48px]), full pill radius, font 500 weight */}
                 <div className="mt-6 flex flex-wrap items-center gap-3">
                   <Link
                     href={currentSlide.ctaHref}
-                    className="group/primary inline-flex h-10 items-center justify-center gap-2 rounded-full bg-linear-to-b from-brand-red to-brand-red-hover px-5 text-sm font-medium text-white shadow-[0_6px_20px_var(--color-red-10)] outline-2 -outline-offset-2 outline-white/20 transition-[background-color,transform,box-shadow] duration-150 ease-out hover:from-brand-red-hover hover:to-brand-red-hover hover:bg-brand-red-hover active:scale-[0.97]"
+                    className="group/primary inline-flex h-12 min-h-[48px] items-center justify-center gap-2 rounded-full bg-linear-to-b from-brand-red to-brand-red-hover px-6 text-sm sm:text-base font-medium text-white shadow-[0_6px_20px_var(--color-red-10)] outline-2 -outline-offset-2 outline-white/20 transition-[background-color,transform,box-shadow] duration-150 ease-out hover:from-brand-red-hover hover:to-brand-red-hover hover:bg-brand-red-hover active:scale-[0.97]"
                   >
                     {currentSlide.ctaText}
                     <ArrowRight className="size-3.5 transition-transform duration-150 ease-out group-hover/primary:translate-x-0.5" />
@@ -279,7 +279,7 @@ export default function Hero() {
 
                   <Link
                     href={currentSlide.secondaryCtaHref}
-                    className="group/process inline-flex h-10 items-center justify-center gap-2 px-4 rounded-full text-sm font-medium text-brand-navy transition-[opacity,transform] duration-150 ease-out hover:opacity-75 active:scale-[0.97]"
+                    className="group/process inline-flex h-12 min-h-[48px] items-center justify-center gap-2 px-5 rounded-full text-sm sm:text-base font-medium text-brand-navy transition-[opacity,transform] duration-150 ease-out hover:opacity-75 active:scale-[0.97]"
                   >
                     {currentSlide.secondaryCtaText}
                     <Play className="size-3 fill-current transition-transform duration-150 ease-out group-hover/process:scale-110" />
@@ -288,7 +288,7 @@ export default function Hero() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Bottom-Left Slide Navigation Controls (← 1/5 →) */}
+            {/* Bottom-Left Slide Navigation Controls (← 1/5 →) with 44px touch targets */}
             <div
               className="flex items-center gap-5 pt-8 lg:pt-4"
               aria-label="Hero slide controls"
@@ -297,7 +297,7 @@ export default function Hero() {
                 type="button"
                 onClick={handlePrev}
                 aria-label="Previous slide"
-                className="w-9 h-9 rounded-full border border-brand-navy/20 text-brand-navy/80 hover:border-brand-navy hover:text-brand-navy flex items-center justify-center transition-[color,border-color,transform] duration-200 ease-out active:scale-[0.96] cursor-pointer"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border border-brand-navy/20 text-brand-navy/80 hover:border-brand-navy hover:text-brand-navy flex items-center justify-center transition-[color,border-color,transform] duration-200 ease-out active:scale-[0.96] cursor-pointer"
               >
                 <svg
                   className="w-4 h-4"
@@ -325,7 +325,7 @@ export default function Hero() {
                 type="button"
                 onClick={handleNext}
                 aria-label="Next slide"
-                className="w-9 h-9 rounded-full bg-linear-to-b from-brand-red to-brand-red-hover text-white shadow-[0_4px_14px_var(--color-red-10)] outline-2 -outline-offset-2 outline-white/20 hover:from-brand-red-hover hover:to-brand-red-hover hover:bg-brand-red-hover flex items-center justify-center transition-[background-color,transform,box-shadow] duration-200 ease-out active:scale-[0.96] cursor-pointer"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-linear-to-b from-brand-red to-brand-red-hover text-white shadow-[0_4px_14px_var(--color-red-10)] outline-2 -outline-offset-2 outline-white/20 hover:from-brand-red-hover hover:to-brand-red-hover hover:bg-brand-red-hover flex items-center justify-center transition-[background-color,transform,box-shadow] duration-200 ease-out active:scale-[0.96] cursor-pointer"
               >
                 <svg
                   className="w-4 h-4"

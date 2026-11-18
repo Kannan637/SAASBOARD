@@ -257,7 +257,7 @@ export default function Pricing() {
                 <button
                   type="button"
                   onClick={() => handleSelectPlan(plan)}
-                  className={`relative z-10 btn-pill btn-primary-red w-full h-10 text-sm font-medium cursor-pointer ${plan.featured
+                  className={`relative z-10 btn-pill btn-primary-red w-full h-12 min-h-[48px] text-sm font-medium cursor-pointer ${plan.featured
                       ? "shadow-[0_8px_24px_rgba(0,0,0,0.35)] ring-1 ring-white/25"
                       : ""
                     }`}

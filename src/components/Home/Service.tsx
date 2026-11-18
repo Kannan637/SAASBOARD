@@ -253,11 +253,11 @@ export default function Service() {
                 ))}
               </CarouselContent>
 
-              {/* Navigation Controls: Arrows + Dots */}
+              {/* Navigation Controls: Arrows + Dots (44px touch targets) */}
               <div className="mt-6 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-2">
-                  <CarouselPrevious className="relative inset-0 size-9 rounded-full border border-black/[0.08] bg-white text-brand-navy hover:border-brand-navy/30 hover:bg-neutral-100 transition-colors cursor-pointer" />
-                  <CarouselNext className="relative inset-0 size-9 rounded-full border-transparent bg-brand-red text-white shadow-[0_4px_12px_rgba(222,3,2,0.25)] hover:bg-brand-red-hover transition-all cursor-pointer" />
+                  <CarouselPrevious className="relative inset-0 size-11 min-w-[44px] min-h-[44px] rounded-full border border-black/[0.08] bg-white text-brand-navy hover:border-brand-navy/30 hover:bg-neutral-100 transition-colors cursor-pointer" />
+                  <CarouselNext className="relative inset-0 size-11 min-w-[44px] min-h-[44px] rounded-full border-transparent bg-brand-red text-white shadow-[0_4px_12px_rgba(222,3,2,0.25)] hover:bg-brand-red-hover transition-all cursor-pointer" />
                 </div>
 
                 <div
@@ -353,8 +353,8 @@ export default function Service() {
 
               <div className="mt-6 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-2">
-                  <CarouselPrevious className="relative inset-0 size-10 rounded-full border border-white/25 bg-brand-navy/70 text-white hover:border-white hover:bg-white/15 hover:text-white transition-colors cursor-pointer" />
-                  <CarouselNext className="relative inset-0 size-10 rounded-full border-transparent bg-linear-to-b from-brand-red to-brand-red-hover text-white shadow-[0_6px_20px_rgba(222,3,2,0.35)] outline-2 -outline-offset-2 outline-white/20 hover:from-brand-red-hover hover:to-brand-red-hover hover:text-white transition-all cursor-pointer" />
+                  <CarouselPrevious className="relative inset-0 size-11 min-w-[44px] min-h-[44px] rounded-full border border-white/25 bg-brand-navy/70 text-white hover:border-white hover:bg-white/15 hover:text-white transition-colors cursor-pointer" />
+                  <CarouselNext className="relative inset-0 size-11 min-w-[44px] min-h-[44px] rounded-full border-transparent bg-linear-to-b from-brand-red to-brand-red-hover text-white shadow-[0_6px_20px_rgba(222,3,2,0.35)] outline-2 -outline-offset-2 outline-white/20 hover:from-brand-red-hover hover:to-brand-red-hover hover:text-white transition-all cursor-pointer" />
                 </div>
 
                 <div
@@ -407,7 +407,7 @@ export default function Service() {
               <div className="flex flex-wrap items-center gap-4 w-full lg:w-auto shrink-0">
                 <Link
                   href="#contact"
-                  className="btn-pill bg-linear-to-b from-brand-navy to-navy-80 text-white shadow-[0_6px_20px_rgba(1,13,59,0.22)] outline-2 -outline-offset-2 outline-white/20 hover:from-navy-80 hover:to-navy-80 w-full sm:w-auto font-medium"
+                  className="btn-pill btn-pill-lg bg-linear-to-b from-brand-navy to-navy-80 text-white shadow-[0_6px_20px_rgba(1,13,59,0.22)] outline-2 -outline-offset-2 outline-white/20 hover:from-navy-80 hover:to-navy-80 w-full sm:w-auto font-medium"
                 >
                   <span>Check availability</span>
                   <svg
@@ -428,7 +428,7 @@ export default function Service() {
                   href="https://wa.me/919003009353?text=Hi%20SASH%20Broadband%2C%20I%20would%20like%20to%20check%20fibre%20availability%20at%20my%20location."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-pill border border-white/40 bg-white/10 text-white hover:bg-white hover:text-brand-navy w-full sm:w-auto font-medium"
+                  className="btn-pill btn-pill-lg border border-white/40 bg-white/10 text-white hover:bg-white hover:text-brand-navy w-full sm:w-auto font-medium"
                 >
                   <span>Chat on WhatsApp</span>
                 </a>

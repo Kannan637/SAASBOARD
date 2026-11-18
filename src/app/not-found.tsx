@@ -17,10 +17,10 @@ export default function NotFound() {
           team.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <Link href="/" className="btn-pill btn-primary-red">
+          <Link href="/" className="btn-pill btn-pill-lg btn-primary-red">
             Back to Home
           </Link>
-          <Link href="/contact" className="btn-pill btn-secondary-navy">
+          <Link href="/contact" className="btn-pill btn-pill-lg btn-secondary-navy">
             Contact Support
           </Link>
         </div>

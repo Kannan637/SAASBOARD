@@ -68,10 +68,10 @@ export default function AboutPage() {
             honest pricing, and local engineering support.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Link href="#contact" className="btn-pill btn-primary-red font-medium rounded-lg">
+            <Link href="#contact" className="btn-pill btn-pill-lg btn-primary-red font-medium rounded-full">
               Check availability
             </Link>
-            <Link href="/#plans" className="btn-pill btn-secondary-navy font-medium rounded-lg">
+            <Link href="/#plans" className="btn-pill btn-pill-lg btn-secondary-navy font-medium rounded-full">
               View broadband plans
             </Link>
           </div>
