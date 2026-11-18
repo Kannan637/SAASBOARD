@@ -213,18 +213,15 @@ export default function Business({
 
               <div className="lg:col-span-7 w-full">
                 <div
-                  className={`relative w-full h-72 sm:h-96 rounded-[32px] overflow-hidden ${FRAME_GRADIENT} p-4 sm:p-6`}
+                  className={`relative w-full h-72 sm:h-96 rounded-[32px] overflow-hidden ${FRAME_GRADIENT}`}
                 >
-                  <div className="relative w-full h-full">
-                    <Image
-                      src={slide.imageSrc}
-                      alt={slide.imageAlt}
-                      fill
-                      unoptimized
-                      sizes="(max-width: 1024px) 90vw, 55vw"
-                      className="object-contain"
-                    />
-                  </div>
+                  <Image
+                    src={slide.imageSrc}
+                    alt={slide.imageAlt}
+                    fill
+                    sizes="(max-width: 1024px) 90vw, 55vw"
+                    className="object-cover object-center"
+                  />
                 </div>
               </div>
             </div>
@@ -283,19 +280,16 @@ export default function Business({
                     {slides.map((slide, idx) => (
                       <div
                         key={slide.id}
-                        className="relative w-full h-full shrink-0 p-4 sm:p-6 lg:p-8"
+                        className="relative w-full h-full shrink-0"
                       >
-                        <div className="relative w-full h-full">
-                          <Image
-                            src={slide.imageSrc}
-                            alt={slide.imageAlt}
-                            fill
-                            unoptimized
-                            priority={idx === 0}
-                            sizes="(max-width: 1024px) 90vw, 55vw"
-                            className="object-contain"
-                          />
-                        </div>
+                        <Image
+                          src={slide.imageSrc}
+                          alt={slide.imageAlt}
+                          fill
+                          priority={idx === 0}
+                          sizes="(max-width: 1024px) 90vw, 55vw"
+                          className="object-cover object-center"
+                        />
                       </div>
                     ))}
                   </motion.div>
