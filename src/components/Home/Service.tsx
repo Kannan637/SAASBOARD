@@ -98,7 +98,7 @@ function UseCaseCard({
   return (
     <article
       data-apple-manual="true"
-      className="h-full w-full rounded-xl bg-navy-80/75 backdrop-blur-md border border-white/15 p-6 sm:p-7 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5"
+      className="h-full w-full rounded-[28px] bg-navy-80/75 backdrop-blur-md border border-white/15 p-6 sm:p-7 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5 shadow-[0_4px_24px_rgba(0,0,0,0.12)]"
     >
       <div>
         {/* Red label with white text (passes WCAG AA contrast) */}
@@ -120,10 +120,10 @@ function ServiceCard({ service }: { service: (typeof SERVICES_LIST)[number] }) {
   return (
     <article
       data-apple-manual="true"
-      className="rounded-xl w-full bg-white border border-neutral-100 p-7 sm:p-8 lg:p-9 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] hover:shadow-[0px_8px_24px_rgba(5,5,6,0.08)]"
+      className="rounded-[28px] w-full bg-white border border-black/[0.06] p-7 sm:p-8 lg:p-9 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5 shadow-[0_4px_24px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.02)]"
     >
       <div>
-        <div className="w-12 h-12 flex items-center justify-center mb-4">
+        <div className="w-12 h-12 flex items-center justify-center mb-4 rounded-2xl bg-neutral-50/80 p-2 border border-black/[0.03]">
           <Image
             src={service.iconSrc}
             alt={service.title}
@@ -256,8 +256,8 @@ export default function Service() {
               {/* Navigation Controls: Arrows + Dots */}
               <div className="mt-6 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-2">
-                  <CarouselPrevious className="relative inset-0 size-9 rounded-lg border border-border/80 bg-white text-brand-navy hover:border-brand-navy/30 hover:bg-neutral-100 transition-colors cursor-pointer" />
-                  <CarouselNext className="relative inset-0 size-9 rounded-lg border-transparent bg-brand-red text-white shadow-[0_4px_12px_rgba(222,3,2,0.25)] hover:bg-brand-red-hover transition-all cursor-pointer" />
+                  <CarouselPrevious className="relative inset-0 size-9 rounded-full border border-black/[0.08] bg-white text-brand-navy hover:border-brand-navy/30 hover:bg-neutral-100 transition-colors cursor-pointer" />
+                  <CarouselNext className="relative inset-0 size-9 rounded-full border-transparent bg-brand-red text-white shadow-[0_4px_12px_rgba(222,3,2,0.25)] hover:bg-brand-red-hover transition-all cursor-pointer" />
                 </div>
 
                 <div
@@ -353,8 +353,8 @@ export default function Service() {
 
               <div className="mt-6 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-2">
-                  <CarouselPrevious className="relative inset-0 size-10 rounded-lg border border-white/25 bg-brand-navy/70 text-white hover:border-white hover:bg-white/15 hover:text-white transition-colors cursor-pointer" />
-                  <CarouselNext className="relative inset-0 size-10 rounded-lg border-transparent bg-linear-to-b from-brand-red to-brand-red-hover text-white shadow-[0_6px_20px_rgba(222,3,2,0.35)] outline-2 -outline-offset-2 outline-white/20 hover:from-brand-red-hover hover:to-brand-red-hover hover:text-white transition-all cursor-pointer" />
+                  <CarouselPrevious className="relative inset-0 size-10 rounded-full border border-white/25 bg-brand-navy/70 text-white hover:border-white hover:bg-white/15 hover:text-white transition-colors cursor-pointer" />
+                  <CarouselNext className="relative inset-0 size-10 rounded-full border-transparent bg-linear-to-b from-brand-red to-brand-red-hover text-white shadow-[0_6px_20px_rgba(222,3,2,0.35)] outline-2 -outline-offset-2 outline-white/20 hover:from-brand-red-hover hover:to-brand-red-hover hover:text-white transition-all cursor-pointer" />
                 </div>
 
                 <div
@@ -391,9 +391,9 @@ export default function Service() {
             ))}
           </AppleStagger>
 
-          {/* 7. CTA Banner (Red background, White text, 20px rounded container with Apple scroll-scale) */}
+          {/* 7. CTA Banner (Red background, White text, 32px rounded container with Apple scroll-scale) */}
           <AppleScrollScale className="mt-20 md:mt-28 lg:mt-32">
-            <div className="banner-sash rounded-2xl bg-brand-red text-white p-10 sm:p-14 lg:p-16 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+            <div className="banner-sash rounded-[32px] bg-brand-red text-white p-10 sm:p-14 lg:p-16 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 shadow-[0_16px_48px_rgba(222,3,2,0.22)]">
               <div className="max-w-xl">
                 <h2 className="text-white mb-3 font-semibold text-2xl sm:text-3xl lg:text-4xl tracking-normal">
                   Ready to upgrade your connection?
@@ -407,7 +407,7 @@ export default function Service() {
               <div className="flex flex-wrap items-center gap-4 w-full lg:w-auto shrink-0">
                 <Link
                   href="#contact"
-                  className="btn-pill bg-linear-to-b from-brand-navy to-navy-80 text-white shadow-[0_6px_20px_rgba(1,13,59,0.22)] outline-2 -outline-offset-2 outline-white/20 hover:from-navy-80 hover:to-navy-80 w-full sm:w-auto rounded-lg font-medium"
+                  className="btn-pill bg-linear-to-b from-brand-navy to-navy-80 text-white shadow-[0_6px_20px_rgba(1,13,59,0.22)] outline-2 -outline-offset-2 outline-white/20 hover:from-navy-80 hover:to-navy-80 w-full sm:w-auto font-medium"
                 >
                   <span>Check availability</span>
                   <svg
@@ -428,7 +428,7 @@ export default function Service() {
                   href="https://wa.me/919003009353?text=Hi%20SASH%20Broadband%2C%20I%20would%20like%20to%20check%20fibre%20availability%20at%20my%20location."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-pill border border-white/40 bg-white/10 text-white hover:bg-white hover:text-brand-navy w-full sm:w-auto rounded-lg font-medium"
+                  className="btn-pill border border-white/40 bg-white/10 text-white hover:bg-white hover:text-brand-navy w-full sm:w-auto font-medium"
                 >
                   <span>Chat on WhatsApp</span>
                 </a>

@@ -88,7 +88,7 @@ function MarqueeLogoTrack({
             {logos.map((logo) => (
                 <div
                     key={`${isDuplicate ? "dup" : "orig"}-${logo.id}`}
-                    className="h-20 w-40 sm:h-22 sm:w-44 shrink-0 rounded-xl bg-white px-4 py-3 flex items-center justify-center transition-transform duration-200 hover:-translate-y-0.5"
+                    className="h-20 w-40 sm:h-22 sm:w-44 shrink-0 rounded-2xl bg-white border border-black/[0.06] shadow-[0_2px_12px_rgba(0,0,0,0.03)] px-4 py-3 flex items-center justify-center transition-transform duration-200 hover:-translate-y-0.5"
                 >
                     <Image
                         src={logo.src}

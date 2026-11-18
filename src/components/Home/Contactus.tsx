@@ -229,7 +229,7 @@ export default function Contactus({
   };
 
   const baseInputClass = (hasError?: boolean) =>
-    `w-full h-10 pl-9 pr-3.5 rounded-lg bg-white border text-sm font-normal text-brand-navy placeholder:text-neutral-600/55 transition-[border-color,box-shadow] duration-150 focus:outline-none focus:ring-3 ${
+    `w-full h-10 pl-9 pr-3.5 rounded-xl bg-white border text-sm font-normal text-brand-navy placeholder:text-neutral-600/55 transition-[border-color,box-shadow] duration-150 focus:outline-none focus:ring-3 ${
       hasError
         ? "border-brand-red focus:border-brand-red focus:ring-brand-red/15"
         : "border-brand-navy/15 hover:border-brand-navy/30 focus:border-brand-red focus:ring-brand-red/12"
@@ -260,7 +260,7 @@ export default function Contactus({
         </AppleReveal>
 
         {/* Unified Outer Container with Footer Background; Right Side Form Container in White */}
-        <div className="relative overflow-hidden rounded-2xl bg-brand-navy p-7 sm:p-10 lg:p-12 xl:p-14 mb-14 lg:mb-16 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)]">
+        <div className="relative overflow-hidden rounded-[32px] bg-brand-navy p-7 sm:p-10 lg:p-12 xl:p-14 mb-14 lg:mb-16 shadow-[0_16px_40px_rgba(1,13,59,0.18)]">
           {/* Footer-Matching Gradient & Arch Background */}
           <div
             aria-hidden="true"
@@ -366,7 +366,7 @@ export default function Contactus({
 
             {/* Right Column (6 of 12 cols): White Form Container */}
             <div className="lg:col-span-6 flex">
-              <div className="w-full rounded-2xl bg-white p-7 sm:p-9 lg:p-10 xl:p-11 flex flex-col shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)]">
+              <div className="w-full rounded-[28px] bg-white border border-black/[0.06] p-7 sm:p-9 lg:p-10 xl:p-11 flex flex-col shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
                 {/* Form Header */}
                 <div className="pb-5 mb-6 border-b border-brand-navy/10">
                   <span className="inline-flex min-h-7 items-center justify-center rounded-full bg-red-10 px-3 font-mono text-xs font-semibold uppercase tracking-wider text-brand-red mb-2">
@@ -635,7 +635,7 @@ export default function Contactus({
                           setForm({ ...form, message: e.target.value })
                         }
                         placeholder="Write your message or installation address details..."
-                        className="w-full p-3.5 rounded-lg bg-white border border-brand-navy/15 hover:border-brand-navy/30 focus:border-brand-red focus:ring-3 focus:ring-brand-red/12 focus:outline-none text-sm font-normal text-brand-navy placeholder:text-neutral-600/55 transition-[border-color,box-shadow] duration-150 resize-none"
+                        className="w-full p-3.5 rounded-xl bg-white border border-brand-navy/15 hover:border-brand-navy/30 focus:border-brand-red focus:ring-3 focus:ring-brand-red/12 focus:outline-none text-sm font-normal text-brand-navy placeholder:text-neutral-600/55 transition-[border-color,box-shadow] duration-150 resize-none"
                       />
                     </div>
                   </div>
@@ -646,7 +646,7 @@ export default function Contactus({
                       type="submit"
                       size="lg"
                       disabled={isSubmitting}
-                      className="w-full group/primary cursor-pointer font-medium"
+                      className="w-full group/primary cursor-pointer font-medium rounded-full"
                     >
                       <span>
                         {isSubmitting ? "Sending message..." : "Send Message"}
@@ -666,7 +666,7 @@ export default function Contactus({
         {/* Full-Width 12-Column Google Map Row */}
         <div className="grid grid-cols-1 lg:grid-cols-12">
           <AppleReveal className="lg:col-span-12">
-            <div className="rounded-2xl overflow-hidden border border-brand-navy/10 bg-neutral-100 h-[360px] sm:h-[420px] w-full">
+            <div className="rounded-[32px] overflow-hidden border border-black/[0.06] bg-neutral-100 h-[360px] sm:h-[420px] w-full shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
               <iframe
                 title="Sash Broadband Pvt Ltd Google Map Location - Kondancheri, Perambakkam, Tiruvallur District 631402"
                 src={SASH_GOOGLE_MAPS_EMBED_URL}

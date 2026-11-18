@@ -5,8 +5,8 @@
     </filter>
   </defs>
 
-  <!-- Single shadcn/ui Card Component -->
-  <rect x="40" y="30" width="720" height="440" rx="20" fill="#FFFFFF" stroke="#E2E5EE" stroke-width="1.5" filter="url(#shadcnCardShadow)" />
+  <!-- Single Apple/shadcn Card Component with 28px squircle radius -->
+  <rect x="40" y="30" width="720" height="440" rx="28" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1.5" filter="url(#shadcnCardShadow)" />
 
   <!-- CardHeader: Eyebrow, Title, Subtitle & Live Status Badge -->
   <rect x="70" y="56" width="186" height="26" rx="13" fill="#FDEBEB" />
@@ -24,7 +24,7 @@
   <line x1="70" y1="154" x2="730" y2="154" stroke="#E2E5EE" stroke-width="1" />
 
   <!-- The Single Core Element: High-Definition Live Camera Viewport Console -->
-  <rect x="70" y="174" width="660" height="236" rx="14" fill="#010D3B" />
+  <rect x="70" y="174" width="660" height="236" rx="18" fill="#010D3B" />
 
   <!-- Video Player Header Overlay inside Viewport -->
   <text x="94" y="206" font-family="Urbanist, system-ui, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF">CAM 01 • Main Logistics &amp; Production Facility</text>

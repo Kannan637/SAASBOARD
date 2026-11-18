@@ -335,11 +335,11 @@ export default function Hero() {
                   {currentSlide.subtitle}
                 </p>
 
-                {/* Juspay Buttons: h-10 px-4, 8px radius, 14px font, 500 weight */}
+                {/* Apple Buttons: h-10 px-5, full pill radius, 14px font, 500 weight */}
                 <div className="mt-6 flex flex-wrap items-center gap-3">
                   <Link
                     href={currentSlide.ctaHref}
-                    className="group/primary inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-linear-to-b from-brand-red to-brand-red-hover px-4 text-sm font-medium text-white shadow-[0_6px_20px_var(--color-red-10)] outline-2 -outline-offset-2 outline-white/20 transition-[background-color,transform,box-shadow] duration-150 ease-out hover:from-brand-red-hover hover:to-brand-red-hover hover:bg-brand-red-hover active:scale-[0.97]"
+                    className="group/primary inline-flex h-10 items-center justify-center gap-2 rounded-full bg-linear-to-b from-brand-red to-brand-red-hover px-5 text-sm font-medium text-white shadow-[0_6px_20px_var(--color-red-10)] outline-2 -outline-offset-2 outline-white/20 transition-[background-color,transform,box-shadow] duration-150 ease-out hover:from-brand-red-hover hover:to-brand-red-hover hover:bg-brand-red-hover active:scale-[0.97]"
                   >
                     {currentSlide.ctaText}
                     <ArrowRight className="size-3.5 transition-transform duration-150 ease-out group-hover/primary:translate-x-0.5" />
@@ -347,7 +347,7 @@ export default function Hero() {
 
                   <Link
                     href={currentSlide.secondaryCtaHref}
-                    className="group/process inline-flex h-10 items-center justify-center gap-2 px-3 text-sm font-medium text-brand-navy transition-[opacity,transform] duration-150 ease-out hover:opacity-75 active:scale-[0.97]"
+                    className="group/process inline-flex h-10 items-center justify-center gap-2 px-4 rounded-full text-sm font-medium text-brand-navy transition-[opacity,transform] duration-150 ease-out hover:opacity-75 active:scale-[0.97]"
                   >
                     {currentSlide.secondaryCtaText}
                     <Play className="size-3 fill-current transition-transform duration-150 ease-out group-hover/process:scale-110" />
@@ -365,7 +365,7 @@ export default function Hero() {
                 type="button"
                 onClick={handlePrev}
                 aria-label="Previous slide"
-                className="w-9 h-9 rounded-lg border border-brand-navy/20 text-brand-navy/80 hover:border-brand-navy hover:text-brand-navy flex items-center justify-center transition-[color,border-color,transform] duration-200 ease-out active:scale-[0.96] cursor-pointer"
+                className="w-9 h-9 rounded-full border border-brand-navy/20 text-brand-navy/80 hover:border-brand-navy hover:text-brand-navy flex items-center justify-center transition-[color,border-color,transform] duration-200 ease-out active:scale-[0.96] cursor-pointer"
               >
                 <svg
                   className="w-4 h-4"
@@ -393,7 +393,7 @@ export default function Hero() {
                 type="button"
                 onClick={handleNext}
                 aria-label="Next slide"
-                className="w-9 h-9 rounded-lg bg-linear-to-b from-brand-red to-brand-red-hover text-white shadow-[0_4px_14px_var(--color-red-10)] outline-2 -outline-offset-2 outline-white/20 hover:from-brand-red-hover hover:to-brand-red-hover hover:bg-brand-red-hover flex items-center justify-center transition-[background-color,transform,box-shadow] duration-200 ease-out active:scale-[0.96] cursor-pointer"
+                className="w-9 h-9 rounded-full bg-linear-to-b from-brand-red to-brand-red-hover text-white shadow-[0_4px_14px_var(--color-red-10)] outline-2 -outline-offset-2 outline-white/20 hover:from-brand-red-hover hover:to-brand-red-hover hover:bg-brand-red-hover flex items-center justify-center transition-[background-color,transform,box-shadow] duration-200 ease-out active:scale-[0.96] cursor-pointer"
               >
                 <svg
                   className="w-4 h-4"
@@ -443,7 +443,7 @@ export default function Hero() {
             <LeftEdgeCutoutMask />
 
             {/* Floating Service Icon Badge on Right Photo */}
-            <div className="absolute bottom-5 right-5 z-20 rounded-xl bg-white/95 border border-neutral-100 px-3.5 py-2 flex items-center gap-2.5 shadow-[0_4px_14px_rgba(1,13,59,0.08)]">
+            <div className="absolute bottom-5 right-5 z-20 rounded-full bg-white/95 border border-black/[0.06] px-4 py-2 flex items-center gap-2.5 shadow-[0_4px_14px_rgba(1,13,59,0.08)]">
               <Image
                 src={currentSlide.serviceIcon}
                 alt={currentSlide.serviceLabel}

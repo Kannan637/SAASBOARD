@@ -9,8 +9,8 @@
     </linearGradient>
   </defs>
 
-  <!-- Single shadcn/ui Card Component -->
-  <rect x="40" y="30" width="720" height="440" rx="20" fill="#FFFFFF" stroke="#E2E5EE" stroke-width="1.5" filter="url(#shadcnCardShadow)" />
+  <!-- Single Apple/shadcn Card Component with 28px squircle radius -->
+  <rect x="40" y="30" width="720" height="440" rx="28" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1.5" filter="url(#shadcnCardShadow)" />
 
   <!-- CardHeader: Eyebrow, Title, Subtitle & Live Status Badge -->
   <rect x="70" y="56" width="166" height="26" rx="13" fill="#FDEBEB" />
@@ -32,13 +32,13 @@
   <text x="182" y="218" font-family="Urbanist, system-ui, sans-serif" font-size="26" font-weight="600" fill="#DE0302">Gbps</text>
 
   <!-- Performance Badges Row -->
-  <rect x="272" y="184" width="138" height="28" rx="8" fill="#F3F4F7" />
+  <rect x="272" y="184" width="138" height="28" rx="14" fill="#F3F4F7" />
   <text x="341" y="202" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="500" fill="#010D3B">Sub-4ms Core Latency</text>
 
-  <rect x="420" y="184" width="134" height="28" rx="8" fill="#F3F4F7" />
+  <rect x="420" y="184" width="134" height="28" rx="14" fill="#F3F4F7" />
   <text x="487" y="202" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="500" fill="#010D3B">0.00% Packet Loss</text>
 
-  <rect x="564" y="184" width="146" height="28" rx="8" fill="#F3F4F7" />
+  <rect x="564" y="184" width="146" height="28" rx="14" fill="#F3F4F7" />
   <text x="637" y="202" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="12" font-weight="500" fill="#010D3B">Dual-Ring Optical Failover</text>
 
   <!-- Real-Time Traffic Area Chart Grid -->

@@ -18,11 +18,11 @@
   --neutral-600: #4A4F63;
   --neutral-100: #F3F4F7;
 
-  /* Typography & Layout Tokens */
+  /* Typography & Layout Tokens - Apple Curvature */
   --container-max: 1200px;
-  --radius-card: 12px;
+  --radius-card: 28px;
   --radius-pill: 9999px;
-  --radius-banner: 20px;
+  --radius-banner: 32px;
   --shadow-subtle: none;
 
   /* Shadcn UI Mappings to SASH Brand */
@@ -44,7 +44,7 @@
   --border: #E2E5EE;
   --input: #E2E5EE;
   --ring: #DE0302;
-  --radius: 0.5rem;
+  --radius: 1rem;
   --chart-1: var(--brand-red);
   --chart-foreground: var(--brand-navy);
   --chart-foreground-muted: var(--neutral-600);
@@ -289,9 +289,9 @@
   border-radius: var(--radius-banner);
 }
 
-/* Juspay Button Architecture: 8px radius, heights 32/36/40px, font 14px weight 500 */
+/* Apple Pill Button Architecture: Full pill curvature, heights 32/36/40px, font 14px weight 500 */
 .btn-pill {
-  border-radius: 8px;
+  border-radius: 9999px;
   height: 36px;
   padding-left: 14px;
   padding-right: 14px;

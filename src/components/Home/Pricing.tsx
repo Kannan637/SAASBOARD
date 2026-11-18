@@ -140,9 +140,9 @@ export default function Pricing() {
               <article
                 data-apple-manual="true"
                 aria-label={`${plan.name} - ${plan.price} ${plan.period}`}
-                className={`rounded-xl p-7 sm:p-8 lg:p-9 flex flex-col justify-between relative w-full transition-transform duration-300 hover:-translate-y-1.5 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] hover:shadow-[0px_8px_24px_rgba(5,5,6,0.08)] ${plan.featured
-                    ? "bg-brand-navy text-white border-2 border-brand-red/80 shadow-[0_18px_45px_rgba(1,13,59,0.22)]"
-                    : "bg-white text-brand-navy border border-neutral-100"
+                className={`rounded-[28px] p-7 sm:p-8 lg:p-9 flex flex-col justify-between relative w-full transition-transform duration-300 hover:-translate-y-1.5 ${plan.featured
+                    ? "bg-brand-navy text-white border border-brand-navy/60 shadow-[0_16px_40px_rgba(1,13,59,0.18)]"
+                    : "bg-white text-brand-navy border border-black/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.02)]"
                   }`}
               >
                 {plan.featured && (
@@ -216,7 +216,7 @@ export default function Pricing() {
                     </div>
                     {plan.speedNote && (
                       <p
-                        className={`text-xs font-medium mt-2 px-2.5 py-1 rounded-lg ${plan.featured
+                        className={`text-xs font-medium mt-2 px-3 py-1 rounded-full ${plan.featured
                             ? "text-white bg-white/15"
                             : "text-brand-red bg-red-10"
                           }`}

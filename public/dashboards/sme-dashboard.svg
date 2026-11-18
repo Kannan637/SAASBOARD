@@ -8,8 +8,8 @@
     </filter>
   </defs>
 
-  <!-- Single shadcn/ui Card Component -->
-  <rect x="40" y="30" width="720" height="440" rx="20" fill="#FFFFFF" stroke="#E2E5EE" stroke-width="1.5" filter="url(#shadcnCardShadow)" />
+  <!-- Single Apple/shadcn Card Component with 28px squircle radius -->
+  <rect x="40" y="30" width="720" height="440" rx="28" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1.5" filter="url(#shadcnCardShadow)" />
 
   <!-- CardHeader: Eyebrow, Title, Subtitle & Price Lock Badge -->
   <rect x="70" y="56" width="168" height="26" rx="13" fill="#FDEBEB" />

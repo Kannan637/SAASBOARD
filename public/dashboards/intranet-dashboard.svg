@@ -5,8 +5,8 @@
     </filter>
   </defs>
 
-  <!-- Single shadcn/ui Card Component -->
-  <rect x="40" y="30" width="720" height="440" rx="20" fill="#FFFFFF" stroke="#E2E5EE" stroke-width="1.5" filter="url(#shadcnCardShadow)" />
+  <!-- Single Apple/shadcn Card Component with 28px squircle radius -->
+  <rect x="40" y="30" width="720" height="440" rx="28" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1.5" filter="url(#shadcnCardShadow)" />
 
   <!-- CardHeader: Eyebrow, Title, Subtitle & Network Status Badge -->
   <rect x="70" y="56" width="162" height="26" rx="13" fill="#FDEBEB" />
@@ -29,7 +29,7 @@
   <text x="70" y="238" font-family="Urbanist, system-ui, sans-serif" font-size="13" font-weight="500" fill="#4A4F63">Average Inter-Branch Latency  •  Direct Optical Ring</text>
 
   <!-- Security Protocol Badge -->
-  <rect x="548" y="180" width="182" height="28" rx="8" fill="#FDEBEB" />
+  <rect x="548" y="180" width="182" height="28" rx="14" fill="#FDEBEB" />
   <text x="639" y="198" text-anchor="middle" font-family="Urbanist, system-ui, sans-serif" font-size="11" font-weight="600" fill="#DE0302">AES-256 Hardware Encrypted</text>
 
   <!-- Optical Mesh Topology Diagram -->

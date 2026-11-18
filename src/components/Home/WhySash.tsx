@@ -34,10 +34,10 @@ import {
 const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const CARD_BG_GRADIENT =
-  "bg-[linear-gradient(to_bottom_right,#F8FAFF_0%,#E5EDFF_36%,#F4DDE2_68%,#DE0302_100%)]";
+  "bg-[linear-gradient(145deg,#FFFFFF_0%,#F5F7FB_40%,#ECEFF7_100%)]";
 
 const CARD_BOTTOM_BLEND =
-  "pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.05)_18%,rgba(255,255,255,0.22)_38%,rgba(255,255,255,0.52)_62%,rgba(255,255,255,0.88)_85%,#FFFFFF_100%)]";
+  "pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.4)_45%,#FFFFFF_100%)]";
 
 const gridContainerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -92,7 +92,7 @@ export function FeatureCard({
       className={`group/bento flex flex-col h-full ${className}`}
     >
       <Card
-        className={`relative w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-brand-navy/10 rounded-2xl shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] overflow-hidden py-0 gap-0 ring-0 transition-all duration-300 ${cardClassName}`}
+        className={`relative w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.06] rounded-[28px] shadow-[0_4px_24px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.02)] overflow-hidden py-0 gap-0 ring-0 transition-all duration-300 ${cardClassName}`}
       >
         {children}
       </Card>
@@ -213,7 +213,7 @@ export function FibreSpeedCard() {
         </div>
 
         {/* Below Chart: Title & Description */}
-        <div className="relative z-20 bg-white px-4 min-[360px]:px-5 sm:px-6 pt-3 pb-4 sm:pb-6 mt-auto w-full">
+        <div className="relative z-20 bg-white px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full">
           <CardTitle className="text-brand-navy !text-xl min-[360px]:!text-2xl sm:!text-3xl font-semibold tracking-normal mb-1.5">
             Up to 1 Gbps
           </CardTitle>
@@ -268,7 +268,7 @@ export function RouterSetupCard() {
         </div>
 
         {/* Bottom Title & Description */}
-        <div className="relative z-20 bg-white px-4 min-[360px]:px-5 sm:px-5 pt-3 pb-4 sm:pb-5 mt-auto flex flex-col justify-end">
+        <div className="relative z-20 bg-white px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto flex flex-col justify-end">
           <CardTitle className="text-brand-navy !text-lg min-[360px]:!text-xl sm:!text-2xl font-semibold tracking-normal mb-1.5">
             Free router and setup
           </CardTitle>
@@ -350,7 +350,7 @@ export function LicensedISPCARD() {
         </div>
 
         {/* Bottom Section: Pure White with Title & Description */}
-        <div className="relative z-20 bg-white px-4 min-[360px]:px-5 sm:px-5 pt-3 pb-4 sm:pb-5 mt-auto flex flex-col justify-end">
+        <div className="relative z-20 bg-white px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto flex flex-col justify-end">
           <CardTitle className="text-brand-navy !text-lg min-[360px]:!text-xl sm:!text-2xl font-semibold tracking-normal mb-1.5">
             Licensed ISP serving Tamil Nadu
           </CardTitle>
@@ -522,7 +522,7 @@ export function SupportCard() {
         </div>
 
         {/* Bottom Section: Pure White with Title & Description */}
-        <div className="relative z-20 bg-white px-4 min-[360px]:px-5 sm:px-5 pt-3 pb-4 sm:pb-5 mt-auto flex flex-col justify-end">
+        <div className="relative z-20 bg-white px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto flex flex-col justify-end">
           <CardTitle className="text-brand-navy !text-lg min-[360px]:!text-xl sm:!text-2xl font-semibold tracking-normal mb-1.5">
             Always connected to local support
           </CardTitle>
@@ -711,7 +711,7 @@ export function PriceLockCard() {
         </div>
 
         {/* Bottom Section: Pure White with Title & Description */}
-        <div className="relative z-20 bg-white px-4 min-[360px]:px-5 sm:px-5 pt-3 pb-4 sm:pb-5 mt-auto flex flex-col justify-end">
+        <div className="relative z-20 bg-white px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto flex flex-col justify-end">
           <CardTitle className="text-brand-navy !text-lg min-[360px]:!text-xl sm:!text-2xl font-semibold tracking-normal mb-1.5">
             One local partner for every connection
           </CardTitle>

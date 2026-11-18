@@ -97,8 +97,8 @@ export default function Faq() {
             return (
               <AppleStaggerItem key={item.question}>
                 <div
-                  className={`rounded-xl bg-white border overflow-hidden transition-colors duration-200 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] ${
-                    isOpen ? "border-brand-red/30" : "border-neutral-100"
+                  className={`rounded-[22px] bg-white border overflow-hidden transition-all duration-200 shadow-[0_2px_12px_rgba(0,0,0,0.03)] ${
+                    isOpen ? "border-brand-red/35" : "border-black/[0.06]"
                   }`}
                 >
                   <button
