@@ -422,3 +422,59 @@
     transform: translate3d(0, 0, 0) scale(1);
   }
 }
+
+/* Smooth infinite logo marquee ticker */
+@keyframes sash-logo-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-sash-logo-marquee {
+  display: flex;
+  width: max-content;
+  animation: sash-logo-marquee 46s linear infinite;
+  will-change: transform;
+}
+
+.animate-sash-logo-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-sash-logo-marquee {
+    animation: none;
+    overflow-x: auto;
+  }
+}
+
+/* Smooth infinite logo marquee ticker */
+@keyframes sash-logo-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-sash-logo-marquee {
+  display: flex;
+  width: max-content;
+  animation: sash-logo-marquee 46s linear infinite;
+  will-change: transform;
+}
+
+.animate-sash-logo-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-sash-logo-marquee {
+    animation: none;
+    overflow-x: auto;
+  }
+}

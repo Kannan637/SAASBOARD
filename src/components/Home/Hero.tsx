@@ -5,11 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Play } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  AppleStagger,
-  AppleStaggerItem,
-  APPLE_EASE,
-} from "@/components/ui/apple-scroll";
+import { APPLE_EASE } from "@/components/ui/apple-scroll";
 
 interface ServiceHeroSlide {
   id: string;
@@ -133,78 +129,14 @@ const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
   },
 ];
 
-const PROMISE_ITEMS = [
-  {
-    title: "Free setup on your first connection",
-    icon: (
-      <svg
-        className="w-6 h-6 shrink-0 text-white"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-        <path d="m9 12 2 2 4-4" />
-      </svg>
-    ),
-  },
-  {
-    title: "Up to 1 Gbps download speed",
-    icon: (
-      <svg
-        className="w-6 h-6 shrink-0 text-white"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
-      </svg>
-    ),
-  },
-  {
-    title: "24/7 customer support",
-    icon: (
-      <svg
-        className="w-6 h-6 shrink-0 text-white"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3" />
-      </svg>
-    ),
-  },
-  {
-    title: "Price lock for 1 to 2 years on home plans",
-    icon: (
-      <svg
-        className="w-6 h-6 shrink-0 text-white"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
-        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-      </svg>
-    ),
-  },
-];
+const COMPANY_LOGOS = Array.from({ length: 34 }, (_, index) => {
+  const num = index + 1;
+  return {
+    id: `company-logo-${num}`,
+    src: `/Marquee/${num}.jpg`,
+    alt: `SASH Broadband enterprise & institutional client ${num}`,
+  };
+});
 
 function LeftEdgeCutoutMask() {
   return (
@@ -474,28 +406,64 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* 2. Promise Strip (Red background, White text, 4 columns on desktop) */}
+      {/* 2. Trusted Company Logos Strip (Clean Apple-style logo ticker matching shared img) */}
       <section
         data-apple-manual="true"
-        aria-label="SASH Broadband Customer Promises"
-        className="bg-brand-red text-white py-9 sm:py-10 lg:py-12"
+        aria-label="Trusted by leading companies and institutions"
+        className="w-full bg-white border-b border-black/[0.05] py-7 sm:py-8 overflow-hidden select-none"
       >
         <div className="container-sash">
-          <AppleStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-7">
-            {PROMISE_ITEMS.map((item) => (
-              <AppleStaggerItem
-                key={item.title}
-                className="flex items-center gap-3.5 bg-[#B80201] rounded-xl px-5 py-4 border border-white/25"
-              >
-                <div className="w-11 h-11 rounded-full bg-brand-navy flex items-center justify-center shrink-0">
-                  {item.icon}
+          <p className="text-center text-xs sm:text-sm font-normal text-neutral-500 tracking-normal mb-5 sm:mb-6">
+            Trusted by leading companies and institutions across Tamil Nadu
+          </p>
+
+          <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+            {/* Gradient side-fade fallback overlays */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 bg-gradient-to-r from-white to-transparent z-10"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-24 bg-gradient-to-l from-white to-transparent z-10"
+            />
+
+            <div className="animate-sash-logo-marquee flex items-center gap-10 sm:gap-14 py-1">
+              {/* Original Track */}
+              {COMPANY_LOGOS.map((logo) => (
+                <div
+                  key={`orig-${logo.id}`}
+                  className="shrink-0 flex items-center justify-center transition-transform duration-200 hover:scale-105"
+                >
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={140}
+                    height={48}
+                    sizes="140px"
+                    className="h-8 sm:h-9 w-auto max-w-[120px] sm:max-w-[140px] object-contain select-none pointer-events-none grayscale opacity-65 hover:grayscale-0 hover:opacity-100 transition-all duration-300 mix-blend-multiply"
+                  />
                 </div>
-                <span className="font-medium text-sm sm:text-base leading-snug text-white">
-                  {item.title}
-                </span>
-              </AppleStaggerItem>
-            ))}
-          </AppleStagger>
+              ))}
+              {/* Duplicated Track for Seamless Infinite Loop */}
+              {COMPANY_LOGOS.map((logo) => (
+                <div
+                  key={`dup-${logo.id}`}
+                  aria-hidden="true"
+                  className="shrink-0 flex items-center justify-center transition-transform duration-200 hover:scale-105"
+                >
+                  <Image
+                    src={logo.src}
+                    alt=""
+                    width={140}
+                    height={48}
+                    sizes="140px"
+                    className="h-8 sm:h-9 w-auto max-w-[120px] sm:max-w-[140px] object-contain select-none pointer-events-none grayscale opacity-65 hover:grayscale-0 hover:opacity-100 transition-all duration-300 mix-blend-multiply"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </>
