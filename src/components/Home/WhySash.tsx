@@ -26,9 +26,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Gauge } from "@/components/charts/gauge";
-import { GlobeStickers, type StickerMarker } from "@/components/ui/cobe-globe-stickers";
+import {
+  GlobeStickers,
+  type StickerMarker,
+} from "@/components/ui/cobe-globe-stickers";
 
 const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+const CARD_BG_GRADIENT =
+  "bg-gradient-to-br from-[#F8FAFF] via-[#E5EDFF] via-[#F4DDE2] to-[#DE0302] bg-[linear-gradient(to_bottom_right,#F8FAFF_0%,#E5EDFF_36%,#F4DDE2_68%,#DE0302_100%)]";
 
 const gridContainerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -75,15 +81,15 @@ export function FeatureCard({
         shouldReduceMotion
           ? undefined
           : {
-            y: -6,
-            transition: { duration: 0.28, ease: "easeOut" },
-          }
+              y: -6,
+              transition: { duration: 0.28, ease: "easeOut" },
+            }
       }
       aria-label={ariaLabel}
       className={`group/bento flex flex-col h-full ${className}`}
     >
       <Card
-        className={`relative w-full h-full flex flex-col justify-between banner-sash bg-white text-brand-navy border-0 rounded-2xl shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] hover:shadow-[0px_8px_24px_rgba(5,5,6,0.08)] overflow-hidden py-0 gap-0 ring-0 transition-all duration-300 ${cardClassName}`}
+        className={`relative w-full h-full flex flex-col justify-between banner-sash ${CARD_BG_GRADIENT} text-brand-navy border-0 rounded-2xl shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)] hover:shadow-[0px_8px_24px_rgba(5,5,6,0.08)] overflow-hidden py-0 gap-0 ring-0 transition-all duration-300 ${cardClassName}`}
       >
         {children}
       </Card>
@@ -101,7 +107,7 @@ const SPEED_ANIMATION_STEPS = [
 
 /**
  * Card 01 — 100% Optical Fibre (Top-Left Wide Hero Bento: 8 of 12 columns on desktop)
- * Top: 45% Visible iPhone on Footer Gradient Background with Animated Bklit Studio Gauge
+ * Top: 45% Visible iPhone on Gradient Background with Animated Bklit Studio Gauge
  * Below: Title & Description
  */
 export function FibreSpeedCard() {
@@ -135,21 +141,21 @@ export function FibreSpeedCard() {
         onMouseLeave={() => setIsHovered(false)}
         className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden"
       >
-        {/* Top iPhone Section with Gradient Background (Edge-to-Edge) */}
-        <div className="relative w-full overflow-hidden bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#DE0302] pt-2.5 min-[360px]:pt-3 sm:pt-4 px-2 flex justify-center">
-          {/* Smooth Blend into Bottom White Section */}
+        {/* Top iPhone Section with Card Gradient Background (Edge-to-Edge) */}
+        <div
+          className={`relative w-full overflow-hidden ${CARD_BG_GRADIENT} pt-2.5 min-[360px]:pt-3 sm:pt-4 px-2 flex justify-center`}
+        >
+          {/* Meeting Point Smooth Blend into Bottom White Section */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 overflow-hidden select-none"
-          >
-            <div className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white z-20 pointer-events-none" />
-          </div>
+            className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white z-20 pointer-events-none"
+          />
 
           {/* iPhone Hardware Mockup (45% visible, bottom 55% hidden at bottom edge; iPhone screen stays white) */}
           <div className="relative z-10 mx-auto w-[270px] min-[360px]:w-[310px] sm:w-[360px] shrink-0">
-            {/* 45% Visible Viewport Window (220px of 488px on <360px, 252px of 560px on mobile, 293px of 651px on sm+) */}
+            {/* 45% Visible Viewport Window */}
             <div className="relative h-[220px] min-[360px]:h-[252px] sm:h-[293px] w-full overflow-hidden">
-              {/* Full iPhone Container (484:876 exact aspect ratio of Iphone Frame.png) */}
+              {/* Full iPhone Container */}
               <div className="relative h-[488px] min-[360px]:h-[560px] sm:h-[651px] w-full">
                 {/* Inner iOS Screen — Remains White */}
                 <div className="absolute left-[2.9%] right-[2.9%] top-[1.4%] bottom-[1.4%] z-10 overflow-hidden rounded-[38px] min-[360px]:rounded-[46px] sm:rounded-[52px] bg-white">
@@ -207,11 +213,11 @@ export function FibreSpeedCard() {
         </div>
 
         {/* Below Chart: Title & Description */}
-        <div className="relative z-20 bg-white px-4 min-[360px]:px-5 sm:px-6 pt-3 pb-4 sm:pb-6 mt-auto max-w-2xl">
+        <div className="relative z-20 bg-white px-4 min-[360px]:px-5 sm:px-6 pt-3 pb-4 sm:pb-6 mt-auto w-full">
           <CardTitle className="text-brand-navy !text-xl min-[360px]:!text-2xl sm:!text-3xl font-semibold tracking-normal mb-1.5">
             Up to 1 Gbps
           </CardTitle>
-          <CardDescription className="text-neutral-600 text-xs min-[360px]:text-sm sm:text-base leading-relaxed font-normal">
+          <CardDescription className="text-neutral-600 text-xs min-[360px]:text-sm sm:text-base leading-relaxed font-normal max-w-2xl">
             End-to-end FTTH optical infrastructure delivers consistent upload
             and download speeds, even during peak evening hours.
           </CardDescription>
@@ -233,14 +239,14 @@ export function RouterSetupCard() {
     >
       <CardContent className="p-0 flex-1 flex flex-col justify-between overflow-hidden">
         {/* Top Visual Stage with Gradient Background (Edge-to-Edge) */}
-        <div className="relative w-full h-[220px] min-[360px]:h-[252px] sm:h-[293px] bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#DE0302] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/router">
-          {/* Smooth Blend into Bottom White Section */}
+        <div
+          className={`relative w-full h-[220px] min-[360px]:h-[252px] sm:h-[293px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/router`}
+        >
+          {/* Meeting Point Smooth Blend into Bottom White Section */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 overflow-hidden select-none"
-          >
-            <div className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white z-10 pointer-events-none" />
-          </div>
+            className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white z-10 pointer-events-none"
+          />
 
           {/* Top Badges Bar: ₹0 Setup Cost */}
           <div className="relative z-20 w-full flex items-center justify-between gap-2">
@@ -252,7 +258,7 @@ export function RouterSetupCard() {
 
           {/* Centered Router Product Visual */}
           <div className="relative z-20 flex-1 flex flex-col items-center justify-center my-auto py-1">
-            <div className="relative w-24 h-24 min-[360px]:w-28 min-[360px]:h-28 sm:w-32 sm:h-32 flex items-center justify-center drop-shadow-[0_12px_24px_rgba(0,0,0,0.65)] transition-transform duration-300 ease-out group-hover/router:scale-[1.05]">
+            <div className="relative w-24 h-24 min-[360px]:w-28 min-[360px]:h-28 sm:w-32 sm:h-32 flex items-center justify-center drop-shadow-[0_12px_24px_rgba(1,13,59,0.28)] transition-transform duration-300 ease-out group-hover/router:scale-[1.05]">
               <Image
                 src="/Service/BroadBand.webp"
                 alt="Pre-configured dual-band Wi-Fi router"
@@ -312,17 +318,17 @@ export function LicensedISPCARD() {
       cardClassName="flex flex-col justify-between p-0 overflow-hidden"
     >
       <CardContent className="p-0 flex-1 flex flex-col justify-between overflow-hidden">
-        {/* Top Globe Visual Stage: 45% Visible Close-Up Globe on Gradient (Edge-to-Edge) */}
-        <div className="relative w-full h-[200px] min-[360px]:h-[215px] sm:h-[230px] bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#DE0302] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/globe">
+        {/* Top Globe Visual Stage: 45% Visible Close-Up Globe on Card Gradient (Edge-to-Edge) */}
+        <div
+          className={`relative w-full h-[200px] min-[360px]:h-[215px] sm:h-[230px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/globe`}
+        >
           {/* Smooth Blend at the Meeting Point */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 overflow-hidden select-none"
-          >
-            <div className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white z-10 pointer-events-none" />
-          </div>
+            className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white z-10 pointer-events-none"
+          />
 
-          {/* Top Badges Bar: Tamil Nadu Circle (Class-B ISP removed) */}
+          {/* Top Badges Bar: Tamil Nadu Circle */}
           <div className="relative z-30 w-full flex items-center justify-between gap-2 pointer-events-none">
             <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-red px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs">
               <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
@@ -365,7 +371,12 @@ export function LicensedISPCARD() {
 
 function WhatsAppIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
     </svg>
   );
@@ -373,7 +384,12 @@ function WhatsAppIcon({ className = "w-4 h-4" }: { className?: string }) {
 
 function MessengerIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
       <path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.745 6.616 4.472 8.652v4.237l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm1.191 14.963l-3.056-3.259-5.963 3.259 6.559-6.963 3.13 3.259 5.89-3.259-6.56 6.963z" />
     </svg>
   );
@@ -433,16 +449,16 @@ export function SupportCard() {
     >
       <CardContent className="p-0 flex-1 flex flex-col justify-between overflow-hidden">
         {/* Top Status Stage with Close-Up Rotating Orbit Animation (Edge-to-Edge) */}
-        <div className="relative w-full h-[200px] min-[360px]:h-[215px] sm:h-[230px] bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#DE0302] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support">
+        <div
+          className={`relative w-full h-[200px] min-[360px]:h-[215px] sm:h-[230px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support`}
+        >
           {/* Smooth Blend at the Meeting Point */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 overflow-hidden select-none"
-          >
-            <div className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white z-10 pointer-events-none" />
-          </div>
+            className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white z-10 pointer-events-none"
+          />
 
-          {/* Top Badges Bar: 24/7 NOC Desk (24/7 Live removed) */}
+          {/* Top Badges Bar: 24/7 NOC Desk */}
           <div className="relative z-30 w-full flex items-center justify-between gap-2 pointer-events-none">
             <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-red px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs">
               <Headphones className="w-3.5 h-3.5" aria-hidden="true" />
@@ -452,11 +468,11 @@ export function SupportCard() {
 
           {/* Close-Up 45% Visible Rotating Orbit Stage */}
           <div className="pointer-events-auto absolute top-[115px] min-[360px]:top-[125px] sm:top-[132px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] h-[260px] min-[360px]:w-[280px] min-[360px]:h-[280px] sm:w-[310px] sm:h-[310px] flex items-center justify-center">
-            {/* Outer Concentric Radar Ring (Close-Up Arcing) */}
-            <div className="pointer-events-none absolute w-[240px] h-[240px] min-[360px]:w-[260px] min-[360px]:h-[260px] sm:w-[290px] sm:h-[290px] rounded-full border border-dashed border-white/15" />
+            {/* Outer Concentric Radar Ring */}
+            <div className="pointer-events-none absolute w-[240px] h-[240px] min-[360px]:w-[260px] min-[360px]:h-[260px] sm:w-[290px] sm:h-[290px] rounded-full border border-dashed border-brand-navy/20" />
 
             {/* Middle Subtle Glow Ring */}
-            <div className="pointer-events-none absolute w-[180px] h-[180px] min-[360px]:w-[200px] min-[360px]:h-[200px] sm:w-[220px] sm:h-[220px] rounded-full border border-white/10" />
+            <div className="pointer-events-none absolute w-[180px] h-[180px] min-[360px]:w-[200px] min-[360px]:h-[200px] sm:w-[220px] sm:h-[220px] rounded-full border border-brand-navy/15" />
 
             {/* Rotating Orbit Container with Counter-Rotating Communication Icons */}
             <motion.div
@@ -476,8 +492,12 @@ export function SupportCard() {
                   {/* Counter-rotate each icon so it stays upright at all angles */}
                   <motion.div
                     animate={shouldReduceMotion ? undefined : { rotate: -360 }}
-                    transition={{ duration: 24, ease: "linear", repeat: Infinity }}
-                    className="w-8 h-8 min-[360px]:w-9 min-[360px]:h-9 sm:w-10 sm:h-10 rounded-full bg-white shadow-[0_4px_16px_rgba(0,0,0,0.35)] flex items-center justify-center transition-transform duration-200 hover:scale-115"
+                    transition={{
+                      duration: 24,
+                      ease: "linear",
+                      repeat: Infinity,
+                    }}
+                    className="w-8 h-8 min-[360px]:w-9 min-[360px]:h-9 sm:w-10 sm:h-10 rounded-full bg-white shadow-[0_4px_16px_rgba(1,13,59,0.2)] flex items-center justify-center transition-transform duration-200 hover:scale-115"
                     title={item.label}
                   >
                     {item.icon}
@@ -486,13 +506,13 @@ export function SupportCard() {
               ))}
             </motion.div>
 
-            {/* Center SASHBOARD / SASH Logo (No Background) */}
+            {/* Center SASHBOARD / SASH Logo */}
             <div className="relative z-20 flex flex-col items-center justify-center">
               {/* Radiating Signal Waves */}
               <span className="pointer-events-none absolute w-16 h-16 min-[360px]:w-20 min-[360px]:h-20 sm:w-24 sm:h-24 rounded-full border border-brand-red/35 animate-ping opacity-60" />
               <span className="pointer-events-none absolute w-14 h-14 min-[360px]:w-16 min-[360px]:h-16 sm:w-18 sm:h-18 rounded-full border border-brand-red/45 animate-pulse" />
 
-              {/* SASH Logo Floating Directly With No Background */}
+              {/* SASH Logo Floating Directly */}
               <div className="relative w-12 h-12 min-[360px]:w-14 min-[360px]:h-14 sm:w-16 sm:h-16 flex items-center justify-center transition-transform duration-300 group-hover/support:scale-105">
                 <Image
                   src="/Logo/Favicon.png"
@@ -500,7 +520,7 @@ export function SupportCard() {
                   width={52}
                   height={52}
                   priority
-                  className="w-full h-full object-contain select-none filter drop-shadow-[0_8px_20px_rgba(0,0,0,0.7)]"
+                  className="w-full h-full object-contain select-none filter drop-shadow-[0_8px_20px_rgba(1,13,59,0.35)]"
                 />
               </div>
             </div>
@@ -553,7 +573,7 @@ const CAROUSEL_SERVICES = [
 /**
  * Card 05 — Price Lock & Services (Bottom-Right: 4 of 12 columns on desktop)
  * Features an auto-scrolling carousel cycling through all 5 service icons centered
- * on a footer gradient background.
+ * on the card gradient background.
  */
 export function PriceLockCard() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -592,20 +612,21 @@ export function PriceLockCard() {
           ref={containerRef}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="relative w-full h-[200px] min-[360px]:h-[215px] sm:h-[230px] bg-gradient-to-b from-[#F2F8FF] via-[#DBEAFE] to-[#DE0302] flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/carousel overflow-hidden"
+          className={`relative w-full h-[200px] min-[360px]:h-[215px] sm:h-[230px] ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/carousel overflow-hidden`}
         >
-          {/* Smooth Blend at the Meeting Point: Seamlessly dissolves into the white bottom section */}
+          {/* Smooth Blend at the Meeting Point */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 overflow-hidden select-none"
-          >
-            <div className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white pointer-events-none" />
-          </div>
+            className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white pointer-events-none"
+          />
 
           {/* Carousel Top Header: ₹650/mo Price */}
           <div className="relative z-20 w-full flex items-center justify-end">
-            <span className="text-sm sm:text-base font-semibold text-brand-navy tabular-nums">
-              ₹650<span className="text-[11px] font-normal text-brand-navy/70">/mo</span>
+            <span className="inline-flex min-h-6 items-center rounded-full bg-brand-navy px-2.5 text-xs sm:text-sm font-semibold text-white tabular-nums shadow-xs">
+              ₹650
+              <span className="text-[10px] font-normal text-white/80 ml-0.5">
+                /mo
+              </span>
             </span>
           </div>
 
@@ -618,37 +639,37 @@ export function PriceLockCard() {
                 variants={
                   shouldReduceMotion
                     ? {
-                      enter: { opacity: 0 },
-                      center: { opacity: 1, transition: { duration: 0.3 } },
-                      exit: { opacity: 0, transition: { duration: 0.2 } },
-                    }
+                        enter: { opacity: 0 },
+                        center: { opacity: 1, transition: { duration: 0.3 } },
+                        exit: { opacity: 0, transition: { duration: 0.2 } },
+                      }
                     : {
-                      enter: (dir: number) => ({
-                        x: dir >= 0 ? 80 : -80,
-                        opacity: 0,
-                        scale: 0.88,
-                      }),
-                      center: {
-                        x: 0,
-                        opacity: 1,
-                        scale: 1,
-                        transition: {
-                          x: { type: "spring", stiffness: 320, damping: 30 },
-                          opacity: { duration: 0.28 },
-                          scale: { duration: 0.28 },
+                        enter: (dir: number) => ({
+                          x: dir >= 0 ? 80 : -80,
+                          opacity: 0,
+                          scale: 0.88,
+                        }),
+                        center: {
+                          x: 0,
+                          opacity: 1,
+                          scale: 1,
+                          transition: {
+                            x: { type: "spring", stiffness: 320, damping: 30 },
+                            opacity: { duration: 0.28 },
+                            scale: { duration: 0.28 },
+                          },
                         },
-                      },
-                      exit: (dir: number) => ({
-                        x: dir >= 0 ? -80 : 80,
-                        opacity: 0,
-                        scale: 0.88,
-                        transition: {
-                          x: { type: "spring", stiffness: 320, damping: 30 },
-                          opacity: { duration: 0.22 },
-                          scale: { duration: 0.22 },
-                        },
-                      }),
-                    }
+                        exit: (dir: number) => ({
+                          x: dir >= 0 ? -80 : 80,
+                          opacity: 0,
+                          scale: 0.88,
+                          transition: {
+                            x: { type: "spring", stiffness: 320, damping: 30 },
+                            opacity: { duration: 0.22 },
+                            scale: { duration: 0.22 },
+                          },
+                        }),
+                      }
                 }
                 initial="enter"
                 animate="center"
@@ -659,7 +680,7 @@ export function PriceLockCard() {
                   href={activeService.href}
                   className="group/service flex flex-col items-center justify-center cursor-pointer"
                 >
-                  <div className="relative w-24 h-24 min-[360px]:w-28 min-[360px]:h-28 sm:w-32 sm:h-32 flex items-center justify-center drop-shadow-[0_12px_24px_rgba(0,0,0,0.65)]">
+                  <div className="relative w-24 h-24 min-[360px]:w-28 min-[360px]:h-28 sm:w-32 sm:h-32 flex items-center justify-center drop-shadow-[0_12px_24px_rgba(1,13,59,0.28)]">
                     <Image
                       src={activeService.icon}
                       alt={activeService.label}
@@ -670,8 +691,8 @@ export function PriceLockCard() {
                     />
                   </div>
 
-                  <div className="mt-1 inline-flex items-center gap-1 rounded-full bg-white/12 hover:bg-white/20 backdrop-blur-md px-2.5 py-0.5 border border-white/20 text-white shadow-xs transition-colors">
-                    <span className="text-[10px] min-[360px]:text-[11px] font-medium tracking-tight">
+                  <div className="mt-1 inline-flex items-center gap-1 rounded-full bg-white/85 hover:bg-white backdrop-blur-md px-2.5 py-0.5 border border-brand-navy/15 text-brand-navy shadow-xs transition-colors">
+                    <span className="text-[10px] min-[360px]:text-[11px] font-semibold tracking-tight">
                       {activeService.label}
                     </span>
                   </div>
@@ -688,10 +709,11 @@ export function PriceLockCard() {
                 type="button"
                 onClick={() => handleSelect(idx)}
                 aria-label={`View ${service.label}`}
-                className={`h-1.5 rounded-full transition-all duration-300 ${idx === activeIndex
-                  ? "w-4 bg-brand-red shadow-[0_0_8px_rgba(222,3,2,0.85)]"
-                  : "w-1.5 bg-brand-navy/35 hover:bg-brand-navy/70"
-                  }`}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  idx === activeIndex
+                    ? "w-4 bg-brand-red shadow-[0_0_8px_rgba(222,3,2,0.85)]"
+                    : "w-1.5 bg-brand-navy/35 hover:bg-brand-navy/70"
+                }`}
               />
             ))}
           </div>
@@ -729,7 +751,10 @@ export function BroadbandFeatures() {
             Broadband Infrastructure
           </p>
 
-          <h2 id="why-sash-heading" className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3.5">
+          <h2
+            id="why-sash-heading"
+            className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3.5"
+          >
             Internet built for{" "}
             <span className="text-brand-red">everything you do.</span>
           </h2>
