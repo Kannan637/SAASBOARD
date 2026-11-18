@@ -143,24 +143,24 @@ export function FibreSpeedCard() {
       >
         {/* Top iPhone Section with Card Gradient Background (Edge-to-Edge) */}
         <div
-          className={`relative w-full overflow-hidden ${CARD_BG_GRADIENT} pt-2.5 min-[360px]:pt-3 sm:pt-4 px-2 flex justify-center`}
+          className={`relative w-full overflow-hidden ${CARD_BG_GRADIENT} pt-3 min-[360px]:pt-4 sm:pt-6 px-3 flex justify-center`}
         >
           {/* Meeting Point Smooth Blend into Bottom White Section */}
           <div
             aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white z-20 pointer-events-none"
+            className="absolute inset-x-0 bottom-0 h-10 sm:h-12 bg-gradient-to-t from-white via-white/80 to-transparent z-20 pointer-events-none"
           />
 
-          {/* iPhone Hardware Mockup (45% visible, bottom 55% hidden at bottom edge; iPhone screen stays white) */}
-          <div className="relative z-10 mx-auto w-[270px] min-[360px]:w-[310px] sm:w-[360px] shrink-0">
-            {/* 45% Visible Viewport Window */}
-            <div className="relative h-[220px] min-[360px]:h-[252px] sm:h-[293px] w-full overflow-hidden">
+          {/* iPhone Hardware Mockup (Visible portion centered on mobile & desktop) */}
+          <div className="relative z-10 mx-auto w-[270px] min-[360px]:w-[300px] sm:w-[340px] shrink-0">
+            {/* Visible Viewport Window */}
+            <div className="relative h-[255px] min-[360px]:h-[285px] sm:h-[320px] w-full overflow-hidden">
               {/* Full iPhone Container */}
-              <div className="relative h-[488px] min-[360px]:h-[560px] sm:h-[651px] w-full">
+              <div className="relative h-[530px] min-[360px]:h-[590px] sm:h-[665px] w-full">
                 {/* Inner iOS Screen — Remains White */}
-                <div className="absolute left-[2.9%] right-[2.9%] top-[1.4%] bottom-[1.4%] z-10 overflow-hidden rounded-[38px] min-[360px]:rounded-[46px] sm:rounded-[52px] bg-white">
+                <div className="absolute left-[2.9%] right-[2.9%] top-[1.4%] bottom-[1.4%] z-10 overflow-hidden rounded-[38px] min-[360px]:rounded-[46px] sm:rounded-[52px] bg-white flex flex-col">
                   {/* iOS Status Bar */}
-                  <div className="flex h-[38px] min-[360px]:h-[42px] sm:h-[46px] items-center justify-between px-5 min-[360px]:px-7 sm:px-8 pt-1.5 min-[360px]:pt-2">
+                  <div className="shrink-0 flex h-[34px] min-[360px]:h-[38px] sm:h-[44px] items-center justify-between px-5 min-[360px]:px-7 sm:px-8 pt-1.5 min-[360px]:pt-2">
                     <span className="text-[11px] min-[360px]:text-[12px] sm:text-[13px] font-medium text-brand-navy">
                       9:41
                     </span>
@@ -171,9 +171,16 @@ export function FibreSpeedCard() {
                     </div>
                   </div>
 
+                  {/* Clean Subtitle inside phone screen */}
+                  <div className="shrink-0 text-center pt-0.5 pb-1">
+                    <span className="text-[10px] min-[360px]:text-[11px] font-semibold tracking-wider uppercase text-neutral-600/75">
+                      Live Speedtest
+                    </span>
+                  </div>
+
                   {/* Bklit Studio Gauge Chart Centered on the White iPhone Screen */}
-                  <div className="px-3 min-[360px]:px-4 sm:px-6 pt-0.5 min-[360px]:pt-1 flex items-center justify-center">
-                    <div className="w-full max-w-[220px] min-[360px]:max-w-[255px] sm:max-w-[295px]">
+                  <div className="flex-1 flex items-center justify-center px-2 min-[360px]:px-3 sm:px-4 pb-14 sm:pb-16">
+                    <div className="w-full max-w-[195px] min-[360px]:max-w-[225px] sm:max-w-[260px] mx-auto flex items-center justify-center">
                       <Gauge
                         value={gaugeValue}
                         centerValue={gaugeCenterValue}
@@ -318,14 +325,14 @@ export function LicensedISPCARD() {
       cardClassName="flex flex-col justify-between p-0 overflow-hidden"
     >
       <CardContent className="p-0 flex-1 flex flex-col justify-between overflow-hidden">
-        {/* Top Globe Visual Stage: 45% Visible Close-Up Globe on Card Gradient (Edge-to-Edge) */}
+        {/* Top Globe Visual Stage: Tamil Nadu Clearly Visible on Card Gradient (Edge-to-Edge) */}
         <div
-          className={`relative w-full h-[200px] min-[360px]:h-[215px] sm:h-[230px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/globe`}
+          className={`relative w-full h-[210px] min-[360px]:h-[225px] sm:h-[240px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/globe`}
         >
           {/* Smooth Blend at the Meeting Point */}
           <div
             aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white z-10 pointer-events-none"
+            className="absolute inset-x-0 bottom-0 h-10 sm:h-12 bg-gradient-to-t from-white via-white/80 to-transparent z-10 pointer-events-none"
           />
 
           {/* Top Badges Bar: Tamil Nadu Circle */}
@@ -336,13 +343,13 @@ export function LicensedISPCARD() {
             </span>
           </div>
 
-          {/* Close-Up 3D Cobe Globe: 45% Visible Arcing from Bottom, Centered on Tamil Nadu */}
-          <div className="pointer-events-auto absolute -bottom-[155px] min-[360px]:-bottom-[180px] sm:-bottom-[195px] left-1/2 -translate-x-1/2 w-[340px] h-[340px] min-[360px]:w-[390px] min-[360px]:h-[390px] sm:w-[430px] sm:h-[430px] flex items-center justify-center">
+          {/* 3D Cobe Globe: Centered directly on Tamil Nadu (lat 13°N, long 80°E), permanently visible */}
+          <div className="pointer-events-auto absolute -bottom-[75px] min-[360px]:-bottom-[85px] sm:-bottom-[95px] left-1/2 -translate-x-1/2 w-[340px] h-[340px] min-[360px]:w-[380px] min-[360px]:h-[380px] sm:w-[410px] sm:h-[410px] flex items-center justify-center">
             <GlobeStickers
               markers={TAMIL_NADU_ONLY_MARKER}
-              initialPhi={4.86}
-              initialTheta={0.38}
-              speed={shouldReduceMotion ? 0 : 0.0018}
+              initialPhi={3.36}
+              initialTheta={0.05}
+              speed={0}
               dark={1}
               baseColor={[0.8, 0.9, 1]}
               markerColor={[0.871, 0.012, 0.008]}
@@ -448,14 +455,14 @@ export function SupportCard() {
       cardClassName="flex flex-col justify-between p-0 overflow-hidden"
     >
       <CardContent className="p-0 flex-1 flex flex-col justify-between overflow-hidden">
-        {/* Top Status Stage with Close-Up Rotating Orbit Animation (Edge-to-Edge) */}
+        {/* Top Status Stage with Support Network Hub (Edge-to-Edge) */}
         <div
-          className={`relative w-full h-[200px] min-[360px]:h-[215px] sm:h-[230px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support`}
+          className={`relative w-full h-[210px] min-[360px]:h-[225px] sm:h-[240px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support`}
         >
           {/* Smooth Blend at the Meeting Point */}
           <div
             aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-b from-transparent via-white/70 to-white z-10 pointer-events-none"
+            className="absolute inset-x-0 bottom-0 h-10 sm:h-12 bg-gradient-to-t from-white via-white/80 to-transparent z-10 pointer-events-none"
           />
 
           {/* Top Badges Bar: 24/7 NOC Desk */}
@@ -466,15 +473,12 @@ export function SupportCard() {
             </span>
           </div>
 
-          {/* Close-Up 45% Visible Rotating Orbit Stage */}
+          {/* Clean Support Network Stage without Radar Animation */}
           <div className="pointer-events-auto absolute top-[115px] min-[360px]:top-[125px] sm:top-[132px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] h-[260px] min-[360px]:w-[280px] min-[360px]:h-[280px] sm:w-[310px] sm:h-[310px] flex items-center justify-center">
-            {/* Outer Concentric Radar Ring */}
-            <div className="pointer-events-none absolute w-[240px] h-[240px] min-[360px]:w-[260px] min-[360px]:h-[260px] sm:w-[290px] sm:h-[290px] rounded-full border border-dashed border-brand-navy/20" />
+            {/* Clean Circular Orbit Guide Track */}
+            <div className="pointer-events-none absolute w-[200px] h-[200px] sm:w-[220px] sm:h-[220px] rounded-full border border-brand-navy/15" />
 
-            {/* Middle Subtle Glow Ring */}
-            <div className="pointer-events-none absolute w-[180px] h-[180px] min-[360px]:w-[200px] min-[360px]:h-[200px] sm:w-[220px] sm:h-[220px] rounded-full border border-brand-navy/15" />
-
-            {/* Rotating Orbit Container with Counter-Rotating Communication Icons */}
+            {/* Orbiting Communication Channel Icons */}
             <motion.div
               animate={shouldReduceMotion ? undefined : { rotate: 360 }}
               transition={{ duration: 24, ease: "linear", repeat: Infinity }}
@@ -497,7 +501,7 @@ export function SupportCard() {
                       ease: "linear",
                       repeat: Infinity,
                     }}
-                    className="w-8 h-8 min-[360px]:w-9 min-[360px]:h-9 sm:w-10 sm:h-10 rounded-full bg-white shadow-[0_4px_16px_rgba(1,13,59,0.2)] flex items-center justify-center transition-transform duration-200 hover:scale-115"
+                    className="w-8 h-8 min-[360px]:w-9 min-[360px]:h-9 sm:w-10 sm:h-10 rounded-full bg-white shadow-[0_4px_16px_rgba(1,13,59,0.18)] border border-brand-navy/8 flex items-center justify-center transition-transform duration-200 hover:scale-115"
                     title={item.label}
                   >
                     {item.icon}
@@ -506,21 +510,16 @@ export function SupportCard() {
               ))}
             </motion.div>
 
-            {/* Center SASHBOARD / SASH Logo */}
+            {/* Center SASH Hub Badge (Clean, No Radar Animation) */}
             <div className="relative z-20 flex flex-col items-center justify-center">
-              {/* Radiating Signal Waves */}
-              <span className="pointer-events-none absolute w-16 h-16 min-[360px]:w-20 min-[360px]:h-20 sm:w-24 sm:h-24 rounded-full border border-brand-red/35 animate-ping opacity-60" />
-              <span className="pointer-events-none absolute w-14 h-14 min-[360px]:w-16 min-[360px]:h-16 sm:w-18 sm:h-18 rounded-full border border-brand-red/45 animate-pulse" />
-
-              {/* SASH Logo Floating Directly */}
-              <div className="relative w-12 h-12 min-[360px]:w-14 min-[360px]:h-14 sm:w-16 sm:h-16 flex items-center justify-center transition-transform duration-300 group-hover/support:scale-105">
+              <div className="relative w-12 h-12 min-[360px]:w-14 min-[360px]:h-14 sm:w-16 sm:h-16 rounded-full bg-white shadow-[0_6px_20px_rgba(1,13,59,0.15)] border border-brand-navy/10 flex items-center justify-center p-2.5 transition-transform duration-300 group-hover/support:scale-105">
                 <Image
                   src="/Logo/Favicon.png"
                   alt="SASH"
-                  width={52}
-                  height={52}
+                  width={44}
+                  height={44}
                   priority
-                  className="w-full h-full object-contain select-none filter drop-shadow-[0_8px_20px_rgba(1,13,59,0.35)]"
+                  className="w-full h-full object-contain select-none"
                 />
               </div>
             </div>

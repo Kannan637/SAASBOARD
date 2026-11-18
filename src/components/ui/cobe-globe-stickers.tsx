@@ -43,6 +43,34 @@ export const defaultMarkers: StickerMarker[] = [
   { id: "seoul", location: [37.57, 126.98], sticker: "🎮" },
 ]
 
+export function projectPoint(
+  [lat, lng]: [number, number],
+  phi: number,
+  theta: number,
+  scale: number = 1
+) {
+  const PI = Math.PI
+  const r = (lat * PI) / 180
+  const a = (lng * PI) / 180 - PI
+  const o = Math.cos(r)
+  const t = [-o * Math.cos(a), Math.sin(r), o * Math.sin(a)]
+
+  const cosTheta = Math.cos(theta)
+  const cosPhi = Math.cos(phi)
+  const sinTheta = Math.sin(theta)
+  const sinPhi = Math.sin(phi)
+
+  const c = cosPhi * t[0] + sinPhi * t[2]
+  const s = sinPhi * sinTheta * t[0] + cosTheta * t[1] - cosPhi * sinTheta * t[2]
+  const z = -sinPhi * cosTheta * t[0] + sinTheta * t[1] + cosPhi * cosTheta * t[2]
+
+  const visible = z >= 0
+  const x = ((c * scale + 1) / 2) * 100
+  const y = ((-s * scale + 1) / 2) * 100
+
+  return { x, y, visible }
+}
+
 export function GlobeStickers({
   markers = defaultMarkers,
   className = "",
@@ -57,6 +85,7 @@ export function GlobeStickers({
   scale = 1,
 }: GlobeStickersProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const markerEls = useRef<Record<string, HTMLDivElement | null>>({})
   const pointerInteracting = useRef<{ x: number; y: number } | null>(null)
   const dragOffset = useRef({ phi: 0, theta: 0 })
   const phiOffsetRef = useRef(0)
@@ -136,9 +165,20 @@ export function GlobeStickers({
       })
       function animate() {
         if (!isPausedRef.current) phi += speed
+        const currentPhi = phi + phiOffsetRef.current + dragOffset.current.phi
+        const currentTheta = initialTheta + thetaOffsetRef.current + dragOffset.current.theta
         globe!.update({
-          phi: phi + phiOffsetRef.current + dragOffset.current.phi,
-          theta: initialTheta + thetaOffsetRef.current + dragOffset.current.theta,
+          phi: currentPhi,
+          theta: currentTheta,
+        })
+        markers.forEach((m) => {
+          const el = markerEls.current[m.id]
+          if (el) {
+            const proj = projectPoint(m.location, currentPhi, currentTheta, scale)
+            el.style.left = `${proj.x}%`
+            el.style.top = `${proj.y}%`
+            el.style.opacity = proj.visible ? "1" : "0"
+          }
         })
         animationId = requestAnimationFrame(animate)
       }
@@ -203,35 +243,43 @@ export function GlobeStickers({
           touchAction: "none",
         }}
       />
-      {markers.map((m, i) => (
-        <div
-          key={m.id}
-          style={
-            {
-              position: "absolute",
-              positionAnchor: `--cobe-${m.id}`,
-              bottom: "anchor(top)",
-              left: "anchor(center)",
-              translate: "-50% 0",
-              fontSize: "1.75rem",
-              lineHeight: 1,
-              transform:
-                markers.length > 1
-                  ? `rotate(${[-8, 6, -4, 10][i % 4]}deg)`
-                  : undefined,
-              filter:
-                typeof m.sticker === "string"
-                  ? "url(#sticker-outline) drop-shadow(0 2px 3px rgba(0,0,0,0.3))"
-                  : "drop-shadow(0 4px 6px rgba(0,0,0,0.35))",
-              pointerEvents: "none",
-              opacity: `var(--cobe-visible-${m.id}, 0)`,
-              transition: "opacity 0.2s, filter 0.2s",
-            } as React.CSSProperties
-          }
-        >
-          {m.sticker}
-        </div>
-      ))}
+      {markers.map((m, i) => {
+        const initialProj = projectPoint(m.location, initialPhi, initialTheta, scale)
+        return (
+          <div
+            key={m.id}
+            ref={(node) => {
+              if (node) markerEls.current[m.id] = node
+              else delete markerEls.current[m.id]
+            }}
+            style={
+              {
+                position: "absolute",
+                positionAnchor: `--cobe-${m.id}`,
+                bottom: "anchor(top)",
+                left: `${initialProj.x}%`,
+                top: `${initialProj.y}%`,
+                translate: "-50% -100%",
+                fontSize: "1.75rem",
+                lineHeight: 1,
+                transform:
+                  markers.length > 1
+                    ? `rotate(${[-8, 6, -4, 10][i % 4]}deg)`
+                    : undefined,
+                filter:
+                  typeof m.sticker === "string"
+                    ? "url(#sticker-outline) drop-shadow(0 2px 3px rgba(0,0,0,0.3))"
+                    : "drop-shadow(0 4px 6px rgba(0,0,0,0.35))",
+                pointerEvents: "none",
+                opacity: initialProj.visible ? 1 : 0,
+                transition: "opacity 0.2s, filter 0.2s",
+              } as React.CSSProperties
+            }
+          >
+            {m.sticker}
+          </div>
+        )
+      })}
     </div>
   )
 }
