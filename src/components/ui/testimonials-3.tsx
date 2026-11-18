@@ -1,10 +1,18 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CheckCircle, Heart, Share2, Star } from "lucide-react";
 import { AppleReveal } from "@/components/ui/apple-scroll";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 function GoogleLogoIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -134,6 +142,88 @@ export const GOOGLE_REVIEWS: GoogleReviewItem[] = [
   },
 ];
 
+function ReviewCard({ review: t }: { review: GoogleReviewItem }) {
+  return (
+    <Card className="bg-muted/50 h-full w-full flex flex-col justify-between rounded-xl pb-4 shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,1),0px_0px_0px_1px_rgba(0,0,0,0.08),0px_1px_2px_-1px_rgba(0,0,0,0.08),0px_2px_4px_0px_rgba(0,0,0,0.06)] ring-0 transition-all duration-200 hover:shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,1),0px_0px_0px_1px_rgba(0,0,0,0.08),0px_6px_8px_0px_rgba(0,0,0,0.1)]">
+      <div>
+        <div className="flex items-start justify-between px-4 mb-3">
+          <div className="flex items-start gap-3">
+            <Avatar className="h-10 w-10">
+              {t.avatar && <AvatarImage src={t.avatar} alt={t.name} />}
+              <AvatarFallback
+                style={{ backgroundColor: t.fallbackColor }}
+                className="text-white font-semibold text-sm uppercase"
+              >
+                {t.name[0]}
+              </AvatarFallback>
+            </Avatar>
+
+            <div className="flex flex-col leading-tight">
+              <div className="flex items-center gap-1">
+                <span className="text-foreground text-sm font-semibold">
+                  {t.name}
+                </span>
+                <CheckCircle className="h-3.5 w-3.5 fill-sky-500 text-white" />
+              </div>
+
+              <span className="text-muted-foreground text-xs mt-0.5">
+                {t.meta}
+              </span>
+            </div>
+          </div>
+
+          <GoogleLogoIcon className="h-4 w-4 shrink-0 mt-0.5" />
+        </div>
+
+        {/* 5 Gold Google Stars */}
+        <div className="flex items-center gap-1 px-4 mb-2.5">
+          <div
+            className="flex items-center gap-0.5 text-[#FBBC05]"
+            aria-label={`${t.rating} out of 5 stars`}
+          >
+            {Array.from({ length: t.rating }).map((_, starIdx) => (
+              <Star
+                key={starIdx}
+                className="h-3.5 w-3.5 fill-[#FBBC05] text-[#FBBC05]"
+              />
+            ))}
+          </div>
+          <span className="text-muted-foreground text-xs ml-1.5">
+            {t.date}
+          </span>
+        </div>
+
+        <p className="text-foreground text-sm sm:text-[15px] px-4 leading-relaxed mb-4">
+          {t.text}
+        </p>
+      </div>
+
+      <div className="flex flex-row items-center justify-between px-4 pt-2 border-t border-black/[0.05]">
+        <div className="text-muted-foreground text-xs font-medium flex items-center gap-1.5">
+          <span>Posted on Google</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            aria-label={`Helpful review by ${t.name}`}
+            className="text-muted-foreground flex items-center gap-1 text-xs font-medium transition-colors hover:text-brand-red cursor-pointer"
+          >
+            <Heart className="h-3.5 w-3.5" />
+            <span>{t.likes}</span>
+          </button>
+          <button
+            type="button"
+            aria-label={`Share review by ${t.name}`}
+            className="text-muted-foreground flex items-center gap-1 text-xs font-medium transition-colors hover:text-brand-navy cursor-pointer"
+          >
+            <Share2 className="h-3.5 w-3.5" />
+          </button>
+        </div>
+      </div>
+    </Card>
+  );
+}
+
 export interface Testimonials3Props {
   eyebrow?: string;
   heading?: string;
@@ -147,6 +237,27 @@ export default function Testimonials3({
   description = "Real 5-star Google reviews from customers and businesses using SASH Broadband every day.",
   reviews = GOOGLE_REVIEWS,
 }: Testimonials3Props) {
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    if (!carouselApi) return;
+
+    const updateActive = () => {
+      setActiveSlide(carouselApi.selectedScrollSnap());
+    };
+
+    const rafId = window.requestAnimationFrame(updateActive);
+    carouselApi.on("select", updateActive);
+    carouselApi.on("reInit", updateActive);
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      carouselApi.off("select", updateActive);
+      carouselApi.off("reInit", updateActive);
+    };
+  }, [carouselApi]);
+
   return (
     <section
       id="testimonials"
@@ -171,88 +282,65 @@ export default function Testimonials3({
           </p>
         </AppleReveal>
 
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-3.5 md:grid-cols-2 lg:grid-cols-3">
-          {reviews.map((t, idx) => (
-            <Card
-              key={idx}
-              className="bg-muted/50 flex flex-col justify-between rounded-xl pb-4 shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,1),0px_0px_0px_1px_rgba(0,0,0,0.08),0px_1px_2px_-1px_rgba(0,0,0,0.08),0px_2px_4px_0px_rgba(0,0,0,0.06)] ring-0 transition-all duration-200 hover:shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,1),0px_0px_0px_1px_rgba(0,0,0,0.08),0px_6px_8px_0px_rgba(0,0,0,0.1)]"
-            >
-              <div>
-                <div className="flex items-start justify-between px-4 mb-3">
-                  <div className="flex items-start gap-3">
-                    <Avatar className="h-10 w-10">
-                      {t.avatar && <AvatarImage src={t.avatar} alt={t.name} />}
-                      <AvatarFallback
-                        style={{ backgroundColor: t.fallbackColor }}
-                        className="text-white font-semibold text-sm uppercase"
-                      >
-                        {t.name[0]}
-                      </AvatarFallback>
-                    </Avatar>
+        {/* Mobile Carousel (< md) */}
+        <div className="md:hidden">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            setApi={setCarouselApi}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4 py-1">
+              {reviews.map((review, idx) => (
+                <CarouselItem
+                  key={idx}
+                  className="pl-4 basis-[88%] sm:basis-[65%] flex"
+                >
+                  <ReviewCard review={review} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
 
-                    <div className="flex flex-col leading-tight">
-                      <div className="flex items-center gap-1">
-                        <span className="text-foreground text-sm font-semibold">
-                          {t.name}
-                        </span>
-                        <CheckCircle className="h-3.5 w-3.5 fill-sky-500 text-white" />
-                      </div>
-
-                      <span className="text-muted-foreground text-xs mt-0.5">
-                        {t.meta}
-                      </span>
-                    </div>
-                  </div>
-
-                  <GoogleLogoIcon className="h-4 w-4 shrink-0 mt-0.5" />
-                </div>
-
-                {/* 5 Gold Google Stars */}
-                <div className="flex items-center gap-1 px-4 mb-2.5">
-                  <div
-                    className="flex items-center gap-0.5 text-[#FBBC05]"
-                    aria-label={`${t.rating} out of 5 stars`}
-                  >
-                    {Array.from({ length: t.rating }).map((_, starIdx) => (
-                      <Star
-                        key={starIdx}
-                        className="h-3.5 w-3.5 fill-[#FBBC05] text-[#FBBC05]"
-                      />
-                    ))}
-                  </div>
-                  <span className="text-muted-foreground text-xs ml-1.5">
-                    {t.date}
-                  </span>
-                </div>
-
-                <p className="text-foreground text-sm sm:text-[15px] px-4 leading-relaxed mb-4">
-                  {t.text}
-                </p>
+            {/* Navigation Controls: Arrows + Pagination Dots */}
+            <div className="mt-6 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-2">
+                <CarouselPrevious className="relative inset-0 size-9 rounded-lg border border-border/80 bg-white text-brand-navy hover:border-brand-navy/30 hover:bg-neutral-100 transition-colors cursor-pointer" />
+                <CarouselNext className="relative inset-0 size-9 rounded-lg border-transparent bg-brand-red text-white shadow-[0_4px_12px_rgba(222,3,2,0.25)] hover:bg-brand-red-hover transition-all cursor-pointer" />
               </div>
 
-              <div className="flex flex-row items-center justify-between px-4 pt-2 border-t border-black/[0.05]">
-                <div className="text-muted-foreground text-xs font-medium flex items-center gap-1.5">
-                  <span>Posted on Google</span>
-                </div>
-                <div className="flex items-center gap-3">
+              <div
+                className="flex items-center gap-1.5"
+                role="tablist"
+                aria-label="Google reviews carousel pagination"
+              >
+                {reviews.map((review, idx) => (
                   <button
+                    key={idx}
                     type="button"
-                    aria-label={`Helpful review by ${t.name}`}
-                    className="text-muted-foreground flex items-center gap-1 text-xs font-medium transition-colors hover:text-brand-red cursor-pointer"
-                  >
-                    <Heart className="h-3.5 w-3.5" />
-                    <span>{t.likes}</span>
-                  </button>
-                  <button
-                    type="button"
-                    aria-label={`Share review by ${t.name}`}
-                    className="text-muted-foreground flex items-center gap-1 text-xs font-medium transition-colors hover:text-brand-navy cursor-pointer"
-                  >
-                    <Share2 className="h-3.5 w-3.5" />
-                  </button>
-                </div>
+                    role="tab"
+                    aria-selected={activeSlide === idx}
+                    aria-label={`Show review by ${review.name}`}
+                    onClick={() => carouselApi?.scrollTo(idx)}
+                    className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+                      activeSlide === idx
+                        ? "w-6 bg-brand-red"
+                        : "w-2 bg-neutral-300 hover:bg-neutral-400"
+                    }`}
+                  />
+                ))}
               </div>
-            </Card>
+            </div>
+          </Carousel>
+        </div>
+
+        {/* Desktop & Tablet Grid (>= md) */}
+        <div className="hidden md:grid mx-auto max-w-6xl md:grid-cols-2 lg:grid-cols-3 gap-3.5">
+          {reviews.map((review, idx) => (
+            <div key={idx} className="flex">
+              <ReviewCard review={review} />
+            </div>
           ))}
         </div>
       </div>
