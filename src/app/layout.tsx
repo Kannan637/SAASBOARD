@@ -141,7 +141,7 @@ export default function RootLayout({
         {/* Dedicated Fixed Viewport Diagonal Pinstripe Background Layer */}
         <div
           aria-hidden="true"
-          className="fixed inset-0 -z-10 pointer-events-none bg-[#F8F8FC] bg-fixed bg-[repeating-linear-gradient(135deg,rgba(37,58,123,0.045)_0px,rgba(37,58,123,0.045)_0.75px,transparent_0.75px,transparent_3.5px)]"
+          className="fixed inset-0 -z-10 pointer-events-none bg-[#F9F9FD] bg-fixed bg-[repeating-linear-gradient(135deg,rgba(50,65,110,0.035)_0px,rgba(50,65,110,0.035)_0.5px,transparent_0.5px,transparent_2.5px)]"
         />
         <script
           type="application/ld+json"
