@@ -209,20 +209,20 @@ export default function Hero() {
                     animate="center"
                     exit="exit"
                     transition={{ duration: 0.45, ease: APPLE_EASE }}
-                    className="my-auto max-w-xl"
+                    className="my-auto max-w-2xl"
                   >
                     {/* Eyebrow Badge: Solid Red Pill with White Text matching reference */}
                     <div className="inline-flex min-h-6 items-center justify-center gap-1.5 rounded-full bg-brand-red px-3.5 py-1 text-xs leading-none font-medium text-white tracking-wide">
                       {currentSlide.eyebrow}
                     </div>
 
-                    {/* Headline: Clean, Crisp White Typography matching reference */}
+                    {/* Headline: Clean, Crisp White Typography in a Single Line */}
                     <h1
                       id="hero-heading"
-                      className="mt-4 text-3xl sm:text-4xl lg:text-[54px] lg:leading-[62px] font-medium tracking-[-0.05px] text-white"
+                      className="mt-3 sm:mt-4 text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] lg:leading-[50px] font-medium tracking-[-0.05px] text-white sm:whitespace-nowrap"
                     >
-                      <span className="block">{currentSlide.headlinePrefix}</span>
-                      <span className="block">{currentSlide.headlineHighlight}</span>
+                      <span>{currentSlide.headlinePrefix} </span>
+                      <span>{currentSlide.headlineHighlight}</span>
                     </h1>
 
                     {/* Subtitle Description */}
