@@ -109,12 +109,12 @@ export default function Aboutus() {
               {/* KPI Metrics Grid */}
               <div className="grid grid-cols-2 gap-8 sm:gap-12 mb-9 sm:mb-12 w-full max-w-md">
                 <div>
-                  <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-navy tracking-tight">10,000+</p>
-                  <p className="text-xs sm:text-sm text-neutral-500 font-medium mt-1.5">Connected premises</p>
+                  <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-navy tracking-tight">100+</p>
+                  <p className="text-xs sm:text-sm text-neutral-500 font-medium mt-1.5">Clients</p>
                 </div>
                 <div>
-                  <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-navy tracking-tight">99.9%</p>
-                  <p className="text-xs sm:text-sm text-neutral-500 font-medium mt-1.5">Core uptime SLA</p>
+                  <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-navy tracking-tight">99%</p>
+                  <p className="text-xs sm:text-sm text-neutral-500 font-medium mt-1.5">Success rate</p>
                 </div>
               </div>
 
