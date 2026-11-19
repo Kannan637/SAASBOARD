@@ -3,7 +3,14 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import {
+  Briefcase,
+  Network,
+  Server,
+  Tv,
+  Video,
+  Wifi,
+} from "lucide-react";
 import {
   AppleReveal,
   AppleStagger,
@@ -25,42 +32,42 @@ const SERVICES_LIST = [
     description:
       "High-speed FTTH home internet up to 1 Gbps with unlimited monthly data and free router setup.",
     href: "/broadband-services",
-    iconSrc: "/Service/BroadBand.webp",
+    icon: Wifi,
   },
   {
     title: "Leased Line",
     description:
       "Uncontended 1:1 dedicated enterprise bandwidth with guaranteed SLA uptime and static IP routing.",
     href: "/lease-line",
-    iconSrc: "/Service/Leased Line.webp",
+    icon: Network,
   },
   {
     title: "SME Internet",
     description:
       "Scalable business broadband designed for retail stores, clinics, offices, and cloud workflows.",
     href: "/sme-internet",
-    iconSrc: "/Service/SME Internet.webp",
+    icon: Briefcase,
   },
   {
     title: "CCTV Surveillance",
     description:
       "End-to-end HD IP camera installation with mobile live-view monitoring for homes and commercial buildings.",
     href: "/cctv",
-    iconSrc: "/Service/CCTV.webp",
+    icon: Video,
   },
   {
     title: "Intranet Solutions",
     description:
       "Secure private LAN/WAN interconnections linking multiple offices, warehouses, and campuses.",
     href: "/intranet",
-    iconSrc: "/Service/Intranet.webp",
+    icon: Server,
   },
   {
     title: "OTT and IPTV",
     description:
       "Buffer-free 4K entertainment and digital television delivery over your high-speed SASH fibre line.",
     href: "/broadband-services#ott-iptv",
-    iconSrc: "/Service/BroadBand.webp",
+    icon: Tv,
   },
 ];
 
@@ -118,52 +125,35 @@ function UseCaseCard({
 }
 
 function ServiceCard({ service }: { service: (typeof SERVICES_LIST)[number] }) {
-  return (
-    <article
-      data-apple-manual="true"
-      className="group relative w-full h-[450px] min-[360px]:h-[480px] sm:h-[500px] lg:h-[520px] rounded-[28px] bg-white border border-black/[0.08] overflow-hidden flex flex-col justify-between transition-all duration-300 hover:border-brand-red/35 hover:-translate-y-1.5 select-none"
-    >
-      {/* Top Section: Prominent Icon Visual Stage */}
-      <div className="relative w-full h-[230px] sm:h-[250px] flex items-center justify-center p-6 bg-gradient-to-b from-[#F8F9FC] via-[#FDFDFE] to-white overflow-hidden shrink-0 border-b border-black/[0.04]">
-        {/* Soft radial backdrop glow on hover */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-radial from-brand-red/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        />
+  const IconComponent = service.icon;
 
-        {/* Large Prominent Illustration */}
-        <div className="relative w-36 h-36 min-[360px]:w-42 min-[360px]:h-42 sm:w-48 sm:h-48 flex items-center justify-center transition-transform duration-300 ease-out group-hover:scale-105 drop-shadow-[0_14px_28px_rgba(1,13,59,0.12)]">
-          <Image
-            src={service.iconSrc}
-            alt={service.title}
-            width={200}
-            height={200}
-            className="w-full h-full object-contain select-none"
-          />
-        </div>
+  return (
+    <Link
+      href={service.href}
+      data-apple-manual="true"
+      className="group relative w-full h-[360px] sm:h-[390px] rounded-[24px] bg-[#F4F3F1] border border-black/[0.04] p-6 sm:p-7 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer select-none"
+    >
+      {/* Background Gradient on Hover matching shared reference image */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#FFF5EE_0%,#FFD7C2_22%,#FA935A_52%,#F15420_80%,#DE0302_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-400 ease-out z-0"
+      />
+
+      {/* Top: Icon in Top-Left */}
+      <div className="relative z-10 text-brand-navy group-hover:text-white transition-colors duration-300">
+        <IconComponent className="w-6 h-6 stroke-[1.9]" />
       </div>
 
-      {/* Bottom Section: Title and Description in Bottom */}
-      <div className="relative z-10 p-6 sm:p-7 pt-4 flex flex-col justify-end mt-auto flex-1">
-        <h3 className="text-brand-navy font-semibold text-xl sm:text-2xl mb-2 tracking-normal group-hover:text-brand-red transition-colors duration-200">
+      {/* Bottom: Title and Description in Bottom */}
+      <div className="relative z-10 mt-auto flex flex-col">
+        <h3 className="text-brand-navy font-semibold text-lg sm:text-xl tracking-tight mb-2 group-hover:text-white transition-colors duration-300">
           {service.title}
         </h3>
-        <p className="text-neutral-600 text-xs sm:text-sm font-normal leading-relaxed line-clamp-3 mb-5">
+        <p className="text-neutral-500 text-xs sm:text-[13px] leading-relaxed line-clamp-3 group-hover:text-white/95 transition-colors duration-300">
           {service.description}
         </p>
-
-        <div className="pt-3.5 border-t border-black/[0.06] flex items-center justify-between">
-          <Link
-            href={service.href}
-            className="inline-flex items-center gap-1.5 font-medium text-xs sm:text-sm text-brand-red hover:underline py-0.5"
-            aria-label={`Explore ${service.title}`}
-          >
-            <span>Explore Plan</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-          </Link>
-        </div>
       </div>
-    </article>
+    </Link>
   );
 }
 
@@ -217,74 +207,77 @@ export default function Service() {
         id="services"
         data-apple-manual="true"
         aria-labelledby="services-heading"
-        className="bg-transparent text-brand-navy section-padding"
+        className="bg-white text-brand-navy section-padding"
       >
         <div className="container-sash">
-          <AppleReveal className="max-w-2xl mx-auto text-center flex flex-col items-center mb-12 sm:mb-16 lg:mb-20">
-            <p className="eyebrow-label text-brand-red mb-3.5">
-              Complete Network Portfolio
-            </p>
-            <h2 id="services-heading" className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3.5">
-              Connectivity for every need
-            </h2>
-            <p className="text-neutral-600 text-sm sm:text-base font-normal leading-relaxed">
-              From unlimited home fibre broadband to enterprise leased lines and
-              premises CCTV surveillance across Tamil Nadu.
-            </p>
-          </AppleReveal>
-
-          {/* Services Carousel across all devices */}
-          <div className="w-full">
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              setApi={setServiceApi}
-              className="w-full"
-            >
-              <CarouselContent className="-ml-4 sm:-ml-5 lg:-ml-6 py-2">
-                {SERVICES_LIST.map((service) => (
-                  <CarouselItem
-                    key={service.title}
-                    className="pl-4 sm:pl-5 lg:pl-6 basis-[86%] sm:basis-[60%] md:basis-1/2 lg:basis-1/3 flex"
-                  >
-                    <ServiceCard service={service} />
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-
-              {/* Navigation Controls: Arrows + Dots */}
-              <div className="mt-8 sm:mt-10 flex items-center justify-between gap-4">
-                <div className="flex items-center gap-2.5">
-                  <CarouselPrevious className="relative inset-0 size-10 rounded-full border border-black/[0.1] bg-white text-brand-navy hover:border-brand-navy/30 hover:bg-neutral-100 transition-colors cursor-pointer" />
-                  <CarouselNext className="relative inset-0 size-10 rounded-full border-transparent bg-brand-red text-white shadow-[0_4px_12px_rgba(222,3,2,0.25)] hover:bg-brand-red-hover transition-all cursor-pointer" />
-                </div>
-
-                <div
-                  className="flex items-center gap-2"
-                  role="tablist"
-                  aria-label="Service carousel pagination"
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            setApi={setServiceApi}
+            className="w-full"
+          >
+            {/* Header: Left-Aligned Title + Right-Aligned Carousel Arrows */}
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 sm:mb-14">
+              <AppleReveal className="max-w-2xl">
+                <p className="eyebrow-label text-brand-red mb-3">
+                  Complete Network Portfolio
+                </p>
+                <h2
+                  id="services-heading"
+                  className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3"
                 >
-                  {SERVICES_LIST.map((service, idx) => (
-                    <button
-                      key={service.title}
-                      type="button"
-                      role="tab"
-                      aria-selected={activeServiceSlide === idx}
-                      aria-label={`Show ${service.title}`}
-                      onClick={() => serviceApi?.scrollTo(idx)}
-                      className={`h-2 rounded-full transition-all duration-200 cursor-pointer ${
-                        activeServiceSlide === idx
-                          ? "w-7 bg-brand-red"
-                          : "w-2 bg-neutral-300 hover:bg-neutral-400"
-                      }`}
-                    />
-                  ))}
-                </div>
+                  Connectivity for every need
+                </h2>
+                <p className="text-neutral-600 text-sm sm:text-base font-normal leading-relaxed">
+                  From unlimited home fibre broadband to enterprise leased lines and
+                  premises CCTV surveillance across Tamil Nadu.
+                </p>
+              </AppleReveal>
+
+              {/* Navigation Controls: Arrows */}
+              <div className="flex items-center gap-2 shrink-0 self-start sm:self-end">
+                <CarouselPrevious className="relative inset-0 size-10 rounded-full border border-black/[0.08] bg-[#F4F3F1] text-brand-navy hover:border-brand-navy/30 hover:bg-neutral-200 transition-colors cursor-pointer" />
+                <CarouselNext className="relative inset-0 size-10 rounded-full border-transparent bg-brand-red text-white shadow-[0_4px_12px_rgba(222,3,2,0.25)] hover:bg-brand-red-hover transition-all cursor-pointer" />
               </div>
-            </Carousel>
-          </div>
+            </div>
+
+            {/* Carousel Cards matching shared reference image */}
+            <CarouselContent className="-ml-4 sm:-ml-5 py-2">
+              {SERVICES_LIST.map((service) => (
+                <CarouselItem
+                  key={service.title}
+                  className="pl-4 sm:pl-5 basis-[82%] sm:basis-[48%] md:basis-[36%] lg:basis-[28%] xl:basis-[24%] flex shrink-0"
+                >
+                  <ServiceCard service={service} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+
+            {/* Pagination Dots Indicator */}
+            <div
+              className="mt-8 sm:mt-10 flex items-center justify-center gap-1.5"
+              role="tablist"
+              aria-label="Service carousel pagination"
+            >
+              {SERVICES_LIST.map((service, idx) => (
+                <button
+                  key={service.title}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeServiceSlide === idx}
+                  aria-label={`Show ${service.title}`}
+                  onClick={() => serviceApi?.scrollTo(idx)}
+                  className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+                    activeServiceSlide === idx
+                      ? "w-6 bg-brand-red"
+                      : "w-1.5 bg-neutral-300 hover:bg-neutral-400"
+                  }`}
+                />
+              ))}
+            </div>
+          </Carousel>
         </div>
       </section>
 
