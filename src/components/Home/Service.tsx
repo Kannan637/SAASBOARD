@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import {
   AppleReveal,
   AppleStagger,
@@ -120,47 +121,47 @@ function ServiceCard({ service }: { service: (typeof SERVICES_LIST)[number] }) {
   return (
     <article
       data-apple-manual="true"
-      className="rounded-[28px] w-full bg-white border border-black/[0.06] p-7 sm:p-8 lg:p-9 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5 shadow-[0_4px_24px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.02)]"
+      className="group relative w-full h-[450px] min-[360px]:h-[480px] sm:h-[500px] lg:h-[520px] rounded-[28px] bg-white border border-black/[0.08] overflow-hidden flex flex-col justify-between transition-all duration-300 hover:border-brand-red/35 hover:-translate-y-1.5 select-none"
     >
-      <div>
-        <div className="w-12 h-12 flex items-center justify-center mb-4 rounded-2xl bg-neutral-50/80 p-2 border border-black/[0.03]">
+      {/* Top Section: Prominent Icon Visual Stage */}
+      <div className="relative w-full h-[230px] sm:h-[250px] flex items-center justify-center p-6 bg-gradient-to-b from-[#F8F9FC] via-[#FDFDFE] to-white overflow-hidden shrink-0 border-b border-black/[0.04]">
+        {/* Soft radial backdrop glow on hover */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-radial from-brand-red/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        />
+
+        {/* Large Prominent Illustration */}
+        <div className="relative w-36 h-36 min-[360px]:w-42 min-[360px]:h-42 sm:w-48 sm:h-48 flex items-center justify-center transition-transform duration-300 ease-out group-hover:scale-105 drop-shadow-[0_14px_28px_rgba(1,13,59,0.12)]">
           <Image
             src={service.iconSrc}
             alt={service.title}
-            width={48}
-            height={48}
-            className="w-full h-full object-contain"
+            width={200}
+            height={200}
+            className="w-full h-full object-contain select-none"
           />
         </div>
-        <h3 className="text-brand-navy font-semibold text-lg sm:text-xl mb-2 tracking-normal">
-          {service.title}
-        </h3>
-        <p className="text-neutral-600 text-sm font-normal leading-relaxed line-clamp-2 mb-5">
-          {service.description}
-        </p>
       </div>
 
-      <div>
-        <Link
-          href={service.href}
-          className="inline-flex items-center gap-1.5 font-medium text-sm text-brand-red hover:underline py-1"
-          aria-label={`Explore ${service.title}`}
-        >
-          <span>Explore</span>
-          <svg
-            className="w-4 h-4"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.25"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
+      {/* Bottom Section: Title and Description in Bottom */}
+      <div className="relative z-10 p-6 sm:p-7 pt-4 flex flex-col justify-end mt-auto flex-1">
+        <h3 className="text-brand-navy font-semibold text-xl sm:text-2xl mb-2 tracking-normal group-hover:text-brand-red transition-colors duration-200">
+          {service.title}
+        </h3>
+        <p className="text-neutral-600 text-xs sm:text-sm font-normal leading-relaxed line-clamp-3 mb-5">
+          {service.description}
+        </p>
+
+        <div className="pt-3.5 border-t border-black/[0.06] flex items-center justify-between">
+          <Link
+            href={service.href}
+            className="inline-flex items-center gap-1.5 font-medium text-xs sm:text-sm text-brand-red hover:underline py-0.5"
+            aria-label={`Explore ${service.title}`}
           >
-            <path d="M5 12h14" />
-            <path d="m12 5 7 7-7 7" />
-          </svg>
-        </Link>
+            <span>Explore Plan</span>
+            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+          </Link>
+        </div>
       </div>
     </article>
   );
@@ -232,8 +233,8 @@ export default function Service() {
             </p>
           </AppleReveal>
 
-          {/* Mobile & Tablet Carousel (< md) */}
-          <div className="md:hidden">
+          {/* Services Carousel across all devices */}
+          <div className="w-full">
             <Carousel
               opts={{
                 align: "start",
@@ -242,11 +243,11 @@ export default function Service() {
               setApi={setServiceApi}
               className="w-full"
             >
-              <CarouselContent className="-ml-4 py-1">
+              <CarouselContent className="-ml-4 sm:-ml-5 lg:-ml-6 py-2">
                 {SERVICES_LIST.map((service) => (
                   <CarouselItem
                     key={service.title}
-                    className="pl-4 basis-[86%] sm:basis-[60%] flex"
+                    className="pl-4 sm:pl-5 lg:pl-6 basis-[86%] sm:basis-[60%] md:basis-1/2 lg:basis-1/3 flex"
                   >
                     <ServiceCard service={service} />
                   </CarouselItem>
@@ -254,14 +255,14 @@ export default function Service() {
               </CarouselContent>
 
               {/* Navigation Controls: Arrows + Dots */}
-              <div className="mt-6 flex items-center justify-between gap-4">
-                <div className="flex items-center gap-2">
-                  <CarouselPrevious className="relative inset-0 size-9 rounded-full border border-black/[0.08] bg-white text-brand-navy hover:border-brand-navy/30 hover:bg-neutral-100 transition-colors cursor-pointer" />
-                  <CarouselNext className="relative inset-0 size-9 rounded-full border-transparent bg-brand-red text-white shadow-[0_4px_12px_rgba(222,3,2,0.25)] hover:bg-brand-red-hover transition-all cursor-pointer" />
+              <div className="mt-8 sm:mt-10 flex items-center justify-between gap-4">
+                <div className="flex items-center gap-2.5">
+                  <CarouselPrevious className="relative inset-0 size-10 rounded-full border border-black/[0.1] bg-white text-brand-navy hover:border-brand-navy/30 hover:bg-neutral-100 transition-colors cursor-pointer" />
+                  <CarouselNext className="relative inset-0 size-10 rounded-full border-transparent bg-brand-red text-white shadow-[0_4px_12px_rgba(222,3,2,0.25)] hover:bg-brand-red-hover transition-all cursor-pointer" />
                 </div>
 
                 <div
-                  className="flex items-center gap-1.5"
+                  className="flex items-center gap-2"
                   role="tablist"
                   aria-label="Service carousel pagination"
                 >
@@ -273,25 +274,17 @@ export default function Service() {
                       aria-selected={activeServiceSlide === idx}
                       aria-label={`Show ${service.title}`}
                       onClick={() => serviceApi?.scrollTo(idx)}
-                      className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${activeServiceSlide === idx
-                          ? "w-6 bg-brand-red"
+                      className={`h-2 rounded-full transition-all duration-200 cursor-pointer ${
+                        activeServiceSlide === idx
+                          ? "w-7 bg-brand-red"
                           : "w-2 bg-neutral-300 hover:bg-neutral-400"
-                        }`}
+                      }`}
                     />
                   ))}
                 </div>
               </div>
             </Carousel>
           </div>
-
-          {/* Desktop Grid (>= md) */}
-          <AppleStagger className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
-            {SERVICES_LIST.map((service) => (
-              <AppleStaggerItem key={service.title} className="flex">
-                <ServiceCard service={service} />
-              </AppleStaggerItem>
-            ))}
-          </AppleStagger>
         </div>
       </section>
 
