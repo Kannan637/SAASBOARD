@@ -113,7 +113,7 @@ export default function Pricing() {
       id="plans"
       data-apple-manual="true"
       aria-labelledby="pricing-heading"
-      className="bg-transparent text-brand-navy section-padding"
+      className="bg-white text-brand-navy section-padding"
     >
       <div className="container-sash">
         {/* Section Header */}
