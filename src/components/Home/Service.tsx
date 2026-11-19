@@ -133,14 +133,14 @@ function ServiceCard({ service }: { service: (typeof SERVICES_LIST)[number] }) {
       data-apple-manual="true"
       className="group relative w-full h-[360px] sm:h-[390px] rounded-[24px] bg-[#F4F3F1] border border-black/[0.04] p-6 sm:p-7 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer select-none"
     >
-      {/* Background Gradient on Hover matching shared reference image */}
+      {/* SASH Brand Gradient on Hover */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#FFF5EE_0%,#FFD7C2_22%,#FA935A_52%,#F15420_80%,#DE0302_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-400 ease-out z-0"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#FDEBEB_0%,#DE0302_52%,#B80201_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-400 ease-out z-0"
       />
 
       {/* Top: Icon in Top-Left */}
-      <div className="relative z-10 text-brand-navy group-hover:text-white transition-colors duration-300">
+      <div className="relative z-10 text-brand-navy transition-colors duration-300">
         <IconComponent className="w-6 h-6 stroke-[1.9]" />
       </div>
 
