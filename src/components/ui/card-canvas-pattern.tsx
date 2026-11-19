@@ -10,7 +10,8 @@ export type CardPatternType =
   | "optical-mesh"
   | "blue-arcs"
   | "white-pixels"
-  | "orange-grid";
+  | "orange-grid"
+  | "blue-grid";
 
 export interface WhitePixelsOptions {
   color?: string;
@@ -870,57 +871,147 @@ export function drawOrangeGridPattern(
   }
   ctx.stroke();
   ctx.restore();
+}
 
-  // 7. Diagonal Hairlines: 3 to 4 thin white 1px lines (light scratches / fold creases)
-  // Crossing mostly from bottom-left toward upper-right
-  const hairlines = [
-    {
-      x1: width * 0.08,
-      y1: height * 0.92,
-      x2: width * 0.88,
-      y2: height * 0.12,
-      peakAlpha: 0.90, // Main line is brighter (~90% opacity)
-    },
-    {
-      x1: width * -0.05,
-      y1: height * 0.68,
-      x2: width * 0.64,
-      y2: height * -0.04,
-      peakAlpha: 0.16, // Faint crease line (~15% opacity)
-    },
-    {
-      x1: width * 0.28,
-      y1: height * 1.05,
-      x2: width * 1.02,
-      y2: height * 0.32,
-      peakAlpha: 0.15, // Faint crease line (~15% opacity)
-    },
-    {
-      x1: width * 0.02,
-      y1: height * 0.44,
-      x2: width * 0.48,
-      y2: height * -0.02,
-      peakAlpha: 0.13, // Faint crease line (~15% opacity)
-    },
+/**
+ * Pattern 9: Blue Satin Grid Pattern
+ * - Base: Deep sapphire to royal and bright azure blue satin gradient.
+ *   Dark midnight navy (#030d22, #071b42) in shadow bands, vibrant azure (#1d5fd1)
+ *   and sky blue (#38bdf8) in highlight bands, mid cobalt (#0f3b8c) in between.
+ * - Satin Fabric Folds: 5 large blurred diagonal gradient strips (blur 60px) for smooth folds.
+ * - Grain: Very light film grain (~4% noise) across entire canvas.
+ * - Plus-sign grid: Small white "+" marks (10px across, 1px strokes, ~85% opacity),
+ *   arranged on an even grid with ~66px spacing (responsive down to ~48px on screens < 600px).
+ * - Faint grid lines: Very subtle white lines (~6% opacity, 1px) through centers of "+" marks.
+ * - Center lines / scratch hairlines: OMITTED per user specification.
+ */
+export function drawBlueGridPattern(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  seed = 909
+) {
+  const rng = createSeededRandom(seed);
+
+  // 1. Base Multi-Stop Diagonal Gradient Fill (Top-Left to Bottom-Right)
+  const baseGrad = ctx.createLinearGradient(0, 0, width, height);
+  baseGrad.addColorStop(0, "#030d22");
+  baseGrad.addColorStop(0.22, "#071b42");
+  baseGrad.addColorStop(0.45, "#0f3b8c");
+  baseGrad.addColorStop(0.70, "#1d5fd1");
+  baseGrad.addColorStop(0.88, "#0e347d");
+  baseGrad.addColorStop(1, "#051636");
+
+  ctx.fillStyle = baseGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // 2. Satin Fabric Folds: 5 large diagonal gradient strips with blur
+  ctx.save();
+  try {
+    ctx.filter = "blur(60px)";
+  } catch {
+    // Filter fallback
+  }
+
+  const diagonalAngle = Math.atan2(height, width);
+  const diagLength = Math.hypot(width, height);
+  const bands = [
+    { offsetRatio: 0.15, widthRatio: 0.28, color: "rgba(29, 95, 209, 0.65)" }, // Bright azure highlight
+    { offsetRatio: 0.38, widthRatio: 0.22, color: "rgba(3, 13, 34, 0.85)" },  // Deep midnight shadow
+    { offsetRatio: 0.58, widthRatio: 0.32, color: "rgba(56, 189, 248, 0.70)" }, // Sky blue highlight
+    { offsetRatio: 0.80, widthRatio: 0.24, color: "rgba(7, 27, 66, 0.80)" },  // Deep navy shadow
+    { offsetRatio: 0.95, widthRatio: 0.30, color: "rgba(15, 59, 140, 0.60)" }, // Mid cobalt tone
   ];
 
-  hairlines.forEach((line) => {
-    ctx.save();
-    ctx.lineWidth = 1;
-    const lineGrad = ctx.createLinearGradient(line.x1, line.y1, line.x2, line.y2);
-    lineGrad.addColorStop(0, "rgba(255, 255, 255, 0)");
-    lineGrad.addColorStop(0.18, `rgba(255, 255, 255, ${line.peakAlpha * 0.8})`);
-    lineGrad.addColorStop(0.50, `rgba(255, 255, 255, ${line.peakAlpha})`);
-    lineGrad.addColorStop(0.85, `rgba(255, 255, 255, ${line.peakAlpha * 0.6})`);
-    lineGrad.addColorStop(1, "rgba(255, 255, 255, 0)");
+  ctx.save();
+  ctx.translate(width / 2, height / 2);
+  ctx.rotate(diagonalAngle * 0.85);
 
-    ctx.strokeStyle = lineGrad;
-    ctx.beginPath();
-    ctx.moveTo(line.x1, line.y1);
-    ctx.lineTo(line.x2, line.y2);
-    ctx.stroke();
-    ctx.restore();
+  bands.forEach((b) => {
+    const yCenter = (b.offsetRatio - 0.5) * diagLength;
+    const bHeight = b.widthRatio * diagLength;
+
+    const bandGrad = ctx.createLinearGradient(0, yCenter - bHeight / 2, 0, yCenter + bHeight / 2);
+    bandGrad.addColorStop(0, "rgba(15, 59, 140, 0)");
+    bandGrad.addColorStop(0.5, b.color);
+    bandGrad.addColorStop(1, "rgba(15, 59, 140, 0)");
+
+    ctx.fillStyle = bandGrad;
+    ctx.fillRect(-diagLength, yCenter - bHeight / 2, diagLength * 2, bHeight);
   });
+  ctx.restore();
+  ctx.restore();
+
+  // 3. Film Grain (~4% noise) using an offscreen canvas pattern
+  try {
+    if (typeof document !== "undefined") {
+      const noiseCanvas = document.createElement("canvas");
+      noiseCanvas.width = 128;
+      noiseCanvas.height = 128;
+      const noiseCtx = noiseCanvas.getContext("2d");
+      if (noiseCtx) {
+        const imgData = noiseCtx.createImageData(128, 128);
+        const data = imgData.data;
+        for (let i = 0; i < data.length; i += 4) {
+          const val = Math.floor(rng() * 255);
+          data[i] = val;
+          data[i + 1] = val;
+          data[i + 2] = val;
+          data[i + 3] = Math.floor(rng() * 11);
+        }
+        noiseCtx.putImageData(imgData, 0, 0);
+        const noisePattern = ctx.createPattern(noiseCanvas, "repeat");
+        if (noisePattern) {
+          ctx.save();
+          ctx.fillStyle = noisePattern;
+          ctx.fillRect(0, 0, width, height);
+          ctx.restore();
+        }
+      }
+    }
+  } catch {
+    // Grain canvas fallback
+  }
+
+  // 4. Grid Geometry: Spacing ~66px on desktop, ~48px on screens < 600px
+  const spacing = width < 600 ? 48 : 66;
+
+  // 5. Faint Grid Lines: Subtle white lines (~6% opacity, 1px) through centers of '+' marks
+  ctx.save();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.06)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  for (let x = spacing / 2; x <= width + spacing; x += spacing) {
+    const px = Math.floor(x) + 0.5;
+    ctx.moveTo(px, 0);
+    ctx.lineTo(px, height);
+  }
+  for (let y = spacing / 2; y <= height + spacing; y += spacing) {
+    const py = Math.floor(y) + 0.5;
+    ctx.moveTo(0, py);
+    ctx.lineTo(width, py);
+  }
+  ctx.stroke();
+  ctx.restore();
+
+  // 6. Plus-Sign Grid: Small white '+' marks (10px across, 1px stroke, 85% opacity)
+  ctx.save();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  const arm = 5;
+  for (let y = spacing / 2; y <= height + spacing; y += spacing) {
+    for (let x = spacing / 2; x <= width + spacing; x += spacing) {
+      const cx = Math.floor(x) + 0.5;
+      const cy = Math.floor(y) + 0.5;
+      ctx.moveTo(cx - arm, cy);
+      ctx.lineTo(cx + arm, cy);
+      ctx.moveTo(cx, cy - arm);
+      ctx.lineTo(cx, cy + arm);
+    }
+  }
+  ctx.stroke();
+  ctx.restore();
 }
 
 const PATTERN_DRAW_MAP: Record<
@@ -942,6 +1033,8 @@ const PATTERN_DRAW_MAP: Record<
     drawWhitePixelsPattern(ctx, width, height, seed),
   "orange-grid": (ctx, width, height, seed) =>
     drawOrangeGridPattern(ctx, width, height, seed),
+  "blue-grid": (ctx, width, height, seed) =>
+    drawBlueGridPattern(ctx, width, height, seed),
 };
 
 const DEFAULT_SEEDS: Record<CardPatternType, number> = {
@@ -953,6 +1046,7 @@ const DEFAULT_SEEDS: Record<CardPatternType, number> = {
   "blue-arcs": 606,
   "white-pixels": 707,
   "orange-grid": 808,
+  "blue-grid": 909,
 };
 
 /**
