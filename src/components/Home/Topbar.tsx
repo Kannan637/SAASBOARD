@@ -203,7 +203,7 @@ export default function Topbar() {
       <div
         role="region"
         aria-label="Contact and office hours information"
-        className="bg-brand-navy text-white border-b border-navy-80 text-xs sm:text-sm"
+        className="bg-brand-navy text-white text-xs sm:text-sm"
       >
         <div className="container-sash py-2 sm:py-2.5 flex items-center justify-between gap-2 sm:gap-6">
           {/* Left: Phone + Email */}
@@ -276,8 +276,8 @@ export default function Topbar() {
         </div>
       </div>
 
-      {/* Responsive Navbar */}
-      <header className="relative z-50 bg-white border-b border-neutral-100">
+      {/* Responsive Navbar (Borderless) */}
+      <header className="relative z-50 bg-white">
         <div className="container-sash h-14 sm:h-16 flex items-center justify-between gap-3">
           {/* Brand Logo */}
           <Link
