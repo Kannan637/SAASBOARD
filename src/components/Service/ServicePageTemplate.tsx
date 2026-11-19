@@ -46,6 +46,7 @@ export interface ServiceHeroProps {
   badgeLabel?: string;
   specPills?: string[];
   pattern?: CardPatternType;
+  cardGradient?: string;
   imageSrc?: string;
   imageAlt?: string;
   imageWidth?: number;
@@ -62,6 +63,7 @@ export interface ServiceDeliverableItem {
 
 interface ServiceHeroConfig {
   pattern: CardPatternType;
+  cardGradient: string;
   imageSrc: string;
   imageAlt: string;
   imageWidth: number;
@@ -73,6 +75,8 @@ interface ServiceHeroConfig {
 const SERVICE_CONFIG_BY_LABEL: Record<string, ServiceHeroConfig> = {
   "Broadband Services": {
     pattern: "glyph",
+    cardGradient:
+      "linear-gradient(180deg, #E6CBF8 0%, #C1ABDA 15%, #9287B8 32%, #686193 50%, #444374 68%, #242859 84%, #081141 100%)",
     imageSrc: "/Hero/Hand Holding Broadband Dashboard Smartphone.png",
     imageAlt: "SASH Broadband ultra-speed network dashboard on smartphone",
     imageWidth: 1247,
@@ -82,6 +86,8 @@ const SERVICE_CONFIG_BY_LABEL: Record<string, ServiceHeroConfig> = {
   },
   "Leased Line": {
     pattern: "blue-arcs",
+    cardGradient:
+      "linear-gradient(180deg, #D4EBFC 0%, #B3D7F7 15%, #7CAFE0 32%, #4F83BE 50%, #2E5C9A 68%, #14376E 84%, #06183B 100%)",
     imageSrc: "/Hero/1to1.png",
     imageAlt: "1:1 Enterprise Dedicated Optical Leased Line infrastructure",
     imageWidth: 1856,
@@ -91,6 +97,8 @@ const SERVICE_CONFIG_BY_LABEL: Record<string, ServiceHeroConfig> = {
   },
   "SME Internet": {
     pattern: "glass",
+    cardGradient:
+      "linear-gradient(180deg, #D5F6EC 0%, #B2EAD8 15%, #7BCBBA 32%, #4DA59A 50%, #2E7976 68%, #144C51 84%, #06242B 100%)",
     imageSrc: "/Hero/Business.png",
     imageAlt: "High-speed SME business optical fibre internet setup",
     imageWidth: 1792,
@@ -100,6 +108,8 @@ const SERVICE_CONFIG_BY_LABEL: Record<string, ServiceHeroConfig> = {
   },
   "CCTV Surveillance": {
     pattern: "stripes",
+    cardGradient:
+      "linear-gradient(180deg, #FCE0DC 0%, #F6C5BF 15%, #DF9893 32%, #B56B6D 50%, #89464F 68%, #572533 84%, #260C17 100%)",
     imageSrc: "/Hero/cctv.png",
     imageAlt: "24/7 Smart HD IP CCTV premises surveillance monitoring",
     imageWidth: 1792,
@@ -108,7 +118,9 @@ const SERVICE_CONFIG_BY_LABEL: Record<string, ServiceHeroConfig> = {
     ratingLabel: "security rating",
   },
   "Intranet Solutions": {
-    pattern: "optical-mesh",
+    pattern: "white-pixels",
+    cardGradient:
+      "linear-gradient(180deg, #E0E7FF 0%, #C7D2FE 15%, #818CF8 32%, #4F46E5 50%, #3730A3 68%, #1E1B4B 84%, #0A0826 100%)",
     imageSrc: "/Business/Protected Intranet Network Laptop.png",
     imageAlt: "Secure Multi-Site Optical Intranet and Private WAN",
     imageWidth: 1792,
@@ -131,6 +143,7 @@ export function ServiceHero({
   iconSrc,
   iconAlt,
   pattern: explicitPattern,
+  cardGradient: explicitCardGradient,
   imageSrc: explicitImageSrc,
   imageAlt: explicitImageAlt,
   imageWidth: explicitImageWidth,
@@ -143,6 +156,10 @@ export function ServiceHero({
     SERVICE_CONFIG_BY_LABEL["Broadband Services"];
 
   const currentPattern = explicitPattern || config.pattern;
+  const resolvedCardGradient =
+    explicitCardGradient ||
+    config.cardGradient ||
+    "linear-gradient(180deg, #E0E7FF 0%, #C7D2FE 15%, #818CF8 32%, #4F46E5 50%, #3730A3 68%, #1E1B4B 84%, #0A0826 100%)";
   const resolvedImageSrc =
     explicitImageSrc ||
     config.imageSrc ||
@@ -167,6 +184,7 @@ export function ServiceHero({
         <div
           className="relative w-full rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden border border-black/[0.06]"
           data-pattern={currentPattern}
+          style={{ background: resolvedCardGradient }}
         >
           {/* Canvas Background Pattern Layer matching Landing Page Hero */}
           <div

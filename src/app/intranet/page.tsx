@@ -59,7 +59,7 @@ export default function IntranetPage() {
         secondaryCtaHref="#contact"
         imageSrc="/Business/Protected Intranet Network Laptop.png"
         imageAlt="SASH Private Multi-Site Intranet infrastructure"
-        pattern="optical-mesh"
+        pattern="white-pixels"
       />
 
       {/* Single-Row Client Logo Marquee */}

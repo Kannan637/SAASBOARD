@@ -8,12 +8,22 @@ export type CardPatternType =
   | "glass"
   | "stripes"
   | "optical-mesh"
-  | "blue-arcs";
+  | "blue-arcs"
+  | "white-pixels";
+
+export interface WhitePixelsOptions {
+  color?: string;
+  opacity?: number;
+  showGrid?: boolean;
+  gridOpacity?: number;
+  seed?: number;
+}
 
 export interface CardCanvasPatternProps
   extends React.HTMLAttributes<HTMLDivElement> {
   pattern: CardPatternType;
   seed?: number;
+  options?: WhitePixelsOptions;
 }
 
 // Seeded PRNG (Mulberry32) for deterministic rendering across page reloads
@@ -497,6 +507,227 @@ export function drawBlueArcsPattern(
   ctx.fill();
 }
 
+/**
+ * Pattern 7: White Pixels Grid Pattern
+ * Transparent canvas with pure white pixels (#ffffff @ 85% opacity) over the existing gradient.
+ * - Cell size: 8px (desktop) / 6px (< 600px mobile), 3px gap, 5px dot (3px on mobile).
+ * - Vertical density: Top 35% dense (35-50% checkerboard/diagonal dither), Middle 35-65% sparse (3-8% isolated dots),
+ *   Bottom 35% mixed sparse with heavy dense blocks (60-100%).
+ * - 25 to 40 random overlapping horizontal regions (widths 4-20 cells, heights 2-8 cells).
+ * - 3 to 5 bloom clusters (X / diamond diagonal dither inside 10x8 cells) in middle area.
+ * - Optional faint 1px white grid lines (off by default).
+ * - Off cells are transparent so underlying card gradient shows through.
+ */
+export function drawWhitePixelsPattern(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  seed = 707,
+  options?: WhitePixelsOptions
+) {
+  const rng = createSeededRandom(seed);
+
+  const color = options?.color ?? "#ffffff";
+  const opacity = options?.opacity ?? 0.85;
+  const showGrid = options?.showGrid ?? false;
+  const gridOpacity = options?.gridOpacity ?? 0.03;
+
+  // 1. Grid geometry: 8px on desktop, 6px under 600px width
+  const cellSize = width < 600 ? 6 : 8;
+  const gap = 3;
+  const dotSize = Math.max(1, cellSize - gap); // 5px desktop, 3px mobile
+
+  const cols = Math.ceil(width / cellSize);
+  const rows = Math.ceil(height / cellSize);
+
+  // 2. Clear canvas to 100% transparent (NEVER draw black fillRect)
+  ctx.clearRect(0, 0, width, height);
+  ctx.imageSmoothingEnabled = false;
+
+  // 3. Optional faint grid lines (3% opacity, 1px)
+  if (showGrid) {
+    ctx.save();
+    ctx.strokeStyle = `rgba(255, 255, 255, ${gridOpacity})`;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (let c = 0; c <= cols; c++) {
+      const x = Math.floor(c * cellSize) + 0.5;
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, height);
+    }
+    for (let r = 0; r <= rows; r++) {
+      const y = Math.floor(r * cellSize) + 0.5;
+      ctx.moveTo(0, y);
+      ctx.lineTo(width, y);
+    }
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  // 4. Cell state buffer: 1 = ON, 0 = OFF (transparent)
+  const grid = new Uint8Array(cols * rows);
+
+  // --- Step A: Vertical Density Map ---
+  for (let r = 0; r < rows; r++) {
+    const ny = (r * cellSize) / height;
+
+    for (let c = 0; c < cols; c++) {
+      const idx = r * cols + c;
+      const isChecker = (c + r) % 2 === 0;
+      const isDiag = (c + r) % 3 === 0;
+
+      if (ny < 0.35) {
+        // Top 35%: Dense (35% to 50% on) with checkerboard and diagonal dither feel
+        // Soften slightly on left edge to keep headline text crystal clear
+        const isTextZone = c < cols * 0.45;
+        const checkerWeight = isTextZone ? 0.55 : 0.68;
+        const diagWeight = isTextZone ? 0.30 : 0.38;
+
+        if (isChecker && rng() < checkerWeight) {
+          grid[idx] = 1;
+        } else if (isDiag && rng() < diagWeight) {
+          grid[idx] = 1;
+        } else if (rng() < 0.07) {
+          grid[idx] = 1;
+        }
+      } else if (ny < 0.65) {
+        // Middle 35% to 65%: Sparse (3% to 8% on), mostly isolated single dots
+        if (rng() < 0.05) {
+          grid[idx] = 1;
+        }
+      } else {
+        // Bottom 35%: Mostly sparse base (heavy blocks added in next pass)
+        if (rng() < 0.06) {
+          grid[idx] = 1;
+        }
+      }
+    }
+  }
+
+  // --- Step B: 25 to 40 Random Overlapping Horizontal Regions ---
+  const numRegions = Math.floor(25 + rng() * 16); // 25 to 40
+  for (let i = 0; i < numRegions; i++) {
+    const w = Math.floor(4 + rng() * 17); // 4 to 20 cells
+    const h = Math.floor(2 + rng() * 7);  // 2 to 8 cells
+    const startCol = Math.floor(rng() * Math.max(1, cols - w));
+    const startRow = Math.floor(rng() * Math.max(1, rows - h));
+    const midY = (startRow + h / 2) / rows;
+
+    let style: "checkerboard" | "diagonal" | "sparse" | "solid";
+    const roll = rng();
+
+    if (midY < 0.35) {
+      style = roll < 0.45 ? "checkerboard" : roll < 0.75 ? "diagonal" : roll < 0.9 ? "sparse" : "solid";
+    } else if (midY < 0.65) {
+      style = roll < 0.65 ? "sparse" : "diagonal";
+    } else {
+      style = roll < 0.4 ? "solid" : roll < 0.75 ? "checkerboard" : "sparse";
+    }
+
+    const regionDensity = 0.15 + rng() * 0.35;
+
+    for (let r = startRow; r < Math.min(rows, startRow + h); r++) {
+      for (let c = startCol; c < Math.min(cols, startCol + w); c++) {
+        let on = false;
+        if (style === "checkerboard") {
+          on = (c + r) % 2 === 0;
+        } else if (style === "diagonal") {
+          on = (c + r) % 3 === 0;
+        } else if (style === "solid") {
+          on = true;
+        } else {
+          on = rng() < regionDensity;
+        }
+
+        if (on) {
+          grid[r * cols + c] = 1;
+        }
+      }
+    }
+  }
+
+  // --- Step C: Bottom 35% Heavy Blocks (reaching 60% to 100% density) ---
+  const numHeavyBlocks = Math.floor(3 + rng() * 4); // 3 to 6 heavy blocks
+  for (let b = 0; b < numHeavyBlocks; b++) {
+    const bw = Math.floor(6 + rng() * 15); // 6 to 20 cells
+    const bh = Math.floor(2 + rng() * 6);  // 2 to 7 cells
+    const minR = Math.floor(rows * 0.66);
+    const maxR = Math.max(minR, rows - bh);
+    const bRow = Math.floor(minR + rng() * (maxR - minR + 1));
+    const bCol = Math.floor(rng() * Math.max(1, cols - bw));
+    const isSolid = rng() < 0.55;
+
+    for (let r = bRow; r < Math.min(rows, bRow + bh); r++) {
+      for (let c = bCol; c < Math.min(cols, bCol + bw); c++) {
+        if (isSolid) {
+          grid[r * cols + c] = 1;
+        } else {
+          // 65% to 85% density
+          if ((c + r) % 2 === 0 || rng() < 0.45) {
+            grid[r * cols + c] = 1;
+          }
+        }
+      }
+    }
+  }
+
+  // --- Step D: 3 to 5 Bloom Clusters in Middle Area (10x8 area, X or diamond) ---
+  const numClusters = Math.floor(3 + rng() * 3); // 3 to 5
+  for (let k = 0; k < numClusters; k++) {
+    const clusterW = 10;
+    const clusterH = 8;
+    const minR = Math.floor(rows * 0.36);
+    const maxR = Math.max(minR, Math.floor(rows * 0.62) - clusterH);
+    const cRow = Math.floor(minR + rng() * (maxR - minR + 1));
+    const cCol = Math.floor(rng() * Math.max(1, cols - clusterW));
+    const isDiamond = rng() < 0.5;
+
+    for (let dr = 0; dr < clusterH; dr++) {
+      for (let dc = 0; dc < clusterW; dc++) {
+        const r = cRow + dr;
+        const c = cCol + dc;
+        if (r >= rows || c >= cols) continue;
+
+        const normX = Math.abs(dc - 4.5) / 4.5;
+        const normY = Math.abs(dr - 3.5) / 3.5;
+
+        if (isDiamond) {
+          if (normX + normY <= 1.1) {
+            if ((c + r) % 2 === 0 || rng() < 0.3) {
+              grid[r * cols + c] = 1;
+            }
+          }
+        } else {
+          // X-shape diagonal dither
+          const isArm1 = Math.abs(normX - normY) < 0.32;
+          const isArm2 = Math.abs((1 - normX) - normY) < 0.32;
+          if (isArm1 || isArm2) {
+            if ((c + r) % 2 === 0 || rng() < 0.35) {
+              grid[r * cols + c] = 1;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // --- Step E: Render "ON" Cells as Sharp White Rectangles ---
+  ctx.save();
+  ctx.fillStyle = color;
+  ctx.globalAlpha = opacity;
+
+  for (let r = 0; r < rows; r++) {
+    const py = Math.floor(r * cellSize);
+    for (let c = 0; c < cols; c++) {
+      if (grid[r * cols + c] === 1) {
+        const px = Math.floor(c * cellSize);
+        ctx.fillRect(px, py, dotSize, dotSize);
+      }
+    }
+  }
+  ctx.restore();
+}
+
 const PATTERN_DRAW_MAP: Record<
   CardPatternType,
   (
@@ -512,6 +743,8 @@ const PATTERN_DRAW_MAP: Record<
   stripes: drawStripesPattern,
   "optical-mesh": drawOpticalMeshPattern,
   "blue-arcs": drawBlueArcsPattern,
+  "white-pixels": (ctx, width, height, seed) =>
+    drawWhitePixelsPattern(ctx, width, height, seed),
 };
 
 const DEFAULT_SEEDS: Record<CardPatternType, number> = {
@@ -521,6 +754,7 @@ const DEFAULT_SEEDS: Record<CardPatternType, number> = {
   stripes: 303,
   "optical-mesh": 505,
   "blue-arcs": 606,
+  "white-pixels": 707,
 };
 
 /**
@@ -534,6 +768,7 @@ const DEFAULT_SEEDS: Record<CardPatternType, number> = {
 export default function CardCanvasPattern({
   pattern,
   seed,
+  options,
   className = "",
   style,
   ...rest
@@ -559,14 +794,18 @@ export default function CardCanvasPattern({
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
 
-      const ctx = canvas.getContext("2d", { alpha: false });
+      const ctx = canvas.getContext("2d", { alpha: true });
       if (!ctx) return;
 
       ctx.save();
       ctx.scale(dpr, dpr);
 
-      const drawFn = PATTERN_DRAW_MAP[pattern] || PATTERN_DRAW_MAP.glyph;
-      drawFn(ctx, width, height, patternSeed);
+      if (pattern === "white-pixels") {
+        drawWhitePixelsPattern(ctx, width, height, patternSeed, options);
+      } else {
+        const drawFn = PATTERN_DRAW_MAP[pattern] || PATTERN_DRAW_MAP.glyph;
+        drawFn(ctx, width, height, patternSeed);
+      }
 
       ctx.restore();
     };
@@ -601,7 +840,7 @@ export default function CardCanvasPattern({
         cancelAnimationFrame(animationFrameId);
       }
     };
-  }, [pattern, patternSeed]);
+  }, [pattern, patternSeed, options]);
 
   return (
     <div
