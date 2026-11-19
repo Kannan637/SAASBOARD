@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Contactus from "@/components/Home/Contactus";
+import Testimonial from "@/components/Home/Testimonial";
 import {
   ServiceDeliverablesSection,
   ServiceHero,
@@ -71,6 +72,8 @@ export default function LeasedLinePage() {
         subtitle="Engineered for factories, IT parks, hospitals, schools, and multi-branch enterprises."
         items={SLA_HIGHLIGHTS}
       />
+
+      <Testimonial />
 
       <Contactus
         defaultInterest="Leased line"

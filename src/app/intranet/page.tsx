@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Contactus from "@/components/Home/Contactus";
+import Testimonial from "@/components/Home/Testimonial";
 import {
   ServiceDeliverablesSection,
   ServiceHero,
@@ -73,6 +74,8 @@ export default function IntranetPage() {
         subtitle="Interconnect offices, warehouses, hospitals, and campuses across Tamil Nadu with zero public-internet exposure."
         items={INTRANET_FEATURES}
       />
+
+      <Testimonial />
 
       <Contactus
         defaultInterest="Intranet"

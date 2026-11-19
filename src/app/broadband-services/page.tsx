@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Pricing from "@/components/Home/Pricing";
+import Testimonial from "@/components/Home/Testimonial";
 import Faq from "@/components/Home/Faq";
 import Contactus from "@/components/Home/Contactus";
 import {
@@ -108,6 +109,7 @@ export default function BroadbandServicesPage() {
         </div>
       </section>
 
+      <Testimonial />
       <Faq />
       <Contactus defaultInterest="Home broadband" />
     </>

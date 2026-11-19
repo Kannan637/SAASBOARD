@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Contactus from "@/components/Home/Contactus";
+import Testimonial from "@/components/Home/Testimonial";
 import {
   ServiceDeliverablesSection,
   ServiceHero,
@@ -148,6 +149,8 @@ export default function SmeInternetPage() {
           </div>
         </div>
       </section>
+
+      <Testimonial />
 
       <Contactus
         defaultInterest="Business or SME"
