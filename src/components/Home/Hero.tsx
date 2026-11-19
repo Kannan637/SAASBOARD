@@ -171,24 +171,6 @@ export default function Hero() {
     }),
   };
 
-  const imageSlideVariants = {
-    enter: (dir: number) => ({
-      opacity: 0,
-      x: dir > 0 ? 32 : -32,
-      scale: 0.96,
-    }),
-    center: {
-      opacity: 1,
-      x: 0,
-      scale: 1,
-    },
-    exit: (dir: number) => ({
-      opacity: 0,
-      x: dir > 0 ? -32 : 32,
-      scale: 0.96,
-    }),
-  };
-
   return (
     <>
       {/* 1. Hero Section with Increased Width and 4 Distinct Pastel Gradient Backgrounds */}
@@ -202,7 +184,7 @@ export default function Hero() {
         {/* Increased Width Container (Max 1440px / 1520px on 2xl screens) */}
         <div className="w-full max-w-[1440px] 2xl:max-w-[1520px] mx-auto px-3 sm:px-6 lg:px-8">
           {/* Floating Deep-Rounded Banner Card */}
-          <div className="relative w-full rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden border border-black/[0.06] shadow-[0_24px_64px_-16px_rgba(16,24,70,0.35),0_4px_16px_rgba(0,0,0,0.06)]">
+          <div className="relative w-full rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden border border-black/[0.06]">
             {/* 4 Distinct Pastel Gradient Background Layers with Smooth 700ms Cross-Fade */}
             {HERO_SERVICE_SLIDES.map((slide, idx) => (
               <div
@@ -230,7 +212,7 @@ export default function Hero() {
                     className="my-auto max-w-xl"
                   >
                     {/* Eyebrow Badge: Solid Red Pill with White Text matching reference */}
-                    <div className="inline-flex min-h-6 items-center justify-center gap-1.5 rounded-full bg-brand-red px-3.5 py-1 text-xs leading-none font-medium text-white tracking-wide shadow-xs">
+                    <div className="inline-flex min-h-6 items-center justify-center gap-1.5 rounded-full bg-brand-red px-3.5 py-1 text-xs leading-none font-medium text-white tracking-wide">
                       {currentSlide.eyebrow}
                     </div>
 
@@ -252,7 +234,7 @@ export default function Hero() {
                     <div className="mt-6 sm:mt-7 flex flex-wrap items-center gap-4 sm:gap-6">
                       <Link
                         href={currentSlide.ctaHref}
-                        className="inline-flex h-12 min-h-[48px] items-center justify-center gap-2 rounded-full bg-brand-red hover:bg-brand-red-hover px-7 text-base font-medium text-white shadow-[0_6px_20px_rgba(222,3,2,0.35)] outline-2 -outline-offset-2 outline-white/20 transition-all duration-150 ease-out active:scale-[0.97]"
+                        className="inline-flex h-12 min-h-[48px] items-center justify-center gap-2 rounded-full bg-brand-red hover:bg-brand-red-hover px-7 text-base font-medium text-white outline-2 -outline-offset-2 outline-white/20 transition-all duration-150 ease-out active:scale-[0.97]"
                       >
                         <span>{currentSlide.ctaText}</span>
                         <ChevronRight className="size-4 stroke-[2.5]" />
@@ -270,7 +252,7 @@ export default function Hero() {
                     {/* Social Proof Rating Row matching reference using shadcn Avatar */}
                     <div className="mt-7 sm:mt-8 flex items-center gap-3">
                       <AvatarGroup className="flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-white/70">
-                        <Avatar size="sm" className="size-7 ring-2 ring-white/70 shadow-xs">
+                        <Avatar size="sm" className="size-7 ring-2 ring-white/70">
                           <AvatarImage
                             src="/avatars/avatar-1.png"
                             alt="Satisfied SASH broadband customer 1"
@@ -279,7 +261,7 @@ export default function Hero() {
                             U1
                           </AvatarFallback>
                         </Avatar>
-                        <Avatar size="sm" className="size-7 ring-2 ring-white/70 shadow-xs">
+                        <Avatar size="sm" className="size-7 ring-2 ring-white/70">
                           <AvatarImage
                             src="/avatars/avatar-2.png"
                             alt="Satisfied SASH broadband customer 2"
@@ -288,7 +270,7 @@ export default function Hero() {
                             U2
                           </AvatarFallback>
                         </Avatar>
-                        <Avatar size="sm" className="size-7 ring-2 ring-white/70 shadow-xs">
+                        <Avatar size="sm" className="size-7 ring-2 ring-white/70">
                           <AvatarImage
                             src="/avatars/avatar-3.png"
                             alt="Satisfied SASH broadband customer 3"
@@ -321,7 +303,7 @@ export default function Hero() {
                       aria-label={`Go to slide ${idx + 1}: ${slide.serviceLabel}`}
                       className={`transition-all duration-300 rounded-full cursor-pointer ${
                         idx === activeIndex
-                          ? "w-7 h-1.5 bg-white shadow-xs"
+                          ? "w-7 h-1.5 bg-white"
                           : "w-1.5 h-1.5 bg-white/40 hover:bg-white/70"
                       }`}
                     />
@@ -329,46 +311,19 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Right Side Column (5 of 12 columns on desktop): Dedicated Service Image from /public/Hero seamlessly placed on gradient */}
+              {/* Right Side Column (5 of 12 columns on desktop): Dedicated Service Image without animation or shadows */}
               <div className="lg:col-span-5 relative w-full h-[340px] sm:h-[420px] lg:h-full min-h-[340px] lg:min-h-[520px] flex items-end justify-center lg:justify-end overflow-hidden p-2 sm:p-4 lg:p-0">
-                <AnimatePresence mode="wait" custom={direction}>
-                  <motion.div
-                    key={currentSlide.id}
-                    custom={direction}
-                    variants={imageSlideVariants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    transition={{ duration: 0.45, ease: APPLE_EASE }}
-                    className="relative w-full max-w-[380px] sm:max-w-[460px] lg:max-w-[540px] h-full flex items-end justify-center lg:justify-end pointer-events-none select-none"
-                  >
-                    <motion.div
-                      animate={
-                        shouldReduceMotion
-                          ? undefined
-                          : {
-                              y: [-3, 3, -3],
-                            }
-                      }
-                      transition={{
-                        duration: 4.8,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                      className="relative w-full h-full flex items-end justify-center lg:justify-end"
-                    >
-                      <Image
-                        src={currentSlide.imageSrc}
-                        alt={currentSlide.imageAlt}
-                        width={currentSlide.imageWidth}
-                        height={currentSlide.imageHeight}
-                        priority
-                        sizes="(max-width: 1024px) 100vw, 45vw"
-                        className="w-full h-auto max-h-[520px] sm:max-h-[550px] lg:max-h-[570px] object-contain object-bottom-right drop-shadow-[0_20px_40px_rgba(0,0,0,0.35)]"
-                      />
-                    </motion.div>
-                  </motion.div>
-                </AnimatePresence>
+                <div className="relative w-full max-w-[380px] sm:max-w-[460px] lg:max-w-[540px] h-full flex items-end justify-center lg:justify-end pointer-events-none select-none">
+                  <Image
+                    src={currentSlide.imageSrc}
+                    alt={currentSlide.imageAlt}
+                    width={currentSlide.imageWidth}
+                    height={currentSlide.imageHeight}
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                    className="w-full h-auto max-h-[520px] sm:max-h-[550px] lg:max-h-[570px] object-contain object-bottom-right"
+                  />
+                </div>
               </div>
             </div>
           </div>
