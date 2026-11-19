@@ -118,9 +118,9 @@ const SERVICE_CONFIG_BY_LABEL: Record<string, ServiceHeroConfig> = {
     ratingLabel: "security rating",
   },
   "Intranet Solutions": {
-    pattern: "white-pixels",
+    pattern: "orange-grid",
     cardGradient:
-      "linear-gradient(180deg, #E0E7FF 0%, #C7D2FE 15%, #818CF8 32%, #4F46E5 50%, #3730A3 68%, #1E1B4B 84%, #0A0826 100%)",
+      "linear-gradient(135deg, #731404 0%, #8f1a05 25%, #c63d12 55%, #e0602a 75%, #8f1a05 100%)",
     imageSrc: "/Hero/intranet.png",
     imageAlt: "Secure Multi-Site Optical Intranet and Private WAN",
     imageWidth: 1840,

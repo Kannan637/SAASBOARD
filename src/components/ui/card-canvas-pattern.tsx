@@ -9,7 +9,8 @@ export type CardPatternType =
   | "stripes"
   | "optical-mesh"
   | "blue-arcs"
-  | "white-pixels";
+  | "white-pixels"
+  | "orange-grid";
 
 export interface WhitePixelsOptions {
   color?: string;
@@ -728,6 +729,200 @@ export function drawWhitePixelsPattern(
   ctx.restore();
 }
 
+/**
+ * Pattern 8: "Stay Focused" Orange Wallpaper Pattern
+ * - Base: Burnt orange-red, with soft diagonal bands of light and shadow running from top-left
+ *   to bottom-right (blurred satin / fabric folds). Dark rust (#8f1a05) in shadow bands,
+ *   bright orange (#e0602a) in highlight bands, mid tones (#c63d12) in between.
+ * - Plus-sign grid: Small white "+" marks (10px across, 1px strokes) arranged on an even grid
+ *   with ~66px spacing (responsive down to ~48px on screens < 600px), ~85% opacity.
+ * - Faint grid lines: Very subtle white lines (about 6% opacity, 1px) through centers of "+" marks.
+ * - Diagonal hairlines: 3 to 4 thin white 1px lines crossing surface (bottom-left to top-right),
+ *   one main brighter line (~90% opacity) and 2-3 faint crease lines (~15% opacity).
+ * - Grain: Very light film grain (about 4% noise) across entire canvas.
+ */
+export function drawOrangeGridPattern(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  seed = 808
+) {
+  const rng = createSeededRandom(seed);
+
+  // 1. Base Multi-Stop Diagonal Gradient Fill (Top-Left to Bottom-Right)
+  const baseGrad = ctx.createLinearGradient(0, 0, width, height);
+  baseGrad.addColorStop(0, "#731404");
+  baseGrad.addColorStop(0.22, "#8f1a05");
+  baseGrad.addColorStop(0.45, "#c63d12");
+  baseGrad.addColorStop(0.70, "#e0602a");
+  baseGrad.addColorStop(0.88, "#c63d12");
+  baseGrad.addColorStop(1, "#8f1a05");
+
+  ctx.fillStyle = baseGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // 2. Satin Fabric Folds: 5 large diagonal gradient strips with blur
+  ctx.save();
+  try {
+    ctx.filter = "blur(60px)";
+  } catch {
+    // Filter fallback
+  }
+
+  const diagonalAngle = Math.atan2(height, width);
+  const diagLength = Math.hypot(width, height);
+  const bands = [
+    { offsetRatio: 0.15, widthRatio: 0.28, color: "rgba(224, 96, 42, 0.65)" }, // Bright orange highlight
+    { offsetRatio: 0.38, widthRatio: 0.22, color: "rgba(115, 20, 4, 0.85)" },  // Dark rust shadow
+    { offsetRatio: 0.58, widthRatio: 0.32, color: "rgba(240, 114, 58, 0.75)" }, // Peak orange highlight
+    { offsetRatio: 0.80, widthRatio: 0.24, color: "rgba(143, 26, 5, 0.80)" },  // Rust shadow
+    { offsetRatio: 0.95, widthRatio: 0.30, color: "rgba(198, 61, 18, 0.60)" }, // Mid tone
+  ];
+
+  ctx.save();
+  ctx.translate(width / 2, height / 2);
+  ctx.rotate(diagonalAngle * 0.85);
+
+  bands.forEach((b) => {
+    const yCenter = (b.offsetRatio - 0.5) * diagLength;
+    const bHeight = b.widthRatio * diagLength;
+
+    const bandGrad = ctx.createLinearGradient(0, yCenter - bHeight / 2, 0, yCenter + bHeight / 2);
+    bandGrad.addColorStop(0, "rgba(198, 61, 18, 0)");
+    bandGrad.addColorStop(0.5, b.color);
+    bandGrad.addColorStop(1, "rgba(198, 61, 18, 0)");
+
+    ctx.fillStyle = bandGrad;
+    ctx.fillRect(-diagLength, yCenter - bHeight / 2, diagLength * 2, bHeight);
+  });
+  ctx.restore();
+  ctx.restore(); // Restores from blur filter
+
+  // 3. Film Grain (~4% noise) using an offscreen canvas pattern
+  try {
+    if (typeof document !== "undefined") {
+      const noiseCanvas = document.createElement("canvas");
+      noiseCanvas.width = 128;
+      noiseCanvas.height = 128;
+      const noiseCtx = noiseCanvas.getContext("2d");
+      if (noiseCtx) {
+        const imgData = noiseCtx.createImageData(128, 128);
+        const data = imgData.data;
+        for (let i = 0; i < data.length; i += 4) {
+          const val = Math.floor(rng() * 255);
+          data[i] = val;
+          data[i + 1] = val;
+          data[i + 2] = val;
+          data[i + 3] = Math.floor(rng() * 11); // ~4% noise alpha
+        }
+        noiseCtx.putImageData(imgData, 0, 0);
+        const noisePattern = ctx.createPattern(noiseCanvas, "repeat");
+        if (noisePattern) {
+          ctx.save();
+          ctx.fillStyle = noisePattern;
+          ctx.fillRect(0, 0, width, height);
+          ctx.restore();
+        }
+      }
+    }
+  } catch {
+    // Grain canvas fallback
+  }
+
+  // 4. Grid Geometry: Spacing ~66px on desktop, ~48px on screens < 600px
+  const spacing = width < 600 ? 48 : 66;
+
+  // 5. Faint Grid Lines: Subtle white lines (~6% opacity, 1px) through centers of '+' marks
+  ctx.save();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.06)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  for (let x = spacing / 2; x <= width + spacing; x += spacing) {
+    const px = Math.floor(x) + 0.5;
+    ctx.moveTo(px, 0);
+    ctx.lineTo(px, height);
+  }
+  for (let y = spacing / 2; y <= height + spacing; y += spacing) {
+    const py = Math.floor(y) + 0.5;
+    ctx.moveTo(0, py);
+    ctx.lineTo(width, py);
+  }
+  ctx.stroke();
+  ctx.restore();
+
+  // 6. Plus-Sign Grid: Small white '+' marks (10px across, 1px stroke, 85% opacity)
+  ctx.save();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  const arm = 5; // 10px across total
+  for (let y = spacing / 2; y <= height + spacing; y += spacing) {
+    for (let x = spacing / 2; x <= width + spacing; x += spacing) {
+      const cx = Math.floor(x) + 0.5;
+      const cy = Math.floor(y) + 0.5;
+      // Horizontal bar
+      ctx.moveTo(cx - arm, cy);
+      ctx.lineTo(cx + arm, cy);
+      // Vertical bar
+      ctx.moveTo(cx, cy - arm);
+      ctx.lineTo(cx, cy + arm);
+    }
+  }
+  ctx.stroke();
+  ctx.restore();
+
+  // 7. Diagonal Hairlines: 3 to 4 thin white 1px lines (light scratches / fold creases)
+  // Crossing mostly from bottom-left toward upper-right
+  const hairlines = [
+    {
+      x1: width * 0.08,
+      y1: height * 0.92,
+      x2: width * 0.88,
+      y2: height * 0.12,
+      peakAlpha: 0.90, // Main line is brighter (~90% opacity)
+    },
+    {
+      x1: width * -0.05,
+      y1: height * 0.68,
+      x2: width * 0.64,
+      y2: height * -0.04,
+      peakAlpha: 0.16, // Faint crease line (~15% opacity)
+    },
+    {
+      x1: width * 0.28,
+      y1: height * 1.05,
+      x2: width * 1.02,
+      y2: height * 0.32,
+      peakAlpha: 0.15, // Faint crease line (~15% opacity)
+    },
+    {
+      x1: width * 0.02,
+      y1: height * 0.44,
+      x2: width * 0.48,
+      y2: height * -0.02,
+      peakAlpha: 0.13, // Faint crease line (~15% opacity)
+    },
+  ];
+
+  hairlines.forEach((line) => {
+    ctx.save();
+    ctx.lineWidth = 1;
+    const lineGrad = ctx.createLinearGradient(line.x1, line.y1, line.x2, line.y2);
+    lineGrad.addColorStop(0, "rgba(255, 255, 255, 0)");
+    lineGrad.addColorStop(0.18, `rgba(255, 255, 255, ${line.peakAlpha * 0.8})`);
+    lineGrad.addColorStop(0.50, `rgba(255, 255, 255, ${line.peakAlpha})`);
+    lineGrad.addColorStop(0.85, `rgba(255, 255, 255, ${line.peakAlpha * 0.6})`);
+    lineGrad.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+    ctx.strokeStyle = lineGrad;
+    ctx.beginPath();
+    ctx.moveTo(line.x1, line.y1);
+    ctx.lineTo(line.x2, line.y2);
+    ctx.stroke();
+    ctx.restore();
+  });
+}
+
 const PATTERN_DRAW_MAP: Record<
   CardPatternType,
   (
@@ -745,6 +940,8 @@ const PATTERN_DRAW_MAP: Record<
   "blue-arcs": drawBlueArcsPattern,
   "white-pixels": (ctx, width, height, seed) =>
     drawWhitePixelsPattern(ctx, width, height, seed),
+  "orange-grid": (ctx, width, height, seed) =>
+    drawOrangeGridPattern(ctx, width, height, seed),
 };
 
 const DEFAULT_SEEDS: Record<CardPatternType, number> = {
@@ -755,6 +952,7 @@ const DEFAULT_SEEDS: Record<CardPatternType, number> = {
   "optical-mesh": 505,
   "blue-arcs": 606,
   "white-pixels": 707,
+  "orange-grid": 808,
 };
 
 /**

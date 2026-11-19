@@ -61,7 +61,7 @@ export default function IntranetPage() {
         imageAlt="SASH Private Multi-Site Intranet infrastructure"
         imageWidth={1840}
         imageHeight={1842}
-        pattern="white-pixels"
+        pattern="orange-grid"
       />
 
       {/* Single-Row Client Logo Marquee */}
