@@ -104,7 +104,7 @@ export function FlippableFeatureCard({
       >
         {/* Front Face: Visual Stage + Title Only */}
         <div
-          className="w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.06] rounded-[28px] shadow-[0_4px_24px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.02)] overflow-hidden transition-shadow duration-300 group-hover/flip:shadow-[0_12px_36px_rgba(0,0,0,0.08)] cursor-pointer"
+          className="w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden cursor-pointer"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -115,7 +115,7 @@ export function FlippableFeatureCard({
 
         {/* Back Face: Description, Bullet Points, and Action */}
         <div
-          className="absolute inset-0 w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-[0_12px_36px_rgba(0,0,0,0.08)] overflow-hidden p-6 sm:p-7 z-20 cursor-pointer"
+          className="absolute inset-0 w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden p-6 sm:p-7 z-20 cursor-pointer"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -148,7 +148,7 @@ export function FeatureCard({
       aria-label={ariaLabel}
     >
       <Card
-        className={`relative h-full border border-black/[0.06] bg-white text-brand-navy rounded-[28px] shadow-[0_4px_24px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.02)] transition-shadow duration-300 hover:shadow-[0_12px_36px_rgba(0,0,0,0.08)] ${cardClassName}`}
+        className={`relative h-full border border-black/[0.08] bg-white text-brand-navy rounded-[28px] shadow-none ${cardClassName}`}
       >
         {children}
       </Card>
