@@ -27,24 +27,48 @@ const INSTALLATION_STEPS: ServiceDeliverableItem[] = [
     tag: "Step 01",
     description:
       "Share your street address or pincode in Thiruvallur or Tamil Nadu via our enquiry form or WhatsApp.",
+    points: [
+      "Doorstep GPS optical route verification across Thiruvallur",
+      "Immediate FTTH port availability check on our local GPON OLT",
+      "Zero-commitment enquiry with transparent pricing",
+      "Fast feasibility confirmation within 2 to 4 business hours",
+    ],
   },
   {
     title: "Select Your Fibre Plan",
     tag: "Step 02",
     description:
       "Choose between our Personal Pack (50 Mbps), Family Pack (100 Mbps), or custom high-speed tiers up to 1 Gbps.",
+    points: [
+      "Flexible tariffs starting at just ₹650/month",
+      "Guaranteed price-lock protection up to 2 full years",
+      "100% unlimited data with zero peak-time speed throttling",
+      "Seamless upgrade options as family bandwidth needs grow",
+    ],
   },
   {
     title: "Free Fibre Drop & Router Setup",
     tag: "Step 03",
     description:
       "Our local technicians run an optical fibre cable to your home and configure your Wi-Fi router at zero setup cost.",
+    points: [
+      "Dedicated single-mode armored optical drop to your premise",
+      "Complimentary Gigabit dual-band (2.4 GHz + 5 GHz) Wi-Fi router",
+      "Neat outdoor casing & precision fusion optical splicing",
+      "Pre-configured WPA3 wireless encryption for maximum security",
+    ],
   },
   {
     title: "Instant Activation & Speed Test",
     tag: "Step 04",
     description:
       "We verify signal strength and speed across your devices before handing over your active connection.",
+    points: [
+      "On-site live technician speed test on customer devices",
+      "Symmetrical 1:1 gigabit download and upload performance check",
+      "Zero-charge installation sign-off with customer copy",
+      "Instant live high-speed internet browsing right away",
+    ],
   },
 ];
 

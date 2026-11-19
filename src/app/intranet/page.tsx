@@ -25,24 +25,48 @@ const INTRANET_FEATURES: ServiceDeliverableItem[] = [
     tag: "Private Optical WAN",
     description:
       "Connect your head office, manufacturing plant, and retail branches over a private optical layer without traversing the public internet.",
+    points: [
+      "Direct Layer-2 optical interconnect between facilities",
+      "Zero exposure to the public internet or external gateways",
+      "Hub-and-spoke and mesh topologies across Tamil Nadu",
+      "Connects factories, warehouses, headquarters & branches",
+    ],
   },
   {
     title: "Isolated VLAN & Security",
     tag: "Layer-2 / Layer-3",
     description:
       "Dedicated Layer-2 / Layer-3 network segmentation keeps sensitive ERP, billing, and patient records isolated and protected.",
+    points: [
+      "Dedicated hardware-level VLAN isolation and encryption",
+      "Guaranteed security for sensitive medical and financial data",
+      "Complete immunity to public DDoS attacks and internet spoofing",
+      "Full compliance with enterprise security and audit standards",
+    ],
   },
   {
     title: "High-Speed Local File & Voice Sharing",
     tag: "Sub-ms Latency",
     description:
       "Run IP PBXs, shared NAS storage, and centralised CCTV feeds across multiple locations with sub-millisecond local latency.",
+    points: [
+      "Sub-millisecond optical latency between connected sites",
+      "Centralized NAS storage access feels like local office LAN",
+      "High-definition VoIP and inter-office intercom extensions",
+      "Zero buffering for heavy CAD files and multi-site database sync",
+    ],
   },
   {
     title: "Managed by Local Network Engineers",
     tag: "24/7 NOC Monitoring",
     description:
       "Proactive link monitoring and rapid field support from our Thiruvallur network operations desk.",
+    points: [
+      "Continuous 24/7/365 proactive NOC circuit monitoring",
+      "Real-time latency, packet integrity, and link status telemetry",
+      "Rapid optical restoration by Thiruvallur emergency teams",
+      "Single accountability point for end-to-end network health",
+    ],
   },
 ];
 

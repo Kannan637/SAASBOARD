@@ -26,24 +26,48 @@ const SME_CAPABILITIES: ServiceDeliverableItem[] = [
     tag: "Low Latency",
     description:
       "Optimised optical routing ensures uninterrupted POS billing, cloud ERP sync, and crystal-clear multi-seat video conferencing.",
+    points: [
+      "Commercial QoS priority queues over residential traffic",
+      "Low packet jitter optimized for Teams, Zoom & VoIP calls",
+      "Direct Tier-1 BGP transit to major SaaS and cloud providers",
+      "Dedicated enterprise-grade Optical Network Terminal (ONT)",
+    ],
   },
   {
     title: "Unlimited Price Lock Protection",
     tag: "Fixed Tariff",
     description:
       "Shield your monthly IT budget with our Corporate Pack unlimited price lock starting at ₹1,499/month with GST billing.",
+    points: [
+      "No monthly data consumption caps or bandwidth ceilings",
+      "Zero Fair Usage Policy (FUP) post-data speed reductions",
+      "Smooth continuous cloud sync, POS billing, and ERP operations",
+      "Transparent flat-rate monthly billing with price lock",
+    ],
   },
   {
     title: "24/7 Commercial Field Dispatch",
     tag: "Priority Support",
     description:
       "Dedicated commercial desk and local field splicers in Thiruvallur District for faster mean time to repair.",
+    points: [
+      "Direct telephone desk line to local commercial technicians",
+      "Priority field engineer dispatch stationed in Thiruvallur",
+      "Proactive link alerts before staff notices downtime",
+      "Quarterly optical signal health and connector checkups",
+    ],
   },
   {
     title: "Static IP & NVR Port Forwarding",
     tag: "Ready for CCTV/VPN",
     description:
       "Pre-configured support for remote CCTV monitoring, branch VPN tunnels, and hosted accounting servers.",
+    points: [
+      "Static public IP option for POS, Tally, and ERP remote access",
+      "Port forwarding configured for multi-channel NVR/CCTV feeds",
+      "Seamless biometric attendance sync across branch locations",
+      "Pre-configured hardware firewall and port security",
+    ],
   },
 ];
 

@@ -1,10 +1,36 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
-import { ChevronRight, Star } from "lucide-react";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+import {
+  ArrowRight,
+  ArrowUpDown,
+  Cable,
+  Camera,
+  CheckCircle2,
+  ChevronRight,
+  HardDrive,
+  Headphones,
+  Infinity,
+  Layers,
+  Lock,
+  MapPin,
+  Network,
+  RotateCcw,
+  Router,
+  Server,
+  ShieldCheck,
+  Smartphone,
+  Sparkles,
+  Star,
+  TrendingUp,
+  Users,
+  Wrench,
+  Zap,
+} from "lucide-react";
 import CardCanvasPattern, {
   CardPatternType,
 } from "@/components/ui/card-canvas-pattern";
@@ -59,6 +85,8 @@ export interface ServiceDeliverableItem {
   title: string;
   description: string;
   tag?: string;
+  points?: string[];
+  iconName?: string;
 }
 
 interface ServiceHeroConfig {
@@ -434,8 +462,212 @@ export function SingleClientMarquee() {
   );
 }
 
+const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+const CARD_BG_GRADIENT =
+  "bg-[linear-gradient(145deg,#FDEBEB_0%,#DE0302_52%,#B80201_100%)]";
+
+const CARD_BOTTOM_BLEND =
+  "pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.45)_40%,rgba(255,255,255,0.85)_75%,#FFFFFF_100%)]";
+
+const gridContainerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const cardItemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: EASE_OUT },
+  },
+};
+
+function getDeliverableIcon(title: string, iconName?: string) {
+  const t = (iconName || title).toLowerCase();
+  if (t.includes("address") || t.includes("map") || t.includes("feasibility") || t.includes("plan") || t.includes("select")) return MapPin;
+  if (t.includes("splice") || t.includes("splicing") || t.includes("cable") || t.includes("drop")) return Cable;
+  if (t.includes("router") || t.includes("ont") || t.includes("wifi")) return Router;
+  if (t.includes("speed") || t.includes("activation") || t.includes("gauge") || t.includes("fast")) return Zap;
+  if (t.includes("bandwidth") || t.includes("symmetrical") || t.includes("uncontended")) return ArrowUpDown;
+  if (t.includes("static ip") || t.includes("pool") || t.includes("ipv4") || t.includes("server")) return Server;
+  if (t.includes("sla") || t.includes("mttr") || t.includes("uptime") || t.includes("security") || t.includes("vlan") || t.includes("isolate")) return ShieldCheck;
+  if (t.includes("scalable") || t.includes("scale") || t.includes("expand") || t.includes("grow")) return TrendingUp;
+  if (t.includes("priority") || t.includes("qos") || t.includes("traffic") || t.includes("routing")) return Layers;
+  if (t.includes("unlimited") || t.includes("fup") || t.includes("infinity")) return Infinity;
+  if (t.includes("support") || t.includes("desk") || t.includes("commercial support")) return Headphones;
+  if (t.includes("camera") || t.includes("cctv") || t.includes("surveillance")) return Camera;
+  if (t.includes("nvr") || t.includes("storage") || t.includes("hard drive") || t.includes("record")) return HardDrive;
+  if (t.includes("smartphone") || t.includes("mobile") || t.includes("ios") || t.includes("phone")) return Smartphone;
+  if (t.includes("cabling") || t.includes("amc") || t.includes("maintenance") || t.includes("poe")) return Wrench;
+  if (t.includes("branch") || t.includes("network") || t.includes("point-to-point") || t.includes("p2p") || t.includes("wan")) return Network;
+  if (t.includes("lock") || t.includes("private")) return Lock;
+  if (t.includes("file") || t.includes("voice") || t.includes("sharing") || t.includes("latency")) return Zap;
+  if (t.includes("engineer") || t.includes("team") || t.includes("noc")) return Users;
+  return Sparkles;
+}
+
+export function FlippableDeliverableCard({
+  item,
+  idx,
+}: {
+  item: ServiceDeliverableItem;
+  idx: number;
+}) {
+  const [isFlipped, setIsFlipped] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+  const IconComponent = getDeliverableIcon(item.title, item.iconName);
+
+  return (
+    <motion.article
+      variants={cardItemVariants}
+      className="group/flip relative h-full min-h-[440px] min-[360px]:min-h-[460px] sm:min-h-[480px] [perspective:1200px] select-none col-span-12 md:col-span-6"
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
+      onClick={() => setIsFlipped((prev) => !prev)}
+      role="region"
+      aria-label={item.title}
+    >
+      <div
+        className="relative w-full h-full transition-transform duration-700 ease-out"
+        style={{
+          transformStyle: "preserve-3d",
+          transform: isFlipped && !shouldReduceMotion ? "rotateY(180deg)" : "rotateY(0deg)",
+        }}
+      >
+        {/* Front Face: Visual Stage + Title Only */}
+        <div
+          className="w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden cursor-pointer"
+          style={{
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+          }}
+        >
+          <div className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
+            {/* Top Stage with SASH Red Gradient Background (Edge-to-Edge) */}
+            <div
+              className={`relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3.5 min-[360px]:p-4 sm:p-5 select-none group/stage`}
+            >
+              {/* Smooth Blend into Bottom White Section */}
+              <div aria-hidden="true" className={`${CARD_BOTTOM_BLEND} z-10`} />
+
+              {/* Top Badges Bar: Step number + Tag */}
+              <div className="relative z-20 w-full flex items-center justify-between gap-2">
+                <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/20">
+                  <span>0{idx + 1}</span>
+                </span>
+
+                {item.tag && (
+                  <span className="inline-flex min-h-6 items-center rounded-full bg-white/90 backdrop-blur-xs px-2.5 text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-brand-navy shadow-xs border border-white/40">
+                    {item.tag}
+                  </span>
+                )}
+              </div>
+
+              {/* Centered Visual Element: Glossy 3D Orb with Concentric Rings */}
+              <div className="relative z-20 flex-1 flex flex-col items-center justify-center my-auto py-1">
+                {/* Subtle concentric rings */}
+                <div className="absolute w-36 h-36 rounded-full border border-white/20 pointer-events-none" />
+                <div className="absolute w-48 h-48 rounded-full border border-white/10 pointer-events-none" />
+
+                {/* Glossy orb */}
+                <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[radial-gradient(circle_at_35%_25%,#FFFFFF_0%,#FDEBEB_30%,#FCA5A5_60%,#DE0302_90%,#991B1B_100%)] shadow-[0_16px_36px_rgba(0,0,0,0.3),0_0_24px_rgba(222,3,2,0.4),inset_0_3px_5px_rgba(255,255,255,0.75),inset_0_-4px_8px_rgba(153,27,27,0.45)] flex items-center justify-center p-3 select-none transition-transform duration-300 ease-out group-hover/stage:scale-110">
+                  {/* Specular gloss highlight crescent */}
+                  <div className="pointer-events-none absolute top-1.5 left-2 w-7 h-4 rounded-full bg-gradient-to-b from-white/60 to-transparent blur-[1px]" />
+                  <IconComponent className="relative z-10 w-9 h-9 sm:w-10 sm:h-10 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]" />
+                </div>
+              </div>
+            </div>
+
+            {/* Front Bottom: Title Only */}
+            <div className="relative z-20 bg-white px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between">
+              <div className="pr-2">
+                <p className="text-[11px] font-semibold text-brand-red uppercase tracking-wider mb-1">
+                  {item.tag || `Feature 0${idx + 1}`}
+                </p>
+                <h3 className="text-brand-navy !text-lg min-[360px]:!text-xl sm:!text-2xl font-semibold tracking-normal">
+                  {item.title}
+                </h3>
+              </div>
+              <div className="flex items-center gap-1.5 text-xs font-medium text-neutral-400 group-hover/flip:text-brand-red transition-colors shrink-0">
+                <span className="hidden sm:inline">Details</span>
+                <ArrowRight className="size-3.5 transition-transform duration-200 group-hover/flip:translate-x-0.5" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Back Face: Description, Bullet Points, and Action */}
+        <div
+          className="absolute inset-0 w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden p-6 sm:p-7 z-20 cursor-pointer"
+          style={{
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+          }}
+        >
+          <div className="flex flex-col justify-between h-full bg-gradient-to-b from-[#FAFBFD] via-white to-white">
+            <div>
+              <div className="flex items-center justify-between gap-2 mb-3.5">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-red/10 px-2.5 py-1 text-xs font-medium text-brand-red">
+                  <Sparkles className="size-3.5" />
+                  <span>{item.tag || `Step 0${idx + 1}`}</span>
+                </span>
+                <span className="text-[11px] font-medium text-neutral-400 flex items-center gap-1">
+                  <RotateCcw className="size-3" />
+                  <span>Flip</span>
+                </span>
+              </div>
+
+              <h3 className="text-brand-navy text-xl sm:text-2xl font-semibold tracking-normal mb-2">
+                {item.title}
+              </h3>
+
+              <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-normal mb-4">
+                {item.description}
+              </p>
+
+              {item.points && item.points.length > 0 && (
+                <div className="space-y-2.5">
+                  {item.points.map((point, pIdx) => (
+                    <div
+                      key={pIdx}
+                      className="flex items-start gap-2.5 text-xs sm:text-[13px] text-brand-navy/90 leading-snug"
+                    >
+                      <CheckCircle2 className="size-4 text-brand-red shrink-0 mt-0.5" />
+                      <span>{point}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="pt-4 border-t border-black/[0.06] mt-auto flex items-center justify-between">
+              <Link
+                href="#contact"
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-brand-red hover:underline"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <span>Enquire about {item.title}</span>
+                <ArrowRight className="size-3.5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
 /**
- * 12-Column Structured Deliverables / Capabilities Section for Service Pages
+ * Bento Grid Deliverables Section for Service Pages matching 'Internet built for everything you do'
  */
 export function ServiceDeliverablesSection({
   eyebrow,
@@ -451,51 +683,38 @@ export function ServiceDeliverablesSection({
   return (
     <section
       data-apple-manual="true"
-      className="bg-white text-brand-navy py-12 md:py-16"
+      className="bg-white text-brand-navy section-padding"
     >
       <div className="container-sash">
-        <AppleReveal className="max-w-xl mx-auto text-center mb-9 md:mb-11">
-          <p className="eyebrow-label text-brand-red mb-2">{eyebrow}</p>
-          <h2 className="text-brand-navy !text-lg sm:!text-xl lg:!text-2xl !leading-snug font-semibold tracking-normal mb-2">
+        {/* Section Header */}
+        <div className="max-w-3xl mx-auto text-center flex flex-col items-center mb-12 sm:mb-16 lg:mb-20 px-2 sm:px-0">
+          <p className="eyebrow-label text-brand-red mb-3.5">{eyebrow}</p>
+          <h2 className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3.5">
             {heading}
           </h2>
           {subtitle && (
-            <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-normal">
+            <p className="text-neutral-600 text-sm sm:text-base max-w-2xl font-normal leading-relaxed">
               {subtitle}
             </p>
           )}
-        </AppleReveal>
+        </div>
 
-        <AppleStagger className="grid grid-cols-1 md:grid-cols-12 gap-5">
+        {/* 12-Column Grid with 6-col flippable bento cards */}
+        <motion.div
+          variants={gridContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 lg:gap-7 items-stretch"
+        >
           {items.map((item, idx) => (
-            <AppleStaggerItem
+            <FlippableDeliverableCard
               key={item.title}
-              className="md:col-span-6 flex"
-            >
-              <div className="w-full rounded-xl bg-neutral-100/80 border border-brand-navy/8 p-5 sm:p-6 flex flex-col justify-between transition-colors duration-200 hover:border-brand-red/30 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)]">
-                <div>
-                  <div className="flex items-center justify-between gap-3 mb-3.5">
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-brand-red text-white text-[11px] font-semibold">
-                      0{idx + 1}
-                    </span>
-                    {item.tag && (
-                      <span className="rounded-full bg-white px-2.5 py-0.5 text-[10px] uppercase tracking-wider text-brand-navy border border-brand-navy/10 font-semibold">
-                        {item.tag}
-                      </span>
-                    )}
-                  </div>
-
-                  <h3 className="text-brand-navy !text-sm sm:!text-base font-semibold mb-1.5 tracking-normal">
-                    {item.title}
-                  </h3>
-                  <p className="text-neutral-600 text-xs sm:text-[13px] leading-relaxed font-normal">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            </AppleStaggerItem>
+              item={item}
+              idx={idx}
+            />
           ))}
-        </AppleStagger>
+        </motion.div>
       </div>
     </section>
   );
