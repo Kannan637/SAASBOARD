@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronRight, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { APPLE_EASE } from "@/components/ui/apple-scroll";
 import {
@@ -153,6 +153,20 @@ export default function Hero() {
     setActiveIndex(idx);
   };
 
+  const handlePrev = () => {
+    setDirection(-1);
+    setActiveIndex((prev) =>
+      prev === 0 ? HERO_SERVICE_SLIDES.length - 1 : prev - 1
+    );
+  };
+
+  const handleNext = () => {
+    setDirection(1);
+    setActiveIndex((prev) =>
+      prev === HERO_SERVICE_SLIDES.length - 1 ? 0 : prev + 1
+    );
+  };
+
   const textSlideVariants = {
     enter: (dir: number) => ({
       opacity: 0,
@@ -230,22 +244,22 @@ export default function Hero() {
                       {currentSlide.subtitle}
                     </p>
 
-                    {/* Action Buttons: 48px Height, 16px Font Size, Rounded Pill */}
-                    <div className="mt-6 sm:mt-7 flex flex-wrap items-center gap-4 sm:gap-6">
+                    {/* Action Buttons: Compact Refined Size (40px Height, 14px Font Size) */}
+                    <div className="mt-5 sm:mt-6 flex flex-wrap items-center gap-3 sm:gap-4">
                       <Link
                         href={currentSlide.ctaHref}
-                        className="inline-flex h-12 min-h-[48px] items-center justify-center gap-2 rounded-full bg-brand-red hover:bg-brand-red-hover px-7 text-base font-medium text-white outline-2 -outline-offset-2 outline-white/20 transition-all duration-150 ease-out active:scale-[0.97]"
+                        className="inline-flex h-10 min-h-[40px] items-center justify-center gap-2 rounded-full bg-brand-red hover:bg-brand-red-hover px-5 sm:px-6 text-sm font-medium text-white outline-2 -outline-offset-2 outline-white/20 transition-all duration-150 ease-out active:scale-[0.97]"
                       >
                         <span>{currentSlide.ctaText}</span>
-                        <ChevronRight className="size-4 stroke-[2.5]" />
+                        <ChevronRight className="size-3.5 stroke-[2.5]" />
                       </Link>
 
                       <Link
                         href={currentSlide.secondaryCtaHref}
-                        className="group/sec inline-flex h-12 min-h-[48px] items-center justify-center gap-1.5 text-base font-medium text-white hover:text-white/80 transition-colors"
+                        className="group/sec inline-flex h-10 min-h-[40px] items-center justify-center gap-1.5 text-sm font-medium text-white hover:text-white/80 transition-colors"
                       >
                         <span>{currentSlide.secondaryCtaText}</span>
-                        <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-150 group-hover/sec:translate-x-0.5" />
+                        <ChevronRight className="size-3.5 stroke-[2.5] transition-transform duration-150 group-hover/sec:translate-x-0.5" />
                       </Link>
                     </div>
 
@@ -290,24 +304,52 @@ export default function Hero() {
                   </motion.div>
                 </AnimatePresence>
 
-                {/* 4 Slides Carousel Indicators on Bottom Left matching reference */}
+                {/* Carousel Controls: Previous/Next Navigation Buttons + Slide Indicators + Counter */}
                 <div
-                  className="flex items-center gap-2 pt-6 sm:pt-8"
-                  aria-label="Hero slide indicators"
+                  className="flex items-center gap-3 pt-5 sm:pt-7"
+                  aria-label="Hero carousel controls"
                 >
-                  {HERO_SERVICE_SLIDES.map((slide, idx) => (
-                    <button
-                      key={slide.id}
-                      type="button"
-                      onClick={() => goToSlide(idx)}
-                      aria-label={`Go to slide ${idx + 1}: ${slide.serviceLabel}`}
-                      className={`transition-all duration-300 rounded-full cursor-pointer ${
-                        idx === activeIndex
-                          ? "w-7 h-1.5 bg-white"
-                          : "w-1.5 h-1.5 bg-white/40 hover:bg-white/70"
-                      }`}
-                    />
-                  ))}
+                  {/* Previous Button */}
+                  <button
+                    type="button"
+                    onClick={handlePrev}
+                    aria-label="Previous slide"
+                    className="size-7 sm:size-8 rounded-full bg-white/15 hover:bg-white/25 active:scale-90 text-white flex items-center justify-center transition-all cursor-pointer backdrop-blur-xs"
+                  >
+                    <ChevronLeft className="size-4" />
+                  </button>
+
+                  {/* 4 Slides Carousel Indicators */}
+                  <div className="flex items-center gap-1.5" aria-label="Slide indicators">
+                    {HERO_SERVICE_SLIDES.map((slide, idx) => (
+                      <button
+                        key={slide.id}
+                        type="button"
+                        onClick={() => goToSlide(idx)}
+                        aria-label={`Go to slide ${idx + 1}: ${slide.serviceLabel}`}
+                        className={`transition-all duration-300 rounded-full cursor-pointer ${
+                          idx === activeIndex
+                            ? "w-6 sm:w-7 h-1.5 bg-white"
+                            : "w-1.5 h-1.5 bg-white/40 hover:bg-white/70"
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Next Button */}
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    aria-label="Next slide"
+                    className="size-7 sm:size-8 rounded-full bg-white/15 hover:bg-white/25 active:scale-90 text-white flex items-center justify-center transition-all cursor-pointer backdrop-blur-xs"
+                  >
+                    <ChevronRight className="size-4" />
+                  </button>
+
+                  {/* Slide Counter */}
+                  <span className="text-xs font-mono font-medium text-white/70 tabular-nums ml-1 select-none">
+                    0{activeIndex + 1} / 0{HERO_SERVICE_SLIDES.length}
+                  </span>
                 </div>
               </div>
 
