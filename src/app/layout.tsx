@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Urbanist } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Topbar from "@/components/Home/Topbar";
 import Footer from "@/components/Home/Footer";
 import { AppleSmoothScrollProvider } from "@/components/ui/apple-scroll";
 import { SlowConnectionLoader } from "@/components/ui/loading-state";
 
-const urbanist = Urbanist({
-  variable: "--font-urbanist",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -136,7 +136,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-IN" className={`${urbanist.variable} h-full antialiased`}>
+    <html lang="en-IN" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-transparent text-brand-navy font-normal relative">
         {/* Dedicated Fixed Viewport Diagonal Pinstripe Background Layer */}
         <div

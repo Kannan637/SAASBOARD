@@ -249,21 +249,21 @@ export default function Hero() {
                   {currentSlide.eyebrow}
                 </div>
 
-                {/* Hero Heading Style (Urbanist Display MD: 48px-52px, 600 semibold, line-height 1.1) */}
+                {/* Hero Heading Style (Display MD / LG: 56px, 700 bold, line-height 64px) */}
                 <h1
                   id="hero-heading"
-                  className="mt-4 text-3xl sm:text-4xl lg:text-[52px] leading-[1.1] font-semibold tracking-normal text-balance text-brand-navy"
+                  className="mt-4 text-3xl sm:text-4xl lg:text-[56px] lg:leading-[64px] font-bold tracking-normal text-balance text-brand-navy"
                 >
-                  <span className="inline-block mr-[0.2em] font-semibold">
+                  <span className="inline-block mr-[0.2em] font-bold">
                     {currentSlide.headlinePrefix}
                   </span>
-                  <span className="inline-block font-semibold text-brand-red">
+                  <span className="inline-block font-bold text-brand-red">
                     {currentSlide.headlineHighlight}
                   </span>
                 </h1>
 
-                {/* Hero Description Style (Juspay Body LG: 16px, 400 regular, line-height 24px) */}
-                <p className="mt-4 max-w-md text-sm sm:text-base leading-relaxed font-normal text-pretty text-neutral-600">
+                {/* Hero Description Style (Body LG: 16px, 400 regular, line-height 24px) */}
+                <p className="mt-4 max-w-md text-base leading-6 font-normal text-pretty text-neutral-600">
                   {currentSlide.subtitle}
                 </p>
 
