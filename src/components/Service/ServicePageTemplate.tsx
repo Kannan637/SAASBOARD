@@ -118,9 +118,9 @@ const SERVICE_CONFIG_BY_LABEL: Record<string, ServiceHeroConfig> = {
     ratingLabel: "security rating",
   },
   "Intranet Solutions": {
-    pattern: "yellow-grid",
+    pattern: "purple-grid",
     cardGradient:
-      "linear-gradient(180deg, #FEF7CD 0%, #FDE68A 15%, #EAB308 32%, #B45309 50%, #78350F 68%, #451A03 84%, #1C0B02 100%)",
+      "linear-gradient(180deg, #E6CBF8 0%, #C1ABDA 15%, #9287B8 32%, #686193 50%, #444374 68%, #242859 84%, #081141 100%)",
     imageSrc: "/Hero/intranet.png",
     imageAlt: "Secure Multi-Site Optical Intranet and Private WAN",
     imageWidth: 1840,
@@ -159,7 +159,7 @@ export function ServiceHero({
   const resolvedCardGradient =
     explicitCardGradient ||
     config.cardGradient ||
-    "linear-gradient(180deg, #FEF7CD 0%, #FDE68A 15%, #EAB308 32%, #B45309 50%, #78350F 68%, #451A03 84%, #1C0B02 100%)";
+    "linear-gradient(180deg, #E6CBF8 0%, #C1ABDA 15%, #9287B8 32%, #686193 50%, #444374 68%, #242859 84%, #081141 100%)";
   const resolvedImageSrc =
     explicitImageSrc ||
     config.imageSrc ||
@@ -194,7 +194,11 @@ export function ServiceHero({
           >
             <CardCanvasPattern
               pattern={currentPattern}
-              patternOpacity={currentPattern === "yellow-grid" ? 0.75 : undefined}
+              patternOpacity={
+                currentPattern === "purple-grid" || currentPattern === "yellow-grid"
+                  ? 0.75
+                  : undefined
+              }
             />
             {/* Subtle Content Contrast Scrim for Text Readability without altering the canvas pattern */}
             <div
