@@ -27,6 +27,10 @@ interface ServiceHeroSlide {
   cardGradient: string;
   ratingScore: string;
   ratingLabel: string;
+  imageSrc: string;
+  imageAlt: string;
+  imageWidth: number;
+  imageHeight: number;
 }
 
 const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
@@ -46,6 +50,10 @@ const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
       "linear-gradient(180deg, #E6CBF8 0%, #C1ABDA 15%, #9287B8 32%, #686193 50%, #444374 68%, #242859 84%, #081141 100%)",
     ratingScore: "4.6",
     ratingLabel: "rating in google",
+    imageSrc: "/Hero/Hand Holding Broadband Dashboard Smartphone.png",
+    imageAlt: "SASH Broadband ultra-speed network dashboard on smartphone",
+    imageWidth: 1247,
+    imageHeight: 1261,
   },
   {
     id: "leased-line",
@@ -63,6 +71,10 @@ const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
       "linear-gradient(180deg, #D4EBFC 0%, #B3D7F7 15%, #7CAFE0 32%, #4F83BE 50%, #2E5C9A 68%, #14376E 84%, #06183B 100%)",
     ratingScore: "4.9",
     ratingLabel: "enterprise rating",
+    imageSrc: "/Hero/1to1.png",
+    imageAlt: "1:1 Enterprise Dedicated Optical Leased Line infrastructure",
+    imageWidth: 1856,
+    imageHeight: 2304,
   },
   {
     id: "sme-internet",
@@ -80,6 +92,10 @@ const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
       "linear-gradient(180deg, #D5F6EC 0%, #B2EAD8 15%, #7BCBBA 32%, #4DA59A 50%, #2E7976 68%, #144C51 84%, #06242B 100%)",
     ratingScore: "4.8",
     ratingLabel: "business rating",
+    imageSrc: "/Hero/Business.png",
+    imageAlt: "High-speed SME business optical fibre internet setup",
+    imageWidth: 1792,
+    imageHeight: 2106,
   },
   {
     id: "cctv",
@@ -97,6 +113,10 @@ const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
       "linear-gradient(180deg, #FCE0DC 0%, #F6C5BF 15%, #DF9893 32%, #B56B6D 50%, #89464F 68%, #572533 84%, #260C17 100%)",
     ratingScore: "4.7",
     ratingLabel: "security rating",
+    imageSrc: "/Hero/cctv.png",
+    imageAlt: "24/7 Smart HD IP CCTV premises surveillance monitoring",
+    imageWidth: 1792,
+    imageHeight: 2070,
   },
 ];
 
@@ -148,6 +168,24 @@ export default function Hero() {
       opacity: 0,
       x: dir > 0 ? -32 : 32,
       filter: "blur(4px)",
+    }),
+  };
+
+  const imageSlideVariants = {
+    enter: (dir: number) => ({
+      opacity: 0,
+      x: dir > 0 ? 32 : -32,
+      scale: 0.96,
+    }),
+    center: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+    },
+    exit: (dir: number) => ({
+      opacity: 0,
+      x: dir > 0 ? -32 : 32,
+      scale: 0.96,
     }),
   };
 
@@ -291,37 +329,46 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Right Side Column (5 of 12 columns on desktop): Smartphone with SASH Broadband App seamlessly placed on gradient */}
-              <div className="lg:col-span-5 relative w-full h-[320px] sm:h-[400px] lg:h-full min-h-[320px] lg:min-h-[520px] flex items-end justify-center lg:justify-end overflow-hidden">
-                <motion.div
-                  animate={
-                    shouldReduceMotion
-                      ? undefined
-                      : {
-                          y: [-3, 3, -3],
-                        }
-                  }
-                  transition={{
-                    duration: 4.8,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="relative w-full max-w-[380px] sm:max-w-[460px] lg:max-w-[540px] h-full flex items-end justify-end pointer-events-none select-none"
-                >
-                  <Image
-                    src={
-                      activeIndex === 0
-                        ? "/hero-phone-hand-retina.png"
-                        : "/hero-phone-hand-cutout.png"
-                    }
-                    alt="SASH Broadband high-speed mobile network app"
-                    width={752}
-                    height={790}
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 45vw"
-                    className="w-full h-auto max-h-[560px] object-contain object-bottom-right drop-shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
-                  />
-                </motion.div>
+              {/* Right Side Column (5 of 12 columns on desktop): Dedicated Service Image from /public/Hero seamlessly placed on gradient */}
+              <div className="lg:col-span-5 relative w-full h-[340px] sm:h-[420px] lg:h-full min-h-[340px] lg:min-h-[520px] flex items-end justify-center lg:justify-end overflow-hidden p-2 sm:p-4 lg:p-0">
+                <AnimatePresence mode="wait" custom={direction}>
+                  <motion.div
+                    key={currentSlide.id}
+                    custom={direction}
+                    variants={imageSlideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 0.45, ease: APPLE_EASE }}
+                    className="relative w-full max-w-[380px] sm:max-w-[460px] lg:max-w-[540px] h-full flex items-end justify-center lg:justify-end pointer-events-none select-none"
+                  >
+                    <motion.div
+                      animate={
+                        shouldReduceMotion
+                          ? undefined
+                          : {
+                              y: [-3, 3, -3],
+                            }
+                      }
+                      transition={{
+                        duration: 4.8,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                      className="relative w-full h-full flex items-end justify-center lg:justify-end"
+                    >
+                      <Image
+                        src={currentSlide.imageSrc}
+                        alt={currentSlide.imageAlt}
+                        width={currentSlide.imageWidth}
+                        height={currentSlide.imageHeight}
+                        priority
+                        sizes="(max-width: 1024px) 100vw, 45vw"
+                        className="w-full h-auto max-h-[520px] sm:max-h-[550px] lg:max-h-[570px] object-contain object-bottom-right drop-shadow-[0_20px_40px_rgba(0,0,0,0.35)]"
+                      />
+                    </motion.div>
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </div>
           </div>
