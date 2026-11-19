@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Contactus from "@/components/Home/Contactus";
 import Testimonial from "@/components/Home/Testimonial";
+import Faq from "@/components/Home/Faq";
 import {
   ServiceDeliverablesSection,
   ServiceHero,
@@ -45,6 +46,34 @@ const SLA_HIGHLIGHTS: ServiceDeliverableItem[] = [
   },
 ];
 
+const LEASED_LINE_FAQS = [
+  {
+    question: "What is the difference between Broadband and a 1:1 Leased Line?",
+    answer:
+      "Unlike shared broadband where bandwidth is pooled among neighborhood subscribers, an Internet Leased Line (ILL) provides a private, 1:1 symmetrical circuit with guaranteed uncontended bandwidth, equal upload and download speeds, and zero throttling during peak hours.",
+  },
+  {
+    question: "What SLA uptime and MTTR do you guarantee?",
+    answer:
+      "We provide an enterprise Service Level Agreement (SLA) guaranteeing 99.5%+ uptime, low packet jitter, and sub-millisecond local latency. SASH field network engineers stationed in Thiruvallur ensure a rapid 2-to-4 hour Mean Time to Repair (MTTR).",
+  },
+  {
+    question: "Are static public IP addresses included?",
+    answer:
+      "Yes. All SASH Leased Line subscriptions include a usable pool of public IPv4 and IPv6 addresses for hosting internal web servers, ERP applications, VPN concentrators, and secure branch connectivity.",
+  },
+  {
+    question: "What bandwidth speeds can we subscribe to?",
+    answer:
+      "Enterprise bandwidth ranges from 10 Mbps up to 1 Gbps+ on committed information rates (CIR). You can upgrade your throughput seamlessly via our NOC without replacing the on-premise physical optical drop.",
+  },
+  {
+    question: "How long does feasibility verification and optical installation take?",
+    answer:
+      "Our optical survey team verifies physical route feasibility within 24 to 48 hours in Thiruvallur and surrounding industrial zones. Standard enterprise optical commissioning is completed within 3 to 7 business days.",
+  },
+];
+
 export default function LeasedLinePage() {
   return (
     <>
@@ -74,6 +103,13 @@ export default function LeasedLinePage() {
       />
 
       <Testimonial />
+
+      <Faq
+        items={LEASED_LINE_FAQS}
+        eyebrow="Leased Line FAQs"
+        heading="Dedicated Leased Line Questions"
+        description="Everything you need to know about enterprise 1:1 symmetrical circuits, SLA guarantees, and static IP allocation in Tamil Nadu."
+      />
 
       <Contactus
         defaultInterest="Leased line"

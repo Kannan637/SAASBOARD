@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Contactus from "@/components/Home/Contactus";
 import Testimonial from "@/components/Home/Testimonial";
+import Faq from "@/components/Home/Faq";
 import {
   ServiceDeliverablesSection,
   ServiceHero,
@@ -43,6 +44,34 @@ const SME_CAPABILITIES: ServiceDeliverableItem[] = [
     tag: "Ready for CCTV/VPN",
     description:
       "Pre-configured support for remote CCTV monitoring, branch VPN tunnels, and hosted accounting servers.",
+  },
+];
+
+const SME_FAQS = [
+  {
+    question: "How is SME Business Internet different from residential broadband?",
+    answer:
+      "SME Business Internet delivers business-traffic priority routing over optical gateways, enterprise-grade optical network terminals (ONT), optional static IP addressing for POS and biometric machines, and rapid commercial field dispatch.",
+  },
+  {
+    question: "Can we get static IPs for office biometric systems and CCTV?",
+    answer:
+      "Yes. Dedicated public static IPs are available on SASH SME plans, enabling seamless port forwarding for CCTV NVRs, remote desktop access, biometric attendance systems, and on-premises tally or accounting servers.",
+  },
+  {
+    question: "Is data truly unlimited for multi-user offices?",
+    answer:
+      "Yes. Every SME plan features unlimited data bandwidth without any Fair Usage Policy (FUP) throttling or speed caps, ensuring your team can conduct Zoom calls, upload heavy files, and access cloud apps without interruption.",
+  },
+  {
+    question: "What is the commercial installation timeframe?",
+    answer:
+      "Most commercial sites in Thiruvallur, commercial hubs, and nearby industrial pockets are connected within 24 to 48 hours following document verification and optical drop provisioning.",
+  },
+  {
+    question: "Do you offer priority support during business operating hours?",
+    answer:
+      "Yes. SASH SME accounts receive commercial SLA dispatch with dedicated local support engineers stationed in Thiruvallur for immediate resolution of link or hardware queries.",
   },
 ];
 
@@ -151,6 +180,13 @@ export default function SmeInternetPage() {
       </section>
 
       <Testimonial />
+
+      <Faq
+        items={SME_FAQS}
+        eyebrow="SME Internet FAQs"
+        heading="SME Business Connectivity Questions"
+        description="Clear answers about commercial broadband, static IP integration, priority dispatch, and tariff protection in Tamil Nadu."
+      />
 
       <Contactus
         defaultInterest="Business or SME"

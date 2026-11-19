@@ -45,24 +45,36 @@ export const HOMEPAGE_FAQS: FaqItem[] = [
   },
 ];
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: HOMEPAGE_FAQS.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: faq.answer,
-    },
-  })),
-};
+export interface FaqProps {
+  items?: FaqItem[];
+  eyebrow?: string;
+  heading?: string;
+  description?: string;
+}
 
-export default function Faq() {
+export default function Faq({
+  items = HOMEPAGE_FAQS,
+  eyebrow = "Common Questions",
+  heading = "Frequently asked questions",
+  description = "Everything you need to know about SASH Broadband plans, installation, and enterprise services in Tamil Nadu.",
+}: FaqProps = {}) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const handleToggle = (idx: number) => {
     setOpenIndex((prev) => (prev === idx ? null : idx));
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
   };
 
   return (
@@ -79,19 +91,18 @@ export default function Faq() {
       <div className="container-sash max-w-4xl">
         <AppleReveal className="text-center max-w-2xl mx-auto flex flex-col items-center mb-12 sm:mb-16 lg:mb-20">
           <p className="eyebrow-label text-brand-red mb-3.5">
-            Common Questions
+            {eyebrow}
           </p>
           <h2 id="faq-heading" className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3.5">
-            Frequently asked questions
+            {heading}
           </h2>
           <p className="text-neutral-600 text-sm sm:text-base font-normal leading-relaxed">
-            Everything you need to know about SASH Broadband plans, installation,
-            and enterprise services in Tamil Nadu.
+            {description}
           </p>
         </AppleReveal>
 
         <AppleStagger className="space-y-4 sm:space-y-4.5">
-          {HOMEPAGE_FAQS.map((item, idx) => {
+          {items.map((item, idx) => {
             const isOpen = openIndex === idx;
 
             return (
