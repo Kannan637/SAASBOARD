@@ -12,6 +12,9 @@ import {
   AvatarFallback,
   AvatarGroup,
 } from "@/components/ui/avatar";
+import CardCanvasPattern, {
+  CardPatternType,
+} from "@/components/ui/card-canvas-pattern";
 
 interface ServiceHeroSlide {
   id: string;
@@ -25,6 +28,7 @@ interface ServiceHeroSlide {
   secondaryCtaText: string;
   secondaryCtaHref: string;
   cardGradient: string;
+  pattern: CardPatternType;
   ratingScore: string;
   ratingLabel: string;
   imageSrc: string;
@@ -48,6 +52,7 @@ const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
     secondaryCtaHref: "/#plans",
     cardGradient:
       "linear-gradient(180deg, #E6CBF8 0%, #C1ABDA 15%, #9287B8 32%, #686193 50%, #444374 68%, #242859 84%, #081141 100%)",
+    pattern: "glyph",
     ratingScore: "4.6",
     ratingLabel: "rating in google",
     imageSrc: "/Hero/Hand Holding Broadband Dashboard Smartphone.png",
@@ -69,6 +74,7 @@ const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
     secondaryCtaHref: "/#contact",
     cardGradient:
       "linear-gradient(180deg, #D4EBFC 0%, #B3D7F7 15%, #7CAFE0 32%, #4F83BE 50%, #2E5C9A 68%, #14376E 84%, #06183B 100%)",
+    pattern: "halftone",
     ratingScore: "4.9",
     ratingLabel: "enterprise rating",
     imageSrc: "/Hero/1to1.png",
@@ -90,6 +96,7 @@ const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
     secondaryCtaHref: "/#contact",
     cardGradient:
       "linear-gradient(180deg, #D5F6EC 0%, #B2EAD8 15%, #7BCBBA 32%, #4DA59A 50%, #2E7976 68%, #144C51 84%, #06242B 100%)",
+    pattern: "glass",
     ratingScore: "4.8",
     ratingLabel: "business rating",
     imageSrc: "/Hero/Business.png",
@@ -111,6 +118,7 @@ const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
     secondaryCtaHref: "/#contact",
     cardGradient:
       "linear-gradient(180deg, #FCE0DC 0%, #F6C5BF 15%, #DF9893 32%, #B56B6D 50%, #89464F 68%, #572533 84%, #260C17 100%)",
+    pattern: "stripes",
     ratingScore: "4.7",
     ratingLabel: "security rating",
     imageSrc: "/Hero/cctv.png",
@@ -198,17 +206,27 @@ export default function Hero() {
         {/* Increased Width Container (Max 1440px / 1520px on 2xl screens) */}
         <div className="w-full max-w-[1440px] 2xl:max-w-[1520px] mx-auto px-3 sm:px-6 lg:px-8">
           {/* Floating Deep-Rounded Banner Card */}
-          <div className="relative w-full rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden border border-black/[0.06]">
-            {/* 4 Distinct Pastel Gradient Background Layers with Smooth 700ms Cross-Fade */}
+          <div
+            className="relative w-full rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden border border-black/[0.06]"
+            data-pattern={currentSlide.pattern}
+          >
+            {/* 4 Distinct Canvas Background Pattern Layers with Smooth 700ms Cross-Fade */}
             {HERO_SERVICE_SLIDES.map((slide, idx) => (
               <div
-                key={`pastel-bg-${slide.id}`}
+                key={`canvas-bg-${slide.id}`}
                 aria-hidden="true"
+                data-pattern={slide.pattern}
                 className={`absolute inset-0 transition-opacity duration-700 ease-in-out pointer-events-none z-0 ${
                   idx === activeIndex ? "opacity-100" : "opacity-0"
                 }`}
-                style={{ background: slide.cardGradient }}
-              />
+              >
+                <CardCanvasPattern pattern={slide.pattern} />
+                {/* Subtle Content Contrast Scrim for Text Readability without altering the canvas pattern */}
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-black/15 lg:bg-transparent lg:bg-gradient-to-r lg:from-black/45 lg:via-black/20 lg:to-transparent pointer-events-none"
+                />
+              </div>
             ))}
 
             <div className="w-full min-h-auto lg:min-h-[520px] grid grid-cols-1 lg:grid-cols-12 items-stretch relative z-10">
@@ -265,8 +283,8 @@ export default function Hero() {
 
                     {/* Social Proof Rating Row: Centered on mobile, start-aligned on desktop */}
                     <div className="mt-6 sm:mt-8 flex items-center justify-center lg:justify-start gap-3 w-full">
-                      <AvatarGroup className="flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-white/70">
-                        <Avatar size="sm" className="size-7 ring-2 ring-white/70">
+                      <AvatarGroup className="flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-white/80">
+                        <Avatar size="sm" className="size-7 ring-2 ring-white/80 overflow-hidden shadow-xs">
                           <AvatarImage
                             src="/avatars/avatar-1.png"
                             alt="Satisfied SASH broadband customer 1"
@@ -275,7 +293,7 @@ export default function Hero() {
                             U1
                           </AvatarFallback>
                         </Avatar>
-                        <Avatar size="sm" className="size-7 ring-2 ring-white/70">
+                        <Avatar size="sm" className="size-7 ring-2 ring-white/80 overflow-hidden shadow-xs">
                           <AvatarImage
                             src="/avatars/avatar-2.png"
                             alt="Satisfied SASH broadband customer 2"
@@ -284,7 +302,7 @@ export default function Hero() {
                             U2
                           </AvatarFallback>
                         </Avatar>
-                        <Avatar size="sm" className="size-7 ring-2 ring-white/70">
+                        <Avatar size="sm" className="size-7 ring-2 ring-white/80 overflow-hidden shadow-xs">
                           <AvatarImage
                             src="/avatars/avatar-3.png"
                             alt="Satisfied SASH broadband customer 3"
