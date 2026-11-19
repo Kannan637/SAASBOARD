@@ -65,8 +65,8 @@ export function ServiceHero({
         {/* Left Content Column (7 of 12 columns on desktop — exact Landing Page Hero style) */}
         <div className="lg:col-span-7 flex flex-col justify-between px-5 sm:px-10 lg:pl-[max(20px,calc((100vw-1180px)/2+20px))] lg:pr-8 py-10 sm:py-12 lg:py-12 z-20 overflow-hidden">
           <AppleReveal className="my-auto max-w-xl">
-            {/* Service Eyebrow Badge (Juspay Body XS / Pill Badge) */}
-            <div className="inline-flex min-h-6 items-center justify-center gap-1.5 rounded-full bg-red-10/85 px-3 py-1 text-xs leading-none font-medium text-brand-navy shadow-[0_1px_1px_rgba(1,13,59,0.06)]">
+            {/* Service Eyebrow Badge */}
+            <div className="eyebrow-label">
               {eyebrow}
             </div>
 

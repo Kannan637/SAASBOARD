@@ -192,8 +192,8 @@ export default function Testimonials1({
       <div className="container-sash">
         {/* Centered Section Header */}
         <AppleReveal className="flex flex-col items-center text-center max-w-2xl mx-auto mb-12 sm:mb-16 lg:mb-20">
-          {/* Eyebrow Pill Tag matching Juspay reference */}
-          <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#EFF4FE] text-[#2563EB] mb-3.5">
+          {/* Eyebrow Badge */}
+          <span className="eyebrow-label mb-3.5">
             {eyebrow}
           </span>
 

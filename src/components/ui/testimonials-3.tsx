@@ -267,7 +267,7 @@ export default function Testimonials3({
     >
       <div className="container-sash">
         <AppleReveal className="mb-12 flex flex-col items-center text-center sm:mb-16 lg:mb-20 max-w-2xl mx-auto">
-          <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#EFF4FE] text-[#2563EB] mb-3.5">
+          <span className="eyebrow-label gap-2 mb-3.5">
             <GoogleLogoIcon className="h-3.5 w-3.5" />
             <span>{eyebrow}</span>
           </span>

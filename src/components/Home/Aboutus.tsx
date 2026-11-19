@@ -88,7 +88,7 @@ export default function Aboutus() {
             {/* Left Column (6 of 12 grid): Typographic & Value Proposition Content */}
             <div className="lg:col-span-6 flex flex-col items-start text-left z-10 py-4 lg:py-8">
               {/* Eyebrow Badge: ABOUT US */}
-              <span className="inline-flex items-center px-3.5 py-1.5 rounded-md bg-[#FDEBEB] text-brand-red text-[11px] font-semibold uppercase tracking-wider mb-5 sm:mb-6">
+              <span className="eyebrow-label mb-5 sm:mb-6">
                 ABOUT US
               </span>
 
