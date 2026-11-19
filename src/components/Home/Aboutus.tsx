@@ -60,7 +60,7 @@ export default function Aboutus() {
     >
       <div className="container-sash">
         {/* Center Container with Border and 12-Grid Structure */}
-        <div className="relative w-full rounded-[32px] sm:rounded-[36px] lg:rounded-[44px] bg-white border border-black/[0.08] shadow-[0_4px_32px_rgba(0,0,0,0.03)] p-8 sm:p-12 lg:p-16 overflow-hidden">
+        <div className="relative w-full rounded-[32px] sm:rounded-[36px] lg:rounded-[44px] bg-white border border-black/[0.08] p-8 sm:p-12 lg:p-16 overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left Column (6 of 12 grid): Typographic & Value Proposition Content */}
             <div className="lg:col-span-6 flex flex-col items-start text-left z-10">
@@ -98,7 +98,7 @@ export default function Aboutus() {
               {/* CTA Button */}
               <Link
                 href="/#contact"
-                className="inline-flex items-center gap-2 rounded-full bg-brand-navy text-white px-7 py-3.5 text-sm font-medium hover:bg-navy-80 transition-all shadow-[0_4px_16px_rgba(1,13,59,0.18)] group"
+                className="inline-flex items-center gap-2 rounded-full bg-brand-navy text-white px-7 py-3.5 text-sm font-medium hover:bg-navy-80 transition-all group"
               >
                 <span>Schedule a feasibility call</span>
                 <span aria-hidden="true" className="text-base leading-none transition-transform duration-200 group-hover:translate-x-1">›</span>
@@ -114,7 +114,7 @@ export default function Aboutus() {
                   alt="Tamil Nadu Halftone Optical Network Coverage Map"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-contain object-center pointer-events-none select-none opacity-90 drop-shadow-[0_4px_20px_rgba(1,13,59,0.06)]"
+                  className="object-contain object-center pointer-events-none select-none opacity-90"
                   priority
                 />
               </div>
@@ -137,7 +137,7 @@ export default function Aboutus() {
                 }}
                 className="absolute top-[18%] right-[6%] sm:right-[12%] -translate-x-1/2 -translate-y-1/2 z-20"
               >
-                <div className="rounded-full bg-white border border-black/[0.08] shadow-[0_10px_26px_rgba(0,0,0,0.12)] px-3.5 py-2 sm:px-4 sm:py-2.5 flex items-center gap-2.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
+                <div className="rounded-full bg-white border border-black/[0.08] px-3.5 py-2 sm:px-4 sm:py-2.5 flex items-center gap-2.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
                   <div className="relative w-14 h-5 flex items-center justify-center shrink-0">
                     <Image
                       src="/Logo/sashbroadband.png"
@@ -175,7 +175,7 @@ export default function Aboutus() {
                 className="absolute top-[36%] left-[44%] -translate-x-1/2 -translate-y-1/2 z-20"
               >
                 <div
-                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white border border-black/[0.08] shadow-[0_8px_24px_rgba(0,0,0,0.1)] p-1.5 flex items-center justify-center transition-transform duration-200 hover:scale-110 cursor-pointer"
+                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white border border-black/[0.08] p-1.5 flex items-center justify-center transition-transform duration-200 hover:scale-110 cursor-pointer"
                   title="SASH Optical Backbone"
                 >
                   <div className="relative w-full h-full rounded-full overflow-hidden">
@@ -208,7 +208,7 @@ export default function Aboutus() {
                   }}
                   className={`absolute ${partner.className} -translate-x-1/2 -translate-y-1/2 z-20`}
                 >
-                  <div className="rounded-full bg-white border border-black/[0.08] shadow-[0_8px_22px_rgba(0,0,0,0.08)] px-3 py-1.5 sm:px-3.5 sm:py-2 flex items-center justify-center transition-transform duration-200 hover:scale-108 cursor-pointer">
+                  <div className="rounded-full bg-white border border-black/[0.08] px-3 py-1.5 sm:px-3.5 sm:py-2 flex items-center justify-center transition-transform duration-200 hover:scale-108 cursor-pointer">
                     <div className="relative w-16 sm:w-18 h-7 sm:h-8 flex items-center justify-center">
                       <Image
                         src={partner.src}
