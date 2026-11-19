@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 interface ClientMapIcon {
   id: string;
@@ -117,13 +118,13 @@ export default function Aboutus() {
                 </div>
               </div>
 
-              {/* CTA Button */}
+              {/* CTA Button: Official SASH Brand Red Pill Button */}
               <Link
                 href="/#contact"
-                className="inline-flex items-center gap-2 rounded-full bg-brand-navy text-white px-8 py-4 text-sm sm:text-base font-medium hover:bg-navy-80 transition-all group"
+                className="inline-flex h-11 min-h-[44px] sm:h-12 sm:min-h-[48px] items-center justify-center gap-2 rounded-full bg-brand-red hover:bg-brand-red-hover px-6 sm:px-8 text-sm sm:text-base font-medium text-white outline-2 -outline-offset-2 outline-white/20 transition-all duration-150 ease-out active:scale-[0.97] group"
               >
                 <span>Schedule a feasibility call</span>
-                <span aria-hidden="true" className="text-base leading-none transition-transform duration-200 group-hover:translate-x-1">›</span>
+                <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-150 group-hover:translate-x-0.5" />
               </Link>
             </div>
 
