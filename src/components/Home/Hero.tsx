@@ -23,6 +23,8 @@ interface ServiceHeroSlide {
   imageAlt: string;
   metricBadge: string;
   backdropColor?: string;
+  cardGradient: string;
+  cutoutColor: string;
 }
 
 const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
@@ -44,6 +46,9 @@ const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
       "Young man using laptop with glowing red speedometer dial and high-speed fibre light trails",
     metricBadge: "Up to 1 Gbps Ultra-Speed",
     backdropColor: "#050001",
+    cardGradient:
+      "linear-gradient(135deg, #FFFFFF 0%, #FAF7FE 35%, #F2EBFC 70%, #E8DCF8 100%)",
+    cutoutColor: "#F2EBFC",
   },
   {
     id: "leased-line",
@@ -63,6 +68,9 @@ const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
       "Enterprise server racks in a high-tech data corridor connected with high-speed glowing red optical fibre lines for dedicated 1:1 leased line",
     metricBadge: "99.99% SLA Uptime",
     backdropColor: "#05070E",
+    cardGradient:
+      "linear-gradient(135deg, #FFFFFF 0%, #F5F9FF 35%, #E6F1FE 70%, #D8EAFD 100%)",
+    cutoutColor: "#E6F1FE",
   },
   {
     id: "sme-internet",
@@ -82,6 +90,9 @@ const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
       "Indian business professional holding laptop with glowing red growth chart and upward arrow in front of modern corporate towers",
     metricBadge: "Priority Business Bandwidth",
     backdropColor: "#080710",
+    cardGradient:
+      "linear-gradient(135deg, #FFFFFF 0%, #F5FBF8 35%, #E3F6ED 70%, #D0F0E1 100%)",
+    cutoutColor: "#E3F6ED",
   },
   {
     id: "cctv",
@@ -101,6 +112,9 @@ const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
       "High-definition architectural dome CCTV security camera with glowing red surveillance scanning halo mounted on modern commercial premises",
     metricBadge: "Live HD Cloud Monitoring",
     backdropColor: "#0B0C12",
+    cardGradient:
+      "linear-gradient(135deg, #FFFFFF 0%, #FFF8F7 35%, #FDEEEB 70%, #FBDCD6 100%)",
+    cutoutColor: "#FDEEEB",
   },
 ];
 
@@ -113,10 +127,10 @@ const COMPANY_LOGOS = Array.from({ length: 34 }, (_, index) => {
   };
 });
 
-function LeftEdgeCutoutMask() {
+function LeftEdgeCutoutMask({ cutoutColor }: { cutoutColor: string }) {
   return (
     <svg
-      className="hidden lg:block absolute -left-px top-0 h-full w-[135px] xl:w-[165px] z-10 pointer-events-none"
+      className="hidden lg:block absolute -left-px top-0 h-full w-[135px] xl:w-[165px] z-10 pointer-events-none transition-colors duration-700"
       viewBox="0 0 180 600"
       preserveAspectRatio="none"
       fill="none"
@@ -130,7 +144,7 @@ function LeftEdgeCutoutMask() {
       <defs>
         <linearGradient id="left-cutout-gradient" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="#FFFFFF" />
-          <stop offset="100%" stopColor="#F2EBFA" />
+          <stop offset="100%" stopColor={cutoutColor} />
         </linearGradient>
       </defs>
     </svg>
@@ -205,7 +219,7 @@ export default function Hero() {
 
   return (
     <>
-      {/* 1. Hero Section with Increased Width and Signature Background Style */}
+      {/* 1. Hero Section with Increased Width and 4 Dynamic Pastel Gradient Backgrounds */}
       <section
         data-apple-manual="true"
         aria-labelledby="hero-heading"
@@ -215,15 +229,21 @@ export default function Hero() {
       >
         {/* Increased Width Container (Max 1440px / 1520px on 2xl screens) */}
         <div className="w-full max-w-[1440px] 2xl:max-w-[1520px] mx-auto px-3 sm:px-6 lg:px-8">
-          {/* Floating Deep-Rounded Banner Card with Signature Background Gradient */}
-          <div
-            className="relative w-full rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden border border-black/[0.06] shadow-[0_20px_50px_-15px_rgba(1,13,59,0.08),0_2px_8px_rgba(0,0,0,0.03)]"
-            style={{
-              background:
-                "linear-gradient(135deg, #FFFFFF 0%, #FAF8FE 42%, #F3EBFA 75%, #E9DCF8 100%)",
-            }}
-          >
-            <div className="w-full min-h-[500px] sm:min-h-[540px] lg:min-h-[560px] grid grid-cols-1 lg:grid-cols-12 items-stretch relative">
+          {/* Floating Deep-Rounded Banner Card */}
+          <div className="relative w-full rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden border border-black/[0.06] shadow-[0_20px_50px_-15px_rgba(1,13,59,0.08),0_2px_8px_rgba(0,0,0,0.03)]">
+            {/* 4 Distinct Pastel Gradient Background Layers with Smooth 700ms Cross-Fade */}
+            {HERO_SERVICE_SLIDES.map((slide, idx) => (
+              <div
+                key={`pastel-bg-${slide.id}`}
+                aria-hidden="true"
+                className={`absolute inset-0 transition-opacity duration-700 ease-in-out pointer-events-none z-0 ${
+                  idx === activeIndex ? "opacity-100" : "opacity-0"
+                }`}
+                style={{ background: slide.cardGradient }}
+              />
+            ))}
+
+            <div className="w-full min-h-[500px] sm:min-h-[540px] lg:min-h-[560px] grid grid-cols-1 lg:grid-cols-12 items-stretch relative z-10">
               {/* Left Content Column (7 of 12 columns on desktop) */}
               <div className="lg:col-span-7 flex flex-col justify-between p-6 sm:p-10 lg:p-12 xl:p-14 z-20">
                 <AnimatePresence mode="wait" custom={direction}>
@@ -291,7 +311,7 @@ export default function Hero() {
                     type="button"
                     onClick={handlePrev}
                     aria-label="Previous slide"
-                    className="w-9 h-9 rounded-full border border-brand-navy/20 text-brand-navy/80 hover:border-brand-navy hover:text-brand-navy flex items-center justify-center transition-[color,border-color,transform] duration-200 ease-out active:scale-[0.96] cursor-pointer bg-white/70"
+                    className="w-9 h-9 rounded-full border border-brand-navy/20 text-brand-navy/80 hover:border-brand-navy hover:text-brand-navy flex items-center justify-center transition-[color,border-color,transform] duration-200 ease-out active:scale-[0.96] cursor-pointer bg-white/70 shadow-xs"
                   >
                     <svg
                       className="w-4 h-4"
@@ -387,8 +407,8 @@ export default function Hero() {
                   </motion.div>
                 </AnimatePresence>
 
-                {/* Signature Organic Left-Edge SVG Cutout Mask */}
-                <LeftEdgeCutoutMask />
+                {/* Signature Organic Left-Edge SVG Cutout Mask with Dynamic Slide Cutout Gradient */}
+                <LeftEdgeCutoutMask cutoutColor={currentSlide.cutoutColor} />
 
                 {/* Top Floating Metric Chip */}
                 <div className="absolute top-5 right-5 z-20 rounded-full bg-brand-navy/85 backdrop-blur-md border border-white/20 px-3.5 py-1.5 flex items-center gap-1.5 text-white shadow-[0_4px_14px_rgba(0,0,0,0.25)]">
@@ -414,7 +434,7 @@ export default function Hero() {
 
                 {/* Mobile Top Cutout Mask */}
                 <svg
-                  className="lg:hidden absolute -top-px left-0 w-full h-10 z-10 pointer-events-none"
+                  className="lg:hidden absolute -top-px left-0 w-full h-10 z-10 pointer-events-none transition-colors duration-700"
                   viewBox="0 0 600 60"
                   preserveAspectRatio="none"
                   fill="none"
@@ -428,7 +448,7 @@ export default function Hero() {
                   <defs>
                     <linearGradient id="mobile-cutout-gradient" x1="0" y1="0" x2="1" y2="0">
                       <stop offset="0%" stopColor="#FFFFFF" />
-                      <stop offset="100%" stopColor="#F2EBFA" />
+                      <stop offset="100%" stopColor={currentSlide.cutoutColor} />
                     </linearGradient>
                   </defs>
                 </svg>
