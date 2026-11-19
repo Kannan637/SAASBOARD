@@ -225,8 +225,8 @@ export default function Hero() {
                       <span>{currentSlide.headlineHighlight}</span>
                     </h1>
 
-                    {/* Subtitle Description */}
-                    <p className="mt-4 max-w-md text-base leading-6 font-normal text-white/85 tracking-[-0.05px]">
+                    {/* Subtitle Description: Formatted in 2 lines */}
+                    <p className="mt-3 sm:mt-4 max-w-xl text-sm sm:text-base leading-snug sm:leading-relaxed font-normal text-white/85 tracking-[-0.05px] line-clamp-2">
                       {currentSlide.subtitle}
                     </p>
 
