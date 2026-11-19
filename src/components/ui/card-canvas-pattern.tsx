@@ -7,7 +7,8 @@ export type CardPatternType =
   | "halftone"
   | "glass"
   | "stripes"
-  | "optical-mesh";
+  | "optical-mesh"
+  | "orange-grid";
 
 export interface CardCanvasPatternProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -398,6 +399,176 @@ export function drawOpticalMeshPattern(
   });
 }
 
+/**
+ * Pattern 6: Orange Grid ("Stay Focused" wallpaper)
+ * - Base: Burnt orange-red satin folds running top-left to bottom-right (dark rust #8f1a05,
+ *   bright orange #e0602a, mid tones #c63d12)
+ * - Plus-sign grid: Small white "+" marks (~10px across, 1px strokes, 85% opacity) on 66px grid (48px on mobile <600px)
+ * - Faint grid lines: ~6% opacity white lines running through centers and fading between them
+ * - Diagonal hairlines: 3-4 thin 1px white lines from bottom-left toward upper-right (1 main ~90%, others ~15%)
+ * - Grain: Light film grain (~4% noise) for a printed tactile texture
+ */
+export function drawOrangeGridPattern(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  seed = 777
+) {
+  // 1. Base Satin Folds: Layered blurred diagonal gradient strips from top-left to bottom-right
+  // Dark rust (#8f1a05), bright orange (#e0602a), mid tones (#c63d12)
+  ctx.save();
+
+  // Multi-stop base diagonal gradient
+  const baseGrad = ctx.createLinearGradient(0, 0, width, height);
+  baseGrad.addColorStop(0, "#8f1a05"); // dark rust
+  baseGrad.addColorStop(0.22, "#c63d12"); // mid tone
+  baseGrad.addColorStop(0.48, "#e0602a"); // bright orange highlight band
+  baseGrad.addColorStop(0.72, "#8f1a05"); // dark rust shadow band
+  baseGrad.addColorStop(0.90, "#c63d12"); // mid tone
+  baseGrad.addColorStop(1, "#e0602a"); // subtle highlight
+  ctx.fillStyle = baseGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Additional soft blurred satin fold strips
+  try {
+    ctx.filter = "blur(60px)";
+  } catch {
+    // Graceful fallback if filter unsupported
+  }
+
+  // Shadow band
+  const shadowGrad1 = ctx.createLinearGradient(0, 0, width * 0.9, height * 0.9);
+  shadowGrad1.addColorStop(0, "rgba(143, 26, 5, 0.75)");
+  shadowGrad1.addColorStop(0.5, "rgba(143, 26, 5, 0)");
+  shadowGrad1.addColorStop(1, "rgba(143, 26, 5, 0.65)");
+  ctx.fillStyle = shadowGrad1;
+  ctx.fillRect(-40, -40, width + 80, height + 80);
+
+  // Highlight band (bright orange #e0602a)
+  const hlGrad = ctx.createLinearGradient(width * 0.2, 0, width * 0.8, height);
+  hlGrad.addColorStop(0, "rgba(224, 96, 42, 0)");
+  hlGrad.addColorStop(0.45, "rgba(224, 96, 42, 0.6)");
+  hlGrad.addColorStop(0.65, "rgba(224, 96, 42, 0)");
+  ctx.fillStyle = hlGrad;
+  ctx.fillRect(-40, -40, width + 80, height + 80);
+
+  ctx.restore(); // resets filter
+
+  // 2. Plus-sign grid and Faint grid lines
+  // Responsive spacing: 48px on screens < 600px, 66px on larger screens
+  const spacing = width < 600 ? 48 : 66;
+  const startX = (width % spacing) / 2;
+  const startY = (height % spacing) / 2;
+
+  // 3. Faint grid lines: ~6% opacity white lines through centers of "+" marks, fading out between them
+  for (let y = startY; y < height; y += spacing) {
+    for (let x = startX; x < width - spacing; x += spacing) {
+      const segGrad = ctx.createLinearGradient(x, y, x + spacing, y);
+      segGrad.addColorStop(0, "rgba(255, 255, 255, 0.06)");
+      segGrad.addColorStop(0.5, "rgba(255, 255, 255, 0.01)");
+      segGrad.addColorStop(1, "rgba(255, 255, 255, 0.06)");
+      ctx.strokeStyle = segGrad;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(x + 5, y + 0.5);
+      ctx.lineTo(x + spacing - 5, y + 0.5);
+      ctx.stroke();
+    }
+  }
+
+  for (let x = startX; x < width; x += spacing) {
+    for (let y = startY; y < height - spacing; y += spacing) {
+      const segGrad = ctx.createLinearGradient(x, y, x, y + spacing);
+      segGrad.addColorStop(0, "rgba(255, 255, 255, 0.06)");
+      segGrad.addColorStop(0.5, "rgba(255, 255, 255, 0.01)");
+      segGrad.addColorStop(1, "rgba(255, 255, 255, 0.06)");
+      ctx.strokeStyle = segGrad;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(x + 0.5, y + 5);
+      ctx.lineTo(x + 0.5, y + spacing - 5);
+      ctx.stroke();
+    }
+  }
+
+  // Plus-sign marks (10px across, 1px stroke, 85% opacity)
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  for (let y = startY; y < height; y += spacing) {
+    for (let x = startX; x < width; x += spacing) {
+      // Horizontal arm (10px across)
+      ctx.moveTo(x - 5, y + 0.5);
+      ctx.lineTo(x + 5, y + 0.5);
+      // Vertical arm (10px across)
+      ctx.moveTo(x + 0.5, y - 5);
+      ctx.lineTo(x + 0.5, y + 5);
+    }
+  }
+  ctx.stroke();
+
+  // 4. Diagonal hairlines: 3 to 4 thin white lines (1px) running from bottom-left toward upper-right
+  // One main line is brighter (~90% opacity), others are faint (~15%)
+  // Main hairline (~90% opacity)
+  const mainHairGrad = ctx.createLinearGradient(
+    width * 0.06,
+    height * 0.96,
+    width * 0.88,
+    height * 0.04
+  );
+  mainHairGrad.addColorStop(0, "rgba(255, 255, 255, 0.25)");
+  mainHairGrad.addColorStop(0.5, "rgba(255, 255, 255, 0.90)");
+  mainHairGrad.addColorStop(1, "rgba(255, 255, 255, 0.35)");
+
+  ctx.strokeStyle = mainHairGrad;
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(width * 0.06, height * 0.96);
+  ctx.lineTo(width * 0.88, height * 0.04);
+  ctx.stroke();
+
+  // Faint hairlines (~15% opacity)
+  const faintLines = [
+    { x1: 0, y1: height * 0.74, x2: width * 0.68, y2: 0, alpha: 0.16 },
+    { x1: width * 0.26, y1: height, x2: width * 0.98, y2: height * 0.16, alpha: 0.15 },
+    { x1: width * 0.14, y1: height * 0.84, x2: width * 0.78, y2: height * 0.10, alpha: 0.13 },
+  ];
+
+  faintLines.forEach((line) => {
+    ctx.strokeStyle = `rgba(255, 255, 255, ${line.alpha})`;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(line.x1, line.y1);
+    ctx.lineTo(line.x2, line.y2);
+    ctx.stroke();
+  });
+
+  // 5. Light film grain (~4% noise)
+  const noiseSize = 128;
+  const noiseCanvas = document.createElement("canvas");
+  noiseCanvas.width = noiseSize;
+  noiseCanvas.height = noiseSize;
+  const nCtx = noiseCanvas.getContext("2d");
+  if (nCtx) {
+    const imgData = nCtx.createImageData(noiseSize, noiseSize);
+    const data = imgData.data;
+    const noiseRng = createSeededRandom(seed + 99);
+    for (let i = 0; i < data.length; i += 4) {
+      const val = Math.floor(noiseRng() * 255);
+      data[i] = val;
+      data[i + 1] = val;
+      data[i + 2] = val;
+      data[i + 3] = Math.floor(noiseRng() * 11); // ~4% noise (max 10/255)
+    }
+    nCtx.putImageData(imgData, 0, 0);
+    const pattern = ctx.createPattern(noiseCanvas, "repeat");
+    if (pattern) {
+      ctx.fillStyle = pattern;
+      ctx.fillRect(0, 0, width, height);
+    }
+  }
+}
+
 const PATTERN_DRAW_MAP: Record<
   CardPatternType,
   (
@@ -408,18 +579,20 @@ const PATTERN_DRAW_MAP: Record<
   ) => void
 > = {
   glyph: drawGlyphPattern,
-  halftone: drawOpticalMeshPattern, // default halftone to high-tech optical mesh for leased lines
+  halftone: drawOrangeGridPattern,
   glass: drawGlassTilesPattern,
   stripes: drawStripesPattern,
   "optical-mesh": drawOpticalMeshPattern,
+  "orange-grid": drawOrangeGridPattern,
 };
 
 const DEFAULT_SEEDS: Record<CardPatternType, number> = {
   glyph: 42,
-  halftone: 505,
+  halftone: 777,
   glass: 202,
   stripes: 303,
   "optical-mesh": 505,
+  "orange-grid": 777,
 };
 
 /**
