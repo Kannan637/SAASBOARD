@@ -11,7 +11,8 @@ export type CardPatternType =
   | "blue-arcs"
   | "white-pixels"
   | "orange-grid"
-  | "blue-grid";
+  | "blue-grid"
+  | "yellow-grid";
 
 export interface WhitePixelsOptions {
   color?: string;
@@ -26,6 +27,7 @@ export interface CardCanvasPatternProps
   pattern: CardPatternType;
   seed?: number;
   options?: WhitePixelsOptions;
+  patternOpacity?: number;
 }
 
 // Seeded PRNG (Mulberry32) for deterministic rendering across page reloads
@@ -1014,6 +1016,149 @@ export function drawBlueGridPattern(
   ctx.restore();
 }
 
+/**
+ * Pattern 10: Yellow Satin Grid Pattern (CCTV-style 180deg vertical gradient)
+ * - Base: Vertical multi-stop gradient (180deg) matching the CCTV hero section style:
+ *   Light soft pastel yellow at top (#FEF7CD) transitioning through bright yellow (#FDE68A),
+ *   rich golden yellow (#EAB308), amber bronze (#B45309), deep golden bronze (#78350F),
+ *   dark espresso amber (#451A03), to deep obsidian dark brown at bottom (#1C0B02).
+ * - Satin Fabric Folds: 5 large blurred diagonal gradient strips (blur 60px) in golden amber & bronze.
+ * - Grain: Very light film grain (~4% noise) across entire canvas.
+ * - Plus-sign grid: Small white "+" marks (10px across, 1px stroke, 75% opacity per specification),
+ *   arranged on an even grid with ~66px spacing (responsive down to ~48px on screens < 600px).
+ * - Faint grid lines: Very subtle white lines (~6% opacity, 1px) through centers of "+" marks.
+ * - Center lines / scratch hairlines: OMITTED per user specification.
+ */
+export function drawYellowGridPattern(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  seed = 1010
+) {
+  const rng = createSeededRandom(seed);
+
+  // 1. Base Multi-Stop 180deg Vertical Gradient Fill (matching CCTV hero section style)
+  const baseGrad = ctx.createLinearGradient(0, 0, 0, height);
+  baseGrad.addColorStop(0, "#FEF7CD");     // Light pastel yellow at top
+  baseGrad.addColorStop(0.15, "#FDE68A");  // Soft bright yellow
+  baseGrad.addColorStop(0.32, "#EAB308");  // Rich golden amber
+  baseGrad.addColorStop(0.50, "#B45309");  // Warm bronze amber
+  baseGrad.addColorStop(0.68, "#78350F");  // Deep bronze
+  baseGrad.addColorStop(0.84, "#451A03");  // Dark espresso bronze
+  baseGrad.addColorStop(1, "#1C0B02");     // Deep obsidian amber-brown at bottom
+
+  ctx.fillStyle = baseGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // 2. Satin Fabric Folds: 5 large diagonal gradient strips with blur
+  ctx.save();
+  try {
+    ctx.filter = "blur(60px)";
+  } catch {
+    // Filter fallback
+  }
+
+  const diagonalAngle = Math.atan2(height, width);
+  const diagLength = Math.hypot(width, height);
+  const bands = [
+    { offsetRatio: 0.15, widthRatio: 0.28, color: "rgba(253, 230, 138, 0.65)" }, // Soft yellow highlight
+    { offsetRatio: 0.38, widthRatio: 0.22, color: "rgba(69, 26, 3, 0.85)" },     // Deep bronze shadow
+    { offsetRatio: 0.58, widthRatio: 0.32, color: "rgba(250, 204, 21, 0.70)" },  // Rich golden highlight
+    { offsetRatio: 0.80, widthRatio: 0.24, color: "rgba(120, 53, 15, 0.80)" },   // Dark amber shadow
+    { offsetRatio: 0.95, widthRatio: 0.30, color: "rgba(180, 83, 9, 0.60)" },    // Mid amber bronze
+  ];
+
+  ctx.save();
+  ctx.translate(width / 2, height / 2);
+  ctx.rotate(diagonalAngle * 0.85);
+
+  bands.forEach((b) => {
+    const yCenter = (b.offsetRatio - 0.5) * diagLength;
+    const bHeight = b.widthRatio * diagLength;
+
+    const bandGrad = ctx.createLinearGradient(0, yCenter - bHeight / 2, 0, yCenter + bHeight / 2);
+    bandGrad.addColorStop(0, "rgba(180, 83, 9, 0)");
+    bandGrad.addColorStop(0.5, b.color);
+    bandGrad.addColorStop(1, "rgba(180, 83, 9, 0)");
+
+    ctx.fillStyle = bandGrad;
+    ctx.fillRect(-diagLength, yCenter - bHeight / 2, diagLength * 2, bHeight);
+  });
+  ctx.restore();
+  ctx.restore();
+
+  // 3. Film Grain (~4% noise) using an offscreen canvas pattern
+  try {
+    if (typeof document !== "undefined") {
+      const noiseCanvas = document.createElement("canvas");
+      noiseCanvas.width = 128;
+      noiseCanvas.height = 128;
+      const noiseCtx = noiseCanvas.getContext("2d");
+      if (noiseCtx) {
+        const imgData = noiseCtx.createImageData(128, 128);
+        const data = imgData.data;
+        for (let i = 0; i < data.length; i += 4) {
+          const val = Math.floor(rng() * 255);
+          data[i] = val;
+          data[i + 1] = val;
+          data[i + 2] = val;
+          data[i + 3] = Math.floor(rng() * 11);
+        }
+        noiseCtx.putImageData(imgData, 0, 0);
+        const noisePattern = ctx.createPattern(noiseCanvas, "repeat");
+        if (noisePattern) {
+          ctx.save();
+          ctx.fillStyle = noisePattern;
+          ctx.fillRect(0, 0, width, height);
+          ctx.restore();
+        }
+      }
+    }
+  } catch {
+    // Grain canvas fallback
+  }
+
+  // 4. Grid Geometry: Spacing ~66px on desktop, ~48px on screens < 600px
+  const spacing = width < 600 ? 48 : 66;
+
+  // 5. Faint Grid Lines: Subtle white lines (~6% opacity, 1px) through centers of '+' marks
+  ctx.save();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.06)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  for (let x = spacing / 2; x <= width + spacing; x += spacing) {
+    const px = Math.floor(x) + 0.5;
+    ctx.moveTo(px, 0);
+    ctx.lineTo(px, height);
+  }
+  for (let y = spacing / 2; y <= height + spacing; y += spacing) {
+    const py = Math.floor(y) + 0.5;
+    ctx.moveTo(0, py);
+    ctx.lineTo(width, py);
+  }
+  ctx.stroke();
+  ctx.restore();
+
+  // 6. Plus-Sign Grid: Small white '+' marks (10px across, 1px stroke, 75% opacity)
+  ctx.save();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.75)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  const arm = 5;
+  for (let y = spacing / 2; y <= height + spacing; y += spacing) {
+    for (let x = spacing / 2; x <= width + spacing; x += spacing) {
+      const cx = Math.floor(x) + 0.5;
+      const cy = Math.floor(y) + 0.5;
+      ctx.moveTo(cx - arm, cy);
+      ctx.lineTo(cx + arm, cy);
+      ctx.moveTo(cx, cy - arm);
+      ctx.lineTo(cx, cy + arm);
+    }
+  }
+  ctx.stroke();
+  ctx.restore();
+}
+
 const PATTERN_DRAW_MAP: Record<
   CardPatternType,
   (
@@ -1035,6 +1180,8 @@ const PATTERN_DRAW_MAP: Record<
     drawOrangeGridPattern(ctx, width, height, seed),
   "blue-grid": (ctx, width, height, seed) =>
     drawBlueGridPattern(ctx, width, height, seed),
+  "yellow-grid": (ctx, width, height, seed) =>
+    drawYellowGridPattern(ctx, width, height, seed),
 };
 
 const DEFAULT_SEEDS: Record<CardPatternType, number> = {
@@ -1047,6 +1194,7 @@ const DEFAULT_SEEDS: Record<CardPatternType, number> = {
   "white-pixels": 707,
   "orange-grid": 808,
   "blue-grid": 909,
+  "yellow-grid": 1010,
 };
 
 /**
@@ -1061,6 +1209,7 @@ export default function CardCanvasPattern({
   pattern,
   seed,
   options,
+  patternOpacity,
   className = "",
   style,
   ...rest
@@ -1134,13 +1283,18 @@ export default function CardCanvasPattern({
     };
   }, [pattern, patternSeed, options]);
 
+  const computedStyle: React.CSSProperties = {
+    ...style,
+    ...(patternOpacity !== undefined ? { opacity: patternOpacity } : {}),
+  };
+
   return (
     <div
       ref={containerRef}
       data-pattern={pattern}
       aria-hidden="true"
       className={`absolute inset-0 z-0 pointer-events-none overflow-hidden ${className}`}
-      style={style}
+      style={computedStyle}
       {...rest}
     >
       <canvas
