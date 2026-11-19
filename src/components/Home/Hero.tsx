@@ -311,9 +311,9 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Right Side Column (5 of 12 columns on desktop): Dedicated Service Image without animation or shadows */}
+              {/* Right Side Column (5 of 12 columns on desktop): Dedicated Service Image without animation or shadows (moved 10% left) */}
               <div className="lg:col-span-5 relative w-full h-[340px] sm:h-[420px] lg:h-full min-h-[340px] lg:min-h-[520px] flex items-end justify-center lg:justify-end overflow-hidden p-2 sm:p-4 lg:p-0">
-                <div className="relative w-full max-w-[380px] sm:max-w-[460px] lg:max-w-[540px] h-full flex items-end justify-center lg:justify-end pointer-events-none select-none">
+                <div className="relative w-full max-w-[380px] sm:max-w-[460px] lg:max-w-[540px] h-full flex items-end justify-center lg:justify-end pointer-events-none select-none -translate-x-[10%]">
                   <Image
                     src={currentSlide.imageSrc}
                     alt={currentSlide.imageAlt}
