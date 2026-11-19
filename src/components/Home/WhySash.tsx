@@ -135,7 +135,7 @@ export function FibreSpeedCard() {
   return (
     <FeatureCard
       ariaLabel="100% Optical Fibre — Up to 1 Gbps"
-      className="md:col-span-8 lg:col-span-8"
+      className="col-span-12 md:col-span-6"
       cardClassName="flex flex-col justify-between p-0 overflow-hidden"
     >
       <CardContent
@@ -234,13 +234,13 @@ export function RouterSetupCard() {
   return (
     <FeatureCard
       ariaLabel="Free router and setup — ₹0 Setup Cost"
-      className="md:col-span-4 lg:col-span-4"
+      className="col-span-12 md:col-span-6"
       cardClassName="flex flex-col justify-between p-0 overflow-hidden"
     >
       <CardContent className="p-0 flex-1 flex flex-col justify-between overflow-hidden">
         {/* Top Visual Stage with Gradient Background (Edge-to-Edge) */}
         <div
-          className={`relative w-full h-[220px] min-[360px]:h-[252px] sm:h-[293px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/router`}
+          className={`relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/router`}
         >
           {/* Smooth Blend into Bottom White Section */}
           <div aria-hidden="true" className={`${CARD_BOTTOM_BLEND} z-10`} />
@@ -312,13 +312,13 @@ export function LicensedISPCARD() {
   return (
     <FeatureCard
       ariaLabel="Licensed ISP serving Tamil Nadu"
-      className="md:col-span-6 lg:col-span-4"
+      className="col-span-12 md:col-span-6"
       cardClassName="flex flex-col justify-between p-0 overflow-hidden"
     >
       <CardContent className="p-0 flex-1 flex flex-col justify-between overflow-hidden">
         {/* Top Globe Visual Stage: Tamil Nadu Clearly Visible on Card Gradient (Edge-to-Edge) */}
         <div
-          className={`relative w-full h-[210px] min-[360px]:h-[225px] sm:h-[240px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/globe`}
+          className={`relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/globe`}
         >
           {/* Smooth Blend at the Meeting Point */}
           <div aria-hidden="true" className={`${CARD_BOTTOM_BLEND} z-10`} />
@@ -332,7 +332,7 @@ export function LicensedISPCARD() {
           </div>
 
           {/* 3D Cobe Globe: Rotating Light-Theme Globe Matched to Card Gradient */}
-          <div className="pointer-events-auto absolute -bottom-[75px] min-[360px]:-bottom-[85px] sm:-bottom-[95px] left-1/2 -translate-x-1/2 w-[340px] h-[340px] min-[360px]:w-[380px] min-[360px]:h-[380px] sm:w-[410px] sm:h-[410px] flex items-center justify-center">
+          <div className="pointer-events-auto absolute -bottom-[80px] min-[360px]:-bottom-[90px] sm:-bottom-[100px] left-1/2 -translate-x-1/2 w-[340px] h-[340px] min-[360px]:w-[380px] min-[360px]:h-[380px] sm:w-[410px] sm:h-[410px] flex items-center justify-center">
             <GlobeStickers
               markers={TAMIL_NADU_ONLY_MARKER}
               initialPhi={3.36}
@@ -443,13 +443,13 @@ export function SupportCard() {
   return (
     <FeatureCard
       ariaLabel="Always connected to local support — 24/7 NOC & Field Desk"
-      className="md:col-span-6 lg:col-span-4"
+      className="col-span-12 md:col-span-6"
       cardClassName="flex flex-col justify-between p-0 overflow-hidden"
     >
       <CardContent className="p-0 flex-1 flex flex-col justify-between overflow-hidden">
         {/* Top Status Stage with Concentric Radar Waves (Edge-to-Edge) */}
         <div
-          className={`relative w-full h-[220px] min-[360px]:h-[235px] sm:h-[250px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support`}
+          className={`relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support`}
         >
           {/* Smooth Blend at the Meeting Point */}
           <div aria-hidden="true" className={`${CARD_BOTTOM_BLEND} z-10`} />
@@ -463,7 +463,7 @@ export function SupportCard() {
           </div>
 
           {/* Concentric Radar Waves & Satellite Stage centered precisely */}
-          <div className="pointer-events-auto absolute z-20 top-[125px] min-[360px]:top-[132px] sm:top-[140px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] min-[360px]:w-[300px] min-[360px]:h-[300px] sm:w-[320px] sm:h-[320px] flex items-center justify-center">
+          <div className="pointer-events-auto absolute z-20 top-[135px] min-[360px]:top-[145px] sm:top-[160px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] min-[360px]:w-[300px] min-[360px]:h-[300px] sm:w-[320px] sm:h-[320px] flex items-center justify-center">
             {/* Concentric Static Ripple Rings matching the shared image */}
             <div className="pointer-events-none absolute w-[108px] h-[108px] rounded-full border border-white/35 bg-white/[0.08]" />
             <div className="pointer-events-none absolute w-[168px] h-[168px] rounded-full border border-white/28 bg-white/[0.05]" />
@@ -827,7 +827,7 @@ export function BroadbandFeatures() {
           </p>
         </div>
 
-        {/* 12-Column Asymmetric Bento Grid: Row 1 (8 + 4 cols) & Row 2 (4 + 4 + 4 cols) */}
+        {/* 12-Column Grid Structure: 4 Cards, each 6 cols in size (2x2 grid) */}
         <motion.div
           variants={gridContainerVariants}
           initial="hidden"
@@ -835,20 +835,17 @@ export function BroadbandFeatures() {
           viewport={{ once: true, amount: 0.15 }}
           className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 lg:gap-7 items-stretch"
         >
-          {/* Row 1 Left: 8 cols */}
+          {/* Row 1 Left: 6 of 12 cols */}
           <FibreSpeedCard />
 
-          {/* Row 1 Right: 4 cols */}
+          {/* Row 1 Right: 6 of 12 cols */}
           <RouterSetupCard />
 
-          {/* Row 2 Left: 4 cols */}
+          {/* Row 2 Left: 6 of 12 cols */}
           <LicensedISPCARD />
 
-          {/* Row 2 Center: 4 cols */}
+          {/* Row 2 Right: 6 of 12 cols */}
           <SupportCard />
-
-          {/* Row 2 Right: 4 cols */}
-          <PriceLockCard />
         </motion.div>
       </div>
     </section>
