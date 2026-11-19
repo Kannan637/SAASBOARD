@@ -6,6 +6,12 @@ import Image from "next/image";
 import { ChevronRight, Star } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { APPLE_EASE } from "@/components/ui/apple-scroll";
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+  AvatarGroup,
+} from "@/components/ui/avatar";
 
 interface ServiceHeroSlide {
   id: string;
@@ -223,31 +229,37 @@ export default function Hero() {
                       </Link>
                     </div>
 
-                    {/* Social Proof Rating Row matching reference */}
+                    {/* Social Proof Rating Row matching reference using shadcn Avatar */}
                     <div className="mt-7 sm:mt-8 flex items-center gap-3">
-                      <div className="flex -space-x-2 overflow-hidden">
-                        <Image
-                          src="/avatars/avatar-1.png"
-                          alt="Satisfied SASH broadband customer"
-                          width={28}
-                          height={28}
-                          className="inline-block size-7 rounded-full ring-2 ring-white/60 object-cover"
-                        />
-                        <Image
-                          src="/avatars/avatar-2.png"
-                          alt="Satisfied SASH broadband customer"
-                          width={28}
-                          height={28}
-                          className="inline-block size-7 rounded-full ring-2 ring-white/60 object-cover"
-                        />
-                        <Image
-                          src="/avatars/avatar-3.png"
-                          alt="Satisfied SASH broadband customer"
-                          width={28}
-                          height={28}
-                          className="inline-block size-7 rounded-full ring-2 ring-white/60 object-cover"
-                        />
-                      </div>
+                      <AvatarGroup className="flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-white/70">
+                        <Avatar size="sm" className="size-7 ring-2 ring-white/70 shadow-xs">
+                          <AvatarImage
+                            src="/avatars/avatar-1.png"
+                            alt="Satisfied SASH broadband customer 1"
+                          />
+                          <AvatarFallback className="bg-red-10 text-brand-red text-[10px] font-medium">
+                            U1
+                          </AvatarFallback>
+                        </Avatar>
+                        <Avatar size="sm" className="size-7 ring-2 ring-white/70 shadow-xs">
+                          <AvatarImage
+                            src="/avatars/avatar-2.png"
+                            alt="Satisfied SASH broadband customer 2"
+                          />
+                          <AvatarFallback className="bg-red-10 text-brand-red text-[10px] font-medium">
+                            U2
+                          </AvatarFallback>
+                        </Avatar>
+                        <Avatar size="sm" className="size-7 ring-2 ring-white/70 shadow-xs">
+                          <AvatarImage
+                            src="/avatars/avatar-3.png"
+                            alt="Satisfied SASH broadband customer 3"
+                          />
+                          <AvatarFallback className="bg-red-10 text-brand-red text-[10px] font-medium">
+                            U3
+                          </AvatarFallback>
+                        </Avatar>
+                      </AvatarGroup>
                       <div className="flex items-center gap-1.5 text-sm font-normal text-white/90">
                         <Star className="size-4 text-amber-400 fill-amber-400" />
                         <span>
