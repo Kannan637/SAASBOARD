@@ -211,9 +211,9 @@ export default function Hero() {
               />
             ))}
 
-            <div className="w-full min-h-[450px] sm:min-h-[490px] lg:min-h-[520px] grid grid-cols-1 lg:grid-cols-12 items-stretch relative z-10">
-              {/* Left Content Column (7 of 12 columns on desktop) */}
-              <div className="lg:col-span-7 flex flex-col justify-between p-5 sm:p-8 lg:p-10 xl:p-12 z-20">
+            <div className="w-full min-h-auto lg:min-h-[520px] grid grid-cols-1 lg:grid-cols-12 items-stretch relative z-10">
+              {/* Left Content Column (7 of 12 columns on desktop): Centered on mobile, left-aligned on desktop */}
+              <div className="lg:col-span-7 flex flex-col justify-between items-center lg:items-start text-center lg:text-left p-6 sm:p-8 lg:p-10 xl:p-12 z-20">
                 <AnimatePresence mode="wait" custom={direction}>
                   <motion.div
                     key={currentSlide.id}
@@ -223,29 +223,29 @@ export default function Hero() {
                     animate="center"
                     exit="exit"
                     transition={{ duration: 0.45, ease: APPLE_EASE }}
-                    className="my-auto max-w-2xl"
+                    className="my-auto max-w-2xl w-full flex flex-col items-center lg:items-start text-center lg:text-left"
                   >
                     {/* Eyebrow Badge: Solid Red Pill with White Text matching reference */}
                     <div className="inline-flex min-h-6 items-center justify-center gap-1.5 rounded-full bg-brand-red px-3.5 py-1 text-xs leading-none font-medium text-white tracking-wide">
                       {currentSlide.eyebrow}
                     </div>
 
-                    {/* Headline: Clean, Crisp White Typography in a Single Line */}
+                    {/* Headline: Clean, Crisp White Typography (wrapped & centered on mobile, single line on desktop) */}
                     <h1
                       id="hero-heading"
-                      className="mt-3 sm:mt-4 text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] lg:leading-[50px] font-medium tracking-[-0.05px] text-white sm:whitespace-nowrap"
+                      className="mt-3 sm:mt-4 text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] lg:leading-[50px] font-medium tracking-[-0.05px] text-white text-center lg:text-left text-balance lg:whitespace-nowrap"
                     >
                       <span>{currentSlide.headlinePrefix} </span>
                       <span>{currentSlide.headlineHighlight}</span>
                     </h1>
 
-                    {/* Subtitle Description: Formatted in 2 lines */}
-                    <p className="mt-3 sm:mt-4 max-w-xl text-sm sm:text-base leading-snug sm:leading-relaxed font-normal text-white/85 tracking-[-0.05px] line-clamp-2">
+                    {/* Subtitle Description: Centered on mobile, formatted cleanly without hiding */}
+                    <p className="mt-3 sm:mt-4 max-w-xl text-sm sm:text-base leading-snug sm:leading-relaxed font-normal text-white/85 tracking-[-0.05px] text-center lg:text-left line-clamp-3 sm:line-clamp-2">
                       {currentSlide.subtitle}
                     </p>
 
-                    {/* Action Buttons: Compact Refined Size (40px Height, 14px Font Size) */}
-                    <div className="mt-5 sm:mt-6 flex flex-wrap items-center gap-3 sm:gap-4">
+                    {/* Action Buttons: Centered on mobile, start-aligned on desktop */}
+                    <div className="mt-5 sm:mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full">
                       <Link
                         href={currentSlide.ctaHref}
                         className="inline-flex h-10 min-h-[40px] items-center justify-center gap-2 rounded-full bg-brand-red hover:bg-brand-red-hover px-5 sm:px-6 text-sm font-medium text-white outline-2 -outline-offset-2 outline-white/20 transition-all duration-150 ease-out active:scale-[0.97]"
@@ -263,8 +263,8 @@ export default function Hero() {
                       </Link>
                     </div>
 
-                    {/* Social Proof Rating Row matching reference using shadcn Avatar */}
-                    <div className="mt-7 sm:mt-8 flex items-center gap-3">
+                    {/* Social Proof Rating Row: Centered on mobile, start-aligned on desktop */}
+                    <div className="mt-6 sm:mt-8 flex items-center justify-center lg:justify-start gap-3 w-full">
                       <AvatarGroup className="flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-white/70">
                         <Avatar size="sm" className="size-7 ring-2 ring-white/70">
                           <AvatarImage
@@ -304,9 +304,9 @@ export default function Hero() {
                   </motion.div>
                 </AnimatePresence>
 
-                {/* Carousel Controls: Previous/Next Navigation Buttons + Slide Indicators + Counter */}
+                {/* Carousel Controls: Centered on mobile, start-aligned on desktop */}
                 <div
-                  className="flex items-center gap-3 pt-5 sm:pt-7"
+                  className="flex items-center justify-center lg:justify-start gap-3 pt-6 sm:pt-7 w-full"
                   aria-label="Hero carousel controls"
                 >
                   {/* Previous Button */}
@@ -353,17 +353,17 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Right Side Column (5 of 12 columns on desktop): Dedicated Service Image without animation or shadows (moved 10% left, height reduced 10%) */}
-              <div className="lg:col-span-5 relative w-full h-[310px] sm:h-[380px] lg:h-full min-h-[310px] lg:min-h-[470px] flex items-end justify-center lg:justify-end overflow-hidden p-2 sm:p-4 lg:p-0">
-                <div className="relative w-full max-w-[360px] sm:max-w-[430px] lg:max-w-[500px] h-full flex items-end justify-center lg:justify-end pointer-events-none select-none -translate-x-[10%]">
+              {/* Right Side Column (5 of 12 columns on desktop): Centered on mobile, shifted on desktop */}
+              <div className="lg:col-span-5 relative w-full h-[280px] sm:h-[350px] lg:h-full min-h-[280px] sm:min-h-[350px] lg:min-h-[470px] flex items-end justify-center lg:justify-end overflow-hidden px-4 pt-2 pb-0 sm:p-4 lg:p-0">
+                <div className="relative w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[500px] h-full flex items-end justify-center lg:justify-end pointer-events-none select-none translate-x-0 lg:-translate-x-[10%]">
                   <Image
                     src={currentSlide.imageSrc}
                     alt={currentSlide.imageAlt}
                     width={currentSlide.imageWidth}
                     height={currentSlide.imageHeight}
                     priority
-                    sizes="(max-width: 1024px) 100vw, 45vw"
-                    className="w-full h-auto max-h-[470px] sm:max-h-[495px] lg:max-h-[515px] object-contain object-bottom-right"
+                    sizes="(max-width: 640px) 320px, (max-width: 1024px) 400px, 45vw"
+                    className="w-full h-auto max-h-[260px] sm:max-h-[330px] lg:max-h-[515px] object-contain object-bottom mx-auto lg:mx-0 lg:object-bottom-right"
                   />
                 </div>
               </div>
