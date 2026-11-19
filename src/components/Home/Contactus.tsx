@@ -229,10 +229,9 @@ export default function Contactus({
   };
 
   const baseInputClass = (hasError?: boolean) =>
-    `w-full h-10 pl-9 pr-3.5 rounded-xl bg-white border text-sm font-normal text-brand-navy placeholder:text-neutral-600/55 transition-[border-color,box-shadow] duration-150 focus:outline-none focus:ring-3 ${
-      hasError
-        ? "border-brand-red focus:border-brand-red focus:ring-brand-red/15"
-        : "border-brand-navy/15 hover:border-brand-navy/30 focus:border-brand-red focus:ring-brand-red/12"
+    `w-full h-10 pl-9 pr-3.5 rounded-xl bg-white border text-sm font-normal text-brand-navy placeholder:text-neutral-600/55 transition-[border-color,box-shadow] duration-150 focus:outline-none focus:ring-3 ${hasError
+      ? "border-brand-red focus:border-brand-red focus:ring-brand-red/15"
+      : "border-brand-navy/15 hover:border-brand-navy/30 focus:border-brand-red focus:ring-brand-red/12"
     }`;
 
   return (
@@ -543,11 +542,10 @@ export default function Contactus({
                                 ? "error-selectedPlan"
                                 : undefined
                             }
-                            className={`w-full h-10 pl-3.5 pr-9 truncate appearance-none rounded-lg bg-white border text-sm font-normal text-brand-navy transition-[border-color,box-shadow] duration-150 focus:outline-none focus:ring-3 cursor-pointer ${
-                              errors.selectedPlan
+                            className={`w-full h-10 pl-3.5 pr-9 truncate appearance-none rounded-lg bg-white border text-sm font-normal text-brand-navy transition-[border-color,box-shadow] duration-150 focus:outline-none focus:ring-3 cursor-pointer ${errors.selectedPlan
                                 ? "border-brand-red focus:border-brand-red focus:ring-brand-red/15"
                                 : "border-brand-navy/15 hover:border-brand-navy/30 focus:border-brand-red focus:ring-brand-red/12"
-                            }`}
+                              }`}
                           >
                             {PLAN_DROPDOWN_OPTIONS.map((planOption) => (
                               <option
