@@ -131,7 +131,7 @@ function ServiceCard({ service }: { service: (typeof SERVICES_LIST)[number] }) {
     <Link
       href={service.href}
       data-apple-manual="true"
-      className="group relative w-full h-[360px] sm:h-[390px] rounded-[24px] bg-[#F4F3F1] border border-black/[0.04] p-6 sm:p-7 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer select-none"
+      className="group relative w-full h-[255px] min-[400px]:h-[265px] sm:h-[275px] rounded-[22px] bg-[#F4F3F1] border border-black/[0.04] p-5 sm:p-5.5 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer select-none"
     >
       {/* SASH Brand Gradient on Hover */}
       <div
@@ -141,15 +141,15 @@ function ServiceCard({ service }: { service: (typeof SERVICES_LIST)[number] }) {
 
       {/* Top: Icon in Top-Left */}
       <div className="relative z-10 text-brand-navy transition-colors duration-300">
-        <IconComponent className="w-6 h-6 stroke-[1.9]" />
+        <IconComponent className="w-5 h-5 sm:w-5.5 sm:h-5.5 stroke-[1.9]" />
       </div>
 
       {/* Bottom: Title and Description in Bottom */}
       <div className="relative z-10 mt-auto flex flex-col">
-        <h3 className="text-brand-navy font-semibold text-lg sm:text-xl tracking-tight mb-2 group-hover:text-white transition-colors duration-300">
+        <h3 className="text-brand-navy font-semibold text-sm min-[400px]:text-[15px] sm:text-base tracking-tight mb-1 group-hover:text-white transition-colors duration-300">
           {service.title}
         </h3>
-        <p className="text-neutral-500 text-xs sm:text-[13px] leading-relaxed line-clamp-3 group-hover:text-white/95 transition-colors duration-300">
+        <p className="text-neutral-500 text-[11px] min-[400px]:text-xs sm:text-[12.5px] leading-snug line-clamp-3 group-hover:text-white/95 transition-colors duration-300">
           {service.description}
         </p>
       </div>
@@ -243,12 +243,12 @@ export default function Service() {
               </div>
             </div>
 
-            {/* Carousel Cards matching shared reference image */}
-            <CarouselContent className="-ml-4 sm:-ml-5 py-2">
+            {/* Carousel Cards matching shared reference image width and ratio */}
+            <CarouselContent className="-ml-3.5 sm:-ml-4 py-2">
               {SERVICES_LIST.map((service) => (
                 <CarouselItem
                   key={service.title}
-                  className="pl-4 sm:pl-5 basis-[82%] sm:basis-[48%] md:basis-[36%] lg:basis-[28%] xl:basis-[24%] flex shrink-0"
+                  className="pl-3.5 sm:pl-4 basis-[205px] min-[400px]:basis-[220px] sm:basis-[235px] lg:basis-[245px] shrink-0 flex"
                 >
                   <ServiceCard service={service} />
                 </CarouselItem>
