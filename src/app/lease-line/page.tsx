@@ -52,13 +52,14 @@ export default function LeasedLinePage() {
         eyebrow="DEDICATED ENTERPRISE CONNECTIVITY"
         titlePrefix="1:1 Dedicated"
         titleHighlight="Leased Lines."
-        description="That's the Enterprise advantage — uncontended symmetrical fibre with SLA-backed uptime and static IP routing."
+        description="That's the Enterprise advantage — uncontended symmetrical fibre with SLA-backed 99.99% uptime and static IP routing."
         ctaText="Get Leased Line Quote"
         ctaHref="#contact"
         secondaryCtaText="Check Feasibility"
         secondaryCtaHref="#contact"
-        iconSrc="/Service/Leased Line.webp"
-        iconAlt="SASH 1:1 Dedicated Internet Leased Line icon"
+        imageSrc="/Hero/1to1.png"
+        imageAlt="1:1 Enterprise Dedicated Optical Leased Line infrastructure"
+        pattern="blue-arcs"
       />
 
       {/* Single-Row Client Logo Marquee */}

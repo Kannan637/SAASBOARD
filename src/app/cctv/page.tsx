@@ -57,8 +57,9 @@ export default function CctvPage() {
         ctaHref="#contact"
         secondaryCtaText="Talk to Engineer"
         secondaryCtaHref="#contact"
-        iconSrc="/Service/CCTV.webp"
-        iconAlt="SASH HD IP CCTV Surveillance icon"
+        imageSrc="/Hero/cctv.png"
+        imageAlt="24/7 Smart HD IP CCTV premises surveillance monitoring"
+        pattern="stripes"
       />
 
       {/* Single-Row Client Logo Marquee */}

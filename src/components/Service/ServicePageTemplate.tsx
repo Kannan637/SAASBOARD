@@ -4,7 +4,16 @@ import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
-import { ArrowRight, Play } from "lucide-react";
+import { ChevronRight, Star } from "lucide-react";
+import CardCanvasPattern, {
+  CardPatternType,
+} from "@/components/ui/card-canvas-pattern";
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+  AvatarGroup,
+} from "@/components/ui/avatar";
 import {
   AppleReveal,
   AppleStagger,
@@ -32,10 +41,17 @@ export interface ServiceHeroProps {
   ctaHref: string;
   secondaryCtaText?: string;
   secondaryCtaHref?: string;
-  iconSrc: string;
-  iconAlt: string;
+  iconSrc?: string;
+  iconAlt?: string;
   badgeLabel?: string;
   specPills?: string[];
+  pattern?: CardPatternType;
+  imageSrc?: string;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  ratingScore?: string;
+  ratingLabel?: string;
 }
 
 export interface ServiceDeliverableItem {
@@ -44,7 +60,66 @@ export interface ServiceDeliverableItem {
   tag?: string;
 }
 
+interface ServiceHeroConfig {
+  pattern: CardPatternType;
+  imageSrc: string;
+  imageAlt: string;
+  imageWidth: number;
+  imageHeight: number;
+  ratingScore: string;
+  ratingLabel: string;
+}
+
+const SERVICE_CONFIG_BY_LABEL: Record<string, ServiceHeroConfig> = {
+  "Broadband Services": {
+    pattern: "glyph",
+    imageSrc: "/Hero/Hand Holding Broadband Dashboard Smartphone.png",
+    imageAlt: "SASH Broadband ultra-speed network dashboard on smartphone",
+    imageWidth: 1247,
+    imageHeight: 1261,
+    ratingScore: "4.6",
+    ratingLabel: "rating in google",
+  },
+  "Leased Line": {
+    pattern: "blue-arcs",
+    imageSrc: "/Hero/1to1.png",
+    imageAlt: "1:1 Enterprise Dedicated Optical Leased Line infrastructure",
+    imageWidth: 1856,
+    imageHeight: 2304,
+    ratingScore: "4.9",
+    ratingLabel: "enterprise rating",
+  },
+  "SME Internet": {
+    pattern: "glass",
+    imageSrc: "/Hero/Business.png",
+    imageAlt: "High-speed SME business optical fibre internet setup",
+    imageWidth: 1792,
+    imageHeight: 2106,
+    ratingScore: "4.8",
+    ratingLabel: "business rating",
+  },
+  "CCTV Surveillance": {
+    pattern: "stripes",
+    imageSrc: "/Hero/cctv.png",
+    imageAlt: "24/7 Smart HD IP CCTV premises surveillance monitoring",
+    imageWidth: 1792,
+    imageHeight: 2070,
+    ratingScore: "4.7",
+    ratingLabel: "security rating",
+  },
+  "Intranet Solutions": {
+    pattern: "optical-mesh",
+    imageSrc: "/Business/Protected Intranet Network Laptop.png",
+    imageAlt: "Secure Multi-Site Optical Intranet and Private WAN",
+    imageWidth: 1792,
+    imageHeight: 1200,
+    ratingScore: "4.9",
+    ratingLabel: "enterprise LAN rating",
+  },
+};
+
 export function ServiceHero({
+  breadcrumbLabel,
   eyebrow,
   titlePrefix,
   titleHighlight,
@@ -55,75 +130,158 @@ export function ServiceHero({
   secondaryCtaHref,
   iconSrc,
   iconAlt,
+  pattern: explicitPattern,
+  imageSrc: explicitImageSrc,
+  imageAlt: explicitImageAlt,
+  imageWidth: explicitImageWidth,
+  imageHeight: explicitImageHeight,
+  ratingScore: explicitRatingScore,
+  ratingLabel: explicitRatingLabel,
 }: ServiceHeroProps) {
+  const config =
+    SERVICE_CONFIG_BY_LABEL[breadcrumbLabel] ||
+    SERVICE_CONFIG_BY_LABEL["Broadband Services"];
+
+  const currentPattern = explicitPattern || config.pattern;
+  const resolvedImageSrc =
+    explicitImageSrc ||
+    config.imageSrc ||
+    iconSrc ||
+    "/Hero/Hand Holding Broadband Dashboard Smartphone.png";
+  const resolvedImageAlt =
+    explicitImageAlt || config.imageAlt || iconAlt || "SASH Service Showcase";
+  const resolvedImageWidth = explicitImageWidth || config.imageWidth || 1792;
+  const resolvedImageHeight = explicitImageHeight || config.imageHeight || 2070;
+  const rating = explicitRatingScore || config.ratingScore || "4.8";
+  const rLabel = explicitRatingLabel || config.ratingLabel || "rating in google";
+
   return (
     <section
       data-apple-manual="true"
-      className="w-full lg:h-[64vh] lg:min-h-[500px] lg:max-h-[600px] bg-white text-brand-navy border-b border-neutral-100 relative overflow-hidden font-sans antialiased"
+      aria-labelledby="service-hero-heading"
+      className="w-full bg-white py-2 sm:py-3 lg:py-4 font-sans antialiased"
     >
-      <div className="w-full h-full grid grid-cols-1 lg:grid-cols-12 items-stretch">
-        {/* Left Content Column (7 of 12 columns on desktop — exact Landing Page Hero style) */}
-        <div className="lg:col-span-7 flex flex-col justify-between px-5 sm:px-10 lg:pl-[max(20px,calc((100vw-1180px)/2+20px))] lg:pr-8 py-10 sm:py-12 lg:py-12 z-20 overflow-hidden">
-          <AppleReveal className="my-auto max-w-xl">
-            {/* Service Eyebrow Badge */}
-            <div className="eyebrow-label">
-              {eyebrow}
-            </div>
-
-            {/* Service Heading Style (Urbanist Display MD: 48px-52px, 600 semibold, line-height 1.1) */}
-            <h1 className="mt-4 text-3xl sm:text-4xl lg:text-[52px] leading-[1.1] font-semibold tracking-normal text-balance text-brand-navy">
-              <span className="inline-block mr-[0.2em] font-semibold">{titlePrefix}</span>
-              <span className="inline-block font-semibold text-brand-red">
-                {titleHighlight}
-              </span>
-            </h1>
-
-            {/* Service Description Style (Juspay Body LG: 16px, 400 regular, line-height 24px) */}
-            <p className="mt-4 max-w-md text-sm sm:text-base leading-relaxed font-normal text-pretty text-neutral-600">
-              {description}
-            </p>
-
-            {/* Juspay Buttons: h-10 px-4, 8px radius, 14px font, 500 weight */}
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <Link
-                href={ctaHref}
-                className="group/primary inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-linear-to-b from-brand-red to-brand-red-hover px-4 text-sm font-medium text-white shadow-[0_6px_20px_var(--color-red-10)] outline-2 -outline-offset-2 outline-white/20 transition-[background-color,transform,box-shadow] duration-150 ease-out hover:from-brand-red-hover hover:to-brand-red-hover hover:bg-brand-red-hover active:scale-[0.97]"
-              >
-                {ctaText}
-                <ArrowRight
-                  className="size-3.5 transition-transform duration-150 ease-out group-hover/primary:translate-x-0.5"
-                  aria-hidden="true"
-                />
-              </Link>
-
-              {secondaryCtaText && secondaryCtaHref && (
-                <Link
-                  href={secondaryCtaHref}
-                  className="group/process inline-flex h-10 items-center justify-center gap-2 px-3 text-sm font-medium text-brand-navy transition-[opacity,transform] duration-150 ease-out hover:opacity-75 active:scale-[0.97] rounded-lg"
-                >
-                  {secondaryCtaText}
-                  <Play
-                    className="size-3 fill-current transition-transform duration-150 ease-out group-hover/process:scale-110"
-                    aria-hidden="true"
-                  />
-                </Link>
-              )}
-            </div>
-          </AppleReveal>
-        </div>
-
-        {/* Right Side Column (5 of 12 columns on desktop): Large Service Icon on White Background */}
-        <div className="lg:col-span-5 flex items-center justify-center px-5 sm:px-10 lg:pr-[max(20px,calc((100vw-1180px)/2+20px))] py-8 lg:py-12">
-          <AppleReveal className="flex items-center justify-center">
-            <Image
-              src={iconSrc}
-              alt={iconAlt}
-              width={340}
-              height={340}
-              priority
-              className="w-56 h-56 sm:w-68 sm:h-68 lg:w-80 lg:h-80 object-contain select-none"
+      {/* Increased Width Container (Max 1440px / 1520px on 2xl screens) matching Landing Page Hero */}
+      <div className="w-full max-w-[1440px] 2xl:max-w-[1520px] mx-auto px-3 sm:px-6 lg:px-8">
+        {/* Floating Deep-Rounded Banner Card matching Landing Page Hero */}
+        <div
+          className="relative w-full rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden border border-black/[0.06]"
+          data-pattern={currentPattern}
+        >
+          {/* Canvas Background Pattern Layer matching Landing Page Hero */}
+          <div
+            aria-hidden="true"
+            data-pattern={currentPattern}
+            className="absolute inset-0 pointer-events-none z-0"
+          >
+            <CardCanvasPattern pattern={currentPattern} />
+            {/* Subtle Content Contrast Scrim for Text Readability without altering the canvas pattern */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-black/15 lg:bg-transparent lg:bg-gradient-to-r lg:from-black/45 lg:via-black/20 lg:to-transparent pointer-events-none"
             />
-          </AppleReveal>
+          </div>
+
+          <div className="w-full min-h-auto lg:min-h-[520px] grid grid-cols-1 lg:grid-cols-12 items-stretch relative z-10">
+            {/* Left Content Column (7 of 12 columns on desktop): Centered on mobile, left-aligned on desktop */}
+            <div className="lg:col-span-7 flex flex-col justify-between items-center lg:items-start text-center lg:text-left p-6 sm:p-8 lg:p-10 xl:p-12 z-20">
+              <div className="my-auto max-w-2xl w-full flex flex-col items-center lg:items-start text-center lg:text-left">
+                {/* Eyebrow Badge: Solid Red Pill with White Text matching Landing Page Hero */}
+                <div className="inline-flex min-h-6 items-center justify-center gap-1.5 rounded-full bg-brand-red px-3.5 py-1 text-xs leading-none font-medium text-white tracking-wide">
+                  {eyebrow}
+                </div>
+
+                {/* Headline: Clean, Crisp White Typography matching Landing Page Hero */}
+                <h1
+                  id="service-hero-heading"
+                  className="mt-3 sm:mt-4 text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] lg:leading-[50px] font-medium tracking-[-0.05px] text-white text-center lg:text-left text-balance lg:whitespace-nowrap"
+                >
+                  <span>{titlePrefix} </span>
+                  <span>{titleHighlight}</span>
+                </h1>
+
+                {/* Subtitle Description */}
+                <p className="mt-3 sm:mt-4 max-w-xl text-sm sm:text-base leading-snug sm:leading-relaxed font-normal text-white/85 tracking-[-0.05px] text-center lg:text-left line-clamp-3 sm:line-clamp-2">
+                  {description}
+                </p>
+
+                {/* Action Buttons: Centered on mobile, start-aligned on desktop */}
+                <div className="mt-5 sm:mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full">
+                  <Link
+                    href={ctaHref}
+                    className="inline-flex h-10 min-h-[40px] items-center justify-center gap-2 rounded-full bg-brand-red hover:bg-brand-red-hover px-5 sm:px-6 text-sm font-medium text-white outline-2 -outline-offset-2 outline-white/20 transition-all duration-150 ease-out active:scale-[0.97]"
+                  >
+                    <span>{ctaText}</span>
+                    <ChevronRight className="size-3.5 stroke-[2.5]" />
+                  </Link>
+
+                  {secondaryCtaText && secondaryCtaHref && (
+                    <Link
+                      href={secondaryCtaHref}
+                      className="group/sec inline-flex h-10 min-h-[40px] items-center justify-center gap-1.5 text-sm font-medium text-white hover:text-white/80 transition-colors"
+                    >
+                      <span>{secondaryCtaText}</span>
+                      <ChevronRight className="size-3.5 stroke-[2.5] transition-transform duration-150 group-hover/sec:translate-x-0.5" />
+                    </Link>
+                  )}
+                </div>
+
+                {/* Social Proof Rating Row matching Landing Page Hero */}
+                <div className="mt-6 sm:mt-8 flex items-center justify-center lg:justify-start gap-3 w-full">
+                  <AvatarGroup className="flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-white/80">
+                    <Avatar size="sm" className="size-7 ring-2 ring-white/80 overflow-hidden shadow-xs">
+                      <AvatarImage
+                        src="/avatars/avatar-1.png"
+                        alt="Satisfied SASH broadband customer 1"
+                      />
+                      <AvatarFallback className="bg-red-10 text-brand-red text-[10px] font-medium">
+                        U1
+                      </AvatarFallback>
+                    </Avatar>
+                    <Avatar size="sm" className="size-7 ring-2 ring-white/80 overflow-hidden shadow-xs">
+                      <AvatarImage
+                        src="/avatars/avatar-2.png"
+                        alt="Satisfied SASH broadband customer 2"
+                      />
+                      <AvatarFallback className="bg-red-10 text-brand-red text-[10px] font-medium">
+                        U2
+                      </AvatarFallback>
+                    </Avatar>
+                    <Avatar size="sm" className="size-7 ring-2 ring-white/80 overflow-hidden shadow-xs">
+                      <AvatarImage
+                        src="/avatars/avatar-3.png"
+                        alt="Satisfied SASH broadband customer 3"
+                      />
+                      <AvatarFallback className="bg-red-10 text-brand-red text-[10px] font-medium">
+                        U3
+                      </AvatarFallback>
+                    </Avatar>
+                  </AvatarGroup>
+                  <div className="flex items-center gap-1.5 text-sm font-normal text-white/90">
+                    <Star className="size-4 text-amber-400 fill-amber-400" />
+                    <span>
+                      {rating} {rLabel}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side Column (5 of 12 columns on desktop): Centered on mobile, shifted on desktop */}
+            <div className="lg:col-span-5 relative w-full h-[280px] sm:h-[350px] lg:h-full min-h-[280px] sm:min-h-[350px] lg:min-h-[470px] flex items-end justify-center lg:justify-end overflow-hidden px-4 pt-2 pb-0 sm:p-4 lg:p-0">
+              <div className="relative w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[500px] h-full flex items-end justify-center lg:justify-end pointer-events-none select-none translate-x-0 lg:-translate-x-[10%]">
+                <Image
+                  src={resolvedImageSrc}
+                  alt={resolvedImageAlt}
+                  width={resolvedImageWidth}
+                  height={resolvedImageHeight}
+                  priority
+                  sizes="(max-width: 640px) 320px, (max-width: 1024px) 400px, 45vw"
+                  className="w-full h-auto max-h-[260px] sm:max-h-[330px] lg:max-h-[515px] object-contain object-bottom mx-auto lg:mx-0 lg:object-bottom-right"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -50,16 +50,17 @@ export default function SmeInternetPage() {
     <>
       <ServiceHero
         breadcrumbLabel="SME Internet"
-        eyebrow="HIGH-UPTIME BUSINESS BROADBAND"
+        eyebrow="SME BUSINESS BROADBAND"
         titlePrefix="Built for growing"
         titleHighlight="businesses."
         description="That's the SME Internet advantage — priority routing, symmetrical bandwidth, and price lock for offices & retail."
         ctaText="Explore SME Plans"
-        ctaHref="#sme-comparison"
+        ctaHref="#contact"
         secondaryCtaText="Request Callback"
         secondaryCtaHref="#contact"
-        iconSrc="/Service/SME Internet.webp"
-        iconAlt="SASH SME Business Internet icon"
+        imageSrc="/Hero/Business.png"
+        imageAlt="High-speed SME business optical fibre internet setup"
+        pattern="glass"
       />
 
       {/* Single-Row Client Logo Marquee */}

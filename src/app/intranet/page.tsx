@@ -57,8 +57,9 @@ export default function IntranetPage() {
         ctaHref="#contact"
         secondaryCtaText="Check Coverage"
         secondaryCtaHref="#contact"
-        iconSrc="/Service/Intranet.webp"
-        iconAlt="SASH Private Multi-Site Intranet icon"
+        imageSrc="/Business/Protected Intranet Network Laptop.png"
+        imageAlt="SASH Private Multi-Site Intranet infrastructure"
+        pattern="optical-mesh"
       />
 
       {/* Single-Row Client Logo Marquee */}

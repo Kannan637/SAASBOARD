@@ -50,19 +50,20 @@ const INSTALLATION_STEPS: ServiceDeliverableItem[] = [
 export default function BroadbandServicesPage() {
   return (
     <>
-      {/* Dedicated Service Hero: Left Content + Right Icon Showcase */}
+      {/* Dedicated Service Hero: Matching Landing Page Hero Style */}
       <ServiceHero
         breadcrumbLabel="Broadband Services"
-        eyebrow="TAMIL NADU'S FTTH FIBRE NETWORK"
+        eyebrow="HIGH-UPTIME BUSINESS BROADBAND"
         titlePrefix="Faster speeds."
         titleHighlight="Just for you."
         description="That's the SASH Fibre Broadband advantage — unlimited data, free installation, and speeds up to 1 Gbps across Thiruvallur & Tamil Nadu."
-        ctaText="Upgrade at ₹650"
+        ctaText="Check Availability"
         ctaHref="#contact"
-        secondaryCtaText="View Plans"
+        secondaryCtaText="View All Plans"
         secondaryCtaHref="#plans"
-        iconSrc="/Service/BroadBand.webp"
-        iconAlt="SASH Fibre Broadband service icon"
+        imageSrc="/Hero/Hand Holding Broadband Dashboard Smartphone.png"
+        imageAlt="SASH Broadband ultra-speed network dashboard on smartphone"
+        pattern="glyph"
       />
 
       {/* Single-Row Client Logo Marquee */}
