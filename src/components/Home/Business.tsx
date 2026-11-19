@@ -203,7 +203,7 @@ export default function Business({
                     {slide.eyebrow}
                   </span>
                 )}
-                <h3 className="text-brand-navy font-bold text-2xl sm:text-3xl lg:text-[40px] tracking-tight leading-[1.15] mb-4">
+                <h3 className="text-brand-navy font-semibold text-2xl sm:text-3xl lg:text-[40px] tracking-tight leading-[1.15] mb-4">
                   {slide.title}
                 </h3>
                 <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
@@ -254,7 +254,7 @@ export default function Business({
                         </span>
                       )}
 
-                      <h3 className="text-brand-navy font-bold text-2xl sm:text-3xl lg:text-[40px] tracking-tight leading-[1.15] mb-3.5 sm:mb-5">
+                      <h3 className="text-brand-navy font-semibold text-2xl sm:text-3xl lg:text-[40px] tracking-tight leading-[1.15] mb-3.5 sm:mb-5">
                         {slide.title}
                       </h3>
 

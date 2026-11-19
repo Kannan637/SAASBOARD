@@ -368,16 +368,16 @@ export function LicensedISPCARD() {
 function ClickCursorIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none">
-      {/* 3 Radiating Click Sparks at top-left in Brand Red */}
-      <line x1="5" y1="2.5" x2="5" y2="4.5" stroke="#DE0302" strokeWidth="2" strokeLinecap="round" />
-      <line x1="2" y1="5.5" x2="3.5" y2="7" stroke="#DE0302" strokeWidth="2" strokeLinecap="round" />
-      <line x1="8.5" y1="5.5" x2="7" y2="7" stroke="#DE0302" strokeWidth="2" strokeLinecap="round" />
-      {/* Brand Navy cursor pointer */}
+      {/* 3 Radiating Click Sparks at top-left in vibrant Indigo matching reference */}
+      <line x1="6" y1="2.5" x2="6" y2="5" stroke="#5551FF" strokeWidth="2.2" strokeLinecap="round" />
+      <line x1="2.5" y1="6" x2="5" y2="6" stroke="#5551FF" strokeWidth="2.2" strokeLinecap="round" />
+      <line x1="3.5" y1="3.5" x2="5.5" y2="5.5" stroke="#5551FF" strokeWidth="2.2" strokeLinecap="round" />
+      {/* Pointer Cursor Arrow */}
       <path
-        d="M5.5 8L15 15.5L11 16.2L12.8 20.2L10.5 21.2L8.7 17.2L5.5 19.5V8Z"
-        fill="#010D3B"
-        stroke="#010D3B"
-        strokeWidth="1"
+        d="M6 7.5L16.5 15.5L12 16.5L14 21L11.5 22L9.5 17.5L6 20V7.5Z"
+        fill="#5551FF"
+        stroke="#5551FF"
+        strokeWidth="0.8"
         strokeLinejoin="round"
       />
     </svg>
@@ -387,32 +387,32 @@ function ClickCursorIcon({ className = "w-5 h-5" }: { className?: string }) {
 function SupportHeadsetIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none">
-      {/* Headset arc */}
+      {/* Headset Arc */}
       <path
-        d="M4 12.5C4 8.08 7.58 4.5 12 4.5C16.42 4.5 20 8.08 20 12.5"
-        stroke="#010D3B"
-        strokeWidth="2"
+        d="M4.5 12C4.5 7.86 7.86 4.5 12 4.5C16.14 4.5 19.5 7.86 19.5 12"
+        stroke="#5551FF"
+        strokeWidth="2.2"
         strokeLinecap="round"
       />
-      {/* Ear cushions */}
-      <rect x="2.5" y="11" width="3" height="5.5" rx="1.5" fill="#010D3B" />
-      <rect x="18.5" y="11" width="3" height="5.5" rx="1.5" fill="#010D3B" />
-      {/* Speech bubble in the center in Brand Red */}
+      {/* Ear Cushions */}
+      <rect x="2.5" y="11" width="3.2" height="6" rx="1.6" fill="#5551FF" />
+      <rect x="18.3" y="11" width="3.2" height="6" rx="1.6" fill="#5551FF" />
+      {/* Speech Chat Bubble */}
       <path
-        d="M8.5 9.5H15.5C16.33 9.5 17 10.17 17 11V14C17 14.83 16.33 15.5 15.5 15.5H11.5L8.5 17.5V15.5C7.67 15.5 7 14.83 7 14V11C7 10.17 7.67 9.5 8.5 9.5Z"
-        fill="#DE0302"
+        d="M8.5 10H15.5C16.33 10 17 10.67 17 11.5V14.5C17 15.33 16.33 16 15.5 16H12L9 18.5V16H8.5C7.67 16 7 15.33 7 14.5V11.5C7 10.67 7.67 10 8.5 10Z"
+        fill="#5551FF"
       />
-      {/* Dots inside chat bubble */}
-      <circle cx="10" cy="12.5" r="0.75" fill="white" />
-      <circle cx="12" cy="12.5" r="0.75" fill="white" />
-      <circle cx="14" cy="12.5" r="0.75" fill="white" />
+      {/* 3 White Dots in Chat Bubble */}
+      <circle cx="10" cy="13" r="0.85" fill="white" />
+      <circle cx="12" cy="13" r="0.85" fill="white" />
+      <circle cx="14" cy="13" r="0.85" fill="white" />
     </svg>
   );
 }
 
 function HelpQuestionBadge() {
   return (
-    <div className="w-5.5 h-5.5 rounded-full bg-brand-navy flex items-center justify-center text-white font-bold text-[11px] leading-none shadow-xs select-none">
+    <div className="w-5.5 h-5.5 rounded-full bg-[#5551FF] flex items-center justify-center text-white font-semibold text-[12px] leading-none shadow-xs select-none">
       ?
     </div>
   );
@@ -422,44 +422,20 @@ function CenterAvatarIcon({ className = "w-7 h-7" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
       {/* Head */}
-      <circle cx="12" cy="7" r="4" fill="white" />
+      <circle cx="12" cy="7.5" r="3.75" fill="white" />
       {/* Shoulders */}
       <path
-        d="M5 19.5C5 15.91 7.91 13 11.5 13H12.5C16.09 13 19 15.91 19 19.5V20.5H5V19.5Z"
+        d="M5.5 19.5C5.5 15.91 8.41 13 12 13C15.59 13 18.5 15.91 18.5 19.5V20.5H5.5V19.5Z"
         fill="white"
       />
     </svg>
   );
 }
 
-const SUPPORT_SATELLITE_ITEMS = [
-  {
-    id: "pointer",
-    label: "One-Click Instant Help",
-    icon: <ClickCursorIcon className="w-5 h-5" />,
-    left: "25%",
-    top: "6.7%",
-  },
-  {
-    id: "headset",
-    label: "Dedicated Support Agent",
-    icon: <SupportHeadsetIcon className="w-5 h-5" />,
-    left: "99.2%",
-    top: "58.7%",
-  },
-  {
-    id: "help",
-    label: "24/7 Help Desk",
-    icon: <HelpQuestionBadge />,
-    left: "14.6%",
-    top: "85.4%",
-  },
-] as const;
-
 /**
  * Card 04 — 24/7 Local Support (Bottom-Center: 4 of 12 columns on desktop)
  * Features concentric radar ripple rings, a vibrant 3D central avatar sphere,
- * and 3 orbiting satellite badges (One-Click Pointer, Headset, Help Desk).
+ * and 3 floating satellite badges (One-Click Pointer, Headset, Help Desk) matching the shared visual.
  */
 export function SupportCard() {
   const shouldReduceMotion = useReducedMotion();
@@ -471,7 +447,7 @@ export function SupportCard() {
       cardClassName="flex flex-col justify-between p-0 overflow-hidden"
     >
       <CardContent className="p-0 flex-1 flex flex-col justify-between overflow-hidden">
-        {/* Top Status Stage with Concentric Radar Orbit (Edge-to-Edge) */}
+        {/* Top Status Stage with Concentric Radar Waves (Edge-to-Edge) */}
         <div
           className={`relative w-full h-[220px] min-[360px]:h-[235px] sm:h-[250px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support`}
         >
@@ -486,79 +462,134 @@ export function SupportCard() {
             </span>
           </div>
 
-          {/* Concentric Radar Waves & Orbiting Satellites Stage */}
-          <div className="pointer-events-auto absolute z-20 top-[125px] min-[360px]:top-[132px] sm:top-[140px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[270px] h-[270px] min-[360px]:w-[290px] min-[360px]:h-[290px] sm:w-[310px] sm:h-[310px] flex items-center justify-center">
-            {/* Concentric Radar Ripple Rings matching White/Frosted Apple styling */}
-            <div className="pointer-events-none absolute w-[240px] h-[240px] rounded-full border border-white/25 bg-white/[0.04]" />
-            <div className="pointer-events-none absolute w-[176px] h-[176px] rounded-full border border-white/35 bg-white/[0.07]" />
-            <div className="pointer-events-none absolute w-[114px] h-[114px] rounded-full border border-white/45 bg-white/[0.10]" />
+          {/* Concentric Radar Waves & Satellite Stage centered precisely */}
+          <div className="pointer-events-auto absolute z-20 top-[125px] min-[360px]:top-[132px] sm:top-[140px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] min-[360px]:w-[300px] min-[360px]:h-[300px] sm:w-[320px] sm:h-[320px] flex items-center justify-center">
+            {/* Concentric Static Ripple Rings matching the shared image */}
+            <div className="pointer-events-none absolute w-[108px] h-[108px] rounded-full border border-white/35 bg-white/[0.08]" />
+            <div className="pointer-events-none absolute w-[168px] h-[168px] rounded-full border border-white/28 bg-white/[0.05]" />
+            <div className="pointer-events-none absolute w-[228px] h-[228px] rounded-full border border-white/20 bg-white/[0.03]" />
+            <div className="pointer-events-none absolute w-[288px] h-[288px] rounded-full border border-white/14 bg-white/[0.02]" />
+            <div className="pointer-events-none absolute w-[348px] h-[348px] rounded-full border border-white/10 bg-white/[0.01]" />
 
-            {/* Subtle Expanding Radar Pulse Wave */}
-            {!shouldReduceMotion && (
-              <motion.div
-                animate={{
-                  scale: [1, 1.25, 1.45],
-                  opacity: [0.55, 0.2, 0],
-                }}
-                transition={{
-                  duration: 3.2,
-                  repeat: Infinity,
-                  ease: "easeOut",
-                }}
-                className="pointer-events-none absolute w-[114px] h-[114px] rounded-full border border-white/70"
-              />
-            )}
-
-            {/* Rotating Orbit Container with Counter-Rotating Satellite Badges */}
-            <motion.div
-              animate={shouldReduceMotion ? undefined : { rotate: 360 }}
-              transition={{ duration: 24, ease: "linear", repeat: Infinity }}
-              className="absolute w-[176px] h-[176px] rounded-full"
-            >
-              {SUPPORT_SATELLITE_ITEMS.map((item) => (
-                <div
-                  key={item.id}
-                  className="absolute -translate-x-1/2 -translate-y-1/2"
-                  style={{
-                    left: item.left,
-                    top: item.top,
+            {/* Continuous Staggered Radar Ripple Waves propagating outwards */}
+            {!shouldReduceMotion &&
+              [0, 1, 2].map((i) => (
+                <motion.div
+                  key={i}
+                  aria-hidden="true"
+                  className="pointer-events-none absolute rounded-full border border-white/65"
+                  initial={{ width: 72, height: 72, opacity: 0.8 }}
+                  animate={{
+                    width: [72, 300],
+                    height: [72, 300],
+                    opacity: [0.75, 0],
                   }}
-                >
-                  {/* Counter-rotate each satellite so it remains upright at all angles */}
-                  <motion.div
-                    animate={shouldReduceMotion ? undefined : { rotate: -360 }}
-                    transition={{
-                      duration: 24,
-                      ease: "linear",
-                      repeat: Infinity,
-                    }}
-                    className="w-10 h-10 min-[360px]:w-10.5 min-[360px]:h-10.5 sm:w-11 sm:h-11 rounded-full bg-white shadow-[0_6px_18px_rgba(0,0,0,0.22),0_1px_3px_rgba(0,0,0,0.1)] border border-white/90 flex items-center justify-center transition-transform duration-200 hover:scale-115 cursor-pointer"
-                    title={item.label}
-                  >
-                    {item.icon}
-                  </motion.div>
-                </div>
+                  transition={{
+                    duration: 3.6,
+                    repeat: Infinity,
+                    delay: i * 1.2,
+                    ease: "easeOut",
+                  }}
+                />
               ))}
-            </motion.div>
 
-            {/* Center Glossy 3D Brand Avatar Sphere */}
+            {/* 3 Floating Satellite Badges positioned exactly as in shared image */}
+            {/* 1. Pointer Click Satellite (Top-Left ~10:30 position) */}
             <motion.div
+              aria-label="One-Click Instant Help"
+              title="One-Click Instant Help"
               animate={
                 shouldReduceMotion
                   ? undefined
                   : {
-                    scale: [1, 1.04, 1],
-                  }
+                      y: [-4, 3, -4],
+                      x: [-1, 2, -1],
+                    }
               }
               transition={{
-                duration: 3.6,
+                duration: 3.4,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="relative z-30 w-16 h-16 min-[360px]:w-17 min-[360px]:h-17 sm:w-18 sm:h-18 rounded-full bg-[radial-gradient(circle_at_35%_28%,#22357A_0%,#010D3B_60%,#000720_100%)] shadow-[0_14px_30px_rgba(0,0,0,0.4),0_4px_10px_rgba(1,13,59,0.35),inset_0_2px_4px_rgba(255,255,255,0.65),inset_0_-3px_6px_rgba(0,0,0,0.35)] flex items-center justify-center p-3 select-none"
+              whileHover={{ scale: 1.15 }}
+              className="absolute top-[14%] left-[18%] -translate-x-1/2 -translate-y-1/2 z-30 w-10.5 h-10.5 sm:w-11 sm:h-11 rounded-full bg-white shadow-[0_8px_20px_rgba(0,0,0,0.18),0_2px_6px_rgba(0,0,0,0.08)] border border-white/95 flex items-center justify-center cursor-pointer transition-transform duration-200"
             >
-              <CenterAvatarIcon className="w-8 h-8 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]" />
+              <ClickCursorIcon className="w-5 h-5" />
             </motion.div>
+
+            {/* 2. Support Headset Satellite (Right ~3:15 position) */}
+            <motion.div
+              aria-label="Dedicated Support Agent"
+              title="Dedicated Support Agent"
+              animate={
+                shouldReduceMotion
+                  ? undefined
+                  : {
+                      y: [3, -4, 3],
+                      x: [1, -2, 1],
+                    }
+              }
+              transition={{
+                duration: 3.8,
+                delay: 0.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              whileHover={{ scale: 1.15 }}
+              className="absolute top-[52%] left-[84%] -translate-x-1/2 -translate-y-1/2 z-30 w-10.5 h-10.5 sm:w-11 sm:h-11 rounded-full bg-white shadow-[0_8px_20px_rgba(0,0,0,0.18),0_2px_6px_rgba(0,0,0,0.08)] border border-white/95 flex items-center justify-center cursor-pointer transition-transform duration-200"
+            >
+              <SupportHeadsetIcon className="w-5 h-5" />
+            </motion.div>
+
+            {/* 3. Help Question Satellite (Bottom-Left ~7:30 position) */}
+            <motion.div
+              aria-label="24/7 Help Desk"
+              title="24/7 Help Desk"
+              animate={
+                shouldReduceMotion
+                  ? undefined
+                  : {
+                      y: [-3, 4, -3],
+                      x: [-2, 1, -2],
+                    }
+              }
+              transition={{
+                duration: 3.6,
+                delay: 1.0,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              whileHover={{ scale: 1.15 }}
+              className="absolute top-[76%] left-[20%] -translate-x-1/2 -translate-y-1/2 z-30 w-10.5 h-10.5 sm:w-11 sm:h-11 rounded-full bg-white shadow-[0_8px_20px_rgba(0,0,0,0.18),0_2px_6px_rgba(0,0,0,0.08)] border border-white/95 flex items-center justify-center cursor-pointer transition-transform duration-200"
+            >
+              <HelpQuestionBadge />
+            </motion.div>
+
+            {/* Center Glossy 3D Avatar Sphere matching shared image */}
+            <div className="relative z-30 flex items-center justify-center">
+              {/* Soft ambient shadow underneath sphere */}
+              <div className="pointer-events-none absolute -bottom-3 w-16 h-4 rounded-full bg-black/35 blur-md" />
+
+              <motion.div
+                animate={
+                  shouldReduceMotion
+                    ? undefined
+                    : {
+                        scale: [1, 1.04, 1],
+                      }
+                }
+                transition={{
+                  duration: 3.2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="relative w-17 h-17 sm:w-19 sm:h-19 rounded-full bg-[radial-gradient(circle_at_35%_25%,#A5B4FC_0%,#6366F1_35%,#4F46E5_65%,#3730A3_90%,#1E1B4B_100%)] shadow-[0_16px_36px_rgba(0,0,0,0.35),0_0_24px_rgba(99,102,241,0.5),inset_0_3px_5px_rgba(255,255,255,0.75),inset_0_-4px_8px_rgba(15,10,60,0.45)] flex items-center justify-center p-3 select-none"
+              >
+                {/* Specular gloss highlight crescent */}
+                <div className="pointer-events-none absolute top-1.5 left-2 w-7 h-4 rounded-full bg-gradient-to-b from-white/60 to-transparent blur-[1px]" />
+                <CenterAvatarIcon className="relative z-10 w-8 h-8 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]" />
+              </motion.div>
+            </div>
           </div>
         </div>
 

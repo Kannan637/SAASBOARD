@@ -22,7 +22,7 @@ const LEFT_INTEGRATIONS = [
           <circle cx="12" cy="12" r="2.5" />
         </svg>
         <div className="flex flex-col text-left leading-tight">
-          <span className="font-bold text-[15px] tracking-tight">OpenAI</span>
+          <span className="font-semibold text-[15px] tracking-tight">OpenAI</span>
           <span className="text-[11px] font-medium text-[#656882]">
             Agents SDK
           </span>
@@ -49,7 +49,7 @@ const LEFT_INTEGRATIONS = [
           />
           <circle cx="12" cy="12" r="3.2" fill="currentColor" />
         </svg>
-        <span className="font-bold text-[17px] tracking-tight">AutoGen</span>
+        <span className="font-semibold text-[17px] tracking-tight">AutoGen</span>
       </div>
     ),
   },
@@ -74,7 +74,7 @@ const LEFT_INTEGRATIONS = [
           <circle cx="7" cy="9" r="2" fill="currentColor" />
           <circle cx="17" cy="8" r="2" fill="currentColor" />
         </svg>
-        <span className="font-extrabold text-[16px] tracking-wider">
+        <span className="font-semibold text-[16px] tracking-wider">
           CAMEL-AI
         </span>
       </div>
@@ -98,7 +98,7 @@ const RIGHT_INTEGRATIONS = [
           <path d="M12 3a9 9 0 1 0 9 9h-3a6 6 0 1 1-6-6V3Z" />
           <circle cx="16.5" cy="7.5" r="2.5" />
         </svg>
-        <span className="font-bold text-[18px] tracking-tight">crewAI</span>
+        <span className="font-semibold text-[18px] tracking-tight">crewAI</span>
       </div>
     ),
   },
@@ -121,7 +121,7 @@ const RIGHT_INTEGRATIONS = [
           <rect x="4" y="13" width="7" height="7" rx="2" />
           <circle cx="16.5" cy="16.5" r="3.5" />
         </svg>
-        <span className="font-bold text-[16px] tracking-tight">
+        <span className="font-semibold text-[16px] tracking-tight">
           LlamaIndex
         </span>
       </div>
@@ -150,7 +150,7 @@ const RIGHT_INTEGRATIONS = [
             strokeLinecap="round"
           />
         </svg>
-        <span className="font-bold text-[16px] tracking-tight">LangChain</span>
+        <span className="font-semibold text-[16px] tracking-tight">LangChain</span>
       </div>
     ),
   },
@@ -412,7 +412,7 @@ export default function IntegrationsSection() {
           <h2
             id="integrations-heading"
             style={{ fontFamily: "'Orbitron', sans-serif" }}
-            className="text-3xl sm:text-5xl md:text-[56px] font-bold tracking-tight text-[#0E1126] leading-[1.12] mb-4"
+            className="text-3xl sm:text-5xl md:text-[56px] font-semibold tracking-tight text-[#0E1126] leading-[1.12] mb-4"
           >
             One SDK. Many integrations.
           </h2>

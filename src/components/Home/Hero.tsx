@@ -249,15 +249,15 @@ export default function Hero() {
                   {currentSlide.eyebrow}
                 </div>
 
-                {/* Hero Heading Style (Display MD / LG: 56px, 700 bold, line-height 64px) */}
+                {/* Hero Heading Style (Display MD / LG: 56px, 600 semibold, line-height 64px) */}
                 <h1
                   id="hero-heading"
-                  className="mt-4 text-3xl sm:text-4xl lg:text-[56px] lg:leading-[64px] font-bold tracking-normal text-balance text-brand-navy"
+                  className="mt-4 text-3xl sm:text-4xl lg:text-[56px] lg:leading-[64px] font-semibold tracking-normal text-balance text-brand-navy"
                 >
-                  <span className="inline-block mr-[0.2em] font-bold">
+                  <span className="inline-block mr-[0.2em] font-semibold">
                     {currentSlide.headlinePrefix}
                   </span>
-                  <span className="inline-block font-bold text-brand-red">
+                  <span className="inline-block font-semibold text-brand-red">
                     {currentSlide.headlineHighlight}
                   </span>
                 </h1>
