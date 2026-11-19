@@ -179,7 +179,7 @@ export default function Hero() {
         aria-labelledby="hero-heading"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
-        className="w-full bg-white py-3 sm:py-5 lg:py-6 font-sans antialiased"
+        className="w-full bg-white py-2 sm:py-3 lg:py-4 font-sans antialiased"
       >
         {/* Increased Width Container (Max 1440px / 1520px on 2xl screens) */}
         <div className="w-full max-w-[1440px] 2xl:max-w-[1520px] mx-auto px-3 sm:px-6 lg:px-8">
@@ -197,9 +197,9 @@ export default function Hero() {
               />
             ))}
 
-            <div className="w-full min-h-[500px] sm:min-h-[540px] lg:min-h-[580px] grid grid-cols-1 lg:grid-cols-12 items-stretch relative z-10">
+            <div className="w-full min-h-[450px] sm:min-h-[490px] lg:min-h-[520px] grid grid-cols-1 lg:grid-cols-12 items-stretch relative z-10">
               {/* Left Content Column (7 of 12 columns on desktop) */}
-              <div className="lg:col-span-7 flex flex-col justify-between p-6 sm:p-10 lg:p-12 xl:p-14 z-20">
+              <div className="lg:col-span-7 flex flex-col justify-between p-5 sm:p-8 lg:p-10 xl:p-12 z-20">
                 <AnimatePresence mode="wait" custom={direction}>
                   <motion.div
                     key={currentSlide.id}
@@ -311,9 +311,9 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Right Side Column (5 of 12 columns on desktop): Dedicated Service Image without animation or shadows (moved 10% left) */}
-              <div className="lg:col-span-5 relative w-full h-[340px] sm:h-[420px] lg:h-full min-h-[340px] lg:min-h-[520px] flex items-end justify-center lg:justify-end overflow-hidden p-2 sm:p-4 lg:p-0">
-                <div className="relative w-full max-w-[380px] sm:max-w-[460px] lg:max-w-[540px] h-full flex items-end justify-center lg:justify-end pointer-events-none select-none -translate-x-[10%]">
+              {/* Right Side Column (5 of 12 columns on desktop): Dedicated Service Image without animation or shadows (moved 10% left, height reduced 10%) */}
+              <div className="lg:col-span-5 relative w-full h-[310px] sm:h-[380px] lg:h-full min-h-[310px] lg:min-h-[470px] flex items-end justify-center lg:justify-end overflow-hidden p-2 sm:p-4 lg:p-0">
+                <div className="relative w-full max-w-[360px] sm:max-w-[430px] lg:max-w-[500px] h-full flex items-end justify-center lg:justify-end pointer-events-none select-none -translate-x-[10%]">
                   <Image
                     src={currentSlide.imageSrc}
                     alt={currentSlide.imageAlt}
@@ -321,7 +321,7 @@ export default function Hero() {
                     height={currentSlide.imageHeight}
                     priority
                     sizes="(max-width: 1024px) 100vw, 45vw"
-                    className="w-full h-auto max-h-[520px] sm:max-h-[550px] lg:max-h-[570px] object-contain object-bottom-right"
+                    className="w-full h-auto max-h-[470px] sm:max-h-[495px] lg:max-h-[515px] object-contain object-bottom-right"
                   />
                 </div>
               </div>
