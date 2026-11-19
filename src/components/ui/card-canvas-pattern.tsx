@@ -2,7 +2,12 @@
 
 import React, { useEffect, useRef } from "react";
 
-export type CardPatternType = "glyph" | "halftone" | "glass" | "stripes";
+export type CardPatternType =
+  | "glyph"
+  | "halftone"
+  | "glass"
+  | "stripes"
+  | "optical-mesh";
 
 export interface CardCanvasPatternProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -264,6 +269,135 @@ export function drawStripesPattern(
   ctx.fillRect(0, 0, width, height);
 }
 
+/**
+ * Pattern 5: Optical Mesh (Dedicated Enterprise Connectivity for 1:1 Leased Lines)
+ * Deep royal sapphire to dark midnight navy gradient, high-tech optical telecom grid,
+ * luminous 1:1 dedicated optical fiber waves, glowing data nodes, and an ambient cyan back-glow.
+ */
+export function drawOpticalMeshPattern(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  seed = 505
+) {
+  const rng = createSeededRandom(seed);
+
+  // 1. Base Gradient: Rich Royal Sapphire to Deep Midnight Navy
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#081b45");
+  bgGrad.addColorStop(0.35, "#0f3277");
+  bgGrad.addColorStop(0.7, "#092052");
+  bgGrad.addColorStop(1, "#030c22");
+
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // 2. Ambient Cyan/Electric Blue Optical Back-Glow (centered around engineer on right)
+  const gx = width * 0.72;
+  const gy = height * 0.55;
+  const maxGlowR = Math.min(width, height) * 0.95;
+  const glowGrad = ctx.createRadialGradient(gx, gy, 0, gx, gy, maxGlowR);
+  glowGrad.addColorStop(0, "rgba(56, 189, 248, 0.28)");
+  glowGrad.addColorStop(0.45, "rgba(14, 165, 233, 0.12)");
+  glowGrad.addColorStop(1, "rgba(3, 12, 34, 0)");
+
+  ctx.fillStyle = glowGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // 3. High-Tech Optical Telecom Grid
+  const gridStep = 26;
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = "rgba(186, 230, 253, 0.08)";
+  ctx.beginPath();
+
+  for (let x = 0; x <= width; x += gridStep) {
+    ctx.moveTo(x + 0.5, 0);
+    ctx.lineTo(x + 0.5, height);
+  }
+  for (let y = 0; y <= height; y += gridStep) {
+    ctx.moveTo(0, y + 0.5);
+    ctx.lineTo(width, y + 0.5);
+  }
+  ctx.stroke();
+
+  // 4. Subtle Interconnection Crosshairs and Glowing Data Nodes
+  for (let y = gridStep; y < height; y += gridStep * 2) {
+    for (let x = gridStep; x < width; x += gridStep * 2) {
+      const rVal = rng();
+      if (rVal > 0.45) {
+        // Crosshair
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+        ctx.beginPath();
+        ctx.moveTo(x - 2.5, y + 0.5);
+        ctx.lineTo(x + 3.5, y + 0.5);
+        ctx.moveTo(x + 0.5, y - 2.5);
+        ctx.lineTo(x + 0.5, y + 3.5);
+        ctx.stroke();
+
+        // Glowing data node on selected intersections
+        if (rVal > 0.72) {
+          ctx.fillStyle = "rgba(56, 189, 248, 0.65)";
+          ctx.beginPath();
+          ctx.arc(x + 0.5, y + 0.5, 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+  }
+
+  // 5. Luminous 1:1 Dedicated Symmetrical Optical Fiber Waves
+  const ribbons = [
+    { baseY: 0.46, offset: -16, color: "rgba(56, 189, 248, 0.55)", stroke: 1.5 },
+    { baseY: 0.50, offset: 0, color: "rgba(186, 230, 253, 0.85)", stroke: 2.5 },
+    { baseY: 0.53, offset: 16, color: "rgba(37, 99, 235, 0.5)", stroke: 1.5 },
+    { baseY: 0.56, offset: 32, color: "rgba(14, 165, 233, 0.6)", stroke: 1.5 },
+  ];
+
+  ribbons.forEach((ribbon) => {
+    ctx.strokeStyle = ribbon.color;
+    ctx.lineWidth = ribbon.stroke;
+    ctx.beginPath();
+
+    let started = false;
+    for (let x = 0; x <= width + 8; x += 6) {
+      const nx = x / Math.max(1, width);
+      const wave =
+        Math.sin(nx * Math.PI * 2.4 - 0.4) * 32 +
+        Math.cos(nx * Math.PI * 1.2) * 16;
+      const y = height * ribbon.baseY + ribbon.offset + wave;
+
+      if (!started) {
+        ctx.moveTo(x, y);
+        started = true;
+      } else {
+        ctx.lineTo(x, y);
+      }
+    }
+    ctx.stroke();
+  });
+
+  // 6. Optical Light Pulse Beads along the central fiber conduit
+  const pulsePositions = [0.18, 0.38, 0.62, 0.82];
+  pulsePositions.forEach((nx) => {
+    const px = width * nx;
+    const wave =
+      Math.sin(nx * Math.PI * 2.4 - 0.4) * 32 +
+      Math.cos(nx * Math.PI * 1.2) * 16;
+    const py = height * 0.5 + wave;
+
+    // Outer glow
+    const beadGlow = ctx.createRadialGradient(px, py, 0, px, py, 14);
+    beadGlow.addColorStop(0, "rgba(255, 255, 255, 0.95)");
+    beadGlow.addColorStop(0.35, "rgba(186, 230, 253, 0.7)");
+    beadGlow.addColorStop(1, "rgba(56, 189, 248, 0)");
+
+    ctx.fillStyle = beadGlow;
+    ctx.beginPath();
+    ctx.arc(px, py, 14, 0, Math.PI * 2);
+    ctx.fill();
+  });
+}
+
 const PATTERN_DRAW_MAP: Record<
   CardPatternType,
   (
@@ -274,16 +408,18 @@ const PATTERN_DRAW_MAP: Record<
   ) => void
 > = {
   glyph: drawGlyphPattern,
-  halftone: drawHalftonePattern,
+  halftone: drawOpticalMeshPattern, // default halftone to high-tech optical mesh for leased lines
   glass: drawGlassTilesPattern,
   stripes: drawStripesPattern,
+  "optical-mesh": drawOpticalMeshPattern,
 };
 
 const DEFAULT_SEEDS: Record<CardPatternType, number> = {
   glyph: 42,
-  halftone: 101,
+  halftone: 505,
   glass: 202,
   stripes: 303,
+  "optical-mesh": 505,
 };
 
 /**

@@ -74,7 +74,7 @@ const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
     secondaryCtaHref: "/#contact",
     cardGradient:
       "linear-gradient(180deg, #D4EBFC 0%, #B3D7F7 15%, #7CAFE0 32%, #4F83BE 50%, #2E5C9A 68%, #14376E 84%, #06183B 100%)",
-    pattern: "halftone",
+    pattern: "optical-mesh",
     ratingScore: "4.9",
     ratingLabel: "enterprise rating",
     imageSrc: "/Hero/1to1.png",
