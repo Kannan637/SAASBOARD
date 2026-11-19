@@ -121,10 +121,10 @@ const SERVICE_CONFIG_BY_LABEL: Record<string, ServiceHeroConfig> = {
     pattern: "white-pixels",
     cardGradient:
       "linear-gradient(180deg, #E0E7FF 0%, #C7D2FE 15%, #818CF8 32%, #4F46E5 50%, #3730A3 68%, #1E1B4B 84%, #0A0826 100%)",
-    imageSrc: "/Business/Protected Intranet Network Laptop.png",
+    imageSrc: "/Hero/intranet.png",
     imageAlt: "Secure Multi-Site Optical Intranet and Private WAN",
-    imageWidth: 1792,
-    imageHeight: 1200,
+    imageWidth: 1840,
+    imageHeight: 1842,
     ratingScore: "4.9",
     ratingLabel: "enterprise LAN rating",
   },

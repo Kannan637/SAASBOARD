@@ -57,8 +57,10 @@ export default function IntranetPage() {
         ctaHref="#contact"
         secondaryCtaText="Check Coverage"
         secondaryCtaHref="#contact"
-        imageSrc="/Business/Protected Intranet Network Laptop.png"
+        imageSrc="/Hero/intranet.png"
         imageAlt="SASH Private Multi-Site Intranet infrastructure"
+        imageWidth={1840}
+        imageHeight={1842}
         pattern="white-pixels"
       />
 
