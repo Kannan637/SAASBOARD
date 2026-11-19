@@ -3,14 +3,13 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Play, Zap } from "lucide-react";
+import { ChevronRight, Star } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { APPLE_EASE } from "@/components/ui/apple-scroll";
 
 interface ServiceHeroSlide {
   id: string;
   serviceLabel: string;
-  serviceIcon: string;
   eyebrow: string;
   headlinePrefix: string;
   headlineHighlight: string;
@@ -19,64 +18,50 @@ interface ServiceHeroSlide {
   ctaHref: string;
   secondaryCtaText: string;
   secondaryCtaHref: string;
-  imageSrc: string;
-  imageAlt: string;
-  metricBadge: string;
-  backdropColor?: string;
   cardGradient: string;
-  cutoutColor: string;
+  ratingScore: string;
+  ratingLabel: string;
 }
 
 const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
   {
     id: "broadband",
     serviceLabel: "Home Fibre Broadband",
-    serviceIcon: "/Service/BroadBand.webp",
-    eyebrow: "TAMIL NADU'S FTTH FIBRE NETWORK",
+    eyebrow: "HIGH-UPTIME BUSINESS BROADBAND",
     headlinePrefix: "Faster speeds.",
     headlineHighlight: "Just for you.",
     subtitle:
       "That's the SASH Fibre Broadband advantage — unlimited data, free installation, and speeds up to 1 Gbps across Thiruvallur & Tamil Nadu.",
-    ctaText: "Upgrade at ₹650",
+    ctaText: "Check Availability",
     ctaHref: "/broadband-services",
-    secondaryCtaText: "View Plans",
+    secondaryCtaText: "View All Plans",
     secondaryCtaHref: "/#plans",
-    imageSrc: "/Hero/hero-broadband.jpg",
-    imageAlt:
-      "Young man using laptop with glowing red speedometer dial and high-speed fibre light trails",
-    metricBadge: "Up to 1 Gbps Ultra-Speed",
-    backdropColor: "#050001",
     cardGradient:
-      "linear-gradient(135deg, #FFFFFF 0%, #FAF7FE 35%, #F2EBFC 70%, #E8DCF8 100%)",
-    cutoutColor: "#F2EBFC",
+      "linear-gradient(180deg, #E6CBF8 0%, #C1ABDA 15%, #9287B8 32%, #686193 50%, #444374 68%, #242859 84%, #081141 100%)",
+    ratingScore: "4.6",
+    ratingLabel: "rating in google",
   },
   {
     id: "leased-line",
     serviceLabel: "1:1 Internet Leased Line",
-    serviceIcon: "/Service/Leased Line.webp",
     eyebrow: "DEDICATED ENTERPRISE CONNECTIVITY",
     headlinePrefix: "1:1 Dedicated",
     headlineHighlight: "Leased Lines.",
     subtitle:
-      "That's the Enterprise advantage — uncontended symmetrical fibre with SLA-backed uptime and static IP routing.",
+      "That's the Enterprise advantage — uncontended symmetrical fibre with SLA-backed 99.99% uptime and static IP routing.",
     ctaText: "Get Leased Line Quote",
     ctaHref: "/lease-line",
     secondaryCtaText: "Check Feasibility",
     secondaryCtaHref: "/#contact",
-    imageSrc: "/Hero/hero-leased-line.jpg",
-    imageAlt:
-      "Enterprise server racks in a high-tech data corridor connected with high-speed glowing red optical fibre lines for dedicated 1:1 leased line",
-    metricBadge: "99.99% SLA Uptime",
-    backdropColor: "#05070E",
     cardGradient:
-      "linear-gradient(135deg, #FFFFFF 0%, #F5F9FF 35%, #E6F1FE 70%, #D8EAFD 100%)",
-    cutoutColor: "#E6F1FE",
+      "linear-gradient(180deg, #D4EBFC 0%, #B3D7F7 15%, #7CAFE0 32%, #4F83BE 50%, #2E5C9A 68%, #14376E 84%, #06183B 100%)",
+    ratingScore: "4.9",
+    ratingLabel: "enterprise rating",
   },
   {
     id: "sme-internet",
     serviceLabel: "SME Business Internet",
-    serviceIcon: "/Service/SME Internet.webp",
-    eyebrow: "HIGH-UPTIME BUSINESS BROADBAND",
+    eyebrow: "SME BUSINESS BROADBAND",
     headlinePrefix: "Built for growing",
     headlineHighlight: "businesses.",
     subtitle:
@@ -85,19 +70,14 @@ const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
     ctaHref: "/sme-internet",
     secondaryCtaText: "Request Callback",
     secondaryCtaHref: "/#contact",
-    imageSrc: "/Hero/hero-sme.jpg",
-    imageAlt:
-      "Indian business professional holding laptop with glowing red growth chart and upward arrow in front of modern corporate towers",
-    metricBadge: "Priority Business Bandwidth",
-    backdropColor: "#080710",
     cardGradient:
-      "linear-gradient(135deg, #FFFFFF 0%, #F5FBF8 35%, #E3F6ED 70%, #D0F0E1 100%)",
-    cutoutColor: "#E3F6ED",
+      "linear-gradient(180deg, #D5F6EC 0%, #B2EAD8 15%, #7BCBBA 32%, #4DA59A 50%, #2E7976 68%, #144C51 84%, #06242B 100%)",
+    ratingScore: "4.8",
+    ratingLabel: "business rating",
   },
   {
     id: "cctv",
     serviceLabel: "HD IP CCTV Surveillance",
-    serviceIcon: "/Service/CCTV.webp",
     eyebrow: "SMART PREMISES SURVEILLANCE",
     headlinePrefix: "24/7 Smart",
     headlineHighlight: "CCTV Security.",
@@ -107,14 +87,10 @@ const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
     ctaHref: "/cctv",
     secondaryCtaText: "Talk to Engineer",
     secondaryCtaHref: "/#contact",
-    imageSrc: "/Hero/hero-cctv.jpg",
-    imageAlt:
-      "High-definition architectural dome CCTV security camera with glowing red surveillance scanning halo mounted on modern commercial premises",
-    metricBadge: "Live HD Cloud Monitoring",
-    backdropColor: "#0B0C12",
     cardGradient:
-      "linear-gradient(135deg, #FFFFFF 0%, #FFF8F7 35%, #FDEEEB 70%, #FBDCD6 100%)",
-    cutoutColor: "#FDEEEB",
+      "linear-gradient(180deg, #FCE0DC 0%, #F6C5BF 15%, #DF9893 32%, #B56B6D 50%, #89464F 68%, #572533 84%, #260C17 100%)",
+    ratingScore: "4.7",
+    ratingLabel: "security rating",
   },
 ];
 
@@ -127,30 +103,6 @@ const COMPANY_LOGOS = Array.from({ length: 34 }, (_, index) => {
   };
 });
 
-function LeftEdgeCutoutMask({ cutoutColor }: { cutoutColor: string }) {
-  return (
-    <svg
-      className="hidden lg:block absolute -left-px top-0 h-full w-[135px] xl:w-[165px] z-10 pointer-events-none transition-colors duration-700"
-      viewBox="0 0 180 600"
-      preserveAspectRatio="none"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <path
-        d="M0 0H156C174 85 162 195 96 300C45 385 18 505 41 600H0V0Z"
-        fill="url(#left-cutout-gradient)"
-      />
-      <defs>
-        <linearGradient id="left-cutout-gradient" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#FFFFFF" />
-          <stop offset="100%" stopColor={cutoutColor} />
-        </linearGradient>
-      </defs>
-    </svg>
-  );
-}
-
 export default function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -158,7 +110,7 @@ export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
   const currentSlide = HERO_SERVICE_SLIDES[activeIndex];
 
-  // Auto-scroll every 3 seconds (3000ms)
+  // Auto-scroll every 3 seconds (3000ms), paused when user hovers
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
@@ -170,24 +122,15 @@ export default function Hero() {
     return () => clearInterval(timer);
   }, [isPaused]);
 
-  const handlePrev = () => {
-    setDirection(-1);
-    setActiveIndex((prev) =>
-      prev === 0 ? HERO_SERVICE_SLIDES.length - 1 : prev - 1
-    );
-  };
-
-  const handleNext = () => {
-    setDirection(1);
-    setActiveIndex((prev) =>
-      prev === HERO_SERVICE_SLIDES.length - 1 ? 0 : prev + 1
-    );
+  const goToSlide = (idx: number) => {
+    setDirection(idx > activeIndex ? 1 : -1);
+    setActiveIndex(idx);
   };
 
   const textSlideVariants = {
     enter: (dir: number) => ({
       opacity: 0,
-      x: dir > 0 ? 36 : -36,
+      x: dir > 0 ? 32 : -32,
       filter: "blur(4px)",
     }),
     center: {
@@ -197,29 +140,14 @@ export default function Hero() {
     },
     exit: (dir: number) => ({
       opacity: 0,
-      x: dir > 0 ? -36 : 36,
+      x: dir > 0 ? -32 : 32,
       filter: "blur(4px)",
-    }),
-  };
-
-  const imageSlideVariants = {
-    enter: (dir: number) => ({
-      opacity: 0,
-      x: dir > 0 ? "14%" : "-14%",
-    }),
-    center: {
-      opacity: 1,
-      x: "0%",
-    },
-    exit: (dir: number) => ({
-      opacity: 0,
-      x: dir > 0 ? "-14%" : "14%",
     }),
   };
 
   return (
     <>
-      {/* 1. Hero Section with Increased Width and 4 Dynamic Pastel Gradient Backgrounds */}
+      {/* 1. Hero Section with Increased Width and 4 Distinct Pastel Gradient Backgrounds */}
       <section
         data-apple-manual="true"
         aria-labelledby="hero-heading"
@@ -230,7 +158,7 @@ export default function Hero() {
         {/* Increased Width Container (Max 1440px / 1520px on 2xl screens) */}
         <div className="w-full max-w-[1440px] 2xl:max-w-[1520px] mx-auto px-3 sm:px-6 lg:px-8">
           {/* Floating Deep-Rounded Banner Card */}
-          <div className="relative w-full rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden border border-black/[0.06] shadow-[0_20px_50px_-15px_rgba(1,13,59,0.08),0_2px_8px_rgba(0,0,0,0.03)]">
+          <div className="relative w-full rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden border border-black/[0.06] shadow-[0_24px_64px_-16px_rgba(16,24,70,0.35),0_4px_16px_rgba(0,0,0,0.06)]">
             {/* 4 Distinct Pastel Gradient Background Layers with Smooth 700ms Cross-Fade */}
             {HERO_SERVICE_SLIDES.map((slide, idx) => (
               <div
@@ -243,7 +171,7 @@ export default function Hero() {
               />
             ))}
 
-            <div className="w-full min-h-[500px] sm:min-h-[540px] lg:min-h-[560px] grid grid-cols-1 lg:grid-cols-12 items-stretch relative z-10">
+            <div className="w-full min-h-[500px] sm:min-h-[540px] lg:min-h-[580px] grid grid-cols-1 lg:grid-cols-12 items-stretch relative z-10">
               {/* Left Content Column (7 of 12 columns on desktop) */}
               <div className="lg:col-span-7 flex flex-col justify-between p-6 sm:p-10 lg:p-12 xl:p-14 z-20">
                 <AnimatePresence mode="wait" custom={direction}>
@@ -257,201 +185,131 @@ export default function Hero() {
                     transition={{ duration: 0.45, ease: APPLE_EASE }}
                     className="my-auto max-w-xl"
                   >
-                    {/* Previous UI Eyebrow Badge Style */}
-                    <div className="inline-flex min-h-6 items-center justify-center gap-1.5 rounded-full bg-red-10/85 px-3 py-1 text-xs leading-none font-medium text-brand-navy shadow-[0_1px_1px_rgba(1,13,59,0.06)]">
+                    {/* Eyebrow Badge: Solid Red Pill with White Text matching reference */}
+                    <div className="inline-flex min-h-6 items-center justify-center gap-1.5 rounded-full bg-brand-red px-3.5 py-1 text-xs leading-none font-medium text-white tracking-wide shadow-xs">
                       {currentSlide.eyebrow}
                     </div>
 
-                    {/* Previous UI Title Style: Prefix in Brand Navy + Highlight in Brand Red */}
+                    {/* Headline: Clean, Crisp White Typography matching reference */}
                     <h1
                       id="hero-heading"
-                      className="mt-4 text-3xl sm:text-4xl lg:text-[54px] lg:leading-[62px] font-semibold tracking-[-0.05px] text-balance text-brand-navy"
+                      className="mt-4 text-3xl sm:text-4xl lg:text-[54px] lg:leading-[62px] font-medium tracking-[-0.05px] text-white"
                     >
-                      <span className="inline-block mr-[0.2em] font-semibold">
-                        {currentSlide.headlinePrefix}
-                      </span>
-                      <span className="inline-block font-semibold text-brand-red">
-                        {currentSlide.headlineHighlight}
-                      </span>
+                      <span className="block">{currentSlide.headlinePrefix}</span>
+                      <span className="block">{currentSlide.headlineHighlight}</span>
                     </h1>
 
-                    {/* Previous UI Description Style */}
-                    <p className="mt-4 max-w-md text-base leading-6 font-normal text-pretty text-neutral-600 tracking-[-0.05px]">
+                    {/* Subtitle Description */}
+                    <p className="mt-4 max-w-md text-base leading-6 font-normal text-white/85 tracking-[-0.05px]">
                       {currentSlide.subtitle}
                     </p>
 
-                    {/* Previous UI Buttons Style: Primary Red Gradient + Secondary Play Link */}
-                    <div className="mt-6 sm:mt-7 flex flex-wrap items-center gap-3 sm:gap-4">
+                    {/* Action Buttons: 48px Height, 16px Font Size, Rounded Pill */}
+                    <div className="mt-6 sm:mt-7 flex flex-wrap items-center gap-4 sm:gap-6">
                       <Link
                         href={currentSlide.ctaHref}
-                        className="group/primary inline-flex h-12 min-h-[48px] items-center justify-center gap-2.5 rounded-full bg-linear-to-b from-brand-red to-brand-red-hover px-6 text-base font-medium text-white shadow-[0_6px_20px_var(--color-red-10)] outline-2 -outline-offset-2 outline-white/20 transition-[background-color,transform,box-shadow] duration-150 ease-out hover:from-brand-red-hover hover:to-brand-red-hover hover:bg-brand-red-hover active:scale-[0.97]"
+                        className="inline-flex h-12 min-h-[48px] items-center justify-center gap-2 rounded-full bg-brand-red hover:bg-brand-red-hover px-7 text-base font-medium text-white shadow-[0_6px_20px_rgba(222,3,2,0.35)] outline-2 -outline-offset-2 outline-white/20 transition-all duration-150 ease-out active:scale-[0.97]"
                       >
-                        {currentSlide.ctaText}
-                        <ArrowRight className="size-4 transition-transform duration-150 ease-out group-hover/primary:translate-x-0.5" />
+                        <span>{currentSlide.ctaText}</span>
+                        <ChevronRight className="size-4 stroke-[2.5]" />
                       </Link>
 
                       <Link
                         href={currentSlide.secondaryCtaHref}
-                        className="group/process inline-flex h-12 min-h-[48px] items-center justify-center gap-2.5 px-5 rounded-full text-base font-medium text-brand-navy transition-[opacity,transform] duration-150 ease-out hover:opacity-75 active:scale-[0.97]"
+                        className="group/sec inline-flex h-12 min-h-[48px] items-center justify-center gap-1.5 text-base font-medium text-white hover:text-white/80 transition-colors"
                       >
-                        {currentSlide.secondaryCtaText}
-                        <Play className="size-3.5 fill-current transition-transform duration-150 ease-out group-hover/process:scale-110" />
+                        <span>{currentSlide.secondaryCtaText}</span>
+                        <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-150 group-hover/sec:translate-x-0.5" />
                       </Link>
+                    </div>
+
+                    {/* Social Proof Rating Row matching reference */}
+                    <div className="mt-7 sm:mt-8 flex items-center gap-3">
+                      <div className="flex -space-x-2 overflow-hidden">
+                        <Image
+                          src="/avatars/avatar-1.png"
+                          alt="Satisfied SASH broadband customer"
+                          width={28}
+                          height={28}
+                          className="inline-block size-7 rounded-full ring-2 ring-white/60 object-cover"
+                        />
+                        <Image
+                          src="/avatars/avatar-2.png"
+                          alt="Satisfied SASH broadband customer"
+                          width={28}
+                          height={28}
+                          className="inline-block size-7 rounded-full ring-2 ring-white/60 object-cover"
+                        />
+                        <Image
+                          src="/avatars/avatar-3.png"
+                          alt="Satisfied SASH broadband customer"
+                          width={28}
+                          height={28}
+                          className="inline-block size-7 rounded-full ring-2 ring-white/60 object-cover"
+                        />
+                      </div>
+                      <div className="flex items-center gap-1.5 text-sm font-normal text-white/90">
+                        <Star className="size-4 text-amber-400 fill-amber-400" />
+                        <span>
+                          {currentSlide.ratingScore} {currentSlide.ratingLabel}
+                        </span>
+                      </div>
                     </div>
                   </motion.div>
                 </AnimatePresence>
 
-                {/* Bottom Slide Navigation Controls (Prev/Next Arrows + Numeric Counter + Indicator Dots) */}
+                {/* 4 Slides Carousel Indicators on Bottom Left matching reference */}
                 <div
-                  className="flex items-center gap-4 pt-6 sm:pt-8"
-                  aria-label="Hero slide controls"
+                  className="flex items-center gap-2 pt-6 sm:pt-8"
+                  aria-label="Hero slide indicators"
                 >
-                  {/* Previous Button */}
-                  <button
-                    type="button"
-                    onClick={handlePrev}
-                    aria-label="Previous slide"
-                    className="w-9 h-9 rounded-full border border-brand-navy/20 text-brand-navy/80 hover:border-brand-navy hover:text-brand-navy flex items-center justify-center transition-[color,border-color,transform] duration-200 ease-out active:scale-[0.96] cursor-pointer bg-white/70 shadow-xs"
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      <path d="M19 12H5" />
-                      <path d="m12 19-7-7 7-7" />
-                    </svg>
-                  </button>
-
-                  {/* 4 Slides Numeric Counter */}
-                  <span
-                    className="text-xs sm:text-sm font-mono font-medium text-brand-navy tabular-nums"
-                    aria-live="polite"
-                  >
-                    {activeIndex + 1}/{HERO_SERVICE_SLIDES.length}
-                  </span>
-
-                  {/* Next Button */}
-                  <button
-                    type="button"
-                    onClick={handleNext}
-                    aria-label="Next slide"
-                    className="w-9 h-9 rounded-full bg-linear-to-b from-brand-red to-brand-red-hover text-white shadow-[0_4px_14px_var(--color-red-10)] outline-2 -outline-offset-2 outline-white/20 hover:from-brand-red-hover hover:to-brand-red-hover flex items-center justify-center transition-[background-color,transform,box-shadow] duration-200 ease-out active:scale-[0.96] cursor-pointer"
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      <path d="M5 12h14" />
-                      <path d="m12 5 7 7-7 7" />
-                    </svg>
-                  </button>
-
-                  {/* Interactive Indicator Pills for all 4 Slides */}
-                  <div className="flex items-center gap-1.5 ml-2" aria-label="Slide indicators">
-                    {HERO_SERVICE_SLIDES.map((slide, idx) => (
-                      <button
-                        key={slide.id}
-                        type="button"
-                        onClick={() => {
-                          setDirection(idx > activeIndex ? 1 : -1);
-                          setActiveIndex(idx);
-                        }}
-                        aria-label={`Go to slide ${idx + 1}: ${slide.serviceLabel}`}
-                        className={`transition-all duration-300 rounded-full cursor-pointer ${
-                          idx === activeIndex
-                            ? "w-6 h-1.5 bg-brand-red shadow-xs"
-                            : "w-1.5 h-1.5 bg-brand-navy/25 hover:bg-brand-navy/50"
-                        }`}
-                      />
-                    ))}
-                  </div>
+                  {HERO_SERVICE_SLIDES.map((slide, idx) => (
+                    <button
+                      key={slide.id}
+                      type="button"
+                      onClick={() => goToSlide(idx)}
+                      aria-label={`Go to slide ${idx + 1}: ${slide.serviceLabel}`}
+                      className={`transition-all duration-300 rounded-full cursor-pointer ${
+                        idx === activeIndex
+                          ? "w-7 h-1.5 bg-white shadow-xs"
+                          : "w-1.5 h-1.5 bg-white/40 hover:bg-white/70"
+                      }`}
+                    />
+                  ))}
                 </div>
               </div>
 
-              {/* Right Side Media Column (5 of 12 columns on desktop with Proper UI Components) */}
-              <div
-                style={{ backgroundColor: currentSlide.backdropColor || "#050001" }}
-                className="lg:col-span-5 relative w-full h-[320px] sm:h-[400px] lg:h-full min-h-[320px] lg:min-h-[520px] overflow-hidden transition-colors duration-500"
-              >
-                <AnimatePresence mode="wait" custom={direction}>
-                  <motion.div
-                    key={currentSlide.id}
-                    custom={direction}
-                    variants={imageSlideVariants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    transition={{ duration: 0.5, ease: APPLE_EASE }}
-                    className="relative w-full h-full"
-                  >
-                    <Image
-                      src={currentSlide.imageSrc}
-                      alt={currentSlide.imageAlt}
-                      fill
-                      priority
-                      sizes="(max-width: 1024px) 100vw, 42vw"
-                      className="object-cover object-center"
-                    />
-                  </motion.div>
-                </AnimatePresence>
-
-                {/* Signature Organic Left-Edge SVG Cutout Mask with Dynamic Slide Cutout Gradient */}
-                <LeftEdgeCutoutMask cutoutColor={currentSlide.cutoutColor} />
-
-                {/* Top Floating Metric Chip */}
-                <div className="absolute top-5 right-5 z-20 rounded-full bg-brand-navy/85 backdrop-blur-md border border-white/20 px-3.5 py-1.5 flex items-center gap-1.5 text-white shadow-[0_4px_14px_rgba(0,0,0,0.25)]">
-                  <Zap className="w-3.5 h-3.5 text-brand-red fill-brand-red" />
-                  <span className="text-[11px] sm:text-xs font-medium tracking-tight">
-                    {currentSlide.metricBadge}
-                  </span>
-                </div>
-
-                {/* Floating Service Icon Pill Badge on Right Photo */}
-                <div className="absolute bottom-5 right-5 z-20 rounded-full bg-white/95 backdrop-blur-sm border border-black/[0.06] px-4 py-2 flex items-center gap-2.5 shadow-[0_4px_14px_rgba(1,13,59,0.12)]">
-                  <Image
-                    src={currentSlide.serviceIcon}
-                    alt={currentSlide.serviceLabel}
-                    width={26}
-                    height={26}
-                    className="w-6.5 h-6.5 object-contain shrink-0"
-                  />
-                  <span className="text-xs font-mono font-medium text-brand-navy">
-                    {currentSlide.serviceLabel}
-                  </span>
-                </div>
-
-                {/* Mobile Top Cutout Mask */}
-                <svg
-                  className="lg:hidden absolute -top-px left-0 w-full h-10 z-10 pointer-events-none transition-colors duration-700"
-                  viewBox="0 0 600 60"
-                  preserveAspectRatio="none"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
+              {/* Right Side Column (5 of 12 columns on desktop): Smartphone with SASH Broadband App seamlessly placed on gradient */}
+              <div className="lg:col-span-5 relative w-full h-[320px] sm:h-[400px] lg:h-full min-h-[320px] lg:min-h-[520px] flex items-end justify-center lg:justify-end overflow-hidden">
+                <motion.div
+                  animate={
+                    shouldReduceMotion
+                      ? undefined
+                      : {
+                          y: [-3, 3, -3],
+                        }
+                  }
+                  transition={{
+                    duration: 4.8,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="relative w-full max-w-[380px] sm:max-w-[460px] lg:max-w-[540px] h-full flex items-end justify-end pointer-events-none select-none"
                 >
-                  <path
-                    d="M0 0H600V25C420 65 180 65 0 25V0Z"
-                    fill="url(#mobile-cutout-gradient)"
+                  <Image
+                    src={
+                      activeIndex === 0
+                        ? "/hero-phone-hand-retina.png"
+                        : "/hero-phone-hand-cutout.png"
+                    }
+                    alt="SASH Broadband high-speed mobile network app"
+                    width={752}
+                    height={790}
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                    className="w-full h-auto max-h-[560px] object-contain object-bottom-right drop-shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
                   />
-                  <defs>
-                    <linearGradient id="mobile-cutout-gradient" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0%" stopColor="#FFFFFF" />
-                      <stop offset="100%" stopColor={currentSlide.cutoutColor} />
-                    </linearGradient>
-                  </defs>
-                </svg>
+                </motion.div>
               </div>
             </div>
           </div>
