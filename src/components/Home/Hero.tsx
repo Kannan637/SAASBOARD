@@ -373,7 +373,7 @@ export default function Hero() {
 
               {/* Right Side Column (5 of 12 columns on desktop): Centered on mobile, shifted on desktop */}
               <div className="lg:col-span-5 relative w-full h-[280px] sm:h-[350px] lg:h-full min-h-[280px] sm:min-h-[350px] lg:min-h-[470px] flex items-end justify-center lg:justify-end overflow-hidden px-4 pt-2 pb-0 sm:p-4 lg:p-0">
-                <div className="relative w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[500px] h-full flex items-end justify-center lg:justify-end pointer-events-none select-none translate-x-0 lg:-translate-x-[10%]">
+                <div className="relative w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[500px] h-full flex items-end justify-center lg:justify-end pointer-events-none select-none translate-x-0 lg:-translate-x-[20%]">
                   <Image
                     src={currentSlide.imageSrc}
                     alt={currentSlide.imageAlt}
