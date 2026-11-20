@@ -19,7 +19,6 @@ import {
   Lock,
   MapPin,
   Network,
-  Plus,
   RotateCcw,
   Router,
   Server,
@@ -612,13 +611,30 @@ export function FlippableDeliverableCard({
                   {item.title}
                 </h3>
               </div>
-              <div
+              <svg
                 data-flip-trigger="true"
                 aria-label="View card details"
-                className="size-9 sm:size-10 rounded-[14px] bg-red-10 border border-brand-red/25 flex items-center justify-center text-brand-red shrink-0"
+                className="size-9 sm:size-10 shrink-0 cursor-pointer select-none"
+                viewBox="0 0 40 40"
+                fill="none"
               >
-                <Plus className="size-5 stroke-[2.75]" />
-              </div>
+                <mask id={`plus-mask-service-${idx}`}>
+                  <rect width="40" height="40" rx="14" fill="white" />
+                  <path
+                    d="M20 11v18M11 20h18"
+                    stroke="black"
+                    strokeWidth="3.2"
+                    strokeLinecap="round"
+                  />
+                </mask>
+                <rect
+                  width="40"
+                  height="40"
+                  rx="14"
+                  fill="#000000"
+                  mask={`url(#plus-mask-service-${idx})`}
+                />
+              </svg>
             </div>
           </div>
         </div>
@@ -649,7 +665,7 @@ export function FlippableDeliverableCard({
               </h3>
 
               {item.points && item.points.length > 0 && (
-                <ul className="space-y-3 sm:space-y-3.5 mb-6">
+                <ul className="space-y-3 sm:space-y-3.5">
                   {item.points.map((point, pIdx) => (
                     <li
                       key={pIdx}
@@ -661,17 +677,6 @@ export function FlippableDeliverableCard({
                   ))}
                 </ul>
               )}
-            </div>
-
-            <div className="pt-4 border-t border-black/[0.06] mt-auto flex items-center justify-between">
-              <Link
-                href="#contact"
-                className="group/link inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-brand-red hover:underline"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <span>Enquire about {item.title}</span>
-                <ChevronRight className="size-3.5 stroke-[2.5] transition-transform duration-150 group-hover/link:translate-x-0.5" />
-              </Link>
             </div>
           </div>
         </div>

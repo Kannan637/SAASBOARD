@@ -19,7 +19,6 @@ import {
   Headphones,
   MessageSquare,
   PhoneCall,
-  Plus,
   RotateCcw,
   Router,
   ShieldCheck,
@@ -296,13 +295,30 @@ export function FibreSpeedCard() {
                 Up to 1 Gbps
               </CardTitle>
             </div>
-            <div
+            <svg
               data-flip-trigger="true"
               aria-label="View card details"
-              className="size-9 sm:size-10 rounded-[14px] bg-red-10 border border-brand-red/25 flex items-center justify-center text-brand-red shrink-0"
+              className="size-9 sm:size-10 shrink-0 cursor-pointer select-none"
+              viewBox="0 0 40 40"
+              fill="none"
             >
-              <Plus className="size-5 stroke-[2.75]" />
-            </div>
+              <mask id="plus-mask-fibre">
+                <rect width="40" height="40" rx="14" fill="white" />
+                <path
+                  d="M20 11v18M11 20h18"
+                  stroke="black"
+                  strokeWidth="3.2"
+                  strokeLinecap="round"
+                />
+              </mask>
+              <rect
+                width="40"
+                height="40"
+                rx="14"
+                fill="#000000"
+                mask="url(#plus-mask-fibre)"
+              />
+            </svg>
           </div>
         </CardContent>
       }
@@ -323,7 +339,7 @@ export function FibreSpeedCard() {
               Up to 1 Gbps Ultra-Speed FTTH Pure Optical Fibre
             </h3>
 
-            <ul className="space-y-3 sm:space-y-3.5 mb-6">
+            <ul className="space-y-3 sm:space-y-3.5">
               {[
                 "Symmetrical 1:1 upload & download bandwidth up to 1000 Mbps",
                 "Ultra-low latency (<5ms) engineered for 4K streaming and pro gaming",
@@ -336,17 +352,6 @@ export function FibreSpeedCard() {
                 </li>
               ))}
             </ul>
-          </div>
-
-          <div className="pt-4 border-t border-black/[0.06] mt-auto flex items-center justify-between">
-            <Link
-              href="/broadband-services"
-              className="group/link inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-brand-red hover:underline"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <span>Explore Broadband Plans</span>
-              <ChevronRight className="size-3.5 stroke-[2.5] transition-transform duration-150 group-hover/link:translate-x-0.5" />
-            </Link>
           </div>
         </div>
       }
@@ -404,13 +409,30 @@ export function RouterSetupCard() {
                 Free router and setup
               </CardTitle>
             </div>
-            <div
+            <svg
               data-flip-trigger="true"
               aria-label="View card details"
-              className="size-9 sm:size-10 rounded-[14px] bg-red-10 border border-brand-red/25 flex items-center justify-center text-brand-red shrink-0"
+              className="size-9 sm:size-10 shrink-0 cursor-pointer select-none"
+              viewBox="0 0 40 40"
+              fill="none"
             >
-              <Plus className="size-5 stroke-[2.75]" />
-            </div>
+              <mask id="plus-mask-router">
+                <rect width="40" height="40" rx="14" fill="white" />
+                <path
+                  d="M20 11v18M11 20h18"
+                  stroke="black"
+                  strokeWidth="3.2"
+                  strokeLinecap="round"
+                />
+              </mask>
+              <rect
+                width="40"
+                height="40"
+                rx="14"
+                fill="#000000"
+                mask="url(#plus-mask-router)"
+              />
+            </svg>
           </div>
         </CardContent>
       }
@@ -431,7 +453,7 @@ export function RouterSetupCard() {
               Free Dual-Band Gigabit Wi-Fi Router & Setup
             </h3>
 
-            <ul className="space-y-3 sm:space-y-3.5 mb-6">
+            <ul className="space-y-3 sm:space-y-3.5">
               {[
                 "Complimentary Gigabit dual-band (2.4 GHz + 5 GHz) Wi-Fi router",
                 "Free doorstep professional optical fiber cabling & termination",
@@ -444,17 +466,6 @@ export function RouterSetupCard() {
                 </li>
               ))}
             </ul>
-          </div>
-
-          <div className="pt-4 border-t border-black/[0.06] mt-auto flex items-center justify-between">
-            <Link
-              href="/#contact"
-              className="group/link inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-brand-red hover:underline"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <span>Check Feasibility at Your Address</span>
-              <ChevronRight className="size-3.5 stroke-[2.5] transition-transform duration-150 group-hover/link:translate-x-0.5" />
-            </Link>
           </div>
         </div>
       }
@@ -538,13 +549,30 @@ export function LicensedISPCARD() {
                 Licensed ISP serving Tamil Nadu
               </CardTitle>
             </div>
-            <div
+            <svg
               data-flip-trigger="true"
               aria-label="View card details"
-              className="size-9 sm:size-10 rounded-[14px] bg-red-10 border border-brand-red/25 flex items-center justify-center text-brand-red shrink-0"
+              className="size-9 sm:size-10 shrink-0 cursor-pointer select-none"
+              viewBox="0 0 40 40"
+              fill="none"
             >
-              <Plus className="size-5 stroke-[2.75]" />
-            </div>
+              <mask id="plus-mask-tamilnadu">
+                <rect width="40" height="40" rx="14" fill="white" />
+                <path
+                  d="M20 11v18M11 20h18"
+                  stroke="black"
+                  strokeWidth="3.2"
+                  strokeLinecap="round"
+                />
+              </mask>
+              <rect
+                width="40"
+                height="40"
+                rx="14"
+                fill="#000000"
+                mask="url(#plus-mask-tamilnadu)"
+              />
+            </svg>
           </div>
         </CardContent>
       }
@@ -565,7 +593,7 @@ export function LicensedISPCARD() {
               Licensed Class-B ISP Serving Tamil Nadu
             </h3>
 
-            <ul className="space-y-3 sm:space-y-3.5 mb-6">
+            <ul className="space-y-3 sm:space-y-3.5">
               {[
                 "DoT & TRAI licensed Class-B ISP with full regulatory compliance",
                 "Tier-1 BGP upstream peering for low-ping global and domestic routing",
@@ -578,17 +606,6 @@ export function LicensedISPCARD() {
                 </li>
               ))}
             </ul>
-          </div>
-
-          <div className="pt-4 border-t border-black/[0.06] mt-auto flex items-center justify-between">
-            <Link
-              href="/about"
-              className="group/link inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-brand-red hover:underline"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <span>Learn About Our Network</span>
-              <ChevronRight className="size-3.5 stroke-[2.5] transition-transform duration-150 group-hover/link:translate-x-0.5" />
-            </Link>
           </div>
         </div>
       }
@@ -830,13 +847,30 @@ export function SupportCard() {
                 Always connected to local support
               </CardTitle>
             </div>
-            <div
+            <svg
               data-flip-trigger="true"
               aria-label="View card details"
-              className="size-9 sm:size-10 rounded-[14px] bg-red-10 border border-brand-red/25 flex items-center justify-center text-brand-red shrink-0"
+              className="size-9 sm:size-10 shrink-0 cursor-pointer select-none"
+              viewBox="0 0 40 40"
+              fill="none"
             >
-              <Plus className="size-5 stroke-[2.75]" />
-            </div>
+              <mask id="plus-mask-support">
+                <rect width="40" height="40" rx="14" fill="white" />
+                <path
+                  d="M20 11v18M11 20h18"
+                  stroke="black"
+                  strokeWidth="3.2"
+                  strokeLinecap="round"
+                />
+              </mask>
+              <rect
+                width="40"
+                height="40"
+                rx="14"
+                fill="#000000"
+                mask="url(#plus-mask-support)"
+              />
+            </svg>
           </div>
         </CardContent>
       }
@@ -857,7 +891,7 @@ export function SupportCard() {
               24/7 Local NOC & Dedicated Field Desk
             </h3>
 
-            <ul className="space-y-3 sm:space-y-3.5 mb-6">
+            <ul className="space-y-3 sm:space-y-3.5">
               {[
                 "24/7/365 NOC monitoring with <15 min average ticket response",
                 "Local Thiruvallur field engineers dispatched for fast on-site visits",
@@ -870,17 +904,6 @@ export function SupportCard() {
                 </li>
               ))}
             </ul>
-          </div>
-
-          <div className="pt-4 border-t border-black/[0.06] mt-auto flex items-center justify-between">
-            <Link
-              href="/contact"
-              className="group/link inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-brand-red hover:underline"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <span>Contact Local Support Desk</span>
-              <ChevronRight className="size-3.5 stroke-[2.5] transition-transform duration-150 group-hover/link:translate-x-0.5" />
-            </Link>
           </div>
         </div>
       }
