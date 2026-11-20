@@ -13,7 +13,6 @@ import {
 import Contactus from "@/components/Home/Contactus";
 import Testimonial from "@/components/Home/Testimonial";
 import Faq, { type FaqItem } from "@/components/Home/Faq";
-import { SingleClientMarquee } from "@/components/Service/ServicePageTemplate";
 import {
   AppleReveal,
   AppleStagger,
@@ -137,6 +136,76 @@ const ABOUT_FAQS: FaqItem[] = [
   },
 ];
 
+const COMPANY_LOGOS = Array.from({ length: 34 }, (_, index) => {
+  const logoNumber = index + 1;
+  return {
+    id: `about-logo-${logoNumber}`,
+    src: `/Logo/${logoNumber}.jpg`,
+    alt: `Trusted Customer Partner ${logoNumber}`,
+  };
+});
+
+function AboutLogoMarquee() {
+  return (
+    <section
+      data-apple-manual="true"
+      aria-label="Trusted by leading companies and institutions"
+      className="w-full bg-white border-b border-black/[0.05] py-7 sm:py-8 overflow-hidden select-none"
+    >
+      <div className="container-sash">
+        <p className="text-center text-xs sm:text-sm font-normal text-neutral-500 tracking-[-0.05px] mb-5 sm:mb-6">
+          Trusted by leading companies and institutions across Tamil Nadu
+        </p>
+
+        <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 bg-gradient-to-r from-white to-transparent z-10"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-24 bg-gradient-to-l from-white to-transparent z-10"
+          />
+
+          <div className="animate-sash-logo-marquee flex items-center gap-10 sm:gap-14 py-1">
+            {COMPANY_LOGOS.map((logo) => (
+              <div
+                key={`orig-${logo.id}`}
+                className="shrink-0 flex items-center justify-center transition-transform duration-200 hover:scale-105"
+              >
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={140}
+                  height={48}
+                  sizes="140px"
+                  className="h-8 sm:h-9 w-auto max-w-[120px] sm:max-w-[140px] object-contain select-none pointer-events-none grayscale opacity-65 hover:grayscale-0 hover:opacity-100 transition-all duration-300 mix-blend-multiply"
+                />
+              </div>
+            ))}
+            {COMPANY_LOGOS.map((logo) => (
+              <div
+                key={`dup-${logo.id}`}
+                aria-hidden="true"
+                className="shrink-0 flex items-center justify-center transition-transform duration-200 hover:scale-105"
+              >
+                <Image
+                  src={logo.src}
+                  alt=""
+                  width={140}
+                  height={48}
+                  sizes="140px"
+                  className="h-8 sm:h-9 w-auto max-w-[120px] sm:max-w-[140px] object-contain select-none pointer-events-none grayscale opacity-65 hover:grayscale-0 hover:opacity-100 transition-all duration-300 mix-blend-multiply"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function AboutPage() {
   return (
     <>
@@ -254,7 +323,7 @@ export default function AboutPage() {
       </section>
 
       {/* 2. Client & Partner Logo Marquee: Directly below Hero Section */}
-      <SingleClientMarquee />
+      <AboutLogoMarquee />
 
       {/* 3. Core Commitments: UI matching Complete Network Portfolio & Connectivity for every need */}
       <section

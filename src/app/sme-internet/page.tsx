@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Contactus from "@/components/Home/Contactus";
 import Testimonial from "@/components/Home/Testimonial";
 import Faq from "@/components/Home/Faq";
@@ -129,69 +130,88 @@ export default function SmeInternetPage() {
       <section
         id="sme-comparison"
         data-apple-manual="true"
-        className="bg-neutral-100 text-brand-navy section-padding"
+        aria-labelledby="comparison-heading"
+        className="relative overflow-hidden bg-brand-navy text-white section-padding"
       >
-        <div className="container-sash">
+        {/* Background Image with Gradient Overlay using shared corporate glass building image */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0"
+        >
+          <Image
+            src="/Service/sme-comparison-bg.jpg"
+            alt="Corporate modern glass architectural buildings representing enterprise & SME connectivity"
+            fill
+            sizes="100vw"
+            className="object-cover object-center select-none"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-brand-navy/60 to-brand-navy/85" />
+        </div>
+
+        <div className="container-sash relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             <AppleReveal className="lg:col-span-4">
-              <p className="eyebrow-label text-brand-red mb-2.5">
+              <p className="eyebrow-label text-white/80 mb-2.5">
                 Home vs SME Plans
               </p>
-              <h2 className="text-brand-navy !text-lg sm:!text-xl font-normal tracking-tight mb-2.5">
+              <h2
+                id="comparison-heading"
+                className="text-white !text-xl sm:!text-2xl lg:!text-[28px] font-semibold tracking-tight leading-snug mb-3"
+              >
                 How SME Broadband compares with Home Plans
               </h2>
-              <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-normal">
+              <p className="text-white/80 text-xs sm:text-sm leading-relaxed font-normal">
                 Upgrade from residential broadband to dedicated business
                 stability, priority fault dispatch, and GST-compliant billing.
               </p>
             </AppleReveal>
 
             <div className="lg:col-span-8">
-              <div className="overflow-x-auto card-sash bg-white border border-brand-navy/10">
+              <div className="overflow-x-auto rounded-[22px] bg-navy-80/80 backdrop-blur-md border border-white/15 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
                 <table className="w-full text-left border-collapse">
                   <thead>
-                    <tr className="bg-brand-navy text-white text-xs sm:text-sm">
-                      <th className="p-4 sm:p-5 font-medium">Feature</th>
-                      <th className="p-4 sm:p-5 font-medium">Home Broadband</th>
-                      <th className="p-4 sm:p-5 font-medium">SME Business Plans</th>
+                    <tr className="bg-white/10 text-white text-xs sm:text-sm border-b border-white/15">
+                      <th className="p-4 sm:p-5 font-semibold">Feature</th>
+                      <th className="p-4 sm:p-5 font-semibold text-white/80">Home Broadband</th>
+                      <th className="p-4 sm:p-5 font-semibold text-white">SME Business Plans</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-neutral-100 text-xs sm:text-sm">
-                    <tr className="bg-white">
-                      <td className="p-4 sm:p-5 font-medium text-brand-navy">
+                  <tbody className="divide-y divide-white/10 text-xs sm:text-sm">
+                    <tr className="hover:bg-white/[0.04] transition-colors">
+                      <td className="p-4 sm:p-5 font-medium text-white">
                         Monthly Data &amp; Bandwidth
                       </td>
-                      <td className="p-4 sm:p-5 text-neutral-600">Unlimited</td>
-                      <td className="p-4 sm:p-5 font-normal text-brand-navy">
+                      <td className="p-4 sm:p-5 text-white/70">Unlimited</td>
+                      <td className="p-4 sm:p-5 font-medium text-white">
                         Unlimited with business traffic priority
                       </td>
                     </tr>
-                    <tr className="bg-neutral-100/50">
-                      <td className="p-4 sm:p-5 font-medium text-brand-navy">
+                    <tr className="hover:bg-white/[0.04] transition-colors bg-white/[0.02]">
+                      <td className="p-4 sm:p-5 font-medium text-white">
                         Price Lock Protection
                       </td>
-                      <td className="p-4 sm:p-5 text-neutral-600">1 to 2 Years</td>
-                      <td className="p-4 sm:p-5 font-normal text-brand-navy">
+                      <td className="p-4 sm:p-5 text-white/70">1 to 2 Years</td>
+                      <td className="p-4 sm:p-5 font-medium text-white">
                         Unlimited Price Lock (Corporate Pack ₹1,499/mo)
                       </td>
                     </tr>
-                    <tr className="bg-white">
-                      <td className="p-4 sm:p-5 font-medium text-brand-navy">
+                    <tr className="hover:bg-white/[0.04] transition-colors">
+                      <td className="p-4 sm:p-5 font-medium text-white">
                         Support Response
                       </td>
-                      <td className="p-4 sm:p-5 text-neutral-600">
+                      <td className="p-4 sm:p-5 text-white/70">
                         24/7 Customer Support
                       </td>
-                      <td className="p-4 sm:p-5 font-normal text-brand-navy">
+                      <td className="p-4 sm:p-5 font-medium text-white">
                         24/7 Priority Commercial Field Dispatch
                       </td>
                     </tr>
-                    <tr className="bg-neutral-100/50">
-                      <td className="p-4 sm:p-5 font-medium text-brand-navy">
+                    <tr className="hover:bg-white/[0.04] transition-colors bg-white/[0.02]">
+                      <td className="p-4 sm:p-5 font-medium text-white">
                         Static IP &amp; CCTV Port Forwarding
                       </td>
-                      <td className="p-4 sm:p-5 text-neutral-600">Optional Add-on</td>
-                      <td className="p-4 sm:p-5 font-normal text-brand-navy">
+                      <td className="p-4 sm:p-5 text-white/70">Optional Add-on</td>
+                      <td className="p-4 sm:p-5 font-medium text-white">
                         Supported for POS, NVR/CCTV &amp; VPN
                       </td>
                     </tr>
