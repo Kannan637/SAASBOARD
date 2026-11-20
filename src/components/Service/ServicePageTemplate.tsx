@@ -606,46 +606,41 @@ export function FlippableDeliverableCard({
 
         {/* Back Face: Description, Bullet Points, and Action */}
         <div
-          className="absolute inset-0 w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden p-6 sm:p-7 z-20 cursor-pointer"
+          className="absolute inset-0 w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden p-7 sm:p-8 lg:p-9 z-20 cursor-pointer"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
           }}
         >
-          <div className="flex flex-col justify-between h-full bg-gradient-to-b from-[#FAFBFD] via-white to-white">
+          <div className="flex flex-col justify-between h-full bg-white">
             <div>
-              <div className="flex items-center justify-between gap-2 mb-3.5">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-red/10 px-2.5 py-1 text-xs font-medium text-brand-red">
-                  <Sparkles className="size-3.5" />
-                  <span>{item.tag || `Step 0${idx + 1}`}</span>
-                </span>
-                <span className="text-[11px] font-medium text-neutral-400 flex items-center gap-1">
+              <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
+                <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#EBF2FE] text-[#1A73E8] flex items-center justify-center shrink-0">
+                  <IconComponent className="size-6 sm:size-7" />
+                </div>
+                <span className="text-neutral-400 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 transition-colors">
                   <RotateCcw className="size-3" />
-                  <span>Flip</span>
+                  <span className="hidden min-[400px]:inline">Flip back</span>
                 </span>
               </div>
 
-              <h3 className="text-brand-navy text-xl sm:text-2xl font-semibold tracking-normal mb-2">
+              <h3 className="text-brand-navy text-xl sm:text-2xl font-semibold tracking-tight leading-[1.28] mb-5 sm:mb-6">
                 {item.title}
               </h3>
 
-              <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-normal mb-4">
-                {item.description}
-              </p>
-
               {item.points && item.points.length > 0 && (
-                <div className="space-y-2.5">
+                <ul className="space-y-3 sm:space-y-3.5 mb-6">
                   {item.points.map((point, pIdx) => (
-                    <div
+                    <li
                       key={pIdx}
-                      className="flex items-start gap-2.5 text-xs sm:text-[13px] text-brand-navy/90 leading-snug"
+                      className="flex items-start gap-3 text-neutral-800 text-sm sm:text-[15px] leading-relaxed"
                     >
-                      <CheckCircle2 className="size-4 text-brand-red shrink-0 mt-0.5" />
+                      <span className="size-1.5 rounded-full bg-neutral-900 shrink-0 mt-2" />
                       <span>{point}</span>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
               )}
             </div>
 

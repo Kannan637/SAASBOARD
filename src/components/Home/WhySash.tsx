@@ -15,6 +15,7 @@ import {
   BatteryFull,
   CheckCircle2,
   ChevronRight,
+  Globe,
   Headphones,
   MessageSquare,
   PhoneCall,
@@ -24,6 +25,7 @@ import {
   Signal,
   Sparkles,
   Wifi,
+  Zap,
 } from "lucide-react";
 import {
   Card,
@@ -116,7 +118,7 @@ export function FlippableFeatureCard({
 
         {/* Back Face: Description, Bullet Points, and Action */}
         <div
-          className="absolute inset-0 w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden p-6 sm:p-7 z-20 cursor-pointer"
+          className="absolute inset-0 w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden p-7 sm:p-8 lg:p-9 z-20 cursor-pointer"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -286,41 +288,35 @@ export function FibreSpeedCard() {
         </CardContent>
       }
       backContent={
-        <div className="flex flex-col justify-between h-full bg-gradient-to-b from-[#FAFBFD] via-white to-white">
+        <div className="flex flex-col justify-between h-full bg-white">
           <div>
-            <div className="flex items-center justify-between gap-2 mb-3.5">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-red/10 px-2.5 py-1 text-xs font-medium text-brand-red">
-                <Sparkles className="size-3.5" />
-                <span>Speed & Performance</span>
-              </span>
-              <span className="text-[11px] font-medium text-neutral-400 flex items-center gap-1">
+            <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#EBF2FE] text-[#1A73E8] flex items-center justify-center shrink-0">
+                <Zap className="size-6 sm:size-7" />
+              </div>
+              <span className="text-neutral-400 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 transition-colors">
                 <RotateCcw className="size-3" />
-                <span>Flip</span>
+                <span className="hidden min-[400px]:inline">Flip back</span>
               </span>
             </div>
 
-            <h3 className="text-brand-navy text-xl sm:text-2xl font-semibold tracking-normal mb-2">
-              Up to 1 Gbps Ultra-Speed FTTH
+            <h3 className="text-brand-navy text-xl sm:text-2xl font-semibold tracking-tight leading-[1.28] mb-5 sm:mb-6">
+              Up to 1 Gbps Ultra-Speed FTTH Pure Optical Fibre
             </h3>
 
-            <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-normal mb-5">
-              End-to-end FTTH optical infrastructure delivers consistent upload
-              and download speeds, even during peak evening hours.
-            </p>
-
-            <div className="space-y-2.5">
+            <ul className="space-y-3 sm:space-y-3.5 mb-6">
               {[
                 "Symmetrical 1:1 upload & download bandwidth up to 1000 Mbps",
                 "Ultra-low latency (<5ms) engineered for 4K streaming and pro gaming",
                 "Dedicated GPON optical fiber directly routed to your premise",
                 "True unlimited data with zero peak-time speed throttling",
               ].map((point, idx) => (
-                <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-[13px] text-brand-navy/90 leading-snug">
-                  <CheckCircle2 className="size-4 text-brand-red shrink-0 mt-0.5" />
+                <li key={idx} className="flex items-start gap-3 text-neutral-800 text-sm sm:text-[15px] leading-relaxed">
+                  <span className="size-1.5 rounded-full bg-neutral-900 shrink-0 mt-2" />
                   <span>{point}</span>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           <div className="pt-4 border-t border-black/[0.06] mt-auto flex items-center justify-between">
@@ -397,41 +393,35 @@ export function RouterSetupCard() {
         </CardContent>
       }
       backContent={
-        <div className="flex flex-col justify-between h-full bg-gradient-to-b from-[#FAFBFD] via-white to-white">
+        <div className="flex flex-col justify-between h-full bg-white">
           <div>
-            <div className="flex items-center justify-between gap-2 mb-3.5">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-red/10 px-2.5 py-1 text-xs font-medium text-brand-red">
-                <Router className="size-3.5" />
-                <span>Equipment & Setup</span>
-              </span>
-              <span className="text-[11px] font-medium text-neutral-400 flex items-center gap-1">
+            <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#EBF2FE] text-[#1A73E8] flex items-center justify-center shrink-0">
+                <Router className="size-6 sm:size-7" />
+              </div>
+              <span className="text-neutral-400 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 transition-colors">
                 <RotateCcw className="size-3" />
-                <span>Flip</span>
+                <span className="hidden min-[400px]:inline">Flip back</span>
               </span>
             </div>
 
-            <h3 className="text-brand-navy text-xl sm:text-2xl font-semibold tracking-normal mb-2">
-              Zero Cost Hardware & Setup
+            <h3 className="text-brand-navy text-xl sm:text-2xl font-semibold tracking-tight leading-[1.28] mb-5 sm:mb-6">
+              Free Dual-Band Gigabit Wi-Fi Router & Setup
             </h3>
 
-            <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-normal mb-5">
-              Zero upfront installation charges and a pre-configured dual-band
-              Wi-Fi router on eligible home and business plans.
-            </p>
-
-            <div className="space-y-2.5">
+            <ul className="space-y-3 sm:space-y-3.5 mb-6">
               {[
                 "Complimentary Gigabit dual-band (2.4 GHz + 5 GHz) Wi-Fi router",
                 "Free doorstep professional optical fiber cabling & termination",
                 "Fast same-day or 24-48h activation with on-site technician test",
                 "Pre-configured WPA3 security with instant plug-and-play setup",
               ].map((point, idx) => (
-                <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-[13px] text-brand-navy/90 leading-snug">
-                  <CheckCircle2 className="size-4 text-brand-red shrink-0 mt-0.5" />
+                <li key={idx} className="flex items-start gap-3 text-neutral-800 text-sm sm:text-[15px] leading-relaxed">
+                  <span className="size-1.5 rounded-full bg-neutral-900 shrink-0 mt-2" />
                   <span>{point}</span>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           <div className="pt-4 border-t border-black/[0.06] mt-auto flex items-center justify-between">
@@ -534,41 +524,35 @@ export function LicensedISPCARD() {
         </CardContent>
       }
       backContent={
-        <div className="flex flex-col justify-between h-full bg-gradient-to-b from-[#FAFBFD] via-white to-white">
+        <div className="flex flex-col justify-between h-full bg-white">
           <div>
-            <div className="flex items-center justify-between gap-2 mb-3.5">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-red/10 px-2.5 py-1 text-xs font-medium text-brand-red">
-                <ShieldCheck className="size-3.5" />
-                <span>Telecom Compliance</span>
-              </span>
-              <span className="text-[11px] font-medium text-neutral-400 flex items-center gap-1">
+            <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#EBF2FE] text-[#1A73E8] flex items-center justify-center shrink-0">
+                <Globe className="size-6 sm:size-7" />
+              </div>
+              <span className="text-neutral-400 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 transition-colors">
                 <RotateCcw className="size-3" />
-                <span>Flip</span>
+                <span className="hidden min-[400px]:inline">Flip back</span>
               </span>
             </div>
 
-            <h3 className="text-brand-navy text-xl sm:text-2xl font-semibold tracking-normal mb-2">
-              Licensed Class-B Internet Service Provider
+            <h3 className="text-brand-navy text-xl sm:text-2xl font-semibold tracking-tight leading-[1.28] mb-5 sm:mb-6">
+              Licensed Class-B ISP Serving Tamil Nadu
             </h3>
 
-            <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-normal mb-5">
-              Authorised Internet Service Provider operating compliant,
-              high-availability optical ring infrastructure across Tamil Nadu.
-            </p>
-
-            <div className="space-y-2.5">
+            <ul className="space-y-3 sm:space-y-3.5 mb-6">
               {[
                 "DoT & TRAI licensed Class-B ISP with full regulatory compliance",
                 "Tier-1 BGP upstream peering for low-ping global and domestic routing",
                 "Multi-ring redundant optical path ensuring uninterrupted uptime",
                 "Trusted by 10,000+ homes and enterprises across Tamil Nadu",
               ].map((point, idx) => (
-                <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-[13px] text-brand-navy/90 leading-snug">
-                  <CheckCircle2 className="size-4 text-brand-red shrink-0 mt-0.5" />
+                <li key={idx} className="flex items-start gap-3 text-neutral-800 text-sm sm:text-[15px] leading-relaxed">
+                  <span className="size-1.5 rounded-full bg-neutral-900 shrink-0 mt-2" />
                   <span>{point}</span>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           <div className="pt-4 border-t border-black/[0.06] mt-auto flex items-center justify-between">
@@ -829,41 +813,35 @@ export function SupportCard() {
         </CardContent>
       }
       backContent={
-        <div className="flex flex-col justify-between h-full bg-gradient-to-b from-[#FAFBFD] via-white to-white">
+        <div className="flex flex-col justify-between h-full bg-white">
           <div>
-            <div className="flex items-center justify-between gap-2 mb-3.5">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-red/10 px-2.5 py-1 text-xs font-medium text-brand-red">
-                <Headphones className="size-3.5" />
-                <span>Local Service Guarantee</span>
-              </span>
-              <span className="text-[11px] font-medium text-neutral-400 flex items-center gap-1">
+            <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#EBF2FE] text-[#1A73E8] flex items-center justify-center shrink-0">
+                <Headphones className="size-6 sm:size-7" />
+              </div>
+              <span className="text-neutral-400 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 transition-colors">
                 <RotateCcw className="size-3" />
-                <span>Flip</span>
+                <span className="hidden min-[400px]:inline">Flip back</span>
               </span>
             </div>
 
-            <h3 className="text-brand-navy text-xl sm:text-2xl font-semibold tracking-normal mb-2">
+            <h3 className="text-brand-navy text-xl sm:text-2xl font-semibold tracking-tight leading-[1.28] mb-5 sm:mb-6">
               24/7 Local NOC & Dedicated Field Desk
             </h3>
 
-            <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-normal mb-5">
-              Direct access to our local Thiruvallur network operations team
-              around the clock, without endless automated menus.
-            </p>
-
-            <div className="space-y-2.5">
+            <ul className="space-y-3 sm:space-y-3.5 mb-6">
               {[
                 "24/7/365 NOC monitoring with <15 min average ticket response",
                 "Local Thiruvallur field engineers dispatched for fast on-site visits",
                 "Direct WhatsApp, direct phone, and customer desk access — no robotic IVR",
                 "Proactive optical line signal monitoring to prevent dropouts",
               ].map((point, idx) => (
-                <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-[13px] text-brand-navy/90 leading-snug">
-                  <CheckCircle2 className="size-4 text-brand-red shrink-0 mt-0.5" />
+                <li key={idx} className="flex items-start gap-3 text-neutral-800 text-sm sm:text-[15px] leading-relaxed">
+                  <span className="size-1.5 rounded-full bg-neutral-900 shrink-0 mt-2" />
                   <span>{point}</span>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           <div className="pt-4 border-t border-black/[0.06] mt-auto flex items-center justify-between">
