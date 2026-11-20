@@ -155,6 +155,7 @@ export default function Aboutus() {
                           src={client.src}
                           alt={client.alt}
                           fill
+                          sizes="(max-width: 640px) 56px, 64px"
                           className="object-contain"
                         />
                       </div>
@@ -166,6 +167,7 @@ export default function Aboutus() {
                           src={client.src}
                           alt={client.alt}
                           fill
+                          sizes="(max-width: 640px) 32px, 36px"
                           className="object-contain"
                         />
                       </div>
@@ -177,6 +179,7 @@ export default function Aboutus() {
                           src={client.src}
                           alt={client.alt}
                           fill
+                          sizes="(max-width: 640px) 28px, 32px"
                           className="object-contain"
                         />
                       </div>
