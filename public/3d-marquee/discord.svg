@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 970 700" width="970" height="700">
+  <defs>
+    <radialGradient id="bg-glow-disc" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#5865F2" stop-opacity="0.4" />
+      <stop offset="60%" stop-color="#080A1A" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#020408" stop-opacity="1" />
+    </radialGradient>
+    <linearGradient id="card-border-disc" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="white" stop-opacity="0.25" />
+      <stop offset="50%" stop-color="#5865F2" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="white" stop-opacity="0.08" />
+    </linearGradient>
+  </defs>
+
+  <!-- Card Body -->
+  <rect width="970" height="700" rx="44" fill="url(#bg-glow-disc)" />
+  <rect width="970" height="700" rx="44" fill="none" stroke="url(#card-border-disc)" stroke-width="4" />
+
+  <!-- Center Floating Icon Badge Container -->
+  <g transform="translate(485, 290)">
+    <!-- Icon Disk Background -->
+    <circle cx="0" cy="0" r="140" fill="#000000" opacity="0.6" stroke="#5865F2" stroke-width="3" stroke-opacity="0.45" />
+    <circle cx="0" cy="0" r="125" fill="#5865F2" opacity="0.15" />
+
+    <!-- Center SVG Icon scaled up 4.6x from 64x56 coordinate box -->
+    <g transform="translate(-147, -128) scale(4.6)">
+      <path d="M42 16c-3-.9-6-1.5-9-1.6l-.4.9c3.3.8 6.5 2.2 9.4 4.1C38 31 34 39 34 39c-4 2.8-8 2.8-8 2.8l-.8-1c3-.9 4.5-2 4.5-2-4.5 2.6-9 3.5-13.7 3.5s-9.2-.9-13.7-3.5c0 0 1.5 1.1 4.5 2l-.8 1s-4 0-8-2.8c0 0-4-8-7.9-19.6C8 17.5 11.3 16.1 14.6 15.3l-.4-.9c-3 .1-6 .7-9 1.6 0 0-5 8-5 21 3 3 8 4 8 4l2-2.5c-3-.9-4-2.5-4-2.5 1 .7 2 1.3 3 1.8 4 2 8 2.5 12 2.5s8-.5 12-2.5c1-.5 2-1.1 3-1.8 0 0-1 1.6-4 2.5l2 2.5s5-1 8-4c0-13-5-21-5-21z" fill="#5865F2"/><circle cx="24" cy="27" r="3" fill="white"/><circle cx="40" cy="27" r="3" fill="white"/>
+    </g>
+  </g>
+
+  <!-- Title & Subtitle Badge -->
+  <g transform="translate(485, 545)">
+    <text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="800" fill="#FFFFFF" letter-spacing="1.5" text-anchor="middle">DISCORD</text>
+    
+    <rect x="-260" y="24" width="520" height="46" rx="23" fill="white" fill-opacity="0.08" stroke="white" stroke-opacity="0.15" />
+    <text x="0" y="55" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#E2E8F0" text-anchor="middle" letter-spacing="0.5">Crystal-Clear Voice & Video</text>
+  </g>
+
+  <!-- Top Category Tag -->
+  <g transform="translate(60, 65)">
+    <rect width="180" height="40" rx="20" fill="#5865F2" fill-opacity="0.25" stroke="#5865F2" stroke-opacity="0.5" stroke-width="1.5" />
+    <circle cx="24" cy="20" r="6" fill="#5865F2" />
+    <text x="40" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="white" letter-spacing="1.2">ULTRA SPEED</text>
+  </g>
+</svg>

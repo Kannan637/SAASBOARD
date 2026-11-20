@@ -25,6 +25,42 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
+import { ThreeDMarquee } from "@/components/ui/3d-marquee";
+
+const UPGRADE_MARQUEE_IMAGES = [
+  "/3d-marquee/netflix.svg",
+  "/3d-marquee/prime-video.svg",
+  "/3d-marquee/youtube.svg",
+  "/3d-marquee/spotify.svg",
+  "/3d-marquee/disney-hotstar.svg",
+  "/3d-marquee/apple-tv.svg",
+  "/3d-marquee/twitch.svg",
+  "/3d-marquee/sony-liv.svg",
+  "/3d-marquee/zee5.svg",
+  "/3d-marquee/jio-cinema.svg",
+  "/3d-marquee/gta-5.svg",
+  "/3d-marquee/valorant.svg",
+  "/3d-marquee/bgmi.svg",
+  "/3d-marquee/call-of-duty.svg",
+  "/3d-marquee/minecraft.svg",
+  "/3d-marquee/fortnite.svg",
+  "/3d-marquee/free-fire.svg",
+  "/3d-marquee/cyberpunk.svg",
+  "/3d-marquee/ea-fc.svg",
+  "/3d-marquee/steam.svg",
+  "/3d-marquee/playstation.svg",
+  "/3d-marquee/xbox.svg",
+  "/3d-marquee/instagram.svg",
+  "/3d-marquee/whatsapp.svg",
+  "/3d-marquee/discord.svg",
+  "/3d-marquee/x-twitter.svg",
+  "/3d-marquee/telegram.svg",
+  "/3d-marquee/reddit.svg",
+  "/3d-marquee/facebook.svg",
+  "/3d-marquee/snapchat.svg",
+  "/3d-marquee/tiktok.svg",
+  "/3d-marquee/linkedin.svg",
+];
 
 const SERVICES_LIST = [
   {
@@ -316,10 +352,27 @@ export default function Service() {
             ))}
           </AppleStagger>
 
-          {/* 7. CTA Banner (Red background, White text, 32px rounded container with Apple scroll-scale) */}
+          {/* 7. CTA Banner (Red background, White text, 32px rounded container with 3D Marquee on the right background) */}
           <AppleScrollScale className="mt-20 md:mt-28 lg:mt-32">
-            <div className="banner-sash rounded-[32px] bg-brand-red text-white p-10 sm:p-14 lg:p-16 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 shadow-[0_16px_48px_rgba(222,3,2,0.22)]">
-              <div className="max-w-xl">
+            <div className="banner-sash relative overflow-hidden rounded-[32px] bg-brand-red text-white p-8 sm:p-12 lg:p-14 min-h-[360px] sm:min-h-[400px] lg:min-h-[420px] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 shadow-[0_16px_48px_rgba(222,3,2,0.22)]">
+              {/* 3D Marquee: Positioned on the right of the card background */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-28 sm:-right-20 md:-right-10 lg:right-0 top-1/2 -translate-y-1/2 w-[520px] sm:w-[680px] md:w-[780px] lg:w-[860px] h-[550px] sm:h-[620px] lg:h-[680px] overflow-hidden select-none z-0 opacity-80 sm:opacity-90 [mask-image:radial-gradient(ellipse_at_right,black_45%,transparent_80%)] lg:[mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.3)_18%,rgba(0,0,0,0.85)_45%,black_100%)]"
+              >
+                <ThreeDMarquee
+                  images={UPGRADE_MARQUEE_IMAGES}
+                  className="h-full w-full"
+                />
+              </div>
+
+              {/* Gradient Scrim to ensure 100% text readability */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-brand-red via-brand-red/95 to-transparent lg:from-brand-red lg:via-brand-red/80 lg:to-transparent z-10"
+              />
+
+              <div className="relative z-20 max-w-xl">
                 <h2 className="text-white mb-3 font-semibold text-2xl sm:text-3xl lg:text-4xl tracking-normal">
                   Ready to upgrade your connection?
                 </h2>
@@ -329,7 +382,7 @@ export default function Service() {
                 </p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-4 w-full lg:w-auto shrink-0">
+              <div className="relative z-20 flex flex-wrap items-center gap-4 w-full lg:w-auto shrink-0">
                 <Link
                   href="#contact"
                   className="group/cta btn-pill bg-linear-to-b from-brand-navy to-navy-80 text-white shadow-[0_6px_20px_rgba(1,13,59,0.22)] outline-2 -outline-offset-2 outline-white/20 hover:from-navy-80 hover:to-navy-80 w-full sm:w-auto font-medium"

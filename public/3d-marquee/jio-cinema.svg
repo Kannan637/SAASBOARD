@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 970 700" width="970" height="700">
+  <defs>
+    <radialGradient id="bg-glow-jioc" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#D82367" stop-opacity="0.4" />
+      <stop offset="60%" stop-color="#16040F" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#020408" stop-opacity="1" />
+    </radialGradient>
+    <linearGradient id="card-border-jioc" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="white" stop-opacity="0.25" />
+      <stop offset="50%" stop-color="#D82367" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="white" stop-opacity="0.08" />
+    </linearGradient>
+  </defs>
+
+  <!-- Card Body -->
+  <rect width="970" height="700" rx="44" fill="url(#bg-glow-jioc)" />
+  <rect width="970" height="700" rx="44" fill="none" stroke="url(#card-border-jioc)" stroke-width="4" />
+
+  <!-- Center Floating Icon Badge Container -->
+  <g transform="translate(485, 290)">
+    <!-- Icon Disk Background -->
+    <circle cx="0" cy="0" r="140" fill="#000000" opacity="0.6" stroke="#D82367" stroke-width="3" stroke-opacity="0.45" />
+    <circle cx="0" cy="0" r="125" fill="#D82367" opacity="0.15" />
+
+    <!-- Center SVG Icon scaled up 4.6x from 64x56 coordinate box -->
+    <g transform="translate(-147, -128) scale(4.6)">
+      <circle cx="32" cy="28" r="17" fill="#D82367"/><polygon points="26,20 42,28 26,36" fill="white"/>
+    </g>
+  </g>
+
+  <!-- Title & Subtitle Badge -->
+  <g transform="translate(485, 545)">
+    <text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="800" fill="#FFFFFF" letter-spacing="1.5" text-anchor="middle">JIO CINEMA</text>
+    
+    <rect x="-260" y="24" width="520" height="46" rx="23" fill="white" fill-opacity="0.08" stroke="white" stroke-opacity="0.15" />
+    <text x="0" y="55" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#E2E8F0" text-anchor="middle" letter-spacing="0.5">Live T20 & 4K Streaming</text>
+  </g>
+
+  <!-- Top Category Tag -->
+  <g transform="translate(60, 65)">
+    <rect width="180" height="40" rx="20" fill="#D82367" fill-opacity="0.25" stroke="#D82367" stroke-opacity="0.5" stroke-width="1.5" />
+    <circle cx="24" cy="20" r="6" fill="#D82367" />
+    <text x="40" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="white" letter-spacing="1.2">ULTRA SPEED</text>
+  </g>
+</svg>
