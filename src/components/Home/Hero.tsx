@@ -126,6 +126,28 @@ const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
     imageWidth: 1792,
     imageHeight: 2070,
   },
+  {
+    id: "intranet",
+    serviceLabel: "Intranet Solutions",
+    eyebrow: "MULTI-BRANCH OPTICAL LAN & WAN",
+    headlinePrefix: "Secure Multi-Site",
+    headlineHighlight: "Intranet.",
+    subtitle:
+      "That's the Private Network advantage — secure optical LAN interconnecting offices, warehouses, and campuses across Tamil Nadu.",
+    ctaText: "Explore Intranet",
+    ctaHref: "/intranet",
+    secondaryCtaText: "Check Coverage",
+    secondaryCtaHref: "/#contact",
+    cardGradient:
+      "linear-gradient(180deg, #E6CBF8 0%, #C1ABDA 15%, #9287B8 32%, #686193 50%, #444374 68%, #242859 84%, #081141 100%)",
+    pattern: "purple-grid",
+    ratingScore: "4.9",
+    ratingLabel: "enterprise LAN rating",
+    imageSrc: "/Hero/intranet.png",
+    imageAlt: "Secure Multi-Site Optical Intranet and Private WAN infrastructure",
+    imageWidth: 1840,
+    imageHeight: 1842,
+  },
 ];
 
 const COMPANY_LOGOS = Array.from({ length: 34 }, (_, index) => {
@@ -195,7 +217,7 @@ export default function Hero() {
 
   return (
     <>
-      {/* 1. Hero Section with Increased Width and 4 Distinct Pastel Gradient Backgrounds */}
+      {/* 1. Hero Section with Increased Width and 5 Distinct Pastel Gradient Backgrounds */}
       <section
         data-apple-manual="true"
         aria-labelledby="hero-heading"
@@ -210,7 +232,7 @@ export default function Hero() {
             className="relative w-full rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden border border-black/[0.06]"
             data-pattern={currentSlide.pattern}
           >
-            {/* 4 Distinct Canvas Background Pattern Layers with Smooth 700ms Cross-Fade */}
+            {/* 5 Distinct Canvas Background Pattern Layers with Smooth 700ms Cross-Fade */}
             {HERO_SERVICE_SLIDES.map((slide, idx) => (
               <div
                 key={`canvas-bg-${slide.id}`}
@@ -337,7 +359,7 @@ export default function Hero() {
                     <ChevronLeft className="size-4" />
                   </button>
 
-                  {/* 4 Slides Carousel Indicators */}
+                  {/* 5 Slides Carousel Indicators */}
                   <div className="flex items-center gap-1.5" aria-label="Slide indicators">
                     {HERO_SERVICE_SLIDES.map((slide, idx) => (
                       <button
