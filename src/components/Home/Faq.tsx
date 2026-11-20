@@ -88,90 +88,102 @@ export default function Faq({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <div className="container-sash max-w-4xl">
-        <AppleReveal className="text-center max-w-2xl mx-auto flex flex-col items-center mb-12 sm:mb-16 lg:mb-20">
-          <p className="eyebrow-label text-brand-red mb-3.5">
-            {eyebrow}
-          </p>
-          <h2 id="faq-heading" className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3.5">
-            {heading}
-          </h2>
-          <p className="text-neutral-600 text-sm sm:text-base font-normal leading-relaxed">
-            {description}
-          </p>
-        </AppleReveal>
+      <div className="container-sash">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-20 items-start">
+          {/* Left Side: Eyebrow badge, Title, and Description */}
+          <div className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-28">
+            <AppleReveal>
+              <span className="eyebrow-label text-brand-red mb-3.5 inline-block">
+                {eyebrow}
+              </span>
+              <h2
+                id="faq-heading"
+                className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[42px] tracking-normal leading-[1.15] mb-4"
+              >
+                {heading}
+              </h2>
+              <p className="text-neutral-600 text-base sm:text-lg font-normal leading-relaxed max-w-md">
+                {description}
+              </p>
+            </AppleReveal>
+          </div>
 
-        <AppleStagger className="space-y-4 sm:space-y-4.5">
-          {items.map((item, idx) => {
-            const isOpen = openIndex === idx;
+          {/* Right Side: All the Dropdowns */}
+          <div className="lg:col-span-7 w-full">
+            <AppleStagger className="space-y-3.5 sm:space-y-4">
+              {items.map((item, idx) => {
+                const isOpen = openIndex === idx;
 
-            return (
-              <AppleStaggerItem key={item.question}>
-                <div
-                  className={`rounded-[22px] bg-white border overflow-hidden transition-all duration-200 shadow-[0_2px_12px_rgba(0,0,0,0.03)] ${
-                    isOpen ? "border-brand-red/35" : "border-black/[0.06]"
-                  }`}
-                >
-                  <button
-                    type="button"
-                    id={`faq-question-${idx}`}
-                    aria-expanded={isOpen}
-                    aria-controls={`faq-answer-${idx}`}
-                    onClick={() => handleToggle(idx)}
-                    className={`w-full text-left cursor-pointer px-6 sm:px-7 py-5 flex items-center justify-between gap-4 font-semibold text-sm sm:text-base tracking-normal transition-colors min-h-[56px] ${
-                      isOpen
-                        ? "text-brand-red"
-                        : "text-brand-navy hover:text-brand-red"
-                    }`}
-                  >
-                    <span>{item.question}</span>
-                    <span
-                      aria-hidden="true"
-                      className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-colors duration-200 ${
+                return (
+                  <AppleStaggerItem key={item.question}>
+                    <div
+                      className={`rounded-[20px] bg-white border overflow-hidden transition-colors duration-200 ${
                         isOpen
-                          ? "bg-brand-red text-white"
-                          : "bg-neutral-100 text-brand-navy"
+                          ? "border-brand-red/40 bg-neutral-50/50"
+                          : "border-black/[0.08] hover:border-black/20"
                       }`}
                     >
-                      <svg
-                        className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                          isOpen ? "rotate-180" : "rotate-0"
+                      <button
+                        type="button"
+                        id={`faq-question-${idx}`}
+                        aria-expanded={isOpen}
+                        aria-controls={`faq-answer-${idx}`}
+                        onClick={() => handleToggle(idx)}
+                        className={`w-full text-left cursor-pointer px-6 sm:px-7 py-5 flex items-center justify-between gap-4 font-semibold text-sm sm:text-base tracking-normal transition-colors min-h-[56px] ${
+                          isOpen
+                            ? "text-brand-red"
+                            : "text-brand-navy hover:text-brand-red"
                         }`}
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
                       >
-                        <path d="m6 9 6 6 6-6" />
-                      </svg>
-                    </span>
-                  </button>
+                        <span>{item.question}</span>
+                        <span
+                          aria-hidden="true"
+                          className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-colors duration-200 ${
+                            isOpen
+                              ? "bg-brand-red text-white"
+                              : "bg-neutral-100 text-brand-navy"
+                          }`}
+                        >
+                          <svg
+                            className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                              isOpen ? "rotate-180" : "rotate-0"
+                            }`}
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="m6 9 6 6 6-6" />
+                          </svg>
+                        </span>
+                      </button>
 
-                  <div
-                    id={`faq-answer-${idx}`}
-                    role="region"
-                    aria-labelledby={`faq-question-${idx}`}
-                    className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
-                      isOpen
-                        ? "grid-rows-[1fr] opacity-100"
-                        : "grid-rows-[0fr] opacity-0"
-                    }`}
-                  >
-                    <div className="overflow-hidden">
-                      <div className="px-6 sm:px-7 pb-6 pt-2 text-neutral-600 text-sm font-normal leading-relaxed border-t border-neutral-100/80">
-                        <p>{item.answer}</p>
+                      <div
+                        id={`faq-answer-${idx}`}
+                        role="region"
+                        aria-labelledby={`faq-question-${idx}`}
+                        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+                          isOpen
+                            ? "grid-rows-[1fr] opacity-100"
+                            : "grid-rows-[0fr] opacity-0"
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <div className="px-6 sm:px-7 pb-6 pt-1 text-neutral-600 text-sm sm:text-base font-normal leading-relaxed border-t border-neutral-100">
+                            <p>{item.answer}</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </AppleStaggerItem>
-            );
-          })}
-        </AppleStagger>
+                  </AppleStaggerItem>
+                );
+              })}
+            </AppleStagger>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
-

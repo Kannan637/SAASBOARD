@@ -412,7 +412,7 @@ export default function Service() {
                 <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 w-full sm:w-auto">
                   <Link
                     href="#contact"
-                    className="group/cta btn-pill bg-linear-to-b from-brand-navy to-navy-80 text-white shadow-[0_6px_20px_rgba(1,13,59,0.25)] outline-2 -outline-offset-2 outline-white/20 hover:from-navy-80 hover:to-navy-80 w-full sm:w-auto font-medium"
+                    className="group/cta btn-pill bg-linear-to-b from-brand-navy to-navy-80 text-white outline-2 -outline-offset-2 outline-white/20 hover:from-navy-80 hover:to-navy-80 w-full sm:w-auto font-medium"
                   >
                     <span>Check availability</span>
                     <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-200 ease-out group-hover/cta:translate-x-0.5" />
@@ -421,7 +421,7 @@ export default function Service() {
                     href="https://wa.me/919003009353?text=Hi%20SASH%20Broadband%2C%20I%20would%20like%20to%20check%20fibre%20availability%20at%20my%20location."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group/wa btn-pill bg-white text-brand-navy hover:bg-neutral-50 shadow-[0_6px_24px_rgba(0,0,0,0.18)] border border-white w-full sm:w-auto font-semibold flex items-center justify-center gap-2.5 transition-all hover:scale-[1.02]"
+                    className="group/wa btn-pill bg-white text-brand-navy hover:bg-neutral-50 border border-white w-full sm:w-auto font-semibold flex items-center justify-center gap-2.5 transition-all hover:scale-[1.02]"
                   >
                     <svg
                       className="w-5 h-5 text-[#25D366] fill-current shrink-0"
