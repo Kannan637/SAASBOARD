@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, useInView, useReducedMotion, type Variants } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpDown,
@@ -517,13 +517,30 @@ function getDeliverableIcon(title: string, iconName?: string) {
 export function FlippableDeliverableCard({
   item,
   idx,
+  autoFlip = false,
 }: {
   item: ServiceDeliverableItem;
   idx: number;
+  autoFlip?: boolean;
 }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(cardRef, { once: true, amount: 0.35 });
   const [isFlipped, setIsFlipped] = useState(false);
+  const hasUserInteracted = useRef(false);
   const shouldReduceMotion = useReducedMotion();
   const IconComponent = getDeliverableIcon(item.title, item.iconName);
+
+  useEffect(() => {
+    if (!autoFlip || hasUserInteracted.current) return;
+    if (isInView) {
+      const timer = setTimeout(() => {
+        if (!hasUserInteracted.current) {
+          setIsFlipped(true);
+        }
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isInView, autoFlip]);
 
   const handleCardClick = (e: React.MouseEvent) => {
     // If the click originated from an interactive link or CTA inside, let it navigate
@@ -531,11 +548,13 @@ export function FlippableDeliverableCard({
     if (target.closest("a") || target.closest("button:not([data-flip-trigger])")) {
       return;
     }
+    hasUserInteracted.current = true;
     setIsFlipped((prev) => !prev);
   };
 
   return (
     <motion.article
+      ref={cardRef}
       variants={cardItemVariants}
       className="group/flip relative h-full min-h-[440px] min-[360px]:min-h-[460px] sm:min-h-[480px] [perspective:1200px] select-none col-span-12 md:col-span-6 cursor-pointer"
       onClick={handleCardClick}
@@ -544,6 +563,7 @@ export function FlippableDeliverableCard({
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
+          hasUserInteracted.current = true;
           setIsFlipped((prev) => !prev);
         }
       }}
@@ -731,6 +751,7 @@ export function ServiceDeliverablesSection({
               key={item.title}
               item={item}
               idx={idx}
+              autoFlip={idx === 0}
             />
           ))}
         </motion.div>

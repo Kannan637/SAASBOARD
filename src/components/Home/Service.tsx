@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -12,7 +12,7 @@ import {
   Video,
   Wifi,
 } from "lucide-react";
-import { useReducedMotion } from "framer-motion";
+import { useInView, useReducedMotion } from "framer-motion";
 import {
   AppleReveal,
   AppleStagger,
@@ -154,10 +154,31 @@ function UseCaseCard({
   );
 }
 
-function ServiceCard({ service }: { service: (typeof SERVICES_LIST)[number] }) {
+function ServiceCard({
+  service,
+  autoFlip = false,
+}: {
+  service: (typeof SERVICES_LIST)[number];
+  autoFlip?: boolean;
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(cardRef, { once: true, amount: 0.35 });
   const [isFlipped, setIsFlipped] = useState(false);
+  const hasUserInteracted = useRef(false);
   const shouldReduceMotion = useReducedMotion();
   const IconComponent = service.icon;
+
+  useEffect(() => {
+    if (!autoFlip || hasUserInteracted.current) return;
+    if (isInView) {
+      const timer = setTimeout(() => {
+        if (!hasUserInteracted.current) {
+          setIsFlipped(true);
+        }
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isInView, autoFlip]);
 
   const handleCardClick = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -168,11 +189,13 @@ function ServiceCard({ service }: { service: (typeof SERVICES_LIST)[number] }) {
     ) {
       return;
     }
+    hasUserInteracted.current = true;
     setIsFlipped((prev) => !prev);
   };
 
   return (
     <article
+      ref={cardRef}
       data-apple-manual="true"
       className="group/flip relative w-full h-full min-h-[350px] sm:min-h-[360px] [perspective:1200px] select-none cursor-pointer"
       onClick={handleCardClick}
@@ -181,6 +204,7 @@ function ServiceCard({ service }: { service: (typeof SERVICES_LIST)[number] }) {
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
+          hasUserInteracted.current = true;
           setIsFlipped((prev) => !prev);
         }
       }}
@@ -348,9 +372,9 @@ export default function Service() {
 
           {/* 5 Service Cards: Responsive Grid (5 cols on desktop, 3 on tablet, 2 on small screens, 1 on mobile) */}
           <AppleStagger className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 items-stretch">
-            {SERVICES_LIST.map((service) => (
+            {SERVICES_LIST.map((service, index) => (
               <AppleStaggerItem key={service.title} className="h-full flex flex-col">
-                <ServiceCard service={service} />
+                <ServiceCard service={service} autoFlip={index === 0} />
               </AppleStaggerItem>
             ))}
           </AppleStagger>

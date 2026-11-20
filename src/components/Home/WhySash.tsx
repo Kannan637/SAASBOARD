@@ -72,6 +72,7 @@ export interface FlippableFeatureCardProps {
   ariaLabel: string;
   frontContent: React.ReactNode;
   backContent: React.ReactNode;
+  autoFlip?: boolean;
 }
 
 /**
@@ -84,9 +85,25 @@ export function FlippableFeatureCard({
   ariaLabel,
   frontContent,
   backContent,
+  autoFlip = false,
 }: FlippableFeatureCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(cardRef, { once: true, amount: 0.35 });
   const [isFlipped, setIsFlipped] = useState(false);
+  const hasUserInteracted = useRef(false);
   const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (!autoFlip || hasUserInteracted.current) return;
+    if (isInView) {
+      const timer = setTimeout(() => {
+        if (!hasUserInteracted.current) {
+          setIsFlipped(true);
+        }
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isInView, autoFlip]);
 
   const handleCardClick = (e: React.MouseEvent) => {
     // If the click originated from an interactive link or CTA inside, let it navigate
@@ -94,11 +111,13 @@ export function FlippableFeatureCard({
     if (target.closest("a") || target.closest("button:not([data-flip-trigger])")) {
       return;
     }
+    hasUserInteracted.current = true;
     setIsFlipped((prev) => !prev);
   };
 
   return (
     <motion.article
+      ref={cardRef}
       variants={cardItemVariants}
       className={`group/flip relative h-full min-h-[440px] min-[360px]:min-h-[460px] sm:min-h-[480px] [perspective:1200px] select-none cursor-pointer ${className}`}
       onClick={handleCardClick}
@@ -107,6 +126,7 @@ export function FlippableFeatureCard({
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
+          hasUserInteracted.current = true;
           setIsFlipped((prev) => !prev);
         }
       }}
@@ -208,6 +228,7 @@ export function FibreSpeedCard() {
 
   return (
     <FlippableFeatureCard
+      autoFlip={true}
       ariaLabel="100% Optical Fibre — Up to 1 Gbps"
       className="col-span-12 md:col-span-6"
       frontContent={
