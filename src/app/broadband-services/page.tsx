@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 import Pricing from "@/components/Home/Pricing";
 import Testimonial from "@/components/Home/Testimonial";
 import Faq from "@/components/Home/Faq";
@@ -126,8 +127,9 @@ export default function BroadbandServicesPage() {
                 team about available entertainment bundles in your area.
               </p>
             </div>
-            <Link href="#contact" className="btn-pill btn-primary-red shrink-0 font-medium">
-              Enquire about OTT &amp; IPTV
+            <Link href="#contact" className="group/btn btn-pill btn-primary-red shrink-0 font-medium">
+              <span>Enquire about OTT &amp; IPTV</span>
+              <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-150 group-hover/btn:translate-x-0.5" />
             </Link>
           </div>
         </div>

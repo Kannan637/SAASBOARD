@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { ChevronRight } from "lucide-react";
 
 const SERVICE_LINKS = [
   {
@@ -462,19 +463,7 @@ export default function Topbar() {
               className="group/cta btn-pill btn-primary-red text-base font-medium"
             >
               <span>Check availability</span>
-              <svg
-                className="w-3.5 h-3.5 transition-transform duration-200 ease-out group-hover/cta:translate-x-0.5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg>
+              <ChevronRight className="size-3.5 stroke-[2.5] transition-transform duration-200 ease-out group-hover/cta:translate-x-0.5" />
             </Link>
           </div>
 
@@ -700,13 +689,14 @@ export default function Topbar() {
               <Link
                 href="/#contact"
                 onClick={() => handleNavClick("/#contact")}
-                className="btn-pill btn-primary-red w-full text-center text-sm sm:text-base font-medium"
+                className="group/mcta btn-pill btn-primary-red w-full text-center text-sm sm:text-base font-medium flex items-center justify-center gap-2"
               >
-                Check availability
+                <span>Check availability</span>
+                <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-200 ease-out group-hover/mcta:translate-x-0.5" />
               </Link>
               <a
                 href="tel:+919003009353"
-                className="btn-pill btn-ghost-white w-full text-center text-sm sm:text-base font-medium"
+                className="btn-pill btn-ghost-white w-full text-center text-sm sm:text-base font-medium flex items-center justify-center gap-2"
               >
                 <svg
                   className="w-4 h-4 text-brand-red"

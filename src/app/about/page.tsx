@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 import Contactus from "@/components/Home/Contactus";
 
 export const metadata: Metadata = {
@@ -68,11 +69,13 @@ export default function AboutPage() {
             honest pricing, and local engineering support.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Link href="#contact" className="btn-pill btn-primary-red font-medium">
-              Check availability
+            <Link href="#contact" className="group/btn btn-pill btn-primary-red font-medium">
+              <span>Check availability</span>
+              <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-150 group-hover/btn:translate-x-0.5" />
             </Link>
-            <Link href="/#plans" className="btn-pill btn-secondary-navy font-medium">
-              View broadband plans
+            <Link href="/#plans" className="group/btn2 btn-pill btn-secondary-navy font-medium">
+              <span>View broadband plans</span>
+              <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-150 group-hover/btn2:translate-x-0.5" />
             </Link>
           </div>
         </div>

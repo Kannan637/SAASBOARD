@@ -332,30 +332,19 @@ export default function Service() {
               <div className="flex flex-wrap items-center gap-4 w-full lg:w-auto shrink-0">
                 <Link
                   href="#contact"
-                  className="btn-pill bg-linear-to-b from-brand-navy to-navy-80 text-white shadow-[0_6px_20px_rgba(1,13,59,0.22)] outline-2 -outline-offset-2 outline-white/20 hover:from-navy-80 hover:to-navy-80 w-full sm:w-auto font-medium"
+                  className="group/cta btn-pill bg-linear-to-b from-brand-navy to-navy-80 text-white shadow-[0_6px_20px_rgba(1,13,59,0.22)] outline-2 -outline-offset-2 outline-white/20 hover:from-navy-80 hover:to-navy-80 w-full sm:w-auto font-medium"
                 >
                   <span>Check availability</span>
-                  <svg
-                    className="w-3.5 h-3.5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
+                  <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-200 ease-out group-hover/cta:translate-x-0.5" />
                 </Link>
                 <a
                   href="https://wa.me/919003009353?text=Hi%20SASH%20Broadband%2C%20I%20would%20like%20to%20check%20fibre%20availability%20at%20my%20location."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-pill border border-white/40 bg-white/10 text-white hover:bg-white hover:text-brand-navy w-full sm:w-auto font-medium"
+                  className="group/wa btn-pill border border-white/40 bg-white/10 text-white hover:bg-white hover:text-brand-navy w-full sm:w-auto font-medium"
                 >
                   <span>Chat on WhatsApp</span>
+                  <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-200 ease-out group-hover/wa:translate-x-0.5" />
                 </a>
               </div>
             </div>

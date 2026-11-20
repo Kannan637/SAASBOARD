@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 export default function NotFound() {
   return (
@@ -17,11 +18,13 @@ export default function NotFound() {
           team.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <Link href="/" className="btn-pill btn-primary-red">
-            Back to Home
+          <Link href="/" className="group/btn btn-pill btn-primary-red">
+            <span>Back to Home</span>
+            <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-150 group-hover/btn:translate-x-0.5" />
           </Link>
-          <Link href="/contact" className="btn-pill btn-secondary-navy">
-            Contact Support
+          <Link href="/contact" className="group/btn2 btn-pill btn-secondary-navy">
+            <span>Contact Support</span>
+            <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-150 group-hover/btn2:translate-x-0.5" />
           </Link>
         </div>
       </div>

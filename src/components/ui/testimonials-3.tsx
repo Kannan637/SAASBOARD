@@ -306,8 +306,8 @@ export default function Testimonials3({
             {/* Navigation Controls: Arrows + Pagination Dots */}
             <div className="mt-6 flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
-                <CarouselPrevious className="relative inset-0 size-9 rounded-lg border border-border/80 bg-white text-brand-navy hover:border-brand-navy/30 hover:bg-neutral-100 transition-colors cursor-pointer" />
-                <CarouselNext className="relative inset-0 size-9 rounded-lg border-transparent bg-brand-red text-white shadow-[0_4px_12px_rgba(222,3,2,0.25)] hover:bg-brand-red-hover transition-all cursor-pointer" />
+                <CarouselPrevious className="relative inset-0 size-9 rounded-full border border-border/80 bg-white text-brand-navy hover:border-brand-navy/30 hover:bg-neutral-100 transition-colors cursor-pointer" />
+                <CarouselNext className="relative inset-0 size-9 rounded-full border-transparent bg-brand-red text-white shadow-[0_4px_12px_rgba(222,3,2,0.25)] hover:bg-brand-red-hover transition-all cursor-pointer" />
               </div>
 
               <div

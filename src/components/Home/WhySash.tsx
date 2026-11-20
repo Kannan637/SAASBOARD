@@ -14,6 +14,7 @@ import {
   ArrowRight,
   BatteryFull,
   CheckCircle2,
+  ChevronRight,
   Headphones,
   MessageSquare,
   PhoneCall,
@@ -325,11 +326,11 @@ export function FibreSpeedCard() {
           <div className="pt-4 border-t border-black/[0.06] mt-auto flex items-center justify-between">
             <Link
               href="/broadband-services"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-brand-red hover:underline"
+              className="group/link inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-brand-red hover:underline"
               onClick={(e) => e.stopPropagation()}
             >
               <span>Explore Broadband Plans</span>
-              <ArrowRight className="size-3.5" />
+              <ChevronRight className="size-3.5 stroke-[2.5] transition-transform duration-150 group-hover/link:translate-x-0.5" />
             </Link>
           </div>
         </div>
@@ -436,11 +437,11 @@ export function RouterSetupCard() {
           <div className="pt-4 border-t border-black/[0.06] mt-auto flex items-center justify-between">
             <Link
               href="/#contact"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-brand-red hover:underline"
+              className="group/link inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-brand-red hover:underline"
               onClick={(e) => e.stopPropagation()}
             >
               <span>Check Feasibility at Your Address</span>
-              <ArrowRight className="size-3.5" />
+              <ChevronRight className="size-3.5 stroke-[2.5] transition-transform duration-150 group-hover/link:translate-x-0.5" />
             </Link>
           </div>
         </div>
@@ -573,11 +574,11 @@ export function LicensedISPCARD() {
           <div className="pt-4 border-t border-black/[0.06] mt-auto flex items-center justify-between">
             <Link
               href="/about"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-brand-red hover:underline"
+              className="group/link inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-brand-red hover:underline"
               onClick={(e) => e.stopPropagation()}
             >
               <span>Learn About Our Network</span>
-              <ArrowRight className="size-3.5" />
+              <ChevronRight className="size-3.5 stroke-[2.5] transition-transform duration-150 group-hover/link:translate-x-0.5" />
             </Link>
           </div>
         </div>
@@ -868,11 +869,11 @@ export function SupportCard() {
           <div className="pt-4 border-t border-black/[0.06] mt-auto flex items-center justify-between">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-brand-red hover:underline"
+              className="group/link inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-brand-red hover:underline"
               onClick={(e) => e.stopPropagation()}
             >
               <span>Contact Local Support Desk</span>
-              <ArrowRight className="size-3.5" />
+              <ChevronRight className="size-3.5 stroke-[2.5] transition-transform duration-150 group-hover/link:translate-x-0.5" />
             </Link>
           </div>
         </div>

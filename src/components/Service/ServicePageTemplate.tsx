@@ -652,11 +652,11 @@ export function FlippableDeliverableCard({
             <div className="pt-4 border-t border-black/[0.06] mt-auto flex items-center justify-between">
               <Link
                 href="#contact"
-                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-brand-red hover:underline"
+                className="group/link inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-brand-red hover:underline"
                 onClick={(e) => e.stopPropagation()}
               >
                 <span>Enquire about {item.title}</span>
-                <ArrowRight className="size-3.5" />
+                <ChevronRight className="size-3.5 stroke-[2.5] transition-transform duration-150 group-hover/link:translate-x-0.5" />
               </Link>
             </div>
           </div>

@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { ChevronRight } from "lucide-react";
 import {
   AppleReveal,
   AppleStagger,
@@ -257,25 +258,13 @@ export default function Pricing() {
                 <button
                   type="button"
                   onClick={() => handleSelectPlan(plan)}
-                  className={`relative z-10 btn-pill btn-primary-red w-full h-12 min-h-[48px] text-base font-medium cursor-pointer ${plan.featured
+                  className={`group/plan relative z-10 btn-pill btn-primary-red w-full h-12 min-h-[48px] text-base font-medium cursor-pointer ${plan.featured
                     ? "shadow-[0_8px_24px_rgba(0,0,0,0.35)] ring-1 ring-white/25"
                     : ""
                     }`}
                 >
                   <span>Order this plan</span>
-                  <svg
-                    className="w-4 h-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
+                  <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-200 ease-out group-hover/plan:translate-x-0.5" />
                 </button>
               </article>
             </AppleStaggerItem>

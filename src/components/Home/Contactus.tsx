@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import {
-  ArrowRight,
   CheckCircle2,
   ChevronDown,
+  ChevronRight,
   Clock,
   ExternalLink,
   Mail,
@@ -649,8 +649,8 @@ export default function Contactus({
                       <span>
                         {isSubmitting ? "Sending message..." : "Send Message"}
                       </span>
-                      <ArrowRight
-                        className="size-4 transition-transform duration-200 ease-out group-hover/primary:translate-x-0.5"
+                      <ChevronRight
+                        className="size-4 stroke-[2.5] transition-transform duration-200 ease-out group-hover/primary:translate-x-0.5"
                         aria-hidden="true"
                       />
                     </Button>
