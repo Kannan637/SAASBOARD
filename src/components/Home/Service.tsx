@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   Briefcase,
+  ChevronRight,
   Network,
   Server,
   Video,
@@ -123,7 +124,7 @@ function ServiceCard({ service }: { service: (typeof SERVICES_LIST)[number] }) {
     <Link
       href={service.href}
       data-apple-manual="true"
-      className="group relative w-full h-[255px] min-[400px]:h-[265px] sm:h-[275px] rounded-[22px] bg-[#F4F3F1] border border-black/[0.04] p-5 sm:p-5.5 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer select-none"
+      className="group relative w-full min-h-[290px] sm:min-h-[300px] h-full rounded-[22px] bg-[#F4F3F1] border border-black/[0.04] p-5 sm:p-5.5 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_28px_rgba(222,3,2,0.18)] cursor-pointer select-none"
     >
       {/* SASH Brand Gradient on Hover */}
       <div
@@ -131,19 +132,29 @@ function ServiceCard({ service }: { service: (typeof SERVICES_LIST)[number] }) {
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#FDEBEB_0%,#DE0302_52%,#B80201_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-400 ease-out z-0"
       />
 
-      {/* Top: Icon in Top-Left */}
-      <div className="relative z-10 text-brand-navy transition-colors duration-300">
-        <IconComponent className="w-5 h-5 sm:w-5.5 sm:h-5.5 stroke-[1.9]" />
+      {/* Top: Icon in rounded badge */}
+      <div className="relative z-10 text-brand-navy group-hover:text-white transition-colors duration-300">
+        <div className="w-9 h-9 rounded-full bg-white group-hover:bg-white/20 flex items-center justify-center shadow-xs transition-colors duration-300">
+          <IconComponent className="w-4.5 h-4.5 stroke-[2] text-brand-navy group-hover:text-white transition-colors duration-300" />
+        </div>
       </div>
 
-      {/* Bottom: Title and Description in Bottom */}
-      <div className="relative z-10 mt-auto flex flex-col">
-        <h3 className="text-brand-navy font-semibold text-sm min-[400px]:text-[15px] sm:text-base tracking-tight mb-1 group-hover:text-white transition-colors duration-300">
+      {/* Bottom: Title, Description, and Read More Button */}
+      <div className="relative z-10 mt-auto flex flex-col pt-4">
+        <h3 className="text-brand-navy font-semibold text-sm min-[400px]:text-[15px] sm:text-base tracking-tight mb-1.5 group-hover:text-white transition-colors duration-300">
           {service.title}
         </h3>
-        <p className="text-neutral-500 text-[11px] min-[400px]:text-xs sm:text-[12.5px] leading-snug line-clamp-3 group-hover:text-white/95 transition-colors duration-300">
+        <p className="text-neutral-500 text-[11px] min-[400px]:text-xs sm:text-[12.5px] leading-snug line-clamp-3 mb-4 group-hover:text-white/95 transition-colors duration-300">
           {service.description}
         </p>
+
+        {/* Read More Button */}
+        <div className="pt-1">
+          <span className="inline-flex h-8 items-center justify-center gap-1.5 rounded-full bg-white text-brand-navy border border-black/[0.08] px-3.5 text-xs font-medium shadow-xs group-hover:bg-white group-hover:text-brand-red group-hover:border-transparent transition-all duration-200">
+            <span>Read more</span>
+            <ChevronRight className="size-3.5 stroke-[2.5] text-brand-red transition-transform duration-200 group-hover:translate-x-0.5" />
+          </span>
+        </div>
       </div>
     </Link>
   );
