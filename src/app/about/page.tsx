@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Building2,
   ShieldCheck,
@@ -12,7 +13,6 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import Contactus from "@/components/Home/Contactus";
-import CardCanvasPattern from "@/components/ui/card-canvas-pattern";
 import {
   AppleReveal,
   AppleStagger,
@@ -109,93 +109,109 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(companyJsonLd) }}
       />
 
-      {/* 1. Page Hero: Center Aligned with Landing Page Hero Card 1 Gradient & Canvas Pattern */}
+      {/* 1. Page Hero: Left Content + Right Image matching Landing Page Hero Section 1 Card */}
       <section
         data-apple-manual="true"
         aria-labelledby="about-heading"
         className="w-full bg-white py-3 sm:py-4 lg:py-6"
       >
-        <div className="w-full max-w-[1440px] 2xl:max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-[1440px] 2xl:max-w-[1520px] mx-auto px-3 sm:px-6 lg:px-8">
           <div
-            data-pattern="glyph"
-            className="relative w-full rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden px-6 sm:px-10 lg:px-16 py-16 sm:py-20 lg:py-28 flex flex-col items-center justify-center text-center text-white border border-black/[0.06] select-none"
+            className="relative w-full rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden border border-black/[0.06] select-none"
             style={{
               background:
                 "linear-gradient(180deg, #00030D 0%, #1754AB 45%, #2A7BE0 70%, #BFE3FF 100%)",
             }}
           >
-            {/* Dynamic Card 1 Canvas Pattern (Glyph with Blue Gradient matching Landing Page Hero Card 1) */}
-            <CardCanvasPattern pattern="glyph" />
-
-            {/* Subtle Content Contrast Scrim for Text Readability without altering the canvas pattern */}
+            {/* Subtle Content Contrast Scrim for Text Readability without altering the gradient */}
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-black/15"
+              className="pointer-events-none absolute inset-0 bg-black/15 lg:bg-transparent lg:bg-gradient-to-r lg:from-black/45 lg:via-black/20 lg:to-transparent"
             />
 
-            {/* Breadcrumb (Center Aligned) */}
-            <nav
-              aria-label="Breadcrumb"
-              className="relative z-10 text-xs sm:text-sm text-white/70 mb-5 flex items-center justify-center"
-            >
-              <ol className="flex items-center justify-center gap-2">
-                <li>
+            <div className="w-full min-h-auto lg:min-h-[520px] grid grid-cols-1 lg:grid-cols-12 items-center relative z-10">
+              {/* Left Content Column (7 of 12 columns on desktop) */}
+              <div className="lg:col-span-7 flex flex-col justify-center items-center lg:items-start text-center lg:text-left p-6 sm:p-8 lg:p-12 xl:p-14 z-20">
+                {/* Breadcrumb */}
+                <nav
+                  aria-label="Breadcrumb"
+                  className="text-xs sm:text-sm text-white/70 mb-4 flex items-center justify-center lg:justify-start"
+                >
+                  <ol className="flex items-center gap-2">
+                    <li>
+                      <Link
+                        href="/"
+                        className="hover:text-white transition-colors underline-offset-4 hover:underline"
+                      >
+                        Home
+                      </Link>
+                    </li>
+                    <li aria-hidden="true" className="text-white/40">
+                      /
+                    </li>
+                    <li aria-current="page" className="text-white font-medium">
+                      About Us
+                    </li>
+                  </ol>
+                </nav>
+
+                {/* Eyebrow Badge: Solid Red Pill with White Text matching Landing Page Hero Card 1 */}
+                <div className="mb-4">
+                  <span className="inline-flex min-h-6 items-center justify-center gap-1.5 rounded-full bg-brand-red px-3.5 py-1 text-xs leading-none font-medium text-white tracking-wide uppercase">
+                    ABOUT SASH BROADBAND
+                  </span>
+                </div>
+
+                {/* Headline: Clean, Crisp White Typography */}
+                <h1
+                  id="about-heading"
+                  className="text-white font-bold text-2xl sm:text-3xl lg:text-4xl xl:text-[44px] lg:leading-[52px] tracking-tight mb-4 max-w-2xl"
+                >
+                  Building Tamil Nadu&apos;s optical network from the{" "}
+                  <span className="text-brand-red">ground up.</span>
+                </h1>
+
+                {/* Description */}
+                <p className="text-white/90 text-sm sm:text-base lg:text-lg font-normal leading-relaxed mb-6 sm:mb-8 max-w-xl">
+                  SASH Broadband Private Limited is an authorised Class–B Internet
+                  Service Provider headquartered in Jaya Nagar, Thiruvallur. We build
+                  and operate high-availability optical fibre rings delivering speed,
+                  continuity, and accountable local support.
+                </p>
+
+                {/* CTA Buttons */}
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full">
                   <Link
-                    href="/"
-                    className="hover:text-white transition-colors underline-offset-4 hover:underline"
+                    href="#contact"
+                    className="group/btn btn-pill bg-brand-red hover:bg-brand-red-hover text-white font-medium text-sm sm:text-base px-6 sm:px-7"
                   >
-                    Home
+                    <span>Check availability</span>
+                    <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-150 group-hover/btn:translate-x-0.5" />
                   </Link>
-                </li>
-                <li aria-hidden="true" className="text-white/40">
-                  /
-                </li>
-                <li aria-current="page" className="text-white font-medium">
-                  About Us
-                </li>
-              </ol>
-            </nav>
+                  <Link
+                    href="/#plans"
+                    className="group/btn2 btn-pill bg-white/10 hover:bg-white/20 text-white border border-white/25 backdrop-blur-md font-medium text-sm sm:text-base px-6 sm:px-7"
+                  >
+                    <span>View broadband plans</span>
+                    <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-150 group-hover/btn2:translate-x-0.5" />
+                  </Link>
+                </div>
+              </div>
 
-            {/* Eyebrow Badge (Center Aligned) matching Hero Card 1 signature badge */}
-            <div className="relative z-10 mb-4 sm:mb-5">
-              <span className="inline-flex min-h-6 items-center justify-center gap-1.5 rounded-full bg-brand-red px-3.5 py-1 text-xs leading-none font-medium text-white tracking-wide uppercase">
-                ABOUT SASH BROADBAND
-              </span>
-            </div>
-
-            {/* Headline (Center Aligned) */}
-            <h1
-              id="about-heading"
-              className="relative z-10 text-white font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[54px] tracking-tight leading-[1.12] mb-5 sm:mb-6 max-w-4xl mx-auto"
-            >
-              Building Tamil Nadu&apos;s optical network from the{" "}
-              <span className="text-brand-red">ground up.</span>
-            </h1>
-
-            {/* Description (Center Aligned) */}
-            <p className="relative z-10 text-white/90 text-base sm:text-lg lg:text-xl font-normal leading-relaxed mb-8 sm:mb-10 max-w-2xl mx-auto">
-              SASH Broadband Private Limited is an authorised Class–B Internet
-              Service Provider headquartered in Jaya Nagar, Thiruvallur. We build
-              and operate high-availability optical fibre rings delivering speed,
-              continuity, and accountable local support.
-            </p>
-
-            {/* CTA Buttons (Center Aligned) */}
-            <div className="relative z-10 flex flex-wrap items-center justify-center gap-3.5 sm:gap-4 w-full sm:w-auto">
-              <Link
-                href="#contact"
-                className="group/btn btn-pill bg-brand-red hover:bg-brand-red-hover text-white font-medium text-sm sm:text-base px-6 sm:px-8"
-              >
-                <span>Check availability</span>
-                <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-150 group-hover/btn:translate-x-0.5" />
-              </Link>
-              <Link
-                href="/#plans"
-                className="group/btn2 btn-pill bg-white/10 hover:bg-white/20 text-white border border-white/25 backdrop-blur-md font-medium text-sm sm:text-base px-6 sm:px-8"
-              >
-                <span>View broadband plans</span>
-                <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-150 group-hover/btn2:translate-x-0.5" />
-              </Link>
+              {/* Right Side Column (5 of 12 columns on desktop): Image */}
+              <div className="lg:col-span-5 relative w-full h-[280px] sm:h-[350px] lg:h-full min-h-[280px] sm:min-h-[350px] lg:min-h-[480px] flex items-end justify-center lg:justify-end overflow-hidden px-4 pt-2 pb-0 sm:p-4 lg:p-0">
+                <div className="relative w-full max-w-[380px] sm:max-w-[460px] lg:max-w-[580px] h-full flex items-end justify-center lg:justify-end pointer-events-none select-none">
+                  <Image
+                    src="/About Us/Gemini_Generated_Image_ow53egow53egow53.png"
+                    alt="SASH Broadband high-availability optical network infrastructure in Tamil Nadu"
+                    width={2730}
+                    height={1536}
+                    priority
+                    sizes="(max-width: 640px) 380px, (max-width: 1024px) 460px, 45vw"
+                    className="w-full h-auto max-h-[270px] sm:max-h-[340px] lg:max-h-[490px] object-contain object-bottom"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
