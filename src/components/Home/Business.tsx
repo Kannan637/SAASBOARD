@@ -40,7 +40,7 @@ export const DEFAULT_BUSINESS_SLIDES: ShowcaseSlide[] = [
     title: "Uninterrupted secure communications",
     description:
       "Dedicated 1:1 symmetrical fibre with 99.9% SLA-backed uptime, sub-5ms latency, and dual-ring automatic failover to keep banking, ERP, and mission-critical operations online 24/7.",
-    imageSrc: "/Business/Wi-Fi Network Security Shield.png",
+    imageSrc: "/Business/enterprise-leased-line.png",
     imageAlt:
       "Enterprise Leased Line high-speed secure optical connectivity shield",
   },
@@ -50,7 +50,7 @@ export const DEFAULT_BUSINESS_SLIDES: ShowcaseSlide[] = [
     title: "Scalable SME plans",
     description:
       "High-bandwidth business fibre packages engineered for retail counters, clinics, and growing offices. Scale bandwidth on demand with priority Cloud QoS and a 2-year price lock.",
-    imageSrc: "/Business/Ascending Business Plan Cards.png",
+    imageSrc: "/Business/sme-business-fibre.png",
     imageAlt:
       "Scalable SME business plans and high-bandwidth fibre packages",
   },
@@ -60,7 +60,7 @@ export const DEFAULT_BUSINESS_SLIDES: ShowcaseSlide[] = [
     title: "Private intranet",
     description:
       "Direct branch-to-branch optical WAN connectivity across Tamil Nadu with zero public internet exposure. Link headquarters, factories, and warehouses over hardware-encrypted VLAN tunnels.",
-    imageSrc: "/Business/Protected Intranet Network Laptop.png",
+    imageSrc: "/Business/private-intranet-wan.png",
     imageAlt:
       "Protected private intranet multi-site network on laptop display",
   },
@@ -70,7 +70,7 @@ export const DEFAULT_BUSINESS_SLIDES: ShowcaseSlide[] = [
     title: "CCTV for premises",
     description:
       "Commercial 4K & HD IP camera surveillance with 24/7 dual NVR and 30-day encrypted cloud retention, AI human/vehicle motion alerts, and live mobile monitoring.",
-    imageSrc: "/Business/High-Tech CCTV Building Monitor.png",
+    imageSrc: "/Business/cctv-surveillance.png",
     imageAlt:
       "High-tech commercial premises CCTV security and surveillance monitoring console",
   },
