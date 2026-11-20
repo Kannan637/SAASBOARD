@@ -19,6 +19,7 @@ import {
   Lock,
   MapPin,
   Network,
+  Plus,
   RotateCcw,
   Router,
   Server,
@@ -525,14 +526,29 @@ export function FlippableDeliverableCard({
   const shouldReduceMotion = useReducedMotion();
   const IconComponent = getDeliverableIcon(item.title, item.iconName);
 
+  const handleCardClick = (e: React.MouseEvent) => {
+    // If the click originated from an interactive link or CTA inside, let it navigate
+    const target = e.target as HTMLElement;
+    if (target.closest("a") || target.closest("button:not([data-flip-trigger])")) {
+      return;
+    }
+    setIsFlipped((prev) => !prev);
+  };
+
   return (
     <motion.article
       variants={cardItemVariants}
-      className="group/flip relative h-full min-h-[440px] min-[360px]:min-h-[460px] sm:min-h-[480px] [perspective:1200px] select-none col-span-12 md:col-span-6"
-      onMouseEnter={() => setIsFlipped(true)}
-      onMouseLeave={() => setIsFlipped(false)}
-      onClick={() => setIsFlipped((prev) => !prev)}
-      role="region"
+      className="group/flip relative h-full min-h-[440px] min-[360px]:min-h-[460px] sm:min-h-[480px] [perspective:1200px] select-none col-span-12 md:col-span-6 cursor-pointer"
+      onClick={handleCardClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          setIsFlipped((prev) => !prev);
+        }
+      }}
+      aria-expanded={isFlipped}
       aria-label={item.title}
     >
       <div
@@ -544,7 +560,7 @@ export function FlippableDeliverableCard({
       >
         {/* Front Face: Visual Stage + Title Only */}
         <div
-          className="w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden cursor-pointer"
+          className="w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -596,9 +612,12 @@ export function FlippableDeliverableCard({
                   {item.title}
                 </h3>
               </div>
-              <div className="flex items-center gap-1.5 text-xs font-medium text-neutral-400 group-hover/flip:text-brand-red transition-colors shrink-0">
-                <span className="hidden sm:inline">Details</span>
-                <ArrowRight className="size-3.5 transition-transform duration-200 group-hover/flip:translate-x-0.5" />
+              <div
+                data-flip-trigger="true"
+                aria-label="View card details"
+                className="size-9 sm:size-10 rounded-[14px] bg-white border border-black/[0.08] shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex items-center justify-center text-[#1A73E8] group-hover/flip:scale-108 group-hover/flip:border-[#1A73E8]/30 group-hover/flip:shadow-[0_4px_14px_rgba(26,115,232,0.18)] transition-all duration-200 shrink-0 cursor-pointer"
+              >
+                <Plus className="size-5 stroke-[2.75] text-[#1A73E8] transition-transform duration-300 group-hover/flip:rotate-90" />
               </div>
             </div>
           </div>

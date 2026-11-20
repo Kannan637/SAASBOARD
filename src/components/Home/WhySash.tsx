@@ -19,6 +19,7 @@ import {
   Headphones,
   MessageSquare,
   PhoneCall,
+  Plus,
   RotateCcw,
   Router,
   ShieldCheck,
@@ -88,14 +89,29 @@ export function FlippableFeatureCard({
   const [isFlipped, setIsFlipped] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
+  const handleCardClick = (e: React.MouseEvent) => {
+    // If the click originated from an interactive link or CTA inside, let it navigate
+    const target = e.target as HTMLElement;
+    if (target.closest("a") || target.closest("button:not([data-flip-trigger])")) {
+      return;
+    }
+    setIsFlipped((prev) => !prev);
+  };
+
   return (
     <motion.article
       variants={cardItemVariants}
-      className={`group/flip relative h-full min-h-[440px] min-[360px]:min-h-[460px] sm:min-h-[480px] [perspective:1200px] select-none ${className}`}
-      onMouseEnter={() => setIsFlipped(true)}
-      onMouseLeave={() => setIsFlipped(false)}
-      onClick={() => setIsFlipped((prev) => !prev)}
-      role="region"
+      className={`group/flip relative h-full min-h-[440px] min-[360px]:min-h-[460px] sm:min-h-[480px] [perspective:1200px] select-none cursor-pointer ${className}`}
+      onClick={handleCardClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          setIsFlipped((prev) => !prev);
+        }
+      }}
+      aria-expanded={isFlipped}
       aria-label={ariaLabel}
     >
       <div
@@ -107,7 +123,7 @@ export function FlippableFeatureCard({
       >
         {/* Front Face: Visual Stage + Title Only */}
         <div
-          className="w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden cursor-pointer"
+          className="w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -118,7 +134,7 @@ export function FlippableFeatureCard({
 
         {/* Back Face: Description, Bullet Points, and Action */}
         <div
-          className="absolute inset-0 w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden p-7 sm:p-8 lg:p-9 z-20 cursor-pointer"
+          className="absolute inset-0 w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden p-7 sm:p-8 lg:p-9 z-20"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -280,9 +296,12 @@ export function FibreSpeedCard() {
                 Up to 1 Gbps
               </CardTitle>
             </div>
-            <div className="flex items-center gap-1.5 text-xs font-medium text-neutral-400 group-hover/flip:text-brand-red transition-colors shrink-0">
-              <span className="hidden sm:inline">Details</span>
-              <ArrowRight className="size-3.5 transition-transform duration-200 group-hover/flip:translate-x-0.5" />
+            <div
+              data-flip-trigger="true"
+              aria-label="View card details"
+              className="size-9 sm:size-10 rounded-[14px] bg-white border border-black/[0.08] shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex items-center justify-center text-[#1A73E8] group-hover/flip:scale-108 group-hover/flip:border-[#1A73E8]/30 group-hover/flip:shadow-[0_4px_14px_rgba(26,115,232,0.18)] transition-all duration-200 shrink-0 cursor-pointer"
+            >
+              <Plus className="size-5 stroke-[2.75] text-[#1A73E8] transition-transform duration-300 group-hover/flip:rotate-90" />
             </div>
           </div>
         </CardContent>
@@ -385,9 +404,12 @@ export function RouterSetupCard() {
                 Free router and setup
               </CardTitle>
             </div>
-            <div className="flex items-center gap-1.5 text-xs font-medium text-neutral-400 group-hover/flip:text-brand-red transition-colors shrink-0">
-              <span className="hidden sm:inline">Details</span>
-              <ArrowRight className="size-3.5 transition-transform duration-200 group-hover/flip:translate-x-0.5" />
+            <div
+              data-flip-trigger="true"
+              aria-label="View card details"
+              className="size-9 sm:size-10 rounded-[14px] bg-white border border-black/[0.08] shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex items-center justify-center text-[#1A73E8] group-hover/flip:scale-108 group-hover/flip:border-[#1A73E8]/30 group-hover/flip:shadow-[0_4px_14px_rgba(26,115,232,0.18)] transition-all duration-200 shrink-0 cursor-pointer"
+            >
+              <Plus className="size-5 stroke-[2.75] text-[#1A73E8] transition-transform duration-300 group-hover/flip:rotate-90" />
             </div>
           </div>
         </CardContent>
@@ -516,9 +538,12 @@ export function LicensedISPCARD() {
                 Licensed ISP serving Tamil Nadu
               </CardTitle>
             </div>
-            <div className="flex items-center gap-1.5 text-xs font-medium text-neutral-400 group-hover/flip:text-brand-red transition-colors shrink-0">
-              <span className="hidden sm:inline">Details</span>
-              <ArrowRight className="size-3.5 transition-transform duration-200 group-hover/flip:translate-x-0.5" />
+            <div
+              data-flip-trigger="true"
+              aria-label="View card details"
+              className="size-9 sm:size-10 rounded-[14px] bg-white border border-black/[0.08] shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex items-center justify-center text-[#1A73E8] group-hover/flip:scale-108 group-hover/flip:border-[#1A73E8]/30 group-hover/flip:shadow-[0_4px_14px_rgba(26,115,232,0.18)] transition-all duration-200 shrink-0 cursor-pointer"
+            >
+              <Plus className="size-5 stroke-[2.75] text-[#1A73E8] transition-transform duration-300 group-hover/flip:rotate-90" />
             </div>
           </div>
         </CardContent>
@@ -707,9 +732,9 @@ export function SupportCard() {
                   shouldReduceMotion
                     ? undefined
                     : {
-                        y: [-4, 3, -4],
-                        x: [-1, 2, -1],
-                      }
+                      y: [-4, 3, -4],
+                      x: [-1, 2, -1],
+                    }
                 }
                 transition={{
                   duration: 3.4,
@@ -729,9 +754,9 @@ export function SupportCard() {
                   shouldReduceMotion
                     ? undefined
                     : {
-                        y: [3, -4, 3],
-                        x: [1, -2, 1],
-                      }
+                      y: [3, -4, 3],
+                      x: [1, -2, 1],
+                    }
                 }
                 transition={{
                   duration: 3.8,
@@ -752,9 +777,9 @@ export function SupportCard() {
                   shouldReduceMotion
                     ? undefined
                     : {
-                        y: [-3, 4, -3],
-                        x: [-2, 1, -2],
-                      }
+                      y: [-3, 4, -3],
+                      x: [-2, 1, -2],
+                    }
                 }
                 transition={{
                   duration: 3.6,
@@ -777,8 +802,8 @@ export function SupportCard() {
                     shouldReduceMotion
                       ? undefined
                       : {
-                          scale: [1, 1.04, 1],
-                        }
+                        scale: [1, 1.04, 1],
+                      }
                   }
                   transition={{
                     duration: 3.2,
@@ -805,9 +830,12 @@ export function SupportCard() {
                 Always connected to local support
               </CardTitle>
             </div>
-            <div className="flex items-center gap-1.5 text-xs font-medium text-neutral-400 group-hover/flip:text-brand-red transition-colors shrink-0">
-              <span className="hidden sm:inline">Details</span>
-              <ArrowRight className="size-3.5 transition-transform duration-200 group-hover/flip:translate-x-0.5" />
+            <div
+              data-flip-trigger="true"
+              aria-label="View card details"
+              className="size-9 sm:size-10 rounded-[14px] bg-white border border-black/[0.08] shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex items-center justify-center text-[#1A73E8] group-hover/flip:scale-108 group-hover/flip:border-[#1A73E8]/30 group-hover/flip:shadow-[0_4px_14px_rgba(26,115,232,0.18)] transition-all duration-200 shrink-0 cursor-pointer"
+            >
+              <Plus className="size-5 stroke-[2.75] text-[#1A73E8] transition-transform duration-300 group-hover/flip:rotate-90" />
             </div>
           </div>
         </CardContent>
@@ -1025,8 +1053,8 @@ export function PriceLockCard() {
                 onClick={() => handleSelect(idx)}
                 aria-label={`View ${service.label}`}
                 className={`h-1.5 rounded-full transition-all duration-300 ${idx === activeIndex
-                    ? "w-4 bg-white shadow-[0_0_8px_rgba(255,255,255,0.95)]"
-                    : "w-1.5 bg-white/40 hover:bg-white/70"
+                  ? "w-4 bg-white shadow-[0_0_8px_rgba(255,255,255,0.95)]"
+                  : "w-1.5 bg-white/40 hover:bg-white/70"
                   }`}
               />
             ))}
