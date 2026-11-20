@@ -6,8 +6,14 @@ import {
   Radio,
   Clock,
   ChevronRight,
+  Compass,
+  Target,
+  CheckCircle2,
 } from "lucide-react";
 import Contactus from "@/components/Home/Contactus";
+import Testimonial from "@/components/Home/Testimonial";
+import Faq, { type FaqItem } from "@/components/Home/Faq";
+import { SingleClientMarquee } from "@/components/Service/ServicePageTemplate";
 import {
   AppleReveal,
   AppleStagger,
@@ -95,6 +101,39 @@ const PILLARS = [
       "Our Network Operations Centre and optical fusion technicians operate directly out of Jaya Nagar, Thiruvallur—ensuring rapid doorstep resolution within hours, not days.",
     href: "#contact",
     ctaText: "Contact NOC",
+  },
+];
+
+const ABOUT_FAQS: FaqItem[] = [
+  {
+    question: "What is SASH Broadband's licensing status?",
+    answer:
+      "SASH Broadband Private Limited is an authorised Class–B Internet Service Provider (ISP) licensed by the Department of Telecommunications (DoT) to build, operate, and provide optical telecommunication and internet services across Tamil Nadu.",
+  },
+  {
+    question: "Where is SASH Broadband headquartered?",
+    answer:
+      "Our main headquarters and customer experience centre are located in Jaya Nagar, Thiruvallur, Tamil Nadu. Our Network Operations Centre (NOC) and optical field engineers operate directly from here.",
+  },
+  {
+    question: "How does pure FTTH differ from legacy cable internet?",
+    answer:
+      "Unlike legacy cable internet that relies on copper coaxial cables for the last mile, SASH Broadband runs 100% single-mode glass optical fibre directly into your premise. This guarantees sub-5ms low latency, zero electromagnetic interference from weather, and true symmetrical gigabit speeds.",
+  },
+  {
+    question: "What areas do you currently cover in Tamil Nadu?",
+    answer:
+      "We provide comprehensive optical coverage across Thiruvallur district, Perambakkam, Kadambattur, and expanding service corridors throughout Tamil Nadu for residential FTTH, SME business broadband, and corporate leased lines.",
+  },
+  {
+    question: "Do you offer enterprise solutions for businesses?",
+    answer:
+      "Yes. In addition to residential FTTH broadband, we engineer 1:1 dedicated Internet Leased Lines (ILL) with 99.9% uptime SLA, SME business internet packs, secure multi-branch private intranets, and commercial CCTV surveillance.",
+  },
+  {
+    question: "How quickly can a new connection be activated?",
+    answer:
+      "Once route feasibility is confirmed (typically within 2 to 4 hours of enquiry), our local fusion splicing technicians can complete doorstep optical installation and live activation within 24 to 48 hours.",
   },
 ];
 
@@ -214,7 +253,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 2. Core Commitments: UI matching Complete Network Portfolio & Connectivity for every need */}
+      {/* 2. Client & Partner Logo Marquee: Directly below Hero Section */}
+      <SingleClientMarquee />
+
+      {/* 3. Core Commitments: UI matching Complete Network Portfolio & Connectivity for every need */}
       <section
         data-apple-manual="true"
         aria-labelledby="commitments-heading"
@@ -292,7 +334,135 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 3. Single Contact Form for New Inquiries */}
+      {/* 4. Vision & Mission Cards */}
+      <section
+        data-apple-manual="true"
+        aria-labelledby="vision-mission-heading"
+        className="bg-white text-brand-navy section-padding border-b border-black/[0.06]"
+      >
+        <div className="container-sash">
+          {/* Section Header */}
+          <div className="max-w-2xl mb-10 sm:mb-14">
+            <AppleReveal>
+              <p className="eyebrow-label text-brand-red mb-3">
+                PURPOSE &amp; VALUES
+              </p>
+              <h2
+                id="vision-mission-heading"
+                className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3"
+              >
+                Our Vision &amp; Mission
+              </h2>
+              <p className="text-neutral-600 text-sm sm:text-base font-normal leading-relaxed">
+                Guided by a commitment to democratize gigabit optical connectivity
+                across Tamil Nadu with transparent pricing and accountable local support.
+              </p>
+            </AppleReveal>
+          </div>
+
+          {/* Vision & Mission 2-Card Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+            {/* Vision Card */}
+            <div className="rounded-[28px] bg-[#F4F3F1] border border-black/[0.05] p-7 sm:p-9 lg:p-10 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:border-black/15">
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-white shadow-xs flex items-center justify-center text-brand-red">
+                    <Compass className="w-6 h-6 stroke-[2]" />
+                  </div>
+                  <span className="font-mono text-xs font-semibold text-neutral-400 uppercase tracking-wider">
+                    OUR VISION
+                  </span>
+                </div>
+                <h3 className="text-brand-navy font-semibold text-xl sm:text-2xl mb-3 tracking-tight">
+                  Empowering Tamil Nadu with next-generation optical infrastructure
+                </h3>
+                <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-normal mb-6">
+                  To become Tamil Nadu&apos;s most reliable, community-rooted internet service
+                  provider—eliminating digital bottlenecks through pure optical FTTH technology,
+                  unfettered symmetrical speeds, and honest, customer-centric billing ethics.
+                </p>
+              </div>
+
+              <div className="space-y-3 pt-6 border-t border-black/[0.06]">
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span className="text-xs sm:text-sm text-neutral-700 font-medium">
+                    100% Pure glass optical drops to every premise
+                  </span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span className="text-xs sm:text-sm text-neutral-700 font-medium">
+                    Zero artificial throttling and permanent price-locks
+                  </span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span className="text-xs sm:text-sm text-neutral-700 font-medium">
+                    Bridging suburban and rural communities with gigabit access
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Mission Card */}
+            <div className="rounded-[28px] bg-neutral-50/80 border border-black/[0.05] p-7 sm:p-9 lg:p-10 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:border-black/15">
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-white shadow-xs flex items-center justify-center text-brand-navy">
+                    <Target className="w-6 h-6 stroke-[2]" />
+                  </div>
+                  <span className="font-mono text-xs font-semibold text-neutral-400 uppercase tracking-wider">
+                    OUR MISSION
+                  </span>
+                </div>
+                <h3 className="text-brand-navy font-semibold text-xl sm:text-2xl mb-3 tracking-tight">
+                  Accountable local engineering and guaranteed uptime
+                </h3>
+                <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-normal mb-6">
+                  To deliver rock-solid connectivity backed by our local Thiruvallur Network
+                  Operations Centre, rapid 2-hour doorstep technician dispatch, and carrier-grade
+                  peering—giving homes, schools, and enterprises the digital foundation they deserve.
+                </p>
+              </div>
+
+              <div className="space-y-3 pt-6 border-t border-black/[0.06]">
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span className="text-xs sm:text-sm text-neutral-700 font-medium">
+                    Local Thiruvallur NOC with 24/7 proactive line monitoring
+                  </span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span className="text-xs sm:text-sm text-neutral-700 font-medium">
+                    Under 2-hour on-site optical technician dispatch
+                  </span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span className="text-xs sm:text-sm text-neutral-700 font-medium">
+                    SLA-backed 99.9% uptime with dual optical ring redundancy
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Google Reviews & Testimonials Carousel */}
+      <Testimonial />
+
+      {/* 6. Frequently Asked Questions */}
+      <Faq
+        eyebrow="ABOUT SASH BROADBAND"
+        heading="Frequently Asked Questions"
+        description="Everything you need to know about our company, Class-B licensing, optical network infrastructure, and service coverage."
+        items={ABOUT_FAQS}
+      />
+
+      {/* 7. Single Contact Form for New Inquiries */}
       <Contactus
         defaultInterest="About SASH Broadband"
         defaultPlan="Feasibility enquiry"
