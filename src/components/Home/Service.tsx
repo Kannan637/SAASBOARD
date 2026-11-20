@@ -7,7 +7,6 @@ import {
   Briefcase,
   Network,
   Server,
-  Tv,
   Video,
   Wifi,
 } from "lucide-react";
@@ -61,13 +60,6 @@ const SERVICES_LIST = [
       "Secure private LAN/WAN interconnections linking multiple offices, warehouses, and campuses.",
     href: "/intranet",
     icon: Server,
-  },
-  {
-    title: "OTT and IPTV",
-    description:
-      "Buffer-free 4K entertainment and digital television delivery over your high-speed SASH fibre line.",
-    href: "/broadband-services#ott-iptv",
-    icon: Tv,
   },
 ];
 
@@ -158,29 +150,8 @@ function ServiceCard({ service }: { service: (typeof SERVICES_LIST)[number] }) {
 }
 
 export default function Service() {
-  const [serviceApi, setServiceApi] = useState<CarouselApi>();
-  const [activeServiceSlide, setActiveServiceSlide] = useState(0);
-
   const [lifestyleApi, setLifestyleApi] = useState<CarouselApi>();
   const [activeSlide, setActiveSlide] = useState(0);
-
-  useEffect(() => {
-    if (!serviceApi) return;
-
-    const updateActive = () => {
-      setActiveServiceSlide(serviceApi.selectedScrollSnap());
-    };
-
-    const rafId = window.requestAnimationFrame(updateActive);
-    serviceApi.on("select", updateActive);
-    serviceApi.on("reInit", updateActive);
-
-    return () => {
-      window.cancelAnimationFrame(rafId);
-      serviceApi.off("select", updateActive);
-      serviceApi.off("reInit", updateActive);
-    };
-  }, [serviceApi]);
 
   useEffect(() => {
     if (!lifestyleApi) return;
@@ -210,74 +181,33 @@ export default function Service() {
         className="bg-white text-brand-navy section-padding"
       >
         <div className="container-sash">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            setApi={setServiceApi}
-            className="w-full"
-          >
-            {/* Header: Left-Aligned Title + Right-Aligned Carousel Arrows */}
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 sm:mb-14">
-              <AppleReveal className="max-w-2xl">
-                <p className="eyebrow-label text-brand-red mb-3">
-                  Complete Network Portfolio
-                </p>
-                <h2
-                  id="services-heading"
-                  className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3"
-                >
-                  Connectivity for every need
-                </h2>
-                <p className="text-neutral-600 text-sm sm:text-base font-normal leading-relaxed">
-                  From unlimited home fibre broadband to enterprise leased lines and
-                  premises CCTV surveillance across Tamil Nadu.
-                </p>
-              </AppleReveal>
+          {/* Header */}
+          <div className="max-w-2xl mb-10 sm:mb-14">
+            <AppleReveal>
+              <p className="eyebrow-label text-brand-red mb-3">
+                Complete Network Portfolio
+              </p>
+              <h2
+                id="services-heading"
+                className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3"
+              >
+                Connectivity for every need
+              </h2>
+              <p className="text-neutral-600 text-sm sm:text-base font-normal leading-relaxed">
+                From unlimited home fibre broadband to enterprise leased lines and
+                premises CCTV surveillance across Tamil Nadu.
+              </p>
+            </AppleReveal>
+          </div>
 
-              {/* Navigation Controls: Arrows */}
-              <div className="flex items-center gap-2 shrink-0 self-start sm:self-end">
-                <CarouselPrevious className="relative inset-0 size-10 rounded-full border border-black/[0.08] bg-[#F4F3F1] text-brand-navy hover:border-brand-navy/30 hover:bg-neutral-200 transition-colors cursor-pointer" />
-                <CarouselNext className="relative inset-0 size-10 rounded-full border-transparent bg-brand-red text-white shadow-[0_4px_12px_rgba(222,3,2,0.25)] hover:bg-brand-red-hover transition-all cursor-pointer" />
-              </div>
-            </div>
-
-            {/* Carousel Cards matching shared reference image width and ratio */}
-            <CarouselContent className="-ml-3.5 sm:-ml-4 py-2">
-              {SERVICES_LIST.map((service) => (
-                <CarouselItem
-                  key={service.title}
-                  className="pl-3.5 sm:pl-4 basis-[205px] min-[400px]:basis-[220px] sm:basis-[235px] lg:basis-[245px] shrink-0 flex"
-                >
-                  <ServiceCard service={service} />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-
-            {/* Pagination Dots Indicator */}
-            <div
-              className="mt-8 sm:mt-10 flex items-center justify-center gap-1.5"
-              role="tablist"
-              aria-label="Service carousel pagination"
-            >
-              {SERVICES_LIST.map((service, idx) => (
-                <button
-                  key={service.title}
-                  type="button"
-                  role="tab"
-                  aria-selected={activeServiceSlide === idx}
-                  aria-label={`Show ${service.title}`}
-                  onClick={() => serviceApi?.scrollTo(idx)}
-                  className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${
-                    activeServiceSlide === idx
-                      ? "w-6 bg-brand-red"
-                      : "w-1.5 bg-neutral-300 hover:bg-neutral-400"
-                  }`}
-                />
-              ))}
-            </div>
-          </Carousel>
+          {/* 5 Service Cards: Responsive Grid (5 cols on desktop, 3 on tablet, 2 on small screens, 1 on mobile) */}
+          <AppleStagger className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
+            {SERVICES_LIST.map((service) => (
+              <AppleStaggerItem key={service.title} className="flex">
+                <ServiceCard service={service} />
+              </AppleStaggerItem>
+            ))}
+          </AppleStagger>
         </div>
       </section>
 
