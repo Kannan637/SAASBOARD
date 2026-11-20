@@ -286,7 +286,7 @@ export default function Business({
                           src={slide.imageSrc}
                           alt={slide.imageAlt}
                           fill
-                          priority={idx === 0}
+                          priority
                           sizes="(max-width: 1024px) 90vw, 55vw"
                           className="object-cover object-center"
                         />
