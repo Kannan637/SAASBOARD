@@ -1,6 +1,5 @@
 import React from "react";
 import Hero from "@/components/Home/Hero";
-import Impact from "@/components/Home/Impact";
 import Pricing from "@/components/Home/Pricing";
 import WhySash from "@/components/Home/WhySash";
 import Service from "@/components/Home/Service";
@@ -76,7 +75,6 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageJsonLd) }}
       />
       <Hero />
-      <Impact />
       <Pricing />
       <WhySash />
       <Aboutus />

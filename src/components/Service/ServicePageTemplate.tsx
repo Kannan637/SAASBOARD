@@ -204,7 +204,7 @@ export function ServiceHero({
     <section
       data-apple-manual="true"
       aria-labelledby="service-hero-heading"
-      className="w-full bg-white pt-6 sm:pt-10 lg:pt-[115px] pb-2 sm:pb-3 lg:pb-4 font-sans antialiased"
+      className="w-full bg-white py-2 sm:py-3 lg:py-4 font-sans antialiased"
     >
       {/* Increased Width Container (Max 1440px / 1520px on 2xl screens) matching Landing Page Hero */}
       <div className="w-full max-w-[1440px] 2xl:max-w-[1520px] mx-auto px-3 sm:px-6 lg:px-8">
@@ -244,37 +244,37 @@ export function ServiceHero({
                   {eyebrow}
                 </div>
 
-                {/* Headline: 72px font size, 600 weight, 80px line height, max-width 500px */}
+                {/* Headline: Clean, Crisp White Typography matching Landing Page Hero */}
                 <h1
                   id="service-hero-heading"
-                  className="mt-3 sm:mt-4 text-3xl sm:text-5xl lg:text-[72px] font-semibold leading-tight lg:leading-[80px] max-w-[500px] tracking-[-0.03em] text-white text-center lg:text-left text-balance"
+                  className="mt-3 sm:mt-4 text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] lg:leading-[50px] font-medium tracking-[-0.05px] text-white text-center lg:text-left text-balance lg:whitespace-nowrap"
                 >
                   <span>{titlePrefix} </span>
                   <span>{titleHighlight}</span>
                 </h1>
 
-                {/* Subtitle Description: 19px font size, 400 weight, 26px line height with large layout gap */}
-                <p className="mt-5 sm:mt-6 lg:mt-[32px] max-w-xl text-base sm:text-lg lg:text-[19px] leading-relaxed lg:leading-[26px] font-normal text-white/90 tracking-normal text-center lg:text-left">
+                {/* Subtitle Description */}
+                <p className="mt-3 sm:mt-4 max-w-xl text-sm sm:text-base leading-snug sm:leading-relaxed font-normal text-white/85 tracking-[-0.05px] text-center lg:text-left line-clamp-3 sm:line-clamp-2">
                   {description}
                 </p>
 
-                {/* Action Buttons: CTA top margin 24px, 17px font size, 500 weight, 22px line height */}
-                <div className="mt-[24px] flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full">
+                {/* Action Buttons: Centered on mobile, start-aligned on desktop */}
+                <div className="mt-5 sm:mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full">
                   <Link
                     href={ctaHref}
-                    className="inline-flex h-[48px] min-h-[48px] items-center justify-center gap-2 rounded-full bg-brand-red hover:bg-brand-red-hover px-7 text-[17px] font-medium leading-[22px] text-white outline-2 -outline-offset-2 outline-white/20 transition-all duration-150 ease-out active:scale-[0.97]"
+                    className="inline-flex h-10 min-h-[40px] items-center justify-center gap-2 rounded-full bg-brand-red hover:bg-brand-red-hover px-5 sm:px-6 text-sm font-medium text-white outline-2 -outline-offset-2 outline-white/20 transition-all duration-150 ease-out active:scale-[0.97]"
                   >
                     <span>{ctaText}</span>
-                    <ChevronRight className="size-4 stroke-[2.5]" />
+                    <ChevronRight className="size-3.5 stroke-[2.5]" />
                   </Link>
 
                   {secondaryCtaText && secondaryCtaHref && (
                     <Link
                       href={secondaryCtaHref}
-                      className="group/sec inline-flex h-[48px] min-h-[48px] items-center justify-center gap-1.5 text-[17px] font-medium leading-[22px] text-white hover:text-white/80 transition-colors px-4"
+                      className="group/sec inline-flex h-10 min-h-[40px] items-center justify-center gap-1.5 text-sm font-medium text-white hover:text-white/80 transition-colors"
                     >
                       <span>{secondaryCtaText}</span>
-                      <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-150 group-hover/sec:translate-x-0.5" />
+                      <ChevronRight className="size-3.5 stroke-[2.5] transition-transform duration-150 group-hover/sec:translate-x-0.5" />
                     </Link>
                   )}
                 </div>

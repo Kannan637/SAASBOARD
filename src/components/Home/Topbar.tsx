@@ -276,10 +276,10 @@ export default function Topbar() {
         </div>
       </div>
 
-      {/* Responsive Navbar (Borderless) with Screenshot 1 Typography & Spacing System */}
-      <header className="relative z-50 bg-white mt-[10px]">
-        <div className="container-sash h-16 lg:h-[85px] px-4 sm:px-6 lg:px-[36px] flex items-center justify-between gap-3">
-          {/* Brand Logo (36px–40px) */}
+      {/* Responsive Navbar (Borderless) */}
+      <header className="relative z-50 bg-white">
+        <div className="container-sash h-14 sm:h-16 flex items-center justify-between gap-3">
+          {/* Brand Logo */}
           <Link
             href="/"
             onClick={() => handleNavClick("/")}
@@ -292,20 +292,20 @@ export default function Topbar() {
               width={140}
               height={60}
               priority
-              className="h-[36px] sm:h-[38px] md:h-[40px] w-auto object-contain"
+              className="h-9 sm:h-10 md:h-11 w-auto object-contain"
             />
           </Link>
 
-          {/* Desktop Navigation (19px font size, 500 weight, 24px line height) */}
+          {/* Desktop Navigation */}
           <nav
             aria-label="Primary navigation"
-            className="hidden lg:flex items-center gap-1.5 xl:gap-2.5"
+            className="hidden lg:flex items-center gap-1"
           >
             {/* Home */}
             <Link
               href="/"
               onClick={() => handleNavClick("/")}
-              className={`px-3.5 py-2 rounded-lg text-sm lg:text-[19px] lg:leading-[24px] font-medium transition-colors h-10 inline-flex items-center ${
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center ${
                 pathname === "/" && activeSection === "home"
                   ? "text-brand-red font-semibold"
                   : "text-brand-navy hover:text-brand-red"
@@ -318,7 +318,7 @@ export default function Topbar() {
             <Link
               href="/#plans"
               onClick={() => handleNavClick("/#plans")}
-              className={`px-3.5 py-2 rounded-lg text-sm lg:text-[19px] lg:leading-[24px] font-medium transition-colors h-10 inline-flex items-center ${
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center ${
                 pathname === "/" && activeSection === "plans"
                   ? "text-brand-red font-semibold"
                   : "text-brand-navy hover:text-brand-red"
@@ -339,7 +339,7 @@ export default function Topbar() {
                 onClick={() => setServicesOpen((prev) => !prev)}
                 aria-expanded={servicesOpen}
                 aria-haspopup="menu"
-                className={`px-3.5 py-2 rounded-lg text-sm lg:text-[19px] lg:leading-[24px] font-medium transition-colors h-10 inline-flex items-center gap-1.5 cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center gap-1.5 cursor-pointer ${
                   servicesOpen || isServicePage
                     ? "text-brand-red font-semibold"
                     : "text-brand-navy hover:text-brand-red"
@@ -347,7 +347,7 @@ export default function Topbar() {
               >
                 <span>Services</span>
                 <svg
-                  className={`w-4 h-4 transition-transform duration-200 ${
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
                     servicesOpen ? "rotate-180 text-brand-red" : ""
                   }`}
                   viewBox="0 0 24 24"
@@ -417,7 +417,7 @@ export default function Topbar() {
             <Link
               href="/about"
               onClick={() => handleNavClick("/about")}
-              className={`px-3.5 py-2 rounded-lg text-sm lg:text-[19px] lg:leading-[24px] font-medium transition-colors h-10 inline-flex items-center ${
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center ${
                 pathname === "/about"
                   ? "text-brand-red font-semibold"
                   : "text-brand-navy hover:text-brand-red"
@@ -430,7 +430,7 @@ export default function Topbar() {
             <Link
               href="/#faq"
               onClick={() => handleNavClick("/#faq")}
-              className={`px-3.5 py-2 rounded-lg text-sm lg:text-[19px] lg:leading-[24px] font-medium transition-colors h-10 inline-flex items-center ${
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center ${
                 pathname === "/" && activeSection === "faq"
                   ? "text-brand-red font-semibold"
                   : "text-brand-navy hover:text-brand-red"
@@ -443,7 +443,7 @@ export default function Topbar() {
             <Link
               href="/contact"
               onClick={() => handleNavClick("/contact")}
-              className={`px-3.5 py-2 rounded-lg text-sm lg:text-[19px] lg:leading-[24px] font-medium transition-colors h-10 inline-flex items-center ${
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center ${
                 pathname === "/contact" ||
                 (pathname === "/" && activeSection === "contact")
                   ? "text-brand-red font-semibold"
@@ -454,16 +454,16 @@ export default function Topbar() {
             </Link>
           </nav>
 
-          {/* Desktop Primary CTA (17px font size, 500 weight, 22px line height) */}
+          {/* Desktop Primary CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
               href="/#contact"
               onClick={() => handleNavClick("/#contact")}
-              className="group/cta btn-pill btn-primary-red text-[17px] font-medium leading-[22px] px-6 py-2.5 h-[46px] inline-flex items-center justify-center gap-2"
+              className="group/cta btn-pill btn-primary-red text-base font-medium"
             >
               <span>Check availability</span>
               <svg
-                className="w-4 h-4 transition-transform duration-200 ease-out group-hover/cta:translate-x-0.5"
+                className="w-3.5 h-3.5 transition-transform duration-200 ease-out group-hover/cta:translate-x-0.5"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
