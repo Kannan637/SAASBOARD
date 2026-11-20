@@ -111,7 +111,7 @@ export default function IntranetPage() {
         ctaHref="#contact"
         secondaryCtaText="Check Coverage"
         secondaryCtaHref="#contact"
-        backgroundImageSrc="/Hero/intranet-bg.jpg"
+        pattern="purple-grid"
         imageSrc="/Hero/intranet.png"
         imageAlt="SASH Private Multi-Site Intranet infrastructure"
         imageWidth={1840}

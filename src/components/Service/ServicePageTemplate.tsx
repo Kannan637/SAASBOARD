@@ -118,7 +118,6 @@ const SERVICE_CONFIG_BY_LABEL: Record<string, ServiceHeroConfig> = {
     pattern: "blue-arcs",
     cardGradient:
       "linear-gradient(180deg, #D4EBFC 0%, #B3D7F7 15%, #7CAFE0 32%, #4F83BE 50%, #2E5C9A 68%, #14376E 84%, #06183B 100%)",
-    backgroundImageSrc: "/Hero/leased-line-bg.jpg",
     imageSrc: "/Hero/1to1.png",
     imageAlt: "1:1 Enterprise Dedicated Optical Leased Line infrastructure",
     imageWidth: 1856,
@@ -152,7 +151,6 @@ const SERVICE_CONFIG_BY_LABEL: Record<string, ServiceHeroConfig> = {
     pattern: "purple-grid",
     cardGradient:
       "linear-gradient(180deg, #E6CBF8 0%, #C1ABDA 15%, #9287B8 32%, #686193 50%, #444374 68%, #242859 84%, #081141 100%)",
-    backgroundImageSrc: "/Hero/intranet-bg.jpg",
     imageSrc: "/Hero/intranet.png",
     imageAlt: "Secure Multi-Site Optical Intranet and Private WAN",
     imageWidth: 1840,
