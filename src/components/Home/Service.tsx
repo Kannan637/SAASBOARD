@@ -27,28 +27,63 @@ import {
 } from "@/components/ui/carousel";
 import { ThreeDMarquee } from "@/components/ui/3d-marquee";
 
-const BRAND_LOGOS = [
-  "/brand-logos/netflix-logo-icon.svg",
-  "/brand-logos/youtube-icon-8.svg",
+// 3 distinct columns with randomized brand logo placements to ensure variety across adjacent cards
+const BRAND_LOGOS_COL1 = [
+  "/brand-logos/rockstar-games.svg",
+  "/brand-logos/linkedin-icon-2.svg",
+  "/brand-logos/gta-grand-theft-auto.svg",
+  "/brand-logos/instagram-2016-5.svg",
+  "/brand-logos/myntra-2.svg",
+  "/brand-logos/adobe-photoshop-2.svg",
+  "/brand-logos/whatsapp-glyph-black.svg",
   "/brand-logos/amazon-prime-video-1.svg",
+  "/brand-logos/claude-logo.svg",
   "/brand-logos/spotify-logo.svg",
   "/brand-logos/google-g-2015.svg",
+  "/brand-logos/netflix-logo-icon.svg",
+  "/brand-logos/youtube-icon-8.svg",
+  "/brand-logos/deepseek-2.svg",
+];
+
+const BRAND_LOGOS_COL2 = [
+  "/brand-logos/amazon-prime-video-1.svg",
+  "/brand-logos/whatsapp-glyph-black.svg",
+  "/brand-logos/claude-logo.svg",
+  "/brand-logos/instagram-2016-5.svg",
+  "/brand-logos/gta-grand-theft-auto.svg",
+  "/brand-logos/adobe-photoshop-2.svg",
+  "/brand-logos/google-g-2015.svg",
+  "/brand-logos/linkedin-icon-2.svg",
+  "/brand-logos/rockstar-games.svg",
+  "/brand-logos/deepseek-2.svg",
+  "/brand-logos/spotify-logo.svg",
+  "/brand-logos/youtube-icon-8.svg",
+  "/brand-logos/myntra-2.svg",
+  "/brand-logos/netflix-logo-icon.svg",
+];
+
+const BRAND_LOGOS_COL3 = [
+  "/brand-logos/deepseek-2.svg",
+  "/brand-logos/spotify-logo.svg",
+  "/brand-logos/rockstar-games.svg",
+  "/brand-logos/adobe-photoshop-2.svg",
+  "/brand-logos/netflix-logo-icon.svg",
+  "/brand-logos/myntra-2.svg",
+  "/brand-logos/youtube-icon-8.svg",
+  "/brand-logos/linkedin-icon-2.svg",
   "/brand-logos/whatsapp-glyph-black.svg",
   "/brand-logos/instagram-2016-5.svg",
   "/brand-logos/gta-grand-theft-auto.svg",
-  "/brand-logos/rockstar-games.svg",
+  "/brand-logos/amazon-prime-video-1.svg",
+  "/brand-logos/google-g-2015.svg",
   "/brand-logos/claude-logo.svg",
-  "/brand-logos/deepseek-2.svg",
-  "/brand-logos/adobe-photoshop-2.svg",
-  "/brand-logos/linkedin-icon-2.svg",
-  "/brand-logos/myntra-2.svg",
 ];
 
-// Tripled to 42 items (exactly 14 items per column) for a continuous, unbroken 3-column marquee
-const UPGRADE_MARQUEE_LOGOS = [
-  ...BRAND_LOGOS,
-  ...BRAND_LOGOS,
-  ...BRAND_LOGOS,
+// 28 logos per column for an unbroken, infinite vertical flow covering the entire right section
+const UPGRADE_MARQUEE_COLUMNS = [
+  [...BRAND_LOGOS_COL1, ...BRAND_LOGOS_COL1],
+  [...BRAND_LOGOS_COL2, ...BRAND_LOGOS_COL2],
+  [...BRAND_LOGOS_COL3, ...BRAND_LOGOS_COL3],
 ];
 
 const SERVICES_LIST = [
@@ -344,15 +379,16 @@ export default function Service() {
           {/* 7. CTA Banner (Red background, White text, 32px rounded container with 3D Marquee on the right background) */}
           <AppleScrollScale className="mt-20 md:mt-28 lg:mt-32">
             <div className="banner-sash relative overflow-hidden rounded-[32px] bg-brand-red text-white p-8 sm:p-12 lg:p-14 min-h-[360px] sm:min-h-[400px] lg:min-h-[420px] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 shadow-[0_16px_48px_rgba(222,3,2,0.22)]">
-              {/* 3D Marquee: Positioned on the right of the card background (compact, 3 visible columns, pure white card background) */}
+              {/* 3D Marquee: Covers the entire right section of the card background with randomized logo placement */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute -right-10 sm:-right-4 md:right-0 lg:right-4 top-1/2 -translate-y-1/2 w-[340px] sm:w-[420px] md:w-[480px] lg:w-[540px] h-[360px] sm:h-[400px] lg:h-[440px] overflow-hidden select-none z-0 opacity-90 sm:opacity-95 [mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.2)_10%,black_35%,black_100%)]"
+                className="pointer-events-none absolute right-0 top-0 bottom-0 w-full sm:w-[68%] md:w-[62%] lg:w-[56%] h-full overflow-hidden select-none z-0 opacity-95 [mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.25)_15%,rgba(0,0,0,0.85)_32%,black_100%)]"
               >
                 <ThreeDMarquee
-                  images={UPGRADE_MARQUEE_LOGOS}
-                  columns={3}
+                  columnsData={UPGRADE_MARQUEE_COLUMNS}
                   className="h-full w-full"
+                  stageClassName="size-[850px] sm:size-[950px] lg:size-[1050px] translate-x-10 sm:translate-x-14 lg:translate-x-16"
+                  cardClassName="w-24 sm:w-28 md:w-32 lg:w-36 aspect-[4/3] bg-white rounded-xl sm:rounded-2xl shadow-[0_6px_22px_rgba(0,0,0,0.15)] border border-black/[0.04]"
                 />
               </div>
 

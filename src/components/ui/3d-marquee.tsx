@@ -5,7 +5,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export interface ThreeDMarqueeProps {
-  images: string[];
+  images?: string[];
+  columnsData?: string[][];
   className?: string;
   columns?: number;
   cardClassName?: string;
@@ -14,7 +15,8 @@ export interface ThreeDMarqueeProps {
 }
 
 export const ThreeDMarquee = ({
-  images,
+  images = [],
+  columnsData,
   className,
   columns = 3,
   cardClassName,
@@ -23,13 +25,17 @@ export const ThreeDMarquee = ({
 }: ThreeDMarqueeProps) => {
   const shouldReduceMotion = useReducedMotion();
 
-  // Split the images array into equal chunks based on columns count (defaults to 3 visible marquee columns)
-  const numCols = Math.max(1, columns);
-  const chunkSize = Math.ceil(images.length / numCols);
-  const chunks = Array.from({ length: numCols }, (_, colIndex) => {
-    const start = colIndex * chunkSize;
-    return images.slice(start, start + chunkSize);
-  });
+  // Use provided columnsData (for custom randomized placement) or chunk the images array
+  const numCols = columnsData ? columnsData.length : Math.max(1, columns);
+  const chunks: string[][] =
+    columnsData ||
+    (() => {
+      const chunkSize = Math.ceil(images.length / numCols);
+      return Array.from({ length: numCols }, (_, colIndex) => {
+        const start = colIndex * chunkSize;
+        return images.slice(start, start + chunkSize);
+      });
+    })();
 
   return (
     <div
@@ -42,7 +48,7 @@ export const ThreeDMarquee = ({
         <div
           className={cn(
             "relative shrink-0 flex items-center justify-center",
-            stageClassName || "w-[480px] sm:w-[540px] md:w-[600px] h-[520px] sm:h-[580px] md:h-[640px]",
+            stageClassName || "size-[800px] sm:size-[900px] lg:size-[1000px]",
           )}
         >
           <div
@@ -51,7 +57,7 @@ export const ThreeDMarquee = ({
               transformStyle: "preserve-3d",
             }}
             className={cn(
-              "grid origin-center gap-3 sm:gap-3.5 md:gap-4 transform-3d",
+              "grid origin-center gap-3.5 sm:gap-4 md:gap-5 transform-3d",
               numCols === 3
                 ? "grid-cols-3"
                 : numCols === 4
@@ -64,27 +70,27 @@ export const ThreeDMarquee = ({
                 animate={
                   shouldReduceMotion
                     ? { y: 0 }
-                    : { y: colIndex % 2 === 0 ? 40 : -40 }
+                    : { y: colIndex % 2 === 0 ? 60 : -60 }
                 }
                 transition={{
-                  duration: colIndex % 2 === 0 ? 11 : 15,
+                  duration: colIndex === 1 ? 17 : colIndex === 2 ? 13 : 15,
                   repeat: Infinity,
                   repeatType: "reverse",
                   ease: "easeInOut",
                 }}
                 key={colIndex + "marquee"}
-                className="flex flex-col items-center gap-3 sm:gap-3.5 md:gap-4"
+                className="flex flex-col items-center gap-3.5 sm:gap-4 md:gap-5"
               >
-                <GridLineVertical className="-left-2" offset="40px" />
+                <GridLineVertical className="-left-2 sm:-left-2.5" offset="60px" />
                 {subarray.map((image, imageIndex) => (
                   <div
                     key={imageIndex + image}
                     className={cn(
-                      "relative flex items-center justify-center rounded-xl sm:rounded-2xl bg-white p-2.5 sm:p-3 aspect-[4/3] w-20 sm:w-24 md:w-28 shadow-[0_4px_16px_rgba(0,0,0,0.12)] border border-black/[0.04] transition-transform hover:scale-105",
+                      "relative flex items-center justify-center rounded-xl sm:rounded-2xl bg-white p-2.5 sm:p-3.5 aspect-[4/3] w-24 sm:w-28 md:w-32 lg:w-36 shadow-[0_6px_20px_rgba(0,0,0,0.13)] border border-black/[0.04] transition-transform hover:scale-105",
                       cardClassName,
                     )}
                   >
-                    <GridLineHorizontal className="-top-2" offset="20px" />
+                    <GridLineHorizontal className="-top-2 sm:-top-2.5" offset="40px" />
                     <motion.img
                       whileHover={shouldReduceMotion ? undefined : { scale: 1.08 }}
                       transition={{
@@ -122,12 +128,12 @@ const GridLineHorizontal = ({
       style={
         {
           "--background": "#ffffff",
-          "--color": "rgba(255, 255, 255, 0.25)",
+          "--color": "rgba(255, 255, 255, 0.2)",
           "--height": "1px",
           "--width": "4px",
           "--fade-stop": "90%",
           "--offset": offset || "100px",
-          "--color-dark": "rgba(255, 255, 255, 0.25)",
+          "--color-dark": "rgba(255, 255, 255, 0.2)",
           maskComposite: "exclude",
         } as React.CSSProperties
       }
@@ -157,12 +163,12 @@ const GridLineVertical = ({
       style={
         {
           "--background": "#ffffff",
-          "--color": "rgba(255, 255, 255, 0.25)",
+          "--color": "rgba(255, 255, 255, 0.2)",
           "--height": "4px",
           "--width": "1px",
           "--fade-stop": "90%",
           "--offset": offset || "100px",
-          "--color-dark": "rgba(255, 255, 255, 0.25)",
+          "--color-dark": "rgba(255, 255, 255, 0.2)",
           maskComposite: "exclude",
         } as React.CSSProperties
       }
