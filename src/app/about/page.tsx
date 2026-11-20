@@ -12,6 +12,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import Contactus from "@/components/Home/Contactus";
+import CardCanvasPattern from "@/components/ui/card-canvas-pattern";
 import {
   AppleReveal,
   AppleStagger,
@@ -108,7 +109,7 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(companyJsonLd) }}
       />
 
-      {/* 1. Page Hero: Center Aligned with Rich Gradient Background */}
+      {/* 1. Page Hero: Center Aligned with Landing Page Hero Card 1 Gradient & Canvas Pattern */}
       <section
         data-apple-manual="true"
         aria-labelledby="about-heading"
@@ -116,16 +117,20 @@ export default function AboutPage() {
       >
         <div className="w-full max-w-[1440px] 2xl:max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8">
           <div
+            data-pattern="glyph"
             className="relative w-full rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden px-6 sm:px-10 lg:px-16 py-16 sm:py-20 lg:py-28 flex flex-col items-center justify-center text-center text-white border border-black/[0.06] select-none"
             style={{
               background:
-                "radial-gradient(circle at 50% 20%, rgba(42,123,224,0.3) 0%, rgba(1,13,59,0) 65%), linear-gradient(145deg, #010D3B 0%, #07194D 45%, #102B73 78%, #010D3B 100%)",
+                "linear-gradient(180deg, #00030D 0%, #1754AB 45%, #2A7BE0 70%, #BFE3FF 100%)",
             }}
           >
-            {/* Ambient decorative background glow */}
+            {/* Dynamic Card 1 Canvas Pattern (Glyph with Blue Gradient matching Landing Page Hero Card 1) */}
+            <CardCanvasPattern pattern="glyph" />
+
+            {/* Subtle Content Contrast Scrim for Text Readability without altering the canvas pattern */}
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] sm:w-[800px] h-[300px] bg-brand-red/20 blur-[90px] rounded-full"
+              className="pointer-events-none absolute inset-0 bg-black/15"
             />
 
             {/* Breadcrumb (Center Aligned) */}
@@ -151,9 +156,9 @@ export default function AboutPage() {
               </ol>
             </nav>
 
-            {/* Eyebrow Badge (Center Aligned) */}
+            {/* Eyebrow Badge (Center Aligned) matching Hero Card 1 signature badge */}
             <div className="relative z-10 mb-4 sm:mb-5">
-              <span className="eyebrow-label bg-white/10 text-white border border-white/20 backdrop-blur-md px-3.5 py-1">
+              <span className="inline-flex min-h-6 items-center justify-center gap-1.5 rounded-full bg-brand-red px-3.5 py-1 text-xs leading-none font-medium text-white tracking-wide uppercase">
                 ABOUT SASH BROADBAND
               </span>
             </div>
