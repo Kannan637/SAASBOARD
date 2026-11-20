@@ -96,7 +96,7 @@ export function SingleClientMarquee({
       {CLIENT_LOGOS.map((logo) => (
         <div
           key={`${isDuplicate ? "dup" : "orig"}-${logo.id}`}
-          className="h-18 w-36 sm:h-20 sm:w-42 shrink-0 rounded-xl bg-white border border-neutral-200/80 px-4 py-2.5 flex items-center justify-center transition-transform duration-200 hover:-translate-y-0.5"
+          className="h-18 w-36 sm:h-20 sm:w-42 shrink-0 rounded-xl bg-white px-4 py-2.5 flex items-center justify-center transition-transform duration-200 hover:-translate-y-0.5"
         >
           <Image
             src={logo.src}
