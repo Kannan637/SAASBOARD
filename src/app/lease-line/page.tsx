@@ -111,9 +111,9 @@ export default function LeasedLinePage() {
         ctaHref="#contact"
         secondaryCtaText="Check Feasibility"
         secondaryCtaHref="#contact"
+        backgroundImageSrc="/Hero/leased-line-bg.jpg"
         imageSrc="/Hero/1to1.png"
         imageAlt="1:1 Enterprise Dedicated Optical Leased Line infrastructure"
-        pattern="blue-arcs"
       />
 
       {/* Single-Row Client Logo Marquee */}

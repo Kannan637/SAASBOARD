@@ -73,6 +73,7 @@ export interface ServiceHeroProps {
   specPills?: string[];
   pattern?: CardPatternType;
   cardGradient?: string;
+  backgroundImageSrc?: string;
   imageSrc?: string;
   imageAlt?: string;
   imageWidth?: number;
@@ -92,6 +93,7 @@ export interface ServiceDeliverableItem {
 interface ServiceHeroConfig {
   pattern: CardPatternType;
   cardGradient: string;
+  backgroundImageSrc?: string;
   imageSrc: string;
   imageAlt: string;
   imageWidth: number;
@@ -116,6 +118,7 @@ const SERVICE_CONFIG_BY_LABEL: Record<string, ServiceHeroConfig> = {
     pattern: "blue-arcs",
     cardGradient:
       "linear-gradient(180deg, #D4EBFC 0%, #B3D7F7 15%, #7CAFE0 32%, #4F83BE 50%, #2E5C9A 68%, #14376E 84%, #06183B 100%)",
+    backgroundImageSrc: "/Hero/leased-line-bg.jpg",
     imageSrc: "/Hero/1to1.png",
     imageAlt: "1:1 Enterprise Dedicated Optical Leased Line infrastructure",
     imageWidth: 1856,
@@ -183,6 +186,7 @@ export function ServiceHero({
   iconAlt,
   pattern: explicitPattern,
   cardGradient: explicitCardGradient,
+  backgroundImageSrc: explicitBackgroundImageSrc,
   imageSrc: explicitImageSrc,
   imageAlt: explicitImageAlt,
   imageWidth: explicitImageWidth,
@@ -199,6 +203,8 @@ export function ServiceHero({
     explicitCardGradient ||
     config.cardGradient ||
     "linear-gradient(180deg, #E6CBF8 0%, #C1ABDA 15%, #9287B8 32%, #686193 50%, #444374 68%, #242859 84%, #081141 100%)";
+  const resolvedBackgroundImageSrc =
+    explicitBackgroundImageSrc || config.backgroundImageSrc;
   const resolvedImageSrc =
     explicitImageSrc ||
     config.imageSrc ||
@@ -225,26 +231,48 @@ export function ServiceHero({
           data-pattern={currentPattern}
           style={{ background: resolvedCardGradient }}
         >
-          {/* Canvas Background Pattern Layer matching Landing Page Hero */}
-          <div
-            aria-hidden="true"
-            data-pattern={currentPattern}
-            className="absolute inset-0 pointer-events-none z-0"
-          >
-            <CardCanvasPattern
-              pattern={currentPattern}
-              patternOpacity={
-                currentPattern === "purple-grid" || currentPattern === "yellow-grid"
-                  ? 0.75
-                  : undefined
-              }
-            />
-            {/* Subtle Content Contrast Scrim for Text Readability without altering the canvas pattern */}
+          {/* Background Layer: Custom Image or Procedural Canvas Pattern */}
+          {resolvedBackgroundImageSrc ? (
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-black/15 lg:bg-transparent lg:bg-gradient-to-r lg:from-black/45 lg:via-black/20 lg:to-transparent pointer-events-none"
-            />
-          </div>
+              className="absolute inset-0 pointer-events-none z-0 overflow-hidden"
+            >
+              <Image
+                src={resolvedBackgroundImageSrc}
+                alt=""
+                fill
+                priority
+                sizes="(max-width: 1520px) 100vw, 1520px"
+                className="object-cover object-center select-none"
+              />
+              {/* Subtle Content Contrast Scrim for Text Readability without altering the visual backdrop */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-black/10 lg:from-black/50 lg:via-transparent lg:to-transparent pointer-events-none"
+              />
+            </div>
+          ) : (
+            /* Canvas Background Pattern Layer matching Landing Page Hero */
+            <div
+              aria-hidden="true"
+              data-pattern={currentPattern}
+              className="absolute inset-0 pointer-events-none z-0"
+            >
+              <CardCanvasPattern
+                pattern={currentPattern}
+                patternOpacity={
+                  currentPattern === "purple-grid" || currentPattern === "yellow-grid"
+                    ? 0.75
+                    : undefined
+                }
+              />
+              {/* Subtle Content Contrast Scrim for Text Readability without altering the canvas pattern */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-black/15 lg:bg-transparent lg:bg-gradient-to-r lg:from-black/45 lg:via-black/20 lg:to-transparent pointer-events-none"
+              />
+            </div>
+          )}
 
           <div className="w-full min-h-auto lg:min-h-[520px] grid grid-cols-1 lg:grid-cols-12 items-stretch relative z-10">
             {/* Left Content Column (7 of 12 columns on desktop): Centered on mobile, left-aligned on desktop */}
