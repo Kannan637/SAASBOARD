@@ -299,9 +299,9 @@ export function FibreSpeedCard() {
             <div
               data-flip-trigger="true"
               aria-label="View card details"
-              className="size-9 sm:size-10 rounded-[14px] bg-white border border-black/[0.08] shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex items-center justify-center text-[#1A73E8] group-hover/flip:scale-108 group-hover/flip:border-[#1A73E8]/30 group-hover/flip:shadow-[0_4px_14px_rgba(26,115,232,0.18)] transition-all duration-200 shrink-0 cursor-pointer"
+              className="size-9 sm:size-10 rounded-[14px] bg-red-10 border border-brand-red/25 flex items-center justify-center text-brand-red shrink-0"
             >
-              <Plus className="size-5 stroke-[2.75] text-[#1A73E8] transition-transform duration-300 group-hover/flip:rotate-90" />
+              <Plus className="size-5 stroke-[2.75]" />
             </div>
           </div>
         </CardContent>
@@ -310,7 +310,7 @@ export function FibreSpeedCard() {
         <div className="flex flex-col justify-between h-full bg-white">
           <div>
             <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
-              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#EBF2FE] text-[#1A73E8] flex items-center justify-center shrink-0">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-red-10 border border-brand-red/20 text-brand-red flex items-center justify-center shrink-0">
                 <Zap className="size-6 sm:size-7" />
               </div>
               <span className="text-neutral-400 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 transition-colors">
@@ -407,9 +407,9 @@ export function RouterSetupCard() {
             <div
               data-flip-trigger="true"
               aria-label="View card details"
-              className="size-9 sm:size-10 rounded-[14px] bg-white border border-black/[0.08] shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex items-center justify-center text-[#1A73E8] group-hover/flip:scale-108 group-hover/flip:border-[#1A73E8]/30 group-hover/flip:shadow-[0_4px_14px_rgba(26,115,232,0.18)] transition-all duration-200 shrink-0 cursor-pointer"
+              className="size-9 sm:size-10 rounded-[14px] bg-red-10 border border-brand-red/25 flex items-center justify-center text-brand-red shrink-0"
             >
-              <Plus className="size-5 stroke-[2.75] text-[#1A73E8] transition-transform duration-300 group-hover/flip:rotate-90" />
+              <Plus className="size-5 stroke-[2.75]" />
             </div>
           </div>
         </CardContent>
@@ -418,7 +418,7 @@ export function RouterSetupCard() {
         <div className="flex flex-col justify-between h-full bg-white">
           <div>
             <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
-              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#EBF2FE] text-[#1A73E8] flex items-center justify-center shrink-0">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-red-10 border border-brand-red/20 text-brand-red flex items-center justify-center shrink-0">
                 <Router className="size-6 sm:size-7" />
               </div>
               <span className="text-neutral-400 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 transition-colors">
@@ -541,9 +541,9 @@ export function LicensedISPCARD() {
             <div
               data-flip-trigger="true"
               aria-label="View card details"
-              className="size-9 sm:size-10 rounded-[14px] bg-white border border-black/[0.08] shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex items-center justify-center text-[#1A73E8] group-hover/flip:scale-108 group-hover/flip:border-[#1A73E8]/30 group-hover/flip:shadow-[0_4px_14px_rgba(26,115,232,0.18)] transition-all duration-200 shrink-0 cursor-pointer"
+              className="size-9 sm:size-10 rounded-[14px] bg-red-10 border border-brand-red/25 flex items-center justify-center text-brand-red shrink-0"
             >
-              <Plus className="size-5 stroke-[2.75] text-[#1A73E8] transition-transform duration-300 group-hover/flip:rotate-90" />
+              <Plus className="size-5 stroke-[2.75]" />
             </div>
           </div>
         </CardContent>
@@ -552,7 +552,7 @@ export function LicensedISPCARD() {
         <div className="flex flex-col justify-between h-full bg-white">
           <div>
             <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
-              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#EBF2FE] text-[#1A73E8] flex items-center justify-center shrink-0">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-red-10 border border-brand-red/20 text-brand-red flex items-center justify-center shrink-0">
                 <Globe className="size-6 sm:size-7" />
               </div>
               <span className="text-neutral-400 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 transition-colors">
@@ -833,9 +833,9 @@ export function SupportCard() {
             <div
               data-flip-trigger="true"
               aria-label="View card details"
-              className="size-9 sm:size-10 rounded-[14px] bg-white border border-black/[0.08] shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex items-center justify-center text-[#1A73E8] group-hover/flip:scale-108 group-hover/flip:border-[#1A73E8]/30 group-hover/flip:shadow-[0_4px_14px_rgba(26,115,232,0.18)] transition-all duration-200 shrink-0 cursor-pointer"
+              className="size-9 sm:size-10 rounded-[14px] bg-red-10 border border-brand-red/25 flex items-center justify-center text-brand-red shrink-0"
             >
-              <Plus className="size-5 stroke-[2.75] text-[#1A73E8] transition-transform duration-300 group-hover/flip:rotate-90" />
+              <Plus className="size-5 stroke-[2.75]" />
             </div>
           </div>
         </CardContent>
@@ -844,7 +844,7 @@ export function SupportCard() {
         <div className="flex flex-col justify-between h-full bg-white">
           <div>
             <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
-              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#EBF2FE] text-[#1A73E8] flex items-center justify-center shrink-0">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-red-10 border border-brand-red/20 text-brand-red flex items-center justify-center shrink-0">
                 <Headphones className="size-6 sm:size-7" />
               </div>
               <span className="text-neutral-400 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 transition-colors">
