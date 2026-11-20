@@ -156,6 +156,17 @@ const SERVICE_CONFIG_BY_LABEL: Record<string, ServiceHeroConfig> = {
     ratingScore: "4.9",
     ratingLabel: "enterprise LAN rating",
   },
+  "About Us": {
+    pattern: "blue-arcs",
+    cardGradient:
+      "linear-gradient(180deg, #D4EBFC 0%, #B3D7F7 15%, #7CAFE0 32%, #4F83BE 50%, #2E5C9A 68%, #14376E 84%, #06183B 100%)",
+    imageSrc: "/Hero/Business.png",
+    imageAlt: "SASH Broadband licensed Class-B ISP operations across Tamil Nadu",
+    imageWidth: 1792,
+    imageHeight: 2106,
+    ratingScore: "4.9",
+    ratingLabel: "verified ISP rating",
+  },
 };
 
 export function ServiceHero({
