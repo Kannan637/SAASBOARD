@@ -34,8 +34,13 @@
   --neutral-600: #4A4F63;
   --neutral-100: #F3F4F7;
 
-  /* Typography & Layout Tokens - Apple Curvature */
-  --container-max: 1200px;
+  /* Typography & Layout Tokens - 12-Column Grid Architecture (1400–1440px) */
+  --container-max: 1440px;
+  --container-min: 1400px;
+  --grid-columns: 12;
+  --column-gap: 20px; /* 12–24px */
+  --grid-gutter: 24px; /* 16–24px */
+  --side-margin: clamp(16px, 8vw, 10%);
   --radius-card: 28px;
   --radius-pill: 9999px;
   --radius-banner: 32px;
@@ -390,7 +395,7 @@
   letter-spacing: -0.05px;
 }
 
-/* Custom utility classes for SASH Design System (Juspay Layout & Spacing) */
+/* Custom utility classes for SASH Design System (12-Column CSS Grid & Layout Measurements) */
 .container-sash {
   width: 100%;
   max-width: var(--container-max);
@@ -409,9 +414,34 @@
 
 @media (min-width: 1024px) {
   .container-sash {
+    padding-left: clamp(24px, 8vw, 10%);
+    padding-right: clamp(24px, 8vw, 10%);
+  }
+}
+
+@media (min-width: 1440px) {
+  .container-sash {
     padding-left: 32px;
     padding-right: 32px;
   }
+}
+
+/* 12-Column CSS Grid Layout System */
+.grid-12,
+.layout-grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--column-gap); /* 12–24px */
+  row-gap: var(--grid-gutter);   /* 16–24px */
+  width: 100%;
+}
+
+.grid-cols-12-fluid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(12px, 1.8vw, 24px);
+  row-gap: clamp(16px, 2.2vw, 24px);
+  width: 100%;
 }
 
 .section-padding {

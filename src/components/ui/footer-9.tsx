@@ -168,7 +168,7 @@ export function Footer9({
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="relative z-10 mx-auto flex w-full max-w-7xl flex-col px-6 sm:px-10 md:px-16 lg:px-20"
+        className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col px-6 sm:px-10 md:px-14 lg:px-16 xl:px-20"
       >
         <div className="flex min-h-[420px] flex-col justify-between gap-10 pt-12 pb-10 sm:min-h-[460px] sm:pt-16 md:min-h-[500px] lg:flex-row lg:items-start lg:gap-16">
           <div className="flex flex-1 flex-col justify-between gap-8">
