@@ -1,18 +1,16 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
   Briefcase,
   ChevronRight,
   Network,
-  RotateCcw,
   Server,
   Video,
   Wifi,
 } from "lucide-react";
-import { useInView, useReducedMotion } from "framer-motion";
 import {
   AppleReveal,
   AppleStagger,
@@ -30,72 +28,37 @@ import {
 
 const SERVICES_LIST = [
   {
-    id: "broadband",
     title: "Broadband",
     description:
       "High-speed FTTH home internet up to 1 Gbps with unlimited monthly data and free router setup.",
-    headline: "High-Speed Fibre Broadband",
-    points: [
-      "Symmetrical speeds up to 1 Gbps with 1:1 upload",
-      "True unlimited data with zero peak-hour throttling",
-      "Free Gigabit dual-band Wi-Fi router setup included",
-    ],
     href: "/broadband-services",
     icon: Wifi,
   },
   {
-    id: "leased-line",
     title: "Leased Line",
     description:
       "Uncontended 1:1 dedicated enterprise bandwidth with guaranteed SLA uptime and static IP routing.",
-    headline: "Dedicated Enterprise Leased Line",
-    points: [
-      "1:1 uncontended dedicated symmetrical bandwidth",
-      "99.99% enterprise SLA uptime with 2-4h MTTR",
-      "Static public IP pool with 24/7 direct NOC support",
-    ],
     href: "/lease-line",
     icon: Network,
   },
   {
-    id: "sme-internet",
     title: "SME Internet",
     description:
       "Scalable business broadband designed for retail stores, clinics, offices, and cloud workflows.",
-    headline: "High-Performance Business Fibre",
-    points: [
-      "Business-priority traffic routing for cloud & POS",
-      "Flat-rate monthly tariffs with zero FUP speed drops",
-      "Priority commercial installation & dedicated support",
-    ],
     href: "/sme-internet",
     icon: Briefcase,
   },
   {
-    id: "cctv",
     title: "CCTV Surveillance",
     description:
       "End-to-end HD IP camera installation with mobile live-view monitoring for homes and commercial buildings.",
-    headline: "Smart HD Cloud CCTV Surveillance",
-    points: [
-      "Weatherproof IP67 HD & 4K cameras with night vision",
-      "Continuous recording with local NVR & secure cloud",
-      "Live remote smartphone viewing on iOS & Android",
-    ],
     href: "/cctv",
     icon: Video,
   },
   {
-    id: "intranet",
     title: "Intranet Solutions",
     description:
       "Secure private LAN/WAN interconnections linking multiple offices, warehouses, and campuses.",
-    headline: "Secure Private Multi-Site Intranet",
-    points: [
-      "Private Layer-2/Layer-3 inter-branch optical WAN",
-      "Zero public internet exposure or DDoS vulnerability",
-      "Ultra-low latency for internal ERP, CRM & servers",
-    ],
     href: "/intranet",
     icon: Server,
   },
@@ -154,168 +117,46 @@ function UseCaseCard({
   );
 }
 
-function ServiceCard({
-  service,
-  autoFlip = false,
-}: {
-  service: (typeof SERVICES_LIST)[number];
-  autoFlip?: boolean;
-}) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { once: true, amount: 0.35 });
-  const [isFlipped, setIsFlipped] = useState(false);
-  const hasUserInteracted = useRef(false);
-  const shouldReduceMotion = useReducedMotion();
+function ServiceCard({ service }: { service: (typeof SERVICES_LIST)[number] }) {
   const IconComponent = service.icon;
 
-  useEffect(() => {
-    if (!autoFlip || hasUserInteracted.current) return;
-    if (isInView) {
-      const timer = setTimeout(() => {
-        if (!hasUserInteracted.current) {
-          setIsFlipped(true);
-        }
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [isInView, autoFlip]);
-
-  const handleCardClick = (e: React.MouseEvent) => {
-    const target = e.target as HTMLElement;
-    if (
-      target.closest("a") ||
-      target.closest("button:not([data-flip-trigger])") ||
-      target.closest("input")
-    ) {
-      return;
-    }
-    hasUserInteracted.current = true;
-    setIsFlipped((prev) => !prev);
-  };
-
   return (
-    <article
-      ref={cardRef}
+    <Link
+      href={service.href}
       data-apple-manual="true"
-      className="group/flip relative w-full h-full min-h-[350px] sm:min-h-[360px] [perspective:1200px] select-none cursor-pointer"
-      onClick={handleCardClick}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          hasUserInteracted.current = true;
-          setIsFlipped((prev) => !prev);
-        }
-      }}
-      aria-expanded={isFlipped}
-      aria-label={`${service.title} service details. Click to flip.`}
+      className="group relative w-full min-h-[290px] sm:min-h-[300px] h-full rounded-[22px] bg-[#F4F3F1] border border-black/[0.04] p-5 sm:p-5.5 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_28px_rgba(222,3,2,0.18)] cursor-pointer select-none"
     >
+      {/* SASH Brand Gradient on Hover */}
       <div
-        className="relative w-full h-full transition-transform duration-700 ease-out"
-        style={{
-          transformStyle: "preserve-3d",
-          transform:
-            isFlipped && !shouldReduceMotion
-              ? "rotateY(180deg)"
-              : "rotateY(0deg)",
-        }}
-      >
-        {/* Front Face: Service Overview + Black Knockout Plus Button */}
-        <div
-          className="w-full h-full flex flex-col justify-between bg-[#F4F3F1] border border-black/[0.06] rounded-[24px] p-5 sm:p-5.5 overflow-hidden transition-colors duration-300"
-          style={{
-            backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden",
-          }}
-        >
-          {/* Top: Icon in rounded badge */}
-          <div className="flex items-center justify-between">
-            <div className="w-10 h-10 rounded-full bg-white text-brand-navy flex items-center justify-center shadow-xs border border-black/[0.04]">
-              <IconComponent className="w-5 h-5 stroke-[2] text-brand-navy" />
-            </div>
-          </div>
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#FDEBEB_0%,#DE0302_52%,#B80201_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-400 ease-out z-0"
+      />
 
-          {/* Bottom: Title, Description, and Knockout Plus Button */}
-          <div className="mt-auto flex flex-col pt-4">
-            <h3 className="text-brand-navy font-semibold text-base sm:text-lg tracking-tight mb-2">
-              {service.title}
-            </h3>
-            <p className="text-neutral-600 text-xs sm:text-[13px] leading-relaxed mb-4 line-clamp-3">
-              {service.description}
-            </p>
-
-            <div className="flex items-center justify-end pt-1">
-              <svg
-                data-flip-trigger="true"
-                aria-label={`View ${service.title} details`}
-                className="size-9 sm:size-10 shrink-0 cursor-pointer select-none"
-                viewBox="0 0 40 40"
-                fill="none"
-              >
-                <mask id={`plus-mask-service-${service.id}`}>
-                  <rect width="40" height="40" rx="14" fill="white" />
-                  <path
-                    d="M20 11v18M11 20h18"
-                    stroke="black"
-                    strokeWidth="3.2"
-                    strokeLinecap="round"
-                  />
-                </mask>
-                <rect
-                  width="40"
-                  height="40"
-                  rx="14"
-                  fill="#000000"
-                  mask={`url(#plus-mask-service-${service.id})`}
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        {/* Back Face: Exact layout matching shared_imh (No CTA at bottom) */}
-        <div
-          className="absolute inset-0 w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[24px] p-5 sm:p-5.5 overflow-hidden z-20"
-          style={{
-            backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden",
-            transform: "rotateY(180deg)",
-          }}
-        >
-          <div>
-            {/* Top row: Icon badge + Flip back badge */}
-            <div className="flex items-center justify-between gap-2 mb-4">
-              <div className="w-10 h-10 rounded-full bg-red-10 border border-brand-red/20 text-brand-red flex items-center justify-center shrink-0">
-                <IconComponent className="size-5" />
-              </div>
-              <span className="text-neutral-400 hover:text-brand-navy text-[11px] font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 transition-colors">
-                <RotateCcw className="size-3" />
-                <span>Flip back</span>
-              </span>
-            </div>
-
-            {/* Bold Headline */}
-            <h3 className="text-brand-navy text-sm min-[400px]:text-[15px] sm:text-base font-semibold tracking-tight leading-snug mb-3.5">
-              {service.headline}
-            </h3>
-
-            {/* Bullet Points with solid disc markers */}
-            <ul className="space-y-2.5">
-              {service.points.map((point) => (
-                <li
-                  key={point}
-                  className="flex items-start gap-2 text-[11.5px] sm:text-xs text-neutral-700 leading-snug"
-                >
-                  <span className="size-1.5 rounded-full bg-neutral-900 shrink-0 mt-1" />
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+      {/* Top: Icon in rounded badge */}
+      <div className="relative z-10 text-brand-navy group-hover:text-white transition-colors duration-300">
+        <div className="w-9 h-9 rounded-full bg-white group-hover:bg-white/20 flex items-center justify-center shadow-xs transition-colors duration-300">
+          <IconComponent className="w-4.5 h-4.5 stroke-[2] text-brand-navy group-hover:text-white transition-colors duration-300" />
         </div>
       </div>
-    </article>
+
+      {/* Bottom: Title, Description, and Read More Button */}
+      <div className="relative z-10 mt-auto flex flex-col pt-4">
+        <h3 className="text-brand-navy font-semibold text-sm min-[400px]:text-[15px] sm:text-base tracking-tight mb-1.5 group-hover:text-white transition-colors duration-300">
+          {service.title}
+        </h3>
+        <p className="text-neutral-500 text-[11px] min-[400px]:text-xs sm:text-[12.5px] leading-snug line-clamp-3 mb-4 group-hover:text-white/95 transition-colors duration-300">
+          {service.description}
+        </p>
+
+        {/* Read More Button */}
+        <div className="pt-1">
+          <span className="inline-flex h-8 items-center justify-center gap-1.5 rounded-full bg-white text-brand-navy border border-black/[0.08] px-3.5 text-xs font-medium shadow-xs group-hover:bg-white group-hover:text-brand-red group-hover:border-transparent transition-all duration-200">
+            <span>Read more</span>
+            <ChevronRight className="size-3.5 stroke-[2.5] text-brand-red transition-transform duration-200 group-hover:translate-x-0.5" />
+          </span>
+        </div>
+      </div>
+    </Link>
   );
 }
 
@@ -371,10 +212,10 @@ export default function Service() {
           </div>
 
           {/* 5 Service Cards: Responsive Grid (5 cols on desktop, 3 on tablet, 2 on small screens, 1 on mobile) */}
-          <AppleStagger className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 items-stretch">
-            {SERVICES_LIST.map((service, index) => (
-              <AppleStaggerItem key={service.title} className="h-full flex flex-col">
-                <ServiceCard service={service} autoFlip={index === 0} />
+          <AppleStagger className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
+            {SERVICES_LIST.map((service) => (
+              <AppleStaggerItem key={service.title} className="flex">
+                <ServiceCard service={service} />
               </AppleStaggerItem>
             ))}
           </AppleStagger>
