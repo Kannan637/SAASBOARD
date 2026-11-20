@@ -378,7 +378,7 @@ export default function Service() {
 
           {/* 7. CTA Banner (Red background, White text, 32px rounded container with 3D Marquee on the right background) */}
           <AppleScrollScale className="mt-20 md:mt-28 lg:mt-32">
-            <div className="banner-sash relative overflow-hidden rounded-[32px] bg-brand-red text-white p-8 sm:p-12 lg:p-14 min-h-[360px] sm:min-h-[400px] lg:min-h-[420px] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 shadow-[0_16px_48px_rgba(222,3,2,0.22)]">
+            <div className="banner-sash relative overflow-hidden rounded-[32px] bg-brand-red text-white p-8 sm:p-12 lg:p-14 min-h-[360px] sm:min-h-[400px] lg:min-h-[420px] flex flex-col items-start justify-center gap-8 shadow-[0_16px_48px_rgba(222,3,2,0.22)]">
               {/* 3D Marquee: Covers the entire right section of the card background with randomized logo placement */}
               <div
                 aria-hidden="true"
@@ -398,33 +398,42 @@ export default function Service() {
                 className="pointer-events-none absolute inset-0 bg-gradient-to-r from-brand-red via-brand-red/95 to-transparent lg:from-brand-red lg:via-brand-red/80 lg:to-transparent z-10"
               />
 
-              <div className="relative z-20 max-w-xl">
-                <h2 className="text-white mb-3 font-semibold text-2xl sm:text-3xl lg:text-4xl tracking-normal">
-                  Ready to upgrade your connection?
-                </h2>
-                <p className="text-white/95 text-base md:text-lg font-normal leading-relaxed">
-                  Check fibre availability in your street in Thiruvallur or anywhere
-                  in Tamil Nadu and get free installation on your new plan.
-                </p>
-              </div>
+              <div className="relative z-20 max-w-xl flex flex-col items-start gap-6">
+                <div>
+                  <h2 className="text-white mb-3 font-semibold text-2xl sm:text-3xl lg:text-4xl tracking-normal">
+                    Ready to upgrade your connection?
+                  </h2>
+                  <p className="text-white/95 text-base md:text-lg font-normal leading-relaxed">
+                    Check fibre availability in your street in Thiruvallur or anywhere
+                    in Tamil Nadu and get free installation on your new plan.
+                  </p>
+                </div>
 
-              <div className="relative z-20 flex flex-wrap items-center gap-4 w-full lg:w-auto shrink-0">
-                <Link
-                  href="#contact"
-                  className="group/cta btn-pill bg-linear-to-b from-brand-navy to-navy-80 text-white shadow-[0_6px_20px_rgba(1,13,59,0.22)] outline-2 -outline-offset-2 outline-white/20 hover:from-navy-80 hover:to-navy-80 w-full sm:w-auto font-medium"
-                >
-                  <span>Check availability</span>
-                  <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-200 ease-out group-hover/cta:translate-x-0.5" />
-                </Link>
-                <a
-                  href="https://wa.me/919003009353?text=Hi%20SASH%20Broadband%2C%20I%20would%20like%20to%20check%20fibre%20availability%20at%20my%20location."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group/wa btn-pill border border-white/40 bg-white/10 text-white hover:bg-white hover:text-brand-navy w-full sm:w-auto font-medium"
-                >
-                  <span>Chat on WhatsApp</span>
-                  <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-200 ease-out group-hover/wa:translate-x-0.5" />
-                </a>
+                <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 w-full sm:w-auto">
+                  <Link
+                    href="#contact"
+                    className="group/cta btn-pill bg-linear-to-b from-brand-navy to-navy-80 text-white shadow-[0_6px_20px_rgba(1,13,59,0.25)] outline-2 -outline-offset-2 outline-white/20 hover:from-navy-80 hover:to-navy-80 w-full sm:w-auto font-medium"
+                  >
+                    <span>Check availability</span>
+                    <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-200 ease-out group-hover/cta:translate-x-0.5" />
+                  </Link>
+                  <a
+                    href="https://wa.me/919003009353?text=Hi%20SASH%20Broadband%2C%20I%20would%20like%20to%20check%20fibre%20availability%20at%20my%20location."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/wa btn-pill bg-white text-brand-navy hover:bg-neutral-50 shadow-[0_6px_24px_rgba(0,0,0,0.18)] border border-white w-full sm:w-auto font-semibold flex items-center justify-center gap-2.5 transition-all hover:scale-[1.02]"
+                  >
+                    <svg
+                      className="w-5 h-5 text-[#25D366] fill-current shrink-0"
+                      viewBox="0 0 32 32"
+                      aria-hidden="true"
+                    >
+                      <path d="M16.004 3.2c-7.068 0-12.8 5.732-12.8 12.8 0 2.257.589 4.46 1.708 6.404L3.092 28.8l6.556-1.72c1.883 1.028 4.004 1.57 6.356 1.57h.006c7.066 0 12.796-5.732 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054C22.638 4.532 19.422 3.2 16.004 3.2zm0 23.29h-.005c-1.994 0-3.95-.536-5.656-1.548l-.406-.24-4.212 1.105 1.124-4.106-.264-.42c-1.112-1.768-1.7-3.812-1.7-5.914 0-5.876 4.782-10.658 10.664-10.658 2.848 0 5.524 1.11 7.538 3.124 2.012 2.014 3.12 4.692 3.12 7.54 0 5.878-4.782 10.66-10.203 10.66zm5.848-7.984c-.32-.16-1.896-.936-2.19-1.042-.294-.108-.508-.16-.722.16-.214.32-.828 1.042-1.016 1.256-.186.214-.374.24-.694.08-.32-.16-1.352-.498-2.576-1.59-.952-.848-1.594-1.898-1.782-2.218-.186-.32-.02-.494.14-.654.144-.144.32-.374.48-.562.16-.186.214-.32.32-.534.108-.214.054-.4-.026-.56-.08-.16-.722-1.738-.988-2.38-.26-.624-.526-.54-.722-.55-.186-.008-.4-.01-.614-.01-.214 0-.562.08-.856.4-.294.32-1.122 1.096-1.122 2.674s1.15 3.102 1.31 3.316c.16.214 2.262 3.454 5.48 4.844.766.33 1.364.528 1.83.676.768.244 1.468.21 2.02.128.616-.092 1.896-.776 2.164-1.524.268-.748.268-1.39.188-1.524-.08-.134-.294-.214-.614-.374z" />
+                    </svg>
+                    <span>Chat on WhatsApp</span>
+                    <ChevronRight className="size-4 stroke-[2.5] text-brand-navy/60 transition-transform duration-200 ease-out group-hover/wa:translate-x-0.5" />
+                  </a>
+                </div>
               </div>
             </div>
           </AppleScrollScale>
