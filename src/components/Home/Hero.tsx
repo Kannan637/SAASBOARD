@@ -434,40 +434,43 @@ export default function Hero() {
               className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-24 bg-gradient-to-l from-white to-transparent z-10"
             />
 
-            <div className="animate-sash-logo-marquee flex items-center gap-10 sm:gap-14 py-1">
+            <div className="animate-sash-logo-marquee flex items-center will-change-transform py-1">
               {/* Original Track */}
-              {COMPANY_LOGOS.map((logo) => (
-                <div
-                  key={`orig-${logo.id}`}
-                  className="shrink-0 flex items-center justify-center transition-transform duration-200 hover:scale-105"
-                >
-                  <Image
-                    src={logo.src}
-                    alt={logo.alt}
-                    width={140}
-                    height={48}
-                    sizes="140px"
-                    className="h-8 sm:h-9 w-auto max-w-[120px] sm:max-w-[140px] object-contain select-none pointer-events-none grayscale opacity-65 hover:grayscale-0 hover:opacity-100 transition-all duration-300 mix-blend-multiply"
-                  />
-                </div>
-              ))}
+              <div className="flex shrink-0 items-center gap-10 sm:gap-14 pr-10 sm:pr-14">
+                {COMPANY_LOGOS.map((logo) => (
+                  <div
+                    key={`orig-${logo.id}`}
+                    className="shrink-0 flex items-center justify-center transition-transform duration-200 hover:scale-105"
+                  >
+                    <Image
+                      src={logo.src}
+                      alt={logo.alt}
+                      width={140}
+                      height={48}
+                      sizes="140px"
+                      className="h-8 sm:h-9 w-auto max-w-[120px] sm:max-w-[140px] object-contain select-none pointer-events-none grayscale opacity-65 hover:grayscale-0 hover:opacity-100 transition-all duration-300 mix-blend-multiply"
+                    />
+                  </div>
+                ))}
+              </div>
               {/* Duplicated Track for Seamless Infinite Loop */}
-              {COMPANY_LOGOS.map((logo) => (
-                <div
-                  key={`dup-${logo.id}`}
-                  aria-hidden="true"
-                  className="shrink-0 flex items-center justify-center transition-transform duration-200 hover:scale-105"
-                >
-                  <Image
-                    src={logo.src}
-                    alt=""
-                    width={140}
-                    height={48}
-                    sizes="140px"
-                    className="h-8 sm:h-9 w-auto max-w-[120px] sm:max-w-[140px] object-contain select-none pointer-events-none grayscale opacity-65 hover:grayscale-0 hover:opacity-100 transition-all duration-300 mix-blend-multiply"
-                  />
-                </div>
-              ))}
+              <div aria-hidden="true" className="flex shrink-0 items-center gap-10 sm:gap-14 pr-10 sm:pr-14">
+                {COMPANY_LOGOS.map((logo) => (
+                  <div
+                    key={`dup-${logo.id}`}
+                    className="shrink-0 flex items-center justify-center transition-transform duration-200 hover:scale-105"
+                  >
+                    <Image
+                      src={logo.src}
+                      alt=""
+                      width={140}
+                      height={48}
+                      sizes="140px"
+                      className="h-8 sm:h-9 w-auto max-w-[120px] sm:max-w-[140px] object-contain select-none pointer-events-none grayscale opacity-65 hover:grayscale-0 hover:opacity-100 transition-all duration-300 mix-blend-multiply"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
