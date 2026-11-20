@@ -263,7 +263,7 @@ export default function Testimonials3({
       id="testimonials"
       data-apple-manual="true"
       aria-labelledby="testimonials-heading"
-      className="theme-injected bg-transparent section-padding"
+      className="theme-injected bg-white section-padding"
     >
       <div className="container-sash">
         <AppleReveal className="mb-12 flex flex-col items-center text-center sm:mb-16 lg:mb-20 max-w-2xl mx-auto">
