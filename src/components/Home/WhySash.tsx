@@ -42,10 +42,10 @@ import {
 const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const CARD_BG_GRADIENT =
-  "bg-[linear-gradient(145deg,#FDEBEB_0%,#DE0302_52%,#B80201_100%)]";
+  "bg-[linear-gradient(145deg,#FFFFFF_0%,#F8F8FA_45%,#FDEBEB_100%)]";
 
 const CARD_BOTTOM_BLEND =
-  "pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.45)_40%,rgba(255,255,255,0.85)_75%,#FFFFFF_100%)]";
+  "pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.7)_50%,#FFFFFF_100%)]";
 
 const gridContainerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -732,12 +732,12 @@ export function SupportCard() {
 
             {/* Concentric Radar Waves & Satellite Stage centered precisely */}
             <div className="pointer-events-auto absolute z-20 top-[135px] min-[360px]:top-[145px] sm:top-[160px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] min-[360px]:w-[300px] min-[360px]:h-[300px] sm:w-[320px] sm:h-[320px] flex items-center justify-center">
-              {/* Concentric Static Ripple Rings matching the shared image */}
-              <div className="pointer-events-none absolute w-[108px] h-[108px] rounded-full border border-white/35 bg-white/[0.08]" />
-              <div className="pointer-events-none absolute w-[168px] h-[168px] rounded-full border border-white/28 bg-white/[0.05]" />
-              <div className="pointer-events-none absolute w-[228px] h-[228px] rounded-full border border-white/20 bg-white/[0.03]" />
-              <div className="pointer-events-none absolute w-[288px] h-[288px] rounded-full border border-white/14 bg-white/[0.02]" />
-              <div className="pointer-events-none absolute w-[348px] h-[348px] rounded-full border border-white/10 bg-white/[0.01]" />
+              {/* Concentric Static Ripple Rings */}
+              <div className="pointer-events-none absolute w-[108px] h-[108px] rounded-full border border-brand-red/15 bg-brand-red/[0.03]" />
+              <div className="pointer-events-none absolute w-[168px] h-[168px] rounded-full border border-brand-red/12 bg-brand-red/[0.02]" />
+              <div className="pointer-events-none absolute w-[228px] h-[228px] rounded-full border border-brand-red/10 bg-brand-red/[0.015]" />
+              <div className="pointer-events-none absolute w-[288px] h-[288px] rounded-full border border-brand-red/[0.08] bg-brand-red/[0.01]" />
+              <div className="pointer-events-none absolute w-[348px] h-[348px] rounded-full border border-brand-red/[0.05]" />
 
               {/* Continuous Staggered Radar Ripple Waves propagating outwards */}
               {!shouldReduceMotion &&
@@ -745,12 +745,12 @@ export function SupportCard() {
                   <motion.div
                     key={i}
                     aria-hidden="true"
-                    className="pointer-events-none absolute rounded-full border border-white/65"
+                    className="pointer-events-none absolute rounded-full border border-brand-red/30"
                     initial={{ width: 72, height: 72, opacity: 0.8 }}
                     animate={{
                       width: [72, 300],
                       height: [72, 300],
-                      opacity: [0.75, 0],
+                      opacity: [0.65, 0],
                     }}
                     transition={{
                       duration: 3.6,

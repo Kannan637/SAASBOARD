@@ -465,10 +465,10 @@ export function SingleClientMarquee() {
 const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const CARD_BG_GRADIENT =
-  "bg-[linear-gradient(145deg,#FDEBEB_0%,#DE0302_52%,#B80201_100%)]";
+  "bg-[linear-gradient(145deg,#FFFFFF_0%,#F8F8FA_45%,#FDEBEB_100%)]";
 
 const CARD_BOTTOM_BLEND =
-  "pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.45)_40%,rgba(255,255,255,0.85)_75%,#FFFFFF_100%)]";
+  "pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.7)_50%,#FFFFFF_100%)]";
 
 const gridContainerVariants: Variants = {
   hidden: { opacity: 0 },
