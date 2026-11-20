@@ -21,6 +21,7 @@ export const CLIENT_LOGOS = Array.from(
 
 export interface SingleClientMarqueeProps {
   heading?: string;
+  headingClassName?: string;
   className?: string;
   variant?: "cards" | "minimal";
   speedSeconds?: number;
@@ -32,6 +33,7 @@ export interface SingleClientMarqueeProps {
  */
 export function SingleClientMarquee({
   heading = "Trusted by Leading Domestic & Corporate Clients Across Tamil Nadu",
+  headingClassName,
   className,
   variant = "cards",
   speedSeconds = 55,
@@ -145,7 +147,12 @@ export function SingleClientMarquee({
     >
       {heading && (
         <div className="container-sash mb-4 sm:mb-5">
-          <p className="text-center text-xs uppercase tracking-wider text-neutral-600 font-semibold">
+          <p
+            className={cn(
+              "text-center text-xs uppercase tracking-wider text-neutral-600 font-semibold",
+              headingClassName
+            )}
+          >
             {heading}
           </p>
         </div>

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { APPLE_EASE } from "@/components/ui/apple-scroll";
 import {
   Avatar,
@@ -15,6 +15,7 @@ import {
 import CardCanvasPattern, {
   CardPatternType,
 } from "@/components/ui/card-canvas-pattern";
+import SingleClientMarquee from "@/components/Service/SingleClientMarquee";
 
 interface ServiceHeroSlide {
   id: string;
@@ -150,20 +151,10 @@ const HERO_SERVICE_SLIDES: ServiceHeroSlide[] = [
   },
 ];
 
-const COMPANY_LOGOS = Array.from({ length: 34 }, (_, index) => {
-  const num = index + 1;
-  return {
-    id: `company-logo-${num}`,
-    src: `/Marquee/${num}.jpg`,
-    alt: `SASH Broadband enterprise & institutional client ${num}`,
-  };
-});
-
 export default function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
   const currentSlide = HERO_SERVICE_SLIDES[activeIndex];
 
   // Auto-scroll every 3 seconds (3000ms), paused when user hovers
@@ -412,69 +403,13 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* 2. Trusted Company Logos Strip (Logo ticker matching site design system) */}
-      <section
-        data-apple-manual="true"
-        aria-label="Trusted by leading companies and institutions"
-        className="w-full bg-white border-b border-black/[0.05] py-7 sm:py-8 overflow-hidden select-none"
-      >
-        <div className="container-sash">
-          <p className="text-center text-xs sm:text-sm font-normal text-neutral-500 tracking-[-0.05px] mb-5 sm:mb-6">
-            Trusted by leading companies and institutions across Tamil Nadu
-          </p>
-
-          <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-            {/* Gradient side-fade fallback overlays */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 bg-gradient-to-r from-white to-transparent z-10"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-24 bg-gradient-to-l from-white to-transparent z-10"
-            />
-
-            <div className="animate-sash-logo-marquee flex items-center will-change-transform py-1">
-              {/* Original Track */}
-              <div className="flex shrink-0 items-center gap-10 sm:gap-14 pr-10 sm:pr-14">
-                {COMPANY_LOGOS.map((logo) => (
-                  <div
-                    key={`orig-${logo.id}`}
-                    className="shrink-0 flex items-center justify-center transition-transform duration-200 hover:scale-105"
-                  >
-                    <Image
-                      src={logo.src}
-                      alt={logo.alt}
-                      width={140}
-                      height={48}
-                      sizes="140px"
-                      className="h-8 sm:h-9 w-auto max-w-[120px] sm:max-w-[140px] object-contain select-none pointer-events-none grayscale opacity-65 hover:grayscale-0 hover:opacity-100 transition-all duration-300 mix-blend-multiply"
-                    />
-                  </div>
-                ))}
-              </div>
-              {/* Duplicated Track for Seamless Infinite Loop */}
-              <div aria-hidden="true" className="flex shrink-0 items-center gap-10 sm:gap-14 pr-10 sm:pr-14">
-                {COMPANY_LOGOS.map((logo) => (
-                  <div
-                    key={`dup-${logo.id}`}
-                    className="shrink-0 flex items-center justify-center transition-transform duration-200 hover:scale-105"
-                  >
-                    <Image
-                      src={logo.src}
-                      alt=""
-                      width={140}
-                      height={48}
-                      sizes="140px"
-                      className="h-8 sm:h-9 w-auto max-w-[120px] sm:max-w-[140px] object-contain select-none pointer-events-none grayscale opacity-65 hover:grayscale-0 hover:opacity-100 transition-all duration-300 mix-blend-multiply"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 2. Trusted Company Logos Strip */}
+      <SingleClientMarquee
+        heading="Trusted by leading companies and institutions across Tamil Nadu"
+        headingClassName="text-center text-xs sm:text-sm font-normal text-neutral-500 tracking-[-0.05px] mb-5 sm:mb-6"
+        variant="minimal"
+        className="border-b border-black/[0.05] py-7 sm:py-8"
+      />
     </>
   );
 }
