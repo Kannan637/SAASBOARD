@@ -334,71 +334,84 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4. Vision & Mission Cards */}
+      {/* 4. Vision & Mission Cards: Backdrop matching 'Built Around Your Lifestyle' section with Center Aligned Title */}
       <section
         data-apple-manual="true"
         aria-labelledby="vision-mission-heading"
-        className="bg-white text-brand-navy section-padding border-b border-black/[0.06]"
+        className="relative overflow-hidden bg-brand-navy text-white section-padding"
       >
-        <div className="container-sash">
-          {/* Section Header */}
-          <div className="max-w-2xl mb-10 sm:mb-14">
-            <AppleReveal>
-              <p className="eyebrow-label text-brand-red mb-3">
-                PURPOSE &amp; VALUES
-              </p>
-              <h2
-                id="vision-mission-heading"
-                className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3"
-              >
-                Our Vision &amp; Mission
-              </h2>
-              <p className="text-neutral-600 text-sm sm:text-base font-normal leading-relaxed">
-                Guided by a commitment to democratize gigabit optical connectivity
-                across Tamil Nadu with transparent pricing and accountable local support.
-              </p>
-            </AppleReveal>
-          </div>
+        {/* Background Image with Gradient Overlay matching 'Built Around Your Lifestyle' section */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0"
+        >
+          <Image
+            src="/Service/lifestyle-bg.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-center select-none"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-brand-navy/35 to-brand-navy/75" />
+        </div>
+
+        <div className="container-sash relative z-10">
+          {/* Section Header: Center Aligned */}
+          <AppleReveal className="max-w-2xl mx-auto text-center flex flex-col items-center mb-12 sm:mb-16">
+            <p className="eyebrow-label text-white/80 mb-3.5">
+              PURPOSE &amp; VALUES
+            </p>
+            <h2
+              id="vision-mission-heading"
+              className="text-white font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3.5 text-center"
+            >
+              Our Vision &amp; Mission
+            </h2>
+            <p className="text-white/85 text-sm sm:text-base font-normal leading-relaxed text-center">
+              Guided by a commitment to democratize gigabit optical connectivity
+              across Tamil Nadu with transparent pricing and accountable local support.
+            </p>
+          </AppleReveal>
 
           {/* Vision & Mission 2-Card Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
             {/* Vision Card */}
-            <div className="rounded-[28px] bg-[#F4F3F1] border border-black/[0.05] p-7 sm:p-9 lg:p-10 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:border-black/15">
+            <div className="rounded-[28px] bg-navy-80/75 backdrop-blur-md border border-white/15 p-7 sm:p-9 lg:p-10 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5 shadow-[0_4px_24px_rgba(0,0,0,0.12)]">
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-white shadow-xs flex items-center justify-center text-brand-red">
+                  <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-sm border border-white/20 shadow-xs flex items-center justify-center text-white">
                     <Compass className="w-6 h-6 stroke-[2]" />
                   </div>
-                  <span className="font-mono text-xs font-semibold text-neutral-400 uppercase tracking-wider">
+                  <span className="font-mono text-xs font-semibold text-white/70 uppercase tracking-wider">
                     OUR VISION
                   </span>
                 </div>
-                <h3 className="text-brand-navy font-semibold text-xl sm:text-2xl mb-3 tracking-tight">
+                <h3 className="text-white font-semibold text-xl sm:text-2xl mb-3 tracking-tight">
                   Empowering Tamil Nadu with next-generation optical infrastructure
                 </h3>
-                <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-normal mb-6">
+                <p className="text-white/85 text-sm sm:text-base leading-relaxed font-normal mb-6">
                   To become Tamil Nadu&apos;s most reliable, community-rooted internet service
                   provider—eliminating digital bottlenecks through pure optical FTTH technology,
                   unfettered symmetrical speeds, and honest, customer-centric billing ethics.
                 </p>
               </div>
 
-              <div className="space-y-3 pt-6 border-t border-black/[0.06]">
+              <div className="space-y-3 pt-6 border-t border-white/15">
                 <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span className="text-xs sm:text-sm text-neutral-700 font-medium">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span className="text-xs sm:text-sm text-white/90 font-medium">
                     100% Pure glass optical drops to every premise
                   </span>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span className="text-xs sm:text-sm text-neutral-700 font-medium">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span className="text-xs sm:text-sm text-white/90 font-medium">
                     Zero artificial throttling and permanent price-locks
                   </span>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span className="text-xs sm:text-sm text-neutral-700 font-medium">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span className="text-xs sm:text-sm text-white/90 font-medium">
                     Bridging suburban and rural communities with gigabit access
                   </span>
                 </div>
@@ -406,42 +419,42 @@ export default function AboutPage() {
             </div>
 
             {/* Mission Card */}
-            <div className="rounded-[28px] bg-neutral-50/80 border border-black/[0.05] p-7 sm:p-9 lg:p-10 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:border-black/15">
+            <div className="rounded-[28px] bg-navy-80/75 backdrop-blur-md border border-white/15 p-7 sm:p-9 lg:p-10 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5 shadow-[0_4px_24px_rgba(0,0,0,0.12)]">
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-white shadow-xs flex items-center justify-center text-brand-navy">
+                  <div className="w-12 h-12 rounded-2xl bg-brand-red text-white shadow-xs flex items-center justify-center">
                     <Target className="w-6 h-6 stroke-[2]" />
                   </div>
-                  <span className="font-mono text-xs font-semibold text-neutral-400 uppercase tracking-wider">
+                  <span className="font-mono text-xs font-semibold text-white/70 uppercase tracking-wider">
                     OUR MISSION
                   </span>
                 </div>
-                <h3 className="text-brand-navy font-semibold text-xl sm:text-2xl mb-3 tracking-tight">
+                <h3 className="text-white font-semibold text-xl sm:text-2xl mb-3 tracking-tight">
                   Accountable local engineering and guaranteed uptime
                 </h3>
-                <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-normal mb-6">
+                <p className="text-white/85 text-sm sm:text-base leading-relaxed font-normal mb-6">
                   To deliver rock-solid connectivity backed by our local Thiruvallur Network
                   Operations Centre, rapid 2-hour doorstep technician dispatch, and carrier-grade
                   peering—giving homes, schools, and enterprises the digital foundation they deserve.
                 </p>
               </div>
 
-              <div className="space-y-3 pt-6 border-t border-black/[0.06]">
+              <div className="space-y-3 pt-6 border-t border-white/15">
                 <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span className="text-xs sm:text-sm text-neutral-700 font-medium">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span className="text-xs sm:text-sm text-white/90 font-medium">
                     Local Thiruvallur NOC with 24/7 proactive line monitoring
                   </span>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span className="text-xs sm:text-sm text-neutral-700 font-medium">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span className="text-xs sm:text-sm text-white/90 font-medium">
                     Under 2-hour on-site optical technician dispatch
                   </span>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span className="text-xs sm:text-sm text-neutral-700 font-medium">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span className="text-xs sm:text-sm text-white/90 font-medium">
                     SLA-backed 99.9% uptime with dual optical ring redundancy
                   </span>
                 </div>
