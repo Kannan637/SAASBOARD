@@ -2,15 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import {
-  Building2,
   ShieldCheck,
   Radio,
   Clock,
-  MapPin,
-  Phone,
-  Mail,
   ChevronRight,
-  CheckCircle2,
 } from "lucide-react";
 import Contactus from "@/components/Home/Contactus";
 import {
@@ -297,101 +292,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 3. Authorised Operations & Walk-In Desk */}
-      <section
-        data-apple-manual="true"
-        aria-labelledby="operations-heading"
-        className="w-full bg-white py-14 sm:py-20 border-b border-black/[0.06]"
-      >
-        <div className="w-full max-w-[1440px] 2xl:max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-            {/* Left Card: Class-B Licensing */}
-            <div className="lg:col-span-7 rounded-[26px] bg-white border border-black/[0.08] p-7 sm:p-9 flex flex-col justify-between">
-              <div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-red/10 text-brand-red text-xs font-semibold uppercase tracking-wider mb-5">
-                  <Building2 className="w-3.5 h-3.5" />
-                  <span>Regulatory Compliance</span>
-                </span>
-                <h3
-                  id="operations-heading"
-                  className="text-brand-navy font-bold text-xl sm:text-2xl lg:text-[26px] mb-3 tracking-normal"
-                >
-                  Department of Telecommunications (DoT) Authorised
-                </h3>
-                <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-normal mb-6">
-                  SASH Broadband Private Limited holds an authorised Class–B ISP
-                  license for Tamil Nadu. Rather than operating as an unverified
-                  cable reseller, we maintain direct Tier-1 peering exchanges,
-                  redundant optical ring failovers, and certified fusion splicing
-                  standards.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-6 border-t border-neutral-100">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span className="text-xs sm:text-sm text-neutral-700 font-medium">
-                    DoT Regulatory Certified
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span className="text-xs sm:text-sm text-neutral-700 font-medium">
-                    Direct Tier-1 Peering
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span className="text-xs sm:text-sm text-neutral-700 font-medium">
-                    End-to-End Glass Drops
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span className="text-xs sm:text-sm text-neutral-700 font-medium">
-                    24/7 Optical Line Monitoring
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Card: Thiruvallur Experience Centre */}
-            <div className="lg:col-span-5 rounded-[26px] bg-neutral-50/70 border border-black/[0.08] p-7 sm:p-9 flex flex-col justify-between">
-              <div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-navy/10 text-brand-navy text-xs font-semibold uppercase tracking-wider mb-5">
-                  <MapPin className="w-3.5 h-3.5" />
-                  <span>Headquarters</span>
-                </span>
-                <h3 className="text-brand-navy font-bold text-xl sm:text-2xl mb-3 tracking-normal">
-                  Jaya Nagar, Thiruvallur
-                </h3>
-                <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-normal mb-6">
-                  Visit our local walk-in counter to test live optical speeds,
-                  request a doorstep feasibility check, or speak directly with our
-                  network engineering desk.
-                </p>
-              </div>
-
-              <div className="space-y-3 pt-6 border-t border-neutral-200/80">
-                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-neutral-700 font-medium">
-                  <Clock className="w-4 h-4 text-brand-red shrink-0" />
-                  <span>Counter: Mon – Sat, 9:00 AM – 6:00 PM</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-neutral-700 font-medium">
-                  <Phone className="w-4 h-4 text-brand-red shrink-0" />
-                  <span>Support: +91 90030 09353 (24/7 Helpline)</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-neutral-700 font-medium">
-                  <Mail className="w-4 h-4 text-brand-red shrink-0" />
-                  <span>Email: support@sashbroadband.com</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Single Contact Form for New Inquiries */}
+      {/* 3. Single Contact Form for New Inquiries */}
       <Contactus
         defaultInterest="About SASH Broadband"
         defaultPlan="Feasibility enquiry"
