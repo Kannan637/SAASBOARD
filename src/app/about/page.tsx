@@ -108,60 +108,85 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(companyJsonLd) }}
       />
 
-      {/* 1. Page Header */}
+      {/* 1. Page Hero: Center Aligned with Rich Gradient Background */}
       <section
         data-apple-manual="true"
         aria-labelledby="about-heading"
-        className="w-full bg-white pt-10 sm:pt-14 lg:pt-18 pb-12 sm:pb-16 border-b border-black/[0.06]"
+        className="w-full bg-white py-3 sm:py-4 lg:py-6"
       >
         <div className="w-full max-w-[1440px] 2xl:max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            {/* Breadcrumb */}
-            <nav aria-label="Breadcrumb" className="text-xs sm:text-sm text-neutral-500 mb-4 sm:mb-5">
-              <ol className="flex items-center gap-2">
+          <div
+            className="relative w-full rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden px-6 sm:px-10 lg:px-16 py-16 sm:py-20 lg:py-28 flex flex-col items-center justify-center text-center text-white border border-black/[0.06] select-none"
+            style={{
+              background:
+                "radial-gradient(circle at 50% 20%, rgba(42,123,224,0.3) 0%, rgba(1,13,59,0) 65%), linear-gradient(145deg, #010D3B 0%, #07194D 45%, #102B73 78%, #010D3B 100%)",
+            }}
+          >
+            {/* Ambient decorative background glow */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] sm:w-[800px] h-[300px] bg-brand-red/20 blur-[90px] rounded-full"
+            />
+
+            {/* Breadcrumb (Center Aligned) */}
+            <nav
+              aria-label="Breadcrumb"
+              className="relative z-10 text-xs sm:text-sm text-white/70 mb-5 flex items-center justify-center"
+            >
+              <ol className="flex items-center justify-center gap-2">
                 <li>
-                  <Link href="/" className="hover:text-brand-red transition-colors">
+                  <Link
+                    href="/"
+                    className="hover:text-white transition-colors underline-offset-4 hover:underline"
+                  >
                     Home
                   </Link>
                 </li>
-                <li aria-hidden="true" className="text-neutral-300">/</li>
-                <li aria-current="page" className="text-brand-navy font-medium">
+                <li aria-hidden="true" className="text-white/40">
+                  /
+                </li>
+                <li aria-current="page" className="text-white font-medium">
                   About Us
                 </li>
               </ol>
             </nav>
 
-            <span className="eyebrow-label text-brand-red mb-3.5 sm:mb-4 inline-block">
-              ABOUT SASH BROADBAND
-            </span>
+            {/* Eyebrow Badge (Center Aligned) */}
+            <div className="relative z-10 mb-4 sm:mb-5">
+              <span className="eyebrow-label bg-white/10 text-white border border-white/20 backdrop-blur-md px-3.5 py-1">
+                ABOUT SASH BROADBAND
+              </span>
+            </div>
 
+            {/* Headline (Center Aligned) */}
             <h1
               id="about-heading"
-              className="text-brand-navy font-bold text-3xl sm:text-4xl lg:text-[48px] tracking-tight leading-[1.12] mb-5 sm:mb-6"
+              className="relative z-10 text-white font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[54px] tracking-tight leading-[1.12] mb-5 sm:mb-6 max-w-4xl mx-auto"
             >
-              Building Thiruvallur&apos;s optical network from the{" "}
+              Building Tamil Nadu&apos;s optical network from the{" "}
               <span className="text-brand-red">ground up.</span>
             </h1>
 
-            <p className="text-neutral-600 text-base sm:text-lg lg:text-xl font-normal leading-relaxed mb-8 max-w-2xl">
-              SASH Broadband Private Limited was founded to solve a persistent
-              problem: frequent disconnections, hidden billing surprises, and
-              unreachable customer support. Today, we operate an authorised
-              Class–B optical network powering thousands of homes, educational
-              institutions, and businesses across Tamil Nadu.
+            {/* Description (Center Aligned) */}
+            <p className="relative z-10 text-white/90 text-base sm:text-lg lg:text-xl font-normal leading-relaxed mb-8 sm:mb-10 max-w-2xl mx-auto">
+              SASH Broadband Private Limited is an authorised Class–B Internet
+              Service Provider headquartered in Jaya Nagar, Thiruvallur. We build
+              and operate high-availability optical fibre rings delivering speed,
+              continuity, and accountable local support.
             </p>
 
-            <div className="flex flex-wrap items-center gap-3.5 sm:gap-4">
+            {/* CTA Buttons (Center Aligned) */}
+            <div className="relative z-10 flex flex-wrap items-center justify-center gap-3.5 sm:gap-4 w-full sm:w-auto">
               <Link
                 href="#contact"
-                className="group/btn btn-pill btn-primary-red font-medium text-sm sm:text-base px-6 sm:px-8"
+                className="group/btn btn-pill bg-brand-red hover:bg-brand-red-hover text-white font-medium text-sm sm:text-base px-6 sm:px-8"
               >
-                <span>Check coverage</span>
+                <span>Check availability</span>
                 <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-150 group-hover/btn:translate-x-0.5" />
               </Link>
               <Link
                 href="/#plans"
-                className="group/btn2 btn-pill btn-secondary-navy font-medium text-sm sm:text-base px-6 sm:px-8"
+                className="group/btn2 btn-pill bg-white/10 hover:bg-white/20 text-white border border-white/25 backdrop-blur-md font-medium text-sm sm:text-base px-6 sm:px-8"
               >
                 <span>View broadband plans</span>
                 <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-150 group-hover/btn2:translate-x-0.5" />
