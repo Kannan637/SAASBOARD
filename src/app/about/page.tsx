@@ -80,6 +80,8 @@ const PILLARS = [
     title: "100% Pure Optical FTTH",
     description:
       "We run dedicated single-mode glass optical fibre directly into your premise. No copper drops, no coaxial compression, and zero electromagnetic weather degradation.",
+    href: "/broadband-services",
+    ctaText: "Explore fibre",
   },
   {
     icon: ShieldCheck,
@@ -87,6 +89,8 @@ const PILLARS = [
     title: "Guaranteed Tariff Price-Lock",
     description:
       "Protected fixed monthly tariffs for 1 to 2 full years. Enjoy genuinely unlimited data with zero speed throttling, zero security deposits, and no hidden hardware charges.",
+    href: "/#plans",
+    ctaText: "View plans",
   },
   {
     icon: Clock,
@@ -94,6 +98,8 @@ const PILLARS = [
     title: "Local NOC & 2-Hour Dispatch",
     description:
       "Our Network Operations Centre and optical fusion technicians operate directly out of Jaya Nagar, Thiruvallur—ensuring rapid doorstep resolution within hours, not days.",
+    href: "#contact",
+    ctaText: "Contact NOC",
   },
 ];
 
@@ -213,52 +219,77 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 2. Core Commitments (3 Distinct, Non-Repeating Pillar Cards) */}
+      {/* 2. Core Commitments: UI matching Complete Network Portfolio & Connectivity for every need */}
       <section
         data-apple-manual="true"
         aria-labelledby="commitments-heading"
-        className="w-full bg-white py-14 sm:py-20 border-b border-black/[0.06]"
+        className="bg-white text-brand-navy section-padding border-b border-black/[0.06]"
       >
-        <div className="w-full max-w-[1440px] 2xl:max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8">
-          <AppleReveal className="max-w-2xl mb-10 sm:mb-14">
-            <span className="eyebrow-label text-brand-red mb-3 inline-block">
-              OUR COMMITMENT
-            </span>
-            <h2
-              id="commitments-heading"
-              className="text-brand-navy font-bold text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-[1.18] mb-3"
-            >
-              How we do internet differently
-            </h2>
-            <p className="text-neutral-600 text-sm sm:text-base font-normal leading-relaxed">
-              We own and manage our optical rings, direct peering, and last-mile
-              splicing—giving our customers complete reliability without intermediaries.
-            </p>
-          </AppleReveal>
+        <div className="container-sash">
+          {/* Header matching Complete Network Portfolio */}
+          <div className="max-w-2xl mb-10 sm:mb-14">
+            <AppleReveal>
+              <p className="eyebrow-label text-brand-red mb-3">
+                OUR COMMITMENT
+              </p>
+              <h2
+                id="commitments-heading"
+                className="text-brand-navy font-semibold text-3xl sm:text-4xl lg:text-[44px] tracking-normal leading-[1.15] mb-3"
+              >
+                How we do internet differently
+              </h2>
+              <p className="text-neutral-600 text-sm sm:text-base font-normal leading-relaxed">
+                We own and manage our optical rings, direct peering, and last-mile
+                splicing—giving our customers complete reliability without intermediaries.
+              </p>
+            </AppleReveal>
+          </div>
 
-          <AppleStagger className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">
+          {/* ServiceCard UI matching Complete Network Portfolio */}
+          <AppleStagger className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
             {PILLARS.map((pillar) => {
-              const IconComp = pillar.icon;
+              const IconComponent = pillar.icon;
               return (
-                <AppleStaggerItem key={pillar.title}>
-                  <div className="h-full flex flex-col justify-between p-7 sm:p-8 rounded-[24px] bg-neutral-50/60 border border-black/[0.06] transition-colors hover:border-brand-red/35">
-                    <div>
-                      <div className="flex items-center justify-between mb-5">
-                        <div className="w-11 h-11 rounded-[12px] bg-brand-red/10 text-brand-red flex items-center justify-center">
-                          <IconComp className="w-5 h-5 stroke-[2.25]" />
-                        </div>
-                        <span className="font-mono text-[10px] font-semibold text-neutral-400 uppercase tracking-wider">
-                          {pillar.tag}
-                        </span>
+                <AppleStaggerItem key={pillar.title} className="flex">
+                  <Link
+                    href={pillar.href}
+                    data-apple-manual="true"
+                    className="group relative w-full min-h-[290px] sm:min-h-[300px] h-full rounded-[22px] bg-[#F4F3F1] border border-black/[0.04] p-5 sm:p-5.5 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_28px_rgba(222,3,2,0.18)] cursor-pointer select-none"
+                  >
+                    {/* SASH Brand Gradient on Hover */}
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#FDEBEB_0%,#DE0302_52%,#B80201_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-400 ease-out z-0"
+                    />
+
+                    {/* Top: Icon in rounded badge + category tag */}
+                    <div className="relative z-10 flex items-center justify-between text-brand-navy group-hover:text-white transition-colors duration-300">
+                      <div className="w-9 h-9 rounded-full bg-white group-hover:bg-white/20 flex items-center justify-center shadow-xs transition-colors duration-300">
+                        <IconComponent className="w-4.5 h-4.5 stroke-[2] text-brand-navy group-hover:text-white transition-colors duration-300" />
                       </div>
-                      <h3 className="font-semibold text-lg sm:text-xl text-brand-navy mb-2.5 tracking-normal">
+                      <span className="font-mono text-[10px] font-semibold text-neutral-400 group-hover:text-white/80 uppercase tracking-wider transition-colors duration-300">
+                        {pillar.tag}
+                      </span>
+                    </div>
+
+                    {/* Bottom: Title, Description, and Read More Button */}
+                    <div className="relative z-10 mt-auto flex flex-col pt-4">
+                      <h3 className="text-brand-navy font-semibold text-sm min-[400px]:text-[15px] sm:text-base tracking-tight mb-1.5 group-hover:text-white transition-colors duration-300">
                         {pillar.title}
                       </h3>
-                      <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-normal">
+                      <p className="text-neutral-500 text-[11px] min-[400px]:text-xs sm:text-[12.5px] leading-snug line-clamp-3 mb-4 group-hover:text-white/95 transition-colors duration-300">
                         {pillar.description}
                       </p>
+
+                      {/* Read More Button */}
+                      <div className="pt-1">
+                        <span className="inline-flex h-8 items-center justify-center gap-1.5 rounded-full bg-white text-brand-navy border border-black/[0.08] px-3.5 text-xs font-medium shadow-xs group-hover:bg-white group-hover:text-brand-red group-hover:border-transparent transition-all duration-200">
+                          <span>{pillar.ctaText}</span>
+                          <ChevronRight className="size-3.5 stroke-[2.5] text-brand-red transition-transform duration-200 group-hover:translate-x-0.5" />
+                        </span>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </AppleStaggerItem>
               );
             })}
