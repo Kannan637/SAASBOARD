@@ -226,7 +226,7 @@ export function ServiceHero({
       <div className="w-full max-w-[1440px] 2xl:max-w-[1520px] mx-auto px-3 sm:px-6 lg:px-8">
         {/* Floating Deep-Rounded Banner Card matching Landing Page Hero */}
         <div
-          className="relative w-full rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden border border-black/[0.06]"
+          className="relative w-full h-[700px] sm:h-[740px] lg:h-[520px] rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden border border-black/[0.06] select-none"
           data-pattern={currentPattern}
           style={{ background: resolvedCardGradient }}
         >
@@ -273,9 +273,9 @@ export function ServiceHero({
             </div>
           )}
 
-          <div className="w-full min-h-auto lg:min-h-[520px] grid grid-cols-1 lg:grid-cols-12 items-stretch relative z-10">
+          <div className="w-full h-full flex flex-col justify-between lg:grid lg:grid-cols-12 items-stretch relative z-10">
             {/* Left Content Column (7 of 12 columns on desktop): Centered on mobile, left-aligned on desktop */}
-            <div className="lg:col-span-7 flex flex-col justify-between items-center lg:items-start text-center lg:text-left p-6 sm:p-8 lg:p-10 xl:p-12 z-20">
+            <div className="lg:col-span-7 flex flex-col justify-between items-center lg:items-start text-center lg:text-left p-5 sm:p-8 lg:p-10 xl:p-12 z-20 flex-1 lg:flex-none min-h-0">
               <div className="my-auto max-w-2xl w-full flex flex-col items-center lg:items-start text-center lg:text-left">
                 {/* Eyebrow Badge: Solid Red Pill with White Text matching Landing Page Hero */}
                 <div className="inline-flex min-h-6 items-center justify-center gap-1.5 rounded-full bg-brand-red px-3.5 py-1 text-xs leading-none font-medium text-white tracking-wide">
@@ -359,7 +359,7 @@ export function ServiceHero({
             </div>
 
             {/* Right Side Column (5 of 12 columns on desktop): Centered on mobile, right-aligned on desktop */}
-            <div className="lg:col-span-5 relative w-full h-[280px] sm:h-[350px] lg:h-full min-h-[280px] sm:min-h-[350px] lg:min-h-[470px] flex items-end justify-center lg:justify-end px-4 pt-2 pb-0 sm:px-6 sm:pt-4 sm:pb-0 lg:p-0">
+            <div className="lg:col-span-5 relative w-full h-[260px] sm:h-[320px] lg:h-full min-h-0 flex items-end justify-center lg:justify-end px-4 pt-2 pb-0 sm:px-6 sm:pt-4 sm:pb-0 lg:p-0 shrink-0">
               <div className="relative w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[520px] xl:max-w-[560px] h-full flex items-end justify-center lg:justify-end pointer-events-none select-none translate-x-0">
                 <Image
                   src={resolvedImageSrc}
@@ -368,7 +368,7 @@ export function ServiceHero({
                   height={resolvedImageHeight}
                   priority
                   sizes="(max-width: 640px) 320px, (max-width: 1024px) 420px, 520px"
-                  className="block w-full h-auto max-h-[280px] sm:max-h-[350px] lg:max-h-[525px] object-contain object-bottom align-bottom mx-auto lg:mx-0"
+                  className="block w-full h-auto max-h-[260px] sm:max-h-[320px] lg:max-h-[525px] object-contain object-bottom align-bottom mx-auto lg:mx-0"
                 />
               </div>
             </div>
