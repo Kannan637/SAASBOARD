@@ -5,6 +5,7 @@ import Topbar from "@/components/Home/Topbar";
 import Footer from "@/components/Home/Footer";
 import { AppleSmoothScrollProvider } from "@/components/ui/apple-scroll";
 import { SlowConnectionLoader } from "@/components/ui/loading-state";
+import { FloatingContactSidebar } from "@/components/ui/floating-contact-sidebar";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -161,6 +162,7 @@ export default function RootLayout({
           </main>
         </AppleSmoothScrollProvider>
         <Footer />
+        <FloatingContactSidebar />
         <SlowConnectionLoader />
       </body>
     </html>
