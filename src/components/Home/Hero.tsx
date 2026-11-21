@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, type PanInfo } from "framer-motion";
 import { APPLE_EASE } from "@/components/ui/apple-scroll";
 import {
   Avatar,
@@ -157,7 +157,7 @@ export default function Hero() {
   const [isPaused, setIsPaused] = useState(false);
   const currentSlide = HERO_SERVICE_SLIDES[activeIndex];
 
-  // Auto-scroll every 3 seconds (3000ms), paused when user hovers
+  // Auto-scroll every 4 seconds, paused when user hovers or drags
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
@@ -165,9 +165,9 @@ export default function Hero() {
       setActiveIndex((prev) =>
         prev === HERO_SERVICE_SLIDES.length - 1 ? 0 : prev + 1
       );
-    }, 3000);
+    }, 4000);
     return () => clearInterval(timer);
-  }, [isPaused]);
+  }, [isPaused, activeIndex]);
 
   const goToSlide = (idx: number) => {
     setDirection(idx > activeIndex ? 1 : -1);
@@ -186,6 +186,21 @@ export default function Hero() {
     setActiveIndex((prev) =>
       prev === HERO_SERVICE_SLIDES.length - 1 ? 0 : prev + 1
     );
+  };
+
+  const handleDragEnd = (
+    _event: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo
+  ) => {
+    setIsPaused(false);
+    const swipeThreshold = 50;
+    const velocityThreshold = 250;
+
+    if (info.offset.x < -swipeThreshold || info.velocity.x < -velocityThreshold) {
+      handleNext();
+    } else if (info.offset.x > swipeThreshold || info.velocity.x > velocityThreshold) {
+      handlePrev();
+    }
   };
 
   const textSlideVariants = {
@@ -220,7 +235,7 @@ export default function Hero() {
         <div className="w-full max-w-[1440px] 2xl:max-w-[1520px] mx-auto px-3 sm:px-6 lg:px-8">
           {/* Floating Deep-Rounded Banner Card */}
           <div
-            className="relative w-full rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden border border-black/[0.06]"
+            className="relative w-full rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden border border-black/[0.06] select-none"
             data-pattern={currentSlide.pattern}
           >
             {/* 5 Distinct Canvas Background Pattern Layers with Smooth 700ms Cross-Fade */}
@@ -242,7 +257,14 @@ export default function Hero() {
               </div>
             ))}
 
-            <div className="w-full min-h-auto lg:min-h-[520px] grid grid-cols-1 lg:grid-cols-12 items-stretch relative z-10">
+            <motion.div
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.25}
+              onDragStart={() => setIsPaused(true)}
+              onDragEnd={handleDragEnd}
+              className="w-full min-h-auto lg:min-h-[520px] grid grid-cols-1 lg:grid-cols-12 items-stretch relative z-10 cursor-grab active:cursor-grabbing touch-pan-y"
+            >
               {/* Left Content Column (7 of 12 columns on desktop): Centered on mobile, left-aligned on desktop */}
               <div className="lg:col-span-7 flex flex-col justify-between items-center lg:items-start text-center lg:text-left p-6 sm:p-8 lg:p-10 xl:p-12 z-20">
                 <AnimatePresence mode="wait" custom={direction}>
@@ -276,7 +298,10 @@ export default function Hero() {
                     </p>
 
                     {/* Action Buttons: Centered on mobile, start-aligned on desktop */}
-                    <div className="mt-5 sm:mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full">
+                    <div
+                      onPointerDown={(e) => e.stopPropagation()}
+                      className="mt-5 sm:mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full cursor-default"
+                    >
                       <Link
                         href={currentSlide.ctaHref}
                         className="inline-flex h-10 min-h-[40px] items-center justify-center gap-2 rounded-full bg-brand-red hover:bg-brand-red-hover px-5 sm:px-6 text-sm font-medium text-white outline-2 -outline-offset-2 outline-white/20 transition-all duration-150 ease-out active:scale-[0.97]"
@@ -337,7 +362,8 @@ export default function Hero() {
 
                 {/* Carousel Controls: Centered on mobile, start-aligned on desktop */}
                 <div
-                  className="flex items-center justify-center lg:justify-start gap-3 pt-6 sm:pt-7 w-full"
+                  onPointerDown={(e) => e.stopPropagation()}
+                  className="flex items-center justify-center lg:justify-start gap-3 pt-6 sm:pt-7 w-full cursor-default"
                   aria-label="Hero carousel controls"
                 >
                   {/* Previous Button */}
@@ -398,7 +424,7 @@ export default function Hero() {
                   />
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
