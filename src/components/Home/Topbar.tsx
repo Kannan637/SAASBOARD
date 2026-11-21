@@ -204,7 +204,7 @@ export default function Topbar() {
       <div
         role="region"
         aria-label="Contact and office hours information"
-        className="bg-brand-navy text-white text-xs sm:text-sm"
+        className="bg-brand-navy text-white text-[11px] min-[360px]:text-xs sm:text-sm"
       >
         <div className="container-sash py-2 sm:py-2.5 flex items-center justify-between gap-2 sm:gap-6">
           {/* Left: Phone + Email */}

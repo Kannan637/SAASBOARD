@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import {
   motion,
   useScroll,
@@ -45,10 +46,11 @@ function WavePerspectiveCard({
       }}
       className="relative h-[240px] w-[225px] sm:h-[285px] sm:w-[265px] shrink-0 overflow-hidden rounded-[24px] bg-neutral-100 select-none will-change-transform"
     >
-      <img
+      <Image
         src={src}
         alt=""
-        aria-hidden="true"
+        fill
+        sizes="(max-width: 640px) 225px, 265px"
         className="h-full w-full object-cover pointer-events-none scale-110"
         loading="lazy"
       />
@@ -283,16 +285,16 @@ function PhoneMockup({
   smoothProgress: MotionValue<number>;
 }) {
   return (
-    <div className="relative z-20 mx-auto w-[340px] sm:w-[400px] shrink-0">
-      {/* 75% Visible Viewport Window (461px of 615px on mobile, 543px of 724px on sm+) */}
-      <div className="h-[461px] sm:h-[543px] w-full overflow-hidden">
+    <div className="relative z-20 mx-auto w-[285px] min-[360px]:w-[340px] sm:w-[400px] max-w-[calc(100vw-24px)] shrink-0">
+      {/* 75% Visible Viewport Window (386px of 515px on small, 461px of 615px on mobile, 543px of 724px on sm+) */}
+      <div className="h-[386px] min-[360px]:h-[461px] sm:h-[543px] w-full overflow-hidden">
         {/* Full Phone Container (484:876 exact aspect ratio of Iphone Frame.png) */}
-        <div className="relative h-[615px] sm:h-[724px] w-full">
+        <div className="relative h-[515px] min-[360px]:h-[615px] sm:h-[724px] w-full">
           {/* Inner iOS Screen */}
-          <div className="absolute left-[2.9%] right-[2.9%] top-[1.4%] bottom-[1.4%] z-10 overflow-hidden rounded-[50px] sm:rounded-[58px] bg-white">
+          <div className="absolute left-[2.9%] right-[2.9%] top-[1.4%] bottom-[1.4%] z-10 overflow-hidden rounded-[42px] min-[360px]:rounded-[50px] sm:rounded-[58px] bg-white">
             {/* iOS Status Bar */}
-            <div className="flex h-[50px] sm:h-[54px] items-center justify-between px-7 sm:px-8 pt-2.5">
-              <span className="text-[13px] sm:text-[14px] font-medium text-[#1C1C1E]">
+            <div className="flex h-[42px] min-[360px]:h-[50px] sm:h-[54px] items-center justify-between px-5 min-[360px]:px-7 sm:px-8 pt-2 min-[360px]:pt-2.5">
+              <span className="text-[12px] min-[360px]:text-[13px] sm:text-[14px] font-medium text-[#1C1C1E]">
                 9:41
               </span>
               <div className="flex items-center gap-1.5 text-[#1C1C1E]">
@@ -303,40 +305,40 @@ function PhoneMockup({
             </div>
 
             {/* Clean Apple App Header (matching shared_img) */}
-            <div className="flex items-center justify-between px-6 sm:px-7 pb-3.5 pt-1.5">
-              <div className="text-[24px] sm:text-[27px] font-medium tracking-[-1px] text-brand-navy">
+            <div className="flex items-center justify-between px-5 min-[360px]:px-6 sm:px-7 pb-3 pt-1">
+              <div className="text-[22px] min-[360px]:text-[24px] sm:text-[27px] font-medium tracking-[-1px] text-brand-navy">
                 sash<span className="text-brand-red">.</span>
               </div>
 
-              <span className="rounded-[9px] border border-[#D1D1D6] px-3.5 py-1 text-[11px] sm:text-[12px] font-medium text-[#3A3A3C]">
+              <span className="rounded-[9px] border border-[#D1D1D6] px-3 min-[360px]:px-3.5 py-0.5 min-[360px]:py-1 text-[10.5px] min-[360px]:text-[11px] sm:text-[12px] font-medium text-[#3A3A3C]">
                 Support
               </span>
             </div>
 
             {/* Main iOS Screen Body */}
-            <div className="px-5 sm:px-6">
-              <h3 className="text-[20px] sm:text-[22px] font-medium tracking-[-0.4px] text-[#1C1C1E]">
+            <div className="px-4 min-[360px]:px-5 sm:px-6">
+              <h3 className="text-[18px] min-[360px]:text-[20px] sm:text-[22px] font-medium tracking-[-0.4px] text-[#1C1C1E]">
                 Internet Speed
               </h3>
-              <p className="mt-0.5 text-[11.5px] sm:text-[12.5px] text-[#8E8E93]">
+              <p className="mt-0.5 text-[11px] min-[360px]:text-[11.5px] sm:text-[12.5px] text-[#8E8E93]">
                 Your connection at a glance
               </p>
 
               {/* Apple Inset Grouped Speed Card */}
-              <div className="mt-4 rounded-[24px] border border-[#F2F2F7] bg-[#F9F9FB] px-4 pb-4 pt-3.5">
+              <div className="mt-3.5 min-[360px]:mt-4 rounded-[20px] min-[360px]:rounded-[24px] border border-[#F2F2F7] bg-[#F9F9FB] px-3.5 min-[360px]:px-4 pb-3.5 min-[360px]:pb-4 pt-3 min-[360px]:pt-3.5">
                 <div className="flex items-center justify-between px-1">
                   <div>
-                    <span className="text-[10px] sm:text-[11px] font-medium tracking-wider text-[#636366]">
+                    <span className="text-[9.5px] min-[360px]:text-[10px] sm:text-[11px] font-medium tracking-wider text-[#636366]">
                       YOUR INTERNET
                     </span>
                     <div className="mt-0.5 flex items-center gap-1.5">
                       <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                      <span className="text-[10.5px] sm:text-[11px] font-medium text-emerald-600">
+                      <span className="text-[10px] min-[360px]:text-[10.5px] sm:text-[11px] font-medium text-emerald-600">
                         Connected
                       </span>
                     </div>
                   </div>
-                  <span className="rounded-full bg-red-10 px-3 py-1 text-[9.5px] font-medium tracking-wider text-brand-red">
+                  <span className="rounded-full bg-red-10 px-2.5 min-[360px]:px-3 py-0.5 min-[360px]:py-1 text-[9px] min-[360px]:text-[9.5px] font-medium tracking-wider text-brand-red">
                     LIVE TEST
                   </span>
                 </div>
@@ -345,30 +347,33 @@ function PhoneMockup({
               </div>
 
               {/* iOS Region Card (Partially visible at the 75% cutoff with bottom white fade) */}
-              <div className="mt-4 flex items-center justify-between rounded-[18px] border border-[#F2F2F7] bg-[#F9F9FB] p-3.5 sm:p-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-[11px] bg-red-10">
-                    <MapPin size={17} className="text-brand-red" />
+              <div className="mt-3 min-[360px]:mt-4 flex items-center justify-between rounded-[16px] min-[360px]:rounded-[18px] border border-[#F2F2F7] bg-[#F9F9FB] p-3 min-[360px]:p-3.5 sm:p-4">
+                <div className="flex items-center gap-2.5 min-[360px]:gap-3">
+                  <div className="flex h-8 w-8 min-[360px]:h-9 min-[360px]:w-9 items-center justify-center rounded-[10px] min-[360px]:rounded-[11px] bg-red-10">
+                    <MapPin size={16} className="text-brand-red" />
                   </div>
                   <div>
-                    <p className="text-[12px] sm:text-[13px] font-medium text-[#1C1C1E]">
+                    <p className="text-[11.5px] min-[360px]:text-[12px] sm:text-[13px] font-medium text-[#1C1C1E]">
                       Tamil Nadu
                     </p>
-                    <p className="text-[10px] text-[#8E8E93]">
+                    <p className="text-[9.5px] min-[360px]:text-[10px] text-[#8E8E93]">
                       Your current region
                     </p>
                   </div>
                 </div>
-                <Plus size={18} className="text-[#8E8E93]" />
+                <Plus size={17} className="text-[#8E8E93]" />
               </div>
             </div>
           </div>
 
           {/* Hardware iPhone Frame Overlay (/Frame/Iphone Frame.png) */}
-          <img
+          <Image
             src="/Frame/Iphone%20Frame.png"
             alt="iPhone Hardware Frame"
             aria-hidden="true"
+            width={484}
+            height={876}
+            priority
             className="pointer-events-none select-none absolute left-[-126.45%] top-[-3.2%] w-[352.48%] h-[105.25%] max-w-none z-30"
           />
         </div>

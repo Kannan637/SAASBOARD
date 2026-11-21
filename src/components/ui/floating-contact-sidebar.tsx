@@ -121,7 +121,7 @@ export function FloatingContactSidebar() {
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 exit={{ opacity: 0, x: 120, scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 320, damping: 30 }}
-                className="relative mr-2 sm:mr-3 w-[290px] sm:w-[320px] rounded-3xl bg-white text-brand-navy shadow-[0_16px_50px_rgba(1,13,59,0.22)] border border-brand-navy/10 overflow-hidden backdrop-blur-xl"
+                className="relative mr-2 sm:mr-3 w-[min(320px,calc(100vw-20px))] rounded-3xl bg-white text-brand-navy shadow-[0_16px_50px_rgba(1,13,59,0.22)] border border-brand-navy/10 overflow-hidden backdrop-blur-xl"
               >
                 {/* Header Strip */}
                 <div className="relative bg-gradient-to-r from-brand-navy to-[#06183B] p-4 text-white">

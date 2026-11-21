@@ -259,7 +259,7 @@ export default function Contactus({
         </AppleReveal>
 
         {/* Unified Outer Container with Footer Background; Right Side Form Container in White */}
-        <div className="relative overflow-hidden rounded-[32px] bg-brand-navy p-7 sm:p-10 lg:p-12 xl:p-14 mb-14 lg:mb-16 shadow-[0_16px_40px_rgba(1,13,59,0.18)]">
+        <div className="relative overflow-hidden rounded-[32px] bg-brand-navy p-4 sm:p-8 lg:p-12 xl:p-14 mb-14 lg:mb-16 shadow-[0_16px_40px_rgba(1,13,59,0.18)]">
           {/* Footer-Matching Gradient & Arch Background */}
           <div
             aria-hidden="true"
@@ -365,7 +365,7 @@ export default function Contactus({
 
             {/* Right Column (6 of 12 cols): White Form Container */}
             <div className="lg:col-span-6 flex">
-              <div className="w-full rounded-[28px] bg-white border border-black/[0.06] p-7 sm:p-9 lg:p-10 xl:p-11 flex flex-col shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
+              <div className="w-full rounded-[28px] bg-white border border-black/[0.06] p-4 min-[360px]:p-6 sm:p-8 lg:p-10 xl:p-11 flex flex-col shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
                 {/* Form Header */}
                 <div className="pb-5 mb-6 border-b border-brand-navy/10">
                   <span className="inline-flex min-h-7 items-center justify-center rounded-full bg-red-10 px-3 font-mono text-xs font-semibold uppercase tracking-wider text-brand-red mb-2">
