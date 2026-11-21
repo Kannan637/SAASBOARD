@@ -172,24 +172,6 @@ export default function BroadbandServicesPage() {
               {/* Right Column: 4K Smart TV with OTT streaming apps & digital IPTV */}
               <div className="relative z-10 w-full lg:w-auto lg:shrink-0 flex items-center justify-center lg:justify-end">
                 <div className="relative w-full max-w-[440px] sm:max-w-[500px] lg:max-w-[520px] xl:max-w-[560px] transition-transform duration-300 hover:scale-[1.02]">
-                  {/* Left TV Stand Contact Shadow */}
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute left-[12.8%] bottom-[2.5%] -translate-x-1/2 flex items-center justify-center z-0"
-                  >
-                    <div className="w-16 sm:w-20 lg:w-24 h-3 sm:h-4 bg-black/50 rounded-full blur-sm scale-y-60" />
-                    <div className="absolute w-10 sm:w-12 lg:w-14 h-1.5 sm:h-2 bg-black/80 rounded-full blur-[1.5px] scale-y-60" />
-                  </div>
-
-                  {/* Right TV Stand Contact Shadow */}
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute left-[84.8%] bottom-[2.5%] -translate-x-1/2 flex items-center justify-center z-0"
-                  >
-                    <div className="w-14 sm:w-18 lg:w-20 h-3 sm:h-4 bg-black/50 rounded-full blur-sm scale-y-60" />
-                    <div className="absolute w-9 sm:w-11 lg:w-13 h-1.5 sm:h-2 bg-black/80 rounded-full blur-[1.5px] scale-y-60" />
-                  </div>
-
                   <Image
                     src="/Service/smart-tv-ott.png"
                     alt="4K Smart TV displaying high-bitrate OTT streaming apps & digital IPTV"
