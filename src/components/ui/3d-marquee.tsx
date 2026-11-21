@@ -12,6 +12,7 @@ export interface ThreeDMarqueeProps {
   cardClassName?: string;
   imageClassName?: string;
   stageClassName?: string;
+  speedMultiplier?: number;
 }
 
 export const ThreeDMarquee = ({
@@ -22,6 +23,7 @@ export const ThreeDMarquee = ({
   cardClassName,
   imageClassName,
   stageClassName,
+  speedMultiplier = 1,
 }: ThreeDMarqueeProps) => {
   const shouldReduceMotion = useReducedMotion();
 
@@ -65,24 +67,32 @@ export const ThreeDMarquee = ({
                 : `grid-cols-${numCols}`,
             )}
           >
-            {chunks.map((subarray, colIndex) => (
-              <motion.div
-                animate={
-                  shouldReduceMotion
-                    ? { y: 0 }
-                    : { y: colIndex % 2 === 0 ? 60 : -60 }
-                }
-                transition={{
-                  duration: colIndex === 1 ? 17 : colIndex === 2 ? 13 : 15,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  ease: "easeInOut",
-                }}
-                key={colIndex + "marquee"}
-                className="flex flex-col items-center gap-3.5 sm:gap-4 md:gap-5"
-              >
-                <GridLineVertical className="-left-2 sm:-left-2.5" offset="60px" />
-                {subarray.map((image, imageIndex) => (
+            {chunks.map((subarray, colIndex) => {
+              // Faster base durations (~6-8s instead of 13-17s) scaled by speedMultiplier
+              const baseDurations = [7.2, 8.0, 6.2, 7.5];
+              const rawDuration =
+                baseDurations[colIndex % baseDurations.length] || 7.0;
+              const duration = Math.max(2.5, rawDuration / (speedMultiplier || 1));
+              const travelDistance = 75;
+
+              return (
+                <motion.div
+                  animate={
+                    shouldReduceMotion
+                      ? { y: 0 }
+                      : { y: colIndex % 2 === 0 ? travelDistance : -travelDistance }
+                  }
+                  transition={{
+                    duration,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
+                  }}
+                  key={colIndex + "marquee"}
+                  className="flex flex-col items-center gap-3.5 sm:gap-4 md:gap-5"
+                >
+                  <GridLineVertical className="-left-2 sm:-left-2.5" offset="60px" />
+                  {subarray.map((image, imageIndex) => (
                   <div
                     key={imageIndex + image}
                     className={cn(
@@ -108,7 +118,8 @@ export const ThreeDMarquee = ({
                   </div>
                 ))}
               </motion.div>
-            ))}
+            );
+          })}
           </div>
         </div>
       </div>

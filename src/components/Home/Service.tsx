@@ -386,6 +386,7 @@ export default function Service() {
               >
                 <ThreeDMarquee
                   columnsData={UPGRADE_MARQUEE_COLUMNS}
+                  speedMultiplier={1.3}
                   className="h-full w-full"
                   stageClassName="size-[850px] sm:size-[950px] lg:size-[1050px] translate-x-10 sm:translate-x-14 lg:translate-x-16"
                   cardClassName="w-24 sm:w-28 md:w-32 lg:w-36 aspect-[4/3] bg-white rounded-xl sm:rounded-2xl shadow-[0_6px_22px_rgba(0,0,0,0.15)] border border-black/[0.04]"

@@ -5,6 +5,8 @@ import Pricing from "@/components/Home/Pricing";
 import Testimonial from "@/components/Home/Testimonial";
 import Faq from "@/components/Home/Faq";
 import Contactus from "@/components/Home/Contactus";
+import { AppleScrollScale } from "@/components/ui/apple-scroll";
+import { ThreeDMarquee } from "@/components/ui/3d-marquee";
 import {
   ServiceDeliverablesSection,
   ServiceHero,
@@ -73,6 +75,52 @@ const INSTALLATION_STEPS: ServiceDeliverableItem[] = [
   },
 ];
 
+const OTT_LOGOS_COL1 = [
+  "/3d-marquee/netflix.svg",
+  "/3d-marquee/prime-video.svg",
+  "/3d-marquee/disney-hotstar.svg",
+  "/3d-marquee/sony-liv.svg",
+  "/3d-marquee/zee5.svg",
+  "/3d-marquee/jio-cinema.svg",
+  "/3d-marquee/apple-tv.svg",
+  "/3d-marquee/youtube.svg",
+  "/3d-marquee/spotify.svg",
+  "/3d-marquee/playstation.svg",
+];
+
+const OTT_LOGOS_COL2 = [
+  "/3d-marquee/jio-cinema.svg",
+  "/3d-marquee/disney-hotstar.svg",
+  "/3d-marquee/netflix.svg",
+  "/3d-marquee/apple-tv.svg",
+  "/3d-marquee/sony-liv.svg",
+  "/3d-marquee/prime-video.svg",
+  "/3d-marquee/youtube.svg",
+  "/3d-marquee/zee5.svg",
+  "/3d-marquee/twitch.svg",
+  "/3d-marquee/xbox.svg",
+];
+
+const OTT_LOGOS_COL3 = [
+  "/3d-marquee/prime-video.svg",
+  "/3d-marquee/netflix.svg",
+  "/3d-marquee/sony-liv.svg",
+  "/3d-marquee/youtube.svg",
+  "/3d-marquee/disney-hotstar.svg",
+  "/3d-marquee/jio-cinema.svg",
+  "/3d-marquee/zee5.svg",
+  "/3d-marquee/apple-tv.svg",
+  "/3d-marquee/spotify.svg",
+  "/3d-marquee/playstation.svg",
+];
+
+// 20 brand logo cards per column for an unbroken, smooth 3D flow
+const OTT_MARQUEE_COLUMNS = [
+  [...OTT_LOGOS_COL1, ...OTT_LOGOS_COL1],
+  [...OTT_LOGOS_COL2, ...OTT_LOGOS_COL2],
+  [...OTT_LOGOS_COL3, ...OTT_LOGOS_COL3],
+];
+
 export default function BroadbandServicesPage() {
   return (
     <>
@@ -106,32 +154,77 @@ export default function BroadbandServicesPage() {
         items={INSTALLATION_STEPS}
       />
 
-      {/* OTT and IPTV Anchor Section */}
+      {/* OTT and IPTV Anchor Section (Using exact banner UI style with 3D tilted entertainment marquee) */}
       <section
         id="ott-iptv"
         data-apple-manual="true"
-        className="bg-white pb-16 md:pb-24"
+        aria-label="OTT and IPTV Entertainment Ready"
+        className="bg-white py-12 sm:py-16 md:py-20"
       >
         <div className="container-sash">
-          <div className="rounded-2xl bg-brand-navy text-white border border-brand-navy/15 p-8 sm:p-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-[0px_2px_3px_0px_rgba(5,5,6,0.05)]">
-            <div className="max-w-2xl">
-              <span className="inline-block px-3.5 py-1 rounded-full bg-brand-red text-white text-xs font-semibold uppercase tracking-wider mb-2.5">
-                OTT &amp; IPTV Ready
-              </span>
-              <h3 className="text-white !text-lg sm:!text-xl font-semibold mb-1.5 tracking-normal">
-                Ready for 4K Smart TVs, OTT Apps, and Digital IPTV
-              </h3>
-              <p className="text-white/80 text-xs sm:text-sm leading-relaxed font-normal">
-                Our low-latency optical network supports high-bitrate 4K
-                streaming and IPTV set-top boxes without frame drops. Ask our
-                team about available entertainment bundles in your area.
-              </p>
+          <AppleScrollScale>
+            <div className="banner-sash relative overflow-hidden rounded-[32px] bg-brand-red text-white p-8 sm:p-12 lg:p-14 min-h-[380px] sm:min-h-[420px] lg:min-h-[440px] flex flex-col items-start justify-center gap-8 shadow-[0_16px_48px_rgba(222,3,2,0.22)]">
+              {/* 3D Marquee: Covers the right section of the card background with OTT/IPTV brand cards */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute right-0 top-0 bottom-0 w-full sm:w-[68%] md:w-[62%] lg:w-[56%] h-full overflow-hidden select-none z-0 opacity-95 [mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.25)_15%,rgba(0,0,0,0.85)_32%,black_100%)]"
+              >
+                <ThreeDMarquee
+                  columnsData={OTT_MARQUEE_COLUMNS}
+                  speedMultiplier={1.3}
+                  className="h-full w-full"
+                  stageClassName="size-[850px] sm:size-[950px] lg:size-[1050px] translate-x-10 sm:translate-x-14 lg:translate-x-16"
+                  cardClassName="w-24 sm:w-28 md:w-32 lg:w-36 aspect-[4/3] bg-white rounded-xl sm:rounded-2xl shadow-[0_6px_22px_rgba(0,0,0,0.15)] border border-black/[0.04]"
+                />
+              </div>
+
+              {/* Gradient Scrim to ensure 100% text readability */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-brand-red via-brand-red/95 to-transparent lg:from-brand-red lg:via-brand-red/80 lg:to-transparent z-10"
+              />
+
+              <div className="relative z-20 max-w-xl flex flex-col items-start gap-6">
+                <div>
+                  <span className="inline-block px-3.5 py-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/25 text-white text-xs font-semibold uppercase tracking-wider mb-3.5">
+                    OTT &amp; IPTV Ready
+                  </span>
+                  <h2 className="text-white mb-3 font-semibold text-2xl sm:text-3xl lg:text-4xl tracking-normal">
+                    Ready for 4K Smart TVs, OTT Apps, and Digital IPTV
+                  </h2>
+                  <p className="text-white/95 text-base md:text-lg font-normal leading-relaxed">
+                    Our low-latency optical fibre network powers smooth 4K HDR streaming across Netflix, Prime Video, Disney+ Hotstar, SonyLIV, Zee5, and IPTV set-top boxes with zero frame drops or buffering.
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 w-full sm:w-auto">
+                  <Link
+                    href="#contact"
+                    className="group/cta btn-pill bg-linear-to-b from-brand-navy to-navy-80 text-white outline-2 -outline-offset-2 outline-white/20 hover:from-navy-80 hover:to-navy-80 w-full sm:w-auto font-medium"
+                  >
+                    <span>Enquire about OTT &amp; IPTV</span>
+                    <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-200 ease-out group-hover/cta:translate-x-0.5" />
+                  </Link>
+                  <a
+                    href="https://wa.me/919003009353?text=Hi%20SASH%20Broadband%2C%20I%20would%20like%20to%20know%20more%20about%204K%20Smart%20TV%20and%20OTT%20IPTV%20plans."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/wa btn-pill bg-white text-brand-navy hover:bg-neutral-50 border border-white w-full sm:w-auto font-semibold flex items-center justify-center gap-2.5 transition-all hover:scale-[1.02]"
+                  >
+                    <svg
+                      className="w-5 h-5 text-[#25D366] fill-current shrink-0"
+                      viewBox="0 0 32 32"
+                      aria-hidden="true"
+                    >
+                      <path d="M16.004 3.2c-7.068 0-12.8 5.732-12.8 12.8 0 2.257.589 4.46 1.708 6.404L3.092 28.8l6.556-1.72c1.883 1.028 4.004 1.57 6.356 1.57h.006c7.066 0 12.796-5.732 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054C22.638 4.532 19.422 3.2 16.004 3.2zm0 23.29h-.005c-1.994 0-3.95-.536-5.656-1.548l-.406-.24-4.212 1.105 1.124-4.106-.264-.42c-1.112-1.768-1.7-3.812-1.7-5.914 0-5.876 4.782-10.658 10.664-10.658 2.848 0 5.524 1.11 7.538 3.124 2.012 2.014 3.12 4.692 3.12 7.54 0 5.878-4.782 10.66-10.203 10.66zm5.848-7.984c-.32-.16-1.896-.936-2.19-1.042-.294-.108-.508-.16-.722.16-.214.32-.828 1.042-1.016 1.256-.186.214-.374.24-.694.08-.32-.16-1.352-.498-2.576-1.59-.952-.848-1.594-1.898-1.782-2.218-.186-.32-.02-.494.14-.654.144-.144.32-.374.48-.562.16-.186.214-.32.32-.534.108-.214.054-.4-.026-.56-.08-.16-.722-1.738-.988-2.38-.26-.624-.526-.54-.722-.55-.186-.008-.4-.01-.614-.01-.214 0-.562.08-.856.4-.294.32-1.122 1.096-1.122 2.674s1.15 3.102 1.31 3.316c.16.214 2.262 3.454 5.48 4.844.766.33 1.364.528 1.83.676.768.244 1.468.21 2.02.128.616-.092 1.896-.776 2.164-1.524.268-.748.268-1.39.188-1.524-.08-.134-.294-.214-.614-.374z" />
+                    </svg>
+                    <span>Chat on WhatsApp</span>
+                    <ChevronRight className="size-4 stroke-[2.5] text-brand-navy/60 transition-transform duration-200 ease-out group-hover/wa:translate-x-0.5" />
+                  </a>
+                </div>
+              </div>
             </div>
-            <Link href="#contact" className="group/btn btn-pill btn-primary-red shrink-0 font-medium">
-              <span>Enquire about OTT &amp; IPTV</span>
-              <ChevronRight className="size-4 stroke-[2.5] transition-transform duration-150 group-hover/btn:translate-x-0.5" />
-            </Link>
-          </div>
+          </AppleScrollScale>
         </div>
       </section>
 
