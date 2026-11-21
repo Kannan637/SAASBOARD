@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import Pricing from "@/components/Home/Pricing";
 import Testimonial from "@/components/Home/Testimonial";
 import Faq from "@/components/Home/Faq";
 import Contactus from "@/components/Home/Contactus";
 import { AppleScrollScale } from "@/components/ui/apple-scroll";
-import { ThreeDMarquee } from "@/components/ui/3d-marquee";
 import {
   ServiceDeliverablesSection,
   ServiceHero,
@@ -75,52 +75,6 @@ const INSTALLATION_STEPS: ServiceDeliverableItem[] = [
   },
 ];
 
-const OTT_LOGOS_COL1 = [
-  "/3d-marquee/netflix.svg",
-  "/3d-marquee/prime-video.svg",
-  "/3d-marquee/disney-hotstar.svg",
-  "/3d-marquee/sony-liv.svg",
-  "/3d-marquee/zee5.svg",
-  "/3d-marquee/jio-cinema.svg",
-  "/3d-marquee/apple-tv.svg",
-  "/3d-marquee/youtube.svg",
-  "/3d-marquee/spotify.svg",
-  "/3d-marquee/playstation.svg",
-];
-
-const OTT_LOGOS_COL2 = [
-  "/3d-marquee/jio-cinema.svg",
-  "/3d-marquee/disney-hotstar.svg",
-  "/3d-marquee/netflix.svg",
-  "/3d-marquee/apple-tv.svg",
-  "/3d-marquee/sony-liv.svg",
-  "/3d-marquee/prime-video.svg",
-  "/3d-marquee/youtube.svg",
-  "/3d-marquee/zee5.svg",
-  "/3d-marquee/twitch.svg",
-  "/3d-marquee/xbox.svg",
-];
-
-const OTT_LOGOS_COL3 = [
-  "/3d-marquee/prime-video.svg",
-  "/3d-marquee/netflix.svg",
-  "/3d-marquee/sony-liv.svg",
-  "/3d-marquee/youtube.svg",
-  "/3d-marquee/disney-hotstar.svg",
-  "/3d-marquee/jio-cinema.svg",
-  "/3d-marquee/zee5.svg",
-  "/3d-marquee/apple-tv.svg",
-  "/3d-marquee/spotify.svg",
-  "/3d-marquee/playstation.svg",
-];
-
-// 20 brand logo cards per column for an unbroken, smooth 3D flow
-const OTT_MARQUEE_COLUMNS = [
-  [...OTT_LOGOS_COL1, ...OTT_LOGOS_COL1],
-  [...OTT_LOGOS_COL2, ...OTT_LOGOS_COL2],
-  [...OTT_LOGOS_COL3, ...OTT_LOGOS_COL3],
-];
-
 export default function BroadbandServicesPage() {
   return (
     <>
@@ -154,7 +108,7 @@ export default function BroadbandServicesPage() {
         items={INSTALLATION_STEPS}
       />
 
-      {/* OTT and IPTV Anchor Section (Using exact banner UI style with 3D tilted entertainment marquee) */}
+      {/* OTT and IPTV Anchor Section */}
       <section
         id="ott-iptv"
         data-apple-manual="true"
@@ -163,33 +117,24 @@ export default function BroadbandServicesPage() {
       >
         <div className="container-sash">
           <AppleScrollScale>
-            <div className="banner-sash relative overflow-hidden rounded-[32px] bg-brand-red text-white p-8 sm:p-12 lg:p-14 min-h-[380px] sm:min-h-[420px] lg:min-h-[440px] flex flex-col items-start justify-center gap-8 shadow-[0_16px_48px_rgba(222,3,2,0.22)]">
-              {/* 3D Marquee: Covers the right section of the card background with OTT/IPTV brand cards */}
+            <div className="banner-sash relative overflow-hidden rounded-[32px] bg-brand-red text-white p-8 sm:p-12 lg:p-14 min-h-[380px] sm:min-h-[420px] lg:min-h-[440px] flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12 shadow-[0_16px_48px_rgba(222,3,2,0.22)]">
+              {/* Subtle ambient lighting behind content & TV */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute right-0 top-0 bottom-0 w-full sm:w-[68%] md:w-[62%] lg:w-[56%] h-full overflow-hidden select-none z-0 opacity-95 [mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.25)_15%,rgba(0,0,0,0.85)_32%,black_100%)]"
-              >
-                <ThreeDMarquee
-                  columnsData={OTT_MARQUEE_COLUMNS}
-                  speedMultiplier={1.3}
-                  className="h-full w-full"
-                  stageClassName="size-[850px] sm:size-[950px] lg:size-[1050px] translate-x-10 sm:translate-x-14 lg:translate-x-16"
-                  cardClassName="w-24 sm:w-28 md:w-32 lg:w-36 aspect-[4/3] bg-white rounded-xl sm:rounded-2xl shadow-[0_6px_22px_rgba(0,0,0,0.15)] border border-black/[0.04]"
-                />
-              </div>
-
-              {/* Gradient Scrim to ensure 100% text readability */}
+                className="pointer-events-none absolute -right-20 -top-20 w-[420px] h-[420px] rounded-full bg-white/10 blur-3xl"
+              />
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-brand-red via-brand-red/95 to-transparent lg:from-brand-red lg:via-brand-red/80 lg:to-transparent z-10"
+                className="pointer-events-none absolute right-1/4 bottom-0 w-[360px] h-[200px] rounded-full bg-black/20 blur-2xl"
               />
 
-              <div className="relative z-20 max-w-xl flex flex-col items-start gap-6">
+              {/* Left Column: Heading, description, and dual CTA buttons */}
+              <div className="relative z-10 max-w-xl flex flex-col items-start gap-6">
                 <div>
                   <span className="inline-block px-3.5 py-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/25 text-white text-xs font-semibold uppercase tracking-wider mb-3.5">
                     OTT &amp; IPTV Ready
                   </span>
-                  <h2 className="text-white mb-3 font-semibold text-2xl sm:text-3xl lg:text-4xl tracking-normal">
+                  <h2 className="text-white mb-3 font-semibold text-2xl sm:text-3xl lg:text-4xl tracking-normal leading-tight">
                     Ready for 4K Smart TVs, OTT Apps, and Digital IPTV
                   </h2>
                   <p className="text-white/95 text-base md:text-lg font-normal leading-relaxed">
@@ -221,6 +166,26 @@ export default function BroadbandServicesPage() {
                     <span>Chat on WhatsApp</span>
                     <ChevronRight className="size-4 stroke-[2.5] text-brand-navy/60 transition-transform duration-200 ease-out group-hover/wa:translate-x-0.5" />
                   </a>
+                </div>
+              </div>
+
+              {/* Right Column: 4K Smart TV with OTT streaming apps & digital IPTV */}
+              <div className="relative z-10 w-full lg:w-auto lg:shrink-0 flex items-center justify-center lg:justify-end">
+                <div className="relative w-full max-w-[440px] sm:max-w-[500px] lg:max-w-[520px] xl:max-w-[560px] transition-transform duration-300 hover:scale-[1.02]">
+                  {/* Soft TV base shadow */}
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -bottom-3 inset-x-8 h-8 bg-black/40 blur-xl rounded-full"
+                  />
+                  <Image
+                    src="/Service/smart-tv-ott.png"
+                    alt="4K Smart TV displaying high-bitrate OTT streaming apps & digital IPTV"
+                    width={736}
+                    height={506}
+                    priority
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 500px, 560px"
+                    className="relative z-10 w-full h-auto object-contain drop-shadow-[0_16px_32px_rgba(0,0,0,0.35)]"
+                  />
                 </div>
               </div>
             </div>
