@@ -224,6 +224,27 @@ export default function Service() {
   const [lifestyleApi, setLifestyleApi] = useState<CarouselApi>();
   const [activeSlide, setActiveSlide] = useState(0);
 
+  const [servicesApi, setServicesApi] = useState<CarouselApi>();
+  const [activeServiceSlide, setActiveServiceSlide] = useState(0);
+
+  useEffect(() => {
+    if (!servicesApi) return;
+
+    const updateActive = () => {
+      setActiveServiceSlide(servicesApi.selectedScrollSnap());
+    };
+
+    const rafId = window.requestAnimationFrame(updateActive);
+    servicesApi.on("select", updateActive);
+    servicesApi.on("reInit", updateActive);
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      servicesApi.off("select", updateActive);
+      servicesApi.off("reInit", updateActive);
+    };
+  }, [servicesApi]);
+
   useEffect(() => {
     if (!lifestyleApi) return;
 
@@ -271,14 +292,62 @@ export default function Service() {
             </AppleReveal>
           </div>
 
-          {/* 5 Service Cards: Responsive Grid (5 cols on desktop, 3 on tablet, 2 on small screens, 1 on mobile) */}
-          <AppleStagger className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
-            {SERVICES_LIST.map((service) => (
-              <AppleStaggerItem key={service.title} className="flex">
-                <ServiceCard service={service} />
-              </AppleStaggerItem>
-            ))}
-          </AppleStagger>
+          {/* Mobile Carousel (< sm): Swipeable horizontal carousel without control buttons */}
+          <div className="sm:hidden">
+            <Carousel
+              opts={{
+                align: "start",
+                containScroll: "trimSnaps",
+              }}
+              setApi={setServicesApi}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-3.5 pb-2 pt-1">
+                {SERVICES_LIST.map((service) => (
+                  <CarouselItem
+                    key={service.title}
+                    className="pl-3.5 basis-[82%] min-[400px]:basis-[76%] flex"
+                  >
+                    <ServiceCard service={service} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+
+              {/* Position indicator dots without control buttons */}
+              <div
+                className="mt-4 flex items-center justify-center gap-1.5"
+                role="tablist"
+                aria-label="Connectivity service slide indicators"
+              >
+                {SERVICES_LIST.map((service, idx) => (
+                  <button
+                    key={service.title}
+                    type="button"
+                    role="tab"
+                    aria-selected={activeServiceSlide === idx}
+                    aria-label={`Go to slide ${idx + 1}: ${service.title}`}
+                    onClick={() => servicesApi?.scrollTo(idx)}
+                    className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                      activeServiceSlide === idx
+                        ? "w-6 bg-brand-red"
+                        : "w-1.5 bg-neutral-300 hover:bg-neutral-400"
+                    }`}
+                  />
+                ))}
+              </div>
+            </Carousel>
+          </div>
+
+          {/* Desktop & Tablet Grid (>= sm): 5 cols on desktop, 3 on tablet, 2 on small screens */}
+          <div className="hidden sm:block">
+            <AppleStagger className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
+              {SERVICES_LIST.map((service) => (
+                <AppleStaggerItem key={service.title} className="flex">
+                  <ServiceCard service={service} />
+                </AppleStaggerItem>
+              ))}
+            </AppleStagger>
+          </div>
         </div>
       </section>
 
