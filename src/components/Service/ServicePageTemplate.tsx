@@ -358,17 +358,17 @@ export function ServiceHero({
               </div>
             </div>
 
-            {/* Right Side Column (5 of 12 columns on desktop): Centered on mobile, shifted on desktop */}
-            <div className="lg:col-span-5 relative w-full h-[280px] sm:h-[350px] lg:h-full min-h-[280px] sm:min-h-[350px] lg:min-h-[470px] flex items-end justify-center lg:justify-end overflow-hidden px-4 pt-2 pb-0 sm:p-4 lg:p-0">
-              <div className="relative w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[500px] h-full flex items-end justify-center lg:justify-end pointer-events-none select-none translate-x-0 lg:-translate-x-[20%]">
+            {/* Right Side Column (5 of 12 columns on desktop): Centered on mobile, right-aligned on desktop */}
+            <div className="lg:col-span-5 relative w-full h-[280px] sm:h-[350px] lg:h-full min-h-[280px] sm:min-h-[350px] lg:min-h-[470px] flex items-end justify-center lg:justify-end px-4 pt-2 pb-0 sm:px-6 sm:pt-4 sm:pb-0 lg:p-0">
+              <div className="relative w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[520px] xl:max-w-[560px] h-full flex items-end justify-center lg:justify-end pointer-events-none select-none translate-x-0">
                 <Image
                   src={resolvedImageSrc}
                   alt={resolvedImageAlt}
                   width={resolvedImageWidth}
                   height={resolvedImageHeight}
                   priority
-                  sizes="(max-width: 640px) 320px, (max-width: 1024px) 400px, 45vw"
-                  className="w-full h-auto max-h-[260px] sm:max-h-[330px] lg:max-h-[515px] object-contain object-bottom mx-auto lg:mx-0 lg:object-bottom-right"
+                  sizes="(max-width: 640px) 320px, (max-width: 1024px) 420px, 520px"
+                  className="block w-full h-auto max-h-[280px] sm:max-h-[350px] lg:max-h-[525px] object-contain object-bottom align-bottom mx-auto lg:mx-0"
                 />
               </div>
             </div>
