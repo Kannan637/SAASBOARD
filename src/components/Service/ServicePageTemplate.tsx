@@ -45,6 +45,7 @@ import {
   AppleStagger,
   AppleStaggerItem,
 } from "@/components/ui/apple-scroll";
+import { ServiceDeliverableMediaStage } from "./ServiceDeliverableMedia";
 
 const TOTAL_CLIENT_LOGOS = 34;
 
@@ -505,39 +506,14 @@ export function FlippableDeliverableCard({
           }}
         >
           <div className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
-            {/* Top Stage with SASH Red Gradient Background (Edge-to-Edge) */}
+            {/* Top Media Stage: Title-Matched Pipeline Lens or Dual-Panel Tactile Pills */}
             <div
-              className={`relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3.5 min-[360px]:p-4 sm:p-5 select-none group/stage`}
+              className="relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden select-none group/stage"
             >
+              <ServiceDeliverableMediaStage title={item.title} idx={idx} />
+
               {/* Smooth Blend into Bottom White Section */}
-              <div aria-hidden="true" className={`${CARD_BOTTOM_BLEND} z-10`} />
-
-              {/* Top Badges Bar: Step number + Tag */}
-              <div className="relative z-20 w-full flex items-center justify-between gap-2">
-                <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/20">
-                  <span>0{idx + 1}</span>
-                </span>
-
-                {item.tag && (
-                  <span className="inline-flex min-h-6 items-center rounded-full bg-white/90 backdrop-blur-xs px-2.5 text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-brand-navy shadow-xs border border-white/40">
-                    {item.tag}
-                  </span>
-                )}
-              </div>
-
-              {/* Centered Visual Element: Glossy 3D Orb with Concentric Rings */}
-              <div className="relative z-20 flex-1 flex flex-col items-center justify-center my-auto py-1">
-                {/* Subtle concentric rings */}
-                <div className="absolute w-36 h-36 rounded-full border border-white/20 pointer-events-none" />
-                <div className="absolute w-48 h-48 rounded-full border border-white/10 pointer-events-none" />
-
-                {/* Glossy orb */}
-                <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[radial-gradient(circle_at_35%_25%,#FFFFFF_0%,#FDEBEB_30%,#FCA5A5_60%,#DE0302_90%,#991B1B_100%)] shadow-[0_16px_36px_rgba(0,0,0,0.3),0_0_24px_rgba(222,3,2,0.4),inset_0_3px_5px_rgba(255,255,255,0.75),inset_0_-4px_8px_rgba(153,27,27,0.45)] flex items-center justify-center p-3 select-none transition-transform duration-300 ease-out group-hover/stage:scale-110">
-                  {/* Specular gloss highlight crescent */}
-                  <div className="pointer-events-none absolute top-1.5 left-2 w-7 h-4 rounded-full bg-gradient-to-b from-white/60 to-transparent blur-[1px]" />
-                  <IconComponent className="relative z-10 w-9 h-9 sm:w-10 sm:h-10 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]" />
-                </div>
-              </div>
+              <div aria-hidden="true" className={`${CARD_BOTTOM_BLEND} z-20`} />
             </div>
 
             {/* Front Bottom: Title Only */}
