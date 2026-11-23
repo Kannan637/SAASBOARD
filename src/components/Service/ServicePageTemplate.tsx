@@ -108,7 +108,6 @@ export interface ServiceDeliverableItem {
   points?: string[];
   iconName?: string;
   imageSrc?: string;
-  mediaConfig?: Record<string, unknown>;
 }
 
 interface ServiceHeroConfig {
@@ -531,6 +530,106 @@ function getDeliverableCardImage(title: string, explicitImageSrc?: string): stri
   return "/Cards/Address Feasibility Check.png";
 }
 
+interface CardPastelInnerShadowTheme {
+  borderColor: string;
+  cardShadow: string;
+  mediaVignette: string;
+  mediaInnerShadow: string;
+  bottomBridgeGradient: string;
+  titleAreaGradient: string;
+  titleAreaInnerShadow: string;
+  tagPillStyle: string;
+  eyebrowColor: string;
+  backFaceGradient: string;
+}
+
+const CARD_PASTEL_THEMES: CardPastelInnerShadowTheme[] = [
+  // Card 1: Pastel Rose-Pink + Deep Crimson Berry Inner Shadow
+  {
+    borderColor: "rgba(225, 29, 72, 0.18)",
+    cardShadow:
+      "inset 0 0 28px rgba(225, 29, 72, 0.12), 0 12px 32px rgba(225, 29, 72, 0.07)",
+    mediaVignette:
+      "radial-gradient(ellipse 64% 60% at 50% 48%, rgba(255,255,255,0) 32%, rgba(255,228,234,0.72) 70%, rgba(254,205,215,0.96) 100%)",
+    mediaInnerShadow:
+      "inset 0 0 52px rgba(225, 29, 72, 0.26), inset 0 14px 32px rgba(251, 113, 133, 0.20), inset 0 2px 4px rgba(255, 255, 255, 0.9)",
+    bottomBridgeGradient:
+      "linear-gradient(180deg, rgba(254,205,215,0) 0%, rgba(254,205,215,0.82) 55%, #FFDCE3 100%)",
+    titleAreaGradient:
+      "linear-gradient(180deg, #FFDCE3 0%, #FFF0F3 48%, #FFFFFF 100%)",
+    titleAreaInnerShadow:
+      "inset 0 -14px 28px rgba(225, 29, 72, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.65)",
+    tagPillStyle:
+      "bg-white/90 text-rose-700 border-rose-300/60 shadow-[0_2px_10px_rgba(225,29,72,0.10)]",
+    eyebrowColor: "text-rose-600",
+    backFaceGradient:
+      "linear-gradient(165deg, #FFF5F7 0%, #FFFFFF 50%, #FFE4E9 100%)",
+  },
+  // Card 2: Pastel Sky-Blue + Deep Ocean Cobalt Inner Shadow
+  {
+    borderColor: "rgba(2, 132, 199, 0.18)",
+    cardShadow:
+      "inset 0 0 28px rgba(2, 132, 199, 0.12), 0 12px 32px rgba(2, 132, 199, 0.07)",
+    mediaVignette:
+      "radial-gradient(ellipse 64% 60% at 50% 48%, rgba(255,255,255,0) 32%, rgba(224,242,254,0.74) 70%, rgba(186,230,253,0.96) 100%)",
+    mediaInnerShadow:
+      "inset 0 0 52px rgba(2, 132, 199, 0.26), inset 0 14px 32px rgba(56, 189, 248, 0.22), inset 0 2px 4px rgba(255, 255, 255, 0.9)",
+    bottomBridgeGradient:
+      "linear-gradient(180deg, rgba(186,230,253,0) 0%, rgba(186,230,253,0.82) 55%, #D5EFFF 100%)",
+    titleAreaGradient:
+      "linear-gradient(180deg, #D5EFFF 0%, #EEF8FF 48%, #FFFFFF 100%)",
+    titleAreaInnerShadow:
+      "inset 0 -14px 28px rgba(2, 132, 199, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.65)",
+    tagPillStyle:
+      "bg-white/90 text-sky-700 border-sky-300/60 shadow-[0_2px_10px_rgba(2,132,199,0.10)]",
+    eyebrowColor: "text-sky-600",
+    backFaceGradient:
+      "linear-gradient(165deg, #F2FAFF 0%, #FFFFFF 50%, #E0F2FE 100%)",
+  },
+  // Card 3: Pastel Lavender-Violet + Deep Royal Amethyst Inner Shadow
+  {
+    borderColor: "rgba(124, 58, 237, 0.18)",
+    cardShadow:
+      "inset 0 0 28px rgba(124, 58, 237, 0.12), 0 12px 32px rgba(124, 58, 237, 0.07)",
+    mediaVignette:
+      "radial-gradient(ellipse 64% 60% at 50% 48%, rgba(255,255,255,0) 32%, rgba(243,232,255,0.74) 70%, rgba(233,213,255,0.96) 100%)",
+    mediaInnerShadow:
+      "inset 0 0 52px rgba(124, 58, 237, 0.26), inset 0 14px 32px rgba(168, 85, 247, 0.20), inset 0 2px 4px rgba(255, 255, 255, 0.9)",
+    bottomBridgeGradient:
+      "linear-gradient(180deg, rgba(233,213,255,0) 0%, rgba(233,213,255,0.82) 55%, #EAD8FF 100%)",
+    titleAreaGradient:
+      "linear-gradient(180deg, #EAD8FF 0%, #F7F0FF 48%, #FFFFFF 100%)",
+    titleAreaInnerShadow:
+      "inset 0 -14px 28px rgba(124, 58, 237, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.65)",
+    tagPillStyle:
+      "bg-white/90 text-purple-700 border-purple-300/60 shadow-[0_2px_10px_rgba(124,58,237,0.10)]",
+    eyebrowColor: "text-purple-600",
+    backFaceGradient:
+      "linear-gradient(165deg, #FAF5FF 0%, #FFFFFF 50%, #F3E8FF 100%)",
+  },
+  // Card 4: Pastel Peach-Amber + Deep Sunset Tangerine Inner Shadow
+  {
+    borderColor: "rgba(234, 88, 12, 0.18)",
+    cardShadow:
+      "inset 0 0 28px rgba(234, 88, 12, 0.12), 0 12px 32px rgba(234, 88, 12, 0.07)",
+    mediaVignette:
+      "radial-gradient(ellipse 64% 60% at 50% 48%, rgba(255,255,255,0) 32%, rgba(255,237,213,0.74) 70%, rgba(254,215,170,0.96) 100%)",
+    mediaInnerShadow:
+      "inset 0 0 52px rgba(234, 88, 12, 0.26), inset 0 14px 32px rgba(251, 146, 60, 0.20), inset 0 2px 4px rgba(255, 255, 255, 0.9)",
+    bottomBridgeGradient:
+      "linear-gradient(180deg, rgba(254,215,170,0) 0%, rgba(254,215,170,0.82) 55%, #FFE2C2 100%)",
+    titleAreaGradient:
+      "linear-gradient(180deg, #FFE2C2 0%, #FFF4E8 48%, #FFFFFF 100%)",
+    titleAreaInnerShadow:
+      "inset 0 -14px 28px rgba(234, 88, 12, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.65)",
+    tagPillStyle:
+      "bg-white/90 text-orange-700 border-orange-300/60 shadow-[0_2px_10px_rgba(234,88,12,0.10)]",
+    eyebrowColor: "text-orange-600",
+    backFaceGradient:
+      "linear-gradient(165deg, #FFF9F2 0%, #FFFFFF 50%, #FFEDD5 100%)",
+  },
+];
+
 export function FlippableDeliverableCard({
   item,
   idx,
@@ -547,6 +646,7 @@ export function FlippableDeliverableCard({
   const shouldReduceMotion = useReducedMotion();
   const IconComponent = getDeliverableIcon(item.title, item.iconName);
   const cardImageSrc = getDeliverableCardImage(item.title, item.imageSrc);
+  const pastelTheme = CARD_PASTEL_THEMES[idx % CARD_PASTEL_THEMES.length];
 
   useEffect(() => {
     if (!autoFlip || hasUserInteracted.current) return;
@@ -595,25 +695,29 @@ export function FlippableDeliverableCard({
           transform: isFlipped && !shouldReduceMotion ? "rotateY(180deg)" : "rotateY(0deg)",
         }}
       >
-        {/* Front Face: 3D Card Illustration Media Stage + Matching Inner Shadow & Bottom Title Gradient */}
+        {/* Front Face: 3D Card Illustration Media Stage + Pastel Inner Shadow & Title Area */}
         <div
-          className="w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-[#F3CFCB]/85 rounded-[28px] shadow-[0_10px_30px_rgba(1,13,59,0.05),inset_0_0_40px_rgba(222,3,2,0.09)] overflow-hidden"
+          className="w-full h-full flex flex-col justify-between bg-white text-brand-navy border rounded-[28px] overflow-hidden"
           style={{
+            borderColor: pastelTheme.borderColor,
+            boxShadow: pastelTheme.cardShadow,
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
           }}
         >
           <div className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
-            {/* Top Media Stage with Custom 3D Card Artwork & Matching Inner Shadow Gradient */}
+            {/* Top Media Stage with Custom 3D Card Artwork + Pastel Radial Inner Shadow */}
             <div className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[320px] overflow-hidden bg-white flex flex-col justify-between p-4 sm:p-5 select-none group/stage">
               {/* Top Badges Bar: Step number + Tag */}
               <div className="relative z-30 w-full flex items-center justify-between gap-2">
-                <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/20">
+                <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/25">
                   <span>0{idx + 1}</span>
                 </span>
 
                 {item.tag && (
-                  <span className="inline-flex min-h-6 items-center rounded-full bg-white/90 backdrop-blur-xs px-2.5 text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-brand-navy shadow-xs border border-[#F3CFCB]/70">
+                  <span
+                    className={`inline-flex min-h-6 items-center rounded-full backdrop-blur-xs px-2.5 text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider border ${pastelTheme.tagPillStyle}`}
+                  >
                     {item.tag}
                   </span>
                 )}
@@ -626,27 +730,42 @@ export function FlippableDeliverableCard({
                   alt={item.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-contain object-center scale-[1.02] select-none transition-transform duration-500 ease-out group-hover/stage:scale-[1.07]"
+                  className="object-contain object-center select-none transition-transform duration-500 ease-out group-hover/stage:scale-[1.04]"
                 />
               </div>
 
-              {/* Perimeter Inner Shadow Gradient Overlay (Frames 3D artwork & dissolves white image edges) */}
+              {/* Pastel Radial Vignette & Colored Inner Shadow Overlay */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 z-20 bg-[radial-gradient(ellipse_76%_72%_at_50%_46%,transparent_40%,rgba(254,235,234,0.58)_73%,rgba(252,199,195,0.90)_100%)] shadow-[inset_0_0_48px_rgba(222,3,2,0.13),inset_0_12px_28px_rgba(252,199,195,0.38)]"
+                className="pointer-events-none absolute inset-0 z-20"
+                style={{
+                  background: pastelTheme.mediaVignette,
+                  boxShadow: pastelTheme.mediaInnerShadow,
+                }}
               />
 
-              {/* Seamless Gradient Bridge into Bottom Title Area */}
+              {/* Smooth Pastel Gradient Bridge into Bottom Title Area */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 z-20 bg-[linear-gradient(to_bottom,transparent_0%,rgba(254,235,234,0.68)_48%,rgba(253,215,213,0.94)_100%)]"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-14 z-20"
+                style={{
+                  background: pastelTheme.bottomBridgeGradient,
+                }}
               />
             </div>
 
-            {/* Front Bottom: Title Area with Matching Gradient & Inner Shadow */}
-            <div className="relative z-20 bg-[linear-gradient(180deg,rgba(253,215,213,0.94)_0%,#FEEBEA_48%,#FFF6F5_100%)] shadow-[inset_0_-18px_36px_rgba(222,3,2,0.09),inset_0_1px_0_rgba(255,255,255,0.65)] px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between">
+            {/* Front Bottom: Title Area with Matching Pastel Gradient & Inner Shadow */}
+            <div
+              className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-3.5 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between"
+              style={{
+                background: pastelTheme.titleAreaGradient,
+                boxShadow: pastelTheme.titleAreaInnerShadow,
+              }}
+            >
               <div className="pr-2">
-                <p className="text-[11px] font-semibold text-brand-red uppercase tracking-wider mb-1">
+                <p
+                  className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${pastelTheme.eyebrowColor}`}
+                >
                   {item.tag || `Feature 0${idx + 1}`}
                 </p>
                 <h3 className="text-brand-navy !text-lg min-[360px]:!text-xl sm:!text-2xl font-semibold tracking-normal">
@@ -681,10 +800,13 @@ export function FlippableDeliverableCard({
           </div>
         </div>
 
-        {/* Back Face: Description, Bullet Points, and Action with Matching Inner Shadow Gradient */}
+        {/* Back Face: Description, Bullet Points, and Action with Matching Pastel Inner Shadow */}
         <div
-          className="absolute inset-0 w-full h-full flex flex-col justify-between bg-[linear-gradient(165deg,#FFFFFF_0%,#FFF8F8_58%,#FEEBEA_100%)] text-brand-navy border border-[#F3CFCB]/85 rounded-[28px] shadow-[0_10px_30px_rgba(1,13,59,0.05),inset_0_0_44px_rgba(222,3,2,0.10)] overflow-hidden p-7 sm:p-8 lg:p-9 z-20 cursor-pointer"
+          className="absolute inset-0 w-full h-full flex flex-col justify-between text-brand-navy border rounded-[28px] overflow-hidden p-7 sm:p-8 lg:p-9 z-20 cursor-pointer"
           style={{
+            background: pastelTheme.backFaceGradient,
+            borderColor: pastelTheme.borderColor,
+            boxShadow: pastelTheme.cardShadow,
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
