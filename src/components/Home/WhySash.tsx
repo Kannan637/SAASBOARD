@@ -42,58 +42,89 @@ import {
 const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export interface FeatureCardTheme {
+  solidPastelBg: string;
   borderColor: string;
   cardShadow: string;
   mediaGradient: string;
+  mediaInnerShadow: string;
+  bottomBridgeGradient: string;
+  titleAreaGradient: string;
+  titleAreaInnerShadow: string;
   eyebrowColor: string;
-  solidBackdropColor: string;
-  backFaceBorder: string;
 }
 
 export const FEATURE_CARD_THEMES: Record<string, FeatureCardTheme> = {
-  // Card 1: Pastel Rose-Pink
+  // Card 1: Minimal Pastel Rose-Pink + Soft Crimson Inner Shadow
   fibre: {
-    borderColor: "rgba(225, 29, 72, 0.15)",
+    solidPastelBg: "#FFF0F3",
+    borderColor: "rgba(225, 29, 72, 0.10)",
     cardShadow:
-      "inset 0 0 28px rgba(225, 29, 72, 0.08), 0 8px 24px rgba(15, 27, 61, 0.04)",
+      "inset 0 0 18px rgba(225, 29, 72, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaGradient:
-      "linear-gradient(175deg, #FFF0F3 0%, #FFE4E9 40%, #FFD6DF 75%, #FFCAD6 100%)",
+      "linear-gradient(145deg, #FFF5F6 0%, #FEE9EC 40%, #FDD5DA 75%, #FCC3CB 100%)",
+    mediaInnerShadow:
+      "inset 0 0 32px rgba(225, 29, 72, 0.10), inset 0 6px 16px rgba(251, 113, 133, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
+    bottomBridgeGradient:
+      "linear-gradient(180deg, rgba(254,213,218,0) 0%, rgba(255,240,243,0.7) 50%, #FFF0F3 100%)",
+    titleAreaGradient:
+      "linear-gradient(180deg, #FFF0F3 0%, #FFF5F7 60%, #FFFFFF 100%)",
+    titleAreaInnerShadow:
+      "inset 0 -8px 18px rgba(225, 29, 72, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
     eyebrowColor: "text-rose-600",
-    solidBackdropColor: "#FFEBF0",
-    backFaceBorder: "rgba(225, 29, 72, 0.18)",
   },
-  // Card 2: Pastel Sky-Blue
+  // Card 2: Minimal Pastel Sky-Blue + Soft Cobalt Inner Shadow
   router: {
-    borderColor: "rgba(2, 132, 199, 0.15)",
+    solidPastelBg: "#F0F9FF",
+    borderColor: "rgba(2, 132, 199, 0.10)",
     cardShadow:
-      "inset 0 0 28px rgba(2, 132, 199, 0.08), 0 8px 24px rgba(15, 27, 61, 0.04)",
+      "inset 0 0 18px rgba(2, 132, 199, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaGradient:
-      "linear-gradient(175deg, #F0F9FF 0%, #E0F2FE 40%, #BAE6FD 75%, #A5D8F7 100%)",
+      "linear-gradient(145deg, #F0F9FF 0%, #E0F2FE 40%, #BAE6FD 75%, #93C5FD 100%)",
+    mediaInnerShadow:
+      "inset 0 0 32px rgba(2, 132, 199, 0.10), inset 0 6px 16px rgba(56, 189, 248, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
+    bottomBridgeGradient:
+      "linear-gradient(180deg, rgba(186,230,253,0) 0%, rgba(240,249,255,0.7) 50%, #F0F9FF 100%)",
+    titleAreaGradient:
+      "linear-gradient(180deg, #F0F9FF 0%, #F5FAFF 60%, #FFFFFF 100%)",
+    titleAreaInnerShadow:
+      "inset 0 -8px 18px rgba(2, 132, 199, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
     eyebrowColor: "text-sky-600",
-    solidBackdropColor: "#EBF5FE",
-    backFaceBorder: "rgba(2, 132, 199, 0.18)",
   },
-  // Card 3: Pastel Lavender-Violet
+  // Card 3: Minimal Pastel Lavender-Violet + Soft Amethyst Inner Shadow
   isp: {
-    borderColor: "rgba(124, 58, 237, 0.15)",
+    solidPastelBg: "#FAF5FF",
+    borderColor: "rgba(124, 58, 237, 0.10)",
     cardShadow:
-      "inset 0 0 28px rgba(124, 58, 237, 0.08), 0 8px 24px rgba(15, 27, 61, 0.04)",
+      "inset 0 0 18px rgba(124, 58, 237, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaGradient:
-      "linear-gradient(175deg, #FAF5FF 0%, #F3E8FF 40%, #E9D5FF 75%, #DFC3FE 100%)",
+      "linear-gradient(145deg, #FAF5FF 0%, #F3E8FF 40%, #E9D5FF 75%, #D8B4FE 100%)",
+    mediaInnerShadow:
+      "inset 0 0 32px rgba(124, 58, 237, 0.10), inset 0 6px 16px rgba(168, 85, 247, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
+    bottomBridgeGradient:
+      "linear-gradient(180deg, rgba(233,213,255,0) 0%, rgba(250,245,255,0.7) 50%, #FAF5FF 100%)",
+    titleAreaGradient:
+      "linear-gradient(180deg, #FAF5FF 0%, #FCF9FF 60%, #FFFFFF 100%)",
+    titleAreaInnerShadow:
+      "inset 0 -8px 18px rgba(124, 58, 237, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
     eyebrowColor: "text-purple-600",
-    solidBackdropColor: "#F6EDFF",
-    backFaceBorder: "rgba(124, 58, 237, 0.18)",
   },
-  // Card 4: Pastel Peach-Amber
+  // Card 4: Minimal Pastel Peach-Amber + Soft Tangerine Inner Shadow
   support: {
-    borderColor: "rgba(234, 88, 12, 0.15)",
+    solidPastelBg: "#FFF7ED",
+    borderColor: "rgba(234, 88, 12, 0.10)",
     cardShadow:
-      "inset 0 0 28px rgba(234, 88, 12, 0.08), 0 8px 24px rgba(15, 27, 61, 0.04)",
+      "inset 0 0 18px rgba(234, 88, 12, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaGradient:
-      "linear-gradient(175deg, #FFF7ED 0%, #FFEDD5 40%, #FED7AA 75%, #FDC58C 100%)",
+      "linear-gradient(145deg, #FFF7ED 0%, #FFEDD5 40%, #FED7AA 75%, #FDBA74 100%)",
+    mediaInnerShadow:
+      "inset 0 0 32px rgba(234, 88, 12, 0.10), inset 0 6px 16px rgba(251, 146, 60, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
+    bottomBridgeGradient:
+      "linear-gradient(180deg, rgba(254,215,170,0) 0%, rgba(255,247,237,0.7) 50%, #FFF7ED 100%)",
+    titleAreaGradient:
+      "linear-gradient(180deg, #FFF7ED 0%, #FFFAF5 60%, #FFFFFF 100%)",
+    titleAreaInnerShadow:
+      "inset 0 -8px 18px rgba(234, 88, 12, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
     eyebrowColor: "text-orange-600",
-    solidBackdropColor: "#FFF1E3",
-    backFaceBorder: "rgba(234, 88, 12, 0.18)",
   },
 };
 
@@ -199,11 +230,11 @@ export function FlippableFeatureCard({
           transform: isFlipped && !shouldReduceMotion ? "rotateY(180deg)" : "rotateY(0deg)",
         }}
       >
-        {/* Front Face: Full-Bleed Pastel Canvas (No white gap in center) */}
+        {/* Front Face: Visual Stage + Title with Matching Pastel Border & Inner Shadow */}
         <div
           className="w-full h-full flex flex-col justify-between text-brand-navy border rounded-[28px] overflow-hidden"
           style={{
-            background: theme?.mediaGradient || "#FFFFFF",
+            backgroundColor: theme?.solidPastelBg || "#FFFFFF",
             borderColor: theme?.borderColor || "rgba(0, 0, 0, 0.08)",
             boxShadow: theme?.cardShadow || "none",
             backfaceVisibility: "hidden",
@@ -213,13 +244,12 @@ export function FlippableFeatureCard({
           {frontContent}
         </div>
 
-        {/* Back Face: Solid Pastel Surface matching front */}
+        {/* Back Face: Solid pastel color matching front */}
         <div
-          className="absolute inset-0 w-full h-full flex flex-col justify-between text-brand-navy border rounded-[28px] overflow-hidden p-7 sm:p-8 lg:p-9 z-20"
+          className="absolute inset-0 w-full h-full flex flex-col justify-between text-brand-navy border rounded-[28px] shadow-none overflow-hidden p-7 sm:p-8 lg:p-9 z-20"
           style={{
-            backgroundColor: theme?.solidBackdropColor || "#FFF5F7",
-            borderColor: theme?.backFaceBorder || theme?.borderColor || "rgba(0, 0, 0, 0.08)",
-            boxShadow: "none",
+            backgroundColor: theme?.solidPastelBg || "#FFFFFF",
+            borderColor: theme?.borderColor || "rgba(0, 0, 0, 0.08)",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
@@ -306,11 +336,28 @@ export function FibreSpeedCard() {
           className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full"
         >
           {/* Top iPhone Section with Pastel Gradient Background (Edge-to-Edge) */}
-          <div className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[310px] overflow-hidden pt-3 min-[360px]:pt-4 sm:pt-6 px-3 flex flex-col justify-between">
+          <div
+            className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[310px] overflow-hidden pt-3 min-[360px]:pt-4 sm:pt-6 px-3 flex flex-col justify-end items-center"
+            style={{ background: theme.mediaGradient }}
+          >
+            {/* Colored Inner Shadow Overlay */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 z-20"
+              style={{ boxShadow: theme.mediaInnerShadow }}
+            />
+
+            {/* Smooth Blend into Bottom Title Area */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 z-20"
+              style={{ background: theme.bottomBridgeGradient }}
+            />
+
             {/* iPhone Hardware Mockup (Top-Center Aligned Speed Meter) */}
-            <div className="relative z-10 mx-auto w-[270px] min-[360px]:w-[300px] sm:w-[340px] shrink-0">
+            <div className="relative z-10 mx-auto w-[270px] min-[360px]:w-[300px] sm:w-[340px] shrink-0 flex flex-col justify-end">
               {/* Visible Viewport Window */}
-              <div className="relative h-[240px] min-[360px]:h-[265px] sm:h-[295px] w-full overflow-hidden">
+              <div className="relative h-[250px] min-[360px]:h-[275px] sm:h-[305px] w-full overflow-hidden">
                 {/* Full iPhone Container */}
                 <div className="relative h-[530px] min-[360px]:h-[590px] sm:h-[665px] w-full">
                   {/* Inner iOS Screen — Remains White */}
@@ -370,8 +417,14 @@ export function FibreSpeedCard() {
             </div>
           </div>
 
-          {/* Front Bottom: Title Area seamlessly blended into Card Gradient */}
-          <div className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-3 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between bg-transparent">
+          {/* Front Bottom: Title Area with Matching Pastel Gradient & Inner Shadow */}
+          <div
+            className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between"
+            style={{
+              background: theme.titleAreaGradient,
+              boxShadow: theme.titleAreaInnerShadow,
+            }}
+          >
             <div>
               <p className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${theme.eyebrowColor}`}>
                 100% Optical Fibre
@@ -408,13 +461,13 @@ export function FibreSpeedCard() {
         </CardContent>
       }
       backContent={
-        <div className="flex flex-col justify-between h-full bg-transparent">
+        <div className="flex flex-col justify-between h-full">
           <div>
             <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
-              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white/80 border border-brand-red/20 text-brand-red flex items-center justify-center shrink-0 shadow-xs">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white/90 border border-brand-red/25 text-brand-red flex items-center justify-center shrink-0 shadow-xs">
                 <Zap className="size-6 sm:size-7" />
               </div>
-              <span className="text-neutral-500 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/70 border border-black/5 transition-colors">
+              <span className="text-neutral-500 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/80 hover:bg-white border border-black/5 transition-colors">
                 <RotateCcw className="size-3" />
                 <span className="hidden min-[400px]:inline">Flip back</span>
               </span>
@@ -458,7 +511,24 @@ export function RouterSetupCard() {
       frontContent={
         <CardContent className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
           {/* Top Visual Stage with Pastel Gradient Background (Edge-to-Edge) */}
-          <div className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[310px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/router">
+          <div
+            className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[310px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/router"
+            style={{ background: theme.mediaGradient }}
+          >
+            {/* Colored Inner Shadow Overlay */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 z-20"
+              style={{ boxShadow: theme.mediaInnerShadow }}
+            />
+
+            {/* Smooth Blend into Bottom Title Area */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 z-20"
+              style={{ background: theme.bottomBridgeGradient }}
+            />
+
             {/* Top Badges Bar: ₹0 Setup Cost */}
             <div className="relative z-30 w-full flex items-center justify-between gap-2">
               <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/20">
@@ -482,8 +552,14 @@ export function RouterSetupCard() {
             </div>
           </div>
 
-          {/* Front Bottom: Title Area seamlessly blended into Card Gradient */}
-          <div className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-3 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between bg-transparent">
+          {/* Front Bottom: Title Area with Matching Pastel Gradient & Inner Shadow */}
+          <div
+            className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between"
+            style={{
+              background: theme.titleAreaGradient,
+              boxShadow: theme.titleAreaInnerShadow,
+            }}
+          >
             <div>
               <p className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${theme.eyebrowColor}`}>
                 Hardware & Setup
@@ -520,13 +596,13 @@ export function RouterSetupCard() {
         </CardContent>
       }
       backContent={
-        <div className="flex flex-col justify-between h-full bg-transparent">
+        <div className="flex flex-col justify-between h-full">
           <div>
             <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
-              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white/80 border border-sky-600/20 text-sky-600 flex items-center justify-center shrink-0 shadow-xs">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white/90 border border-sky-400/25 text-sky-600 flex items-center justify-center shrink-0 shadow-xs">
                 <Router className="size-6 sm:size-7" />
               </div>
-              <span className="text-neutral-500 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/70 border border-black/5 transition-colors">
+              <span className="text-neutral-500 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/80 hover:bg-white border border-black/5 transition-colors">
                 <RotateCcw className="size-3" />
                 <span className="hidden min-[400px]:inline">Flip back</span>
               </span>
@@ -591,7 +667,24 @@ export function LicensedISPCARD() {
       frontContent={
         <CardContent className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
           {/* Top Globe Visual Stage: Tamil Nadu Clearly Visible on Pastel Gradient (Edge-to-Edge) */}
-          <div className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[310px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/globe">
+          <div
+            className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[310px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/globe"
+            style={{ background: theme.mediaGradient }}
+          >
+            {/* Colored Inner Shadow Overlay */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 z-20"
+              style={{ boxShadow: theme.mediaInnerShadow }}
+            />
+
+            {/* Smooth Blend at the Meeting Point */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 z-20"
+              style={{ background: theme.bottomBridgeGradient }}
+            />
+
             {/* Top Badges Bar: Tamil Nadu Circle */}
             <div className="relative z-30 w-full flex items-center justify-between gap-2 pointer-events-none">
               <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/20">
@@ -619,8 +712,14 @@ export function LicensedISPCARD() {
             </div>
           </div>
 
-          {/* Front Bottom: Title Area seamlessly blended into Card Gradient */}
-          <div className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-3 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between bg-transparent">
+          {/* Front Bottom: Title Area with Matching Pastel Gradient & Inner Shadow */}
+          <div
+            className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between"
+            style={{
+              background: theme.titleAreaGradient,
+              boxShadow: theme.titleAreaInnerShadow,
+            }}
+          >
             <div>
               <p className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${theme.eyebrowColor}`}>
                 Telecom Compliance
@@ -657,13 +756,13 @@ export function LicensedISPCARD() {
         </CardContent>
       }
       backContent={
-        <div className="flex flex-col justify-between h-full bg-transparent">
+        <div className="flex flex-col justify-between h-full">
           <div>
             <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
-              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white/80 border border-purple-600/20 text-purple-600 flex items-center justify-center shrink-0 shadow-xs">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white/90 border border-purple-400/25 text-purple-600 flex items-center justify-center shrink-0 shadow-xs">
                 <Globe className="size-6 sm:size-7" />
               </div>
-              <span className="text-neutral-500 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/70 border border-black/5 transition-colors">
+              <span className="text-neutral-500 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/80 hover:bg-white border border-black/5 transition-colors">
                 <RotateCcw className="size-3" />
                 <span className="hidden min-[400px]:inline">Flip back</span>
               </span>
@@ -777,7 +876,24 @@ export function SupportCard() {
       frontContent={
         <CardContent className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
           {/* Top Status Stage with Concentric Radar Waves (Edge-to-Edge) */}
-          <div className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[310px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support">
+          <div
+            className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[310px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support"
+            style={{ background: theme.mediaGradient }}
+          >
+            {/* Colored Inner Shadow Overlay */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 z-20"
+              style={{ boxShadow: theme.mediaInnerShadow }}
+            />
+
+            {/* Smooth Blend at the Meeting Point */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 z-20"
+              style={{ background: theme.bottomBridgeGradient }}
+            />
+
             {/* Top Badges Bar: 24/7 Local Support Desk */}
             <div className="relative z-30 w-full flex items-center justify-between gap-2 pointer-events-none">
               <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/20">
@@ -786,8 +902,8 @@ export function SupportCard() {
               </span>
             </div>
 
-            {/* Concentric Radar Waves & Satellite Stage centered precisely */}
-            <div className="pointer-events-auto absolute z-20 top-[135px] min-[360px]:top-[145px] sm:top-[160px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] min-[360px]:w-[300px] min-[360px]:h-[300px] sm:w-[320px] sm:h-[320px] flex items-center justify-center">
+            {/* Concentric Radar Waves & Satellite Stage centered dynamically */}
+            <div className="pointer-events-auto absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] min-[360px]:w-[300px] min-[360px]:h-[300px] sm:w-[320px] sm:h-[320px] flex items-center justify-center">
               {/* Concentric Static Ripple Rings matching the shared image */}
               <div className="pointer-events-none absolute w-[108px] h-[108px] rounded-full border border-white/35 bg-white/[0.08]" />
               <div className="pointer-events-none absolute w-[168px] h-[168px] rounded-full border border-white/28 bg-white/[0.05]" />
@@ -914,8 +1030,14 @@ export function SupportCard() {
             </div>
           </div>
 
-          {/* Front Bottom: Title Area seamlessly blended into Card Gradient */}
-          <div className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-3 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between bg-transparent">
+          {/* Front Bottom: Title Area with Matching Pastel Gradient & Inner Shadow */}
+          <div
+            className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between"
+            style={{
+              background: theme.titleAreaGradient,
+              boxShadow: theme.titleAreaInnerShadow,
+            }}
+          >
             <div>
               <p className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${theme.eyebrowColor}`}>
                 Local Care Desk
@@ -952,13 +1074,13 @@ export function SupportCard() {
         </CardContent>
       }
       backContent={
-        <div className="flex flex-col justify-between h-full bg-transparent">
+        <div className="flex flex-col justify-between h-full">
           <div>
             <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
-              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white/80 border border-orange-600/20 text-orange-600 flex items-center justify-center shrink-0 shadow-xs">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white/90 border border-orange-400/25 text-orange-600 flex items-center justify-center shrink-0 shadow-xs">
                 <Headphones className="size-6 sm:size-7" />
               </div>
-              <span className="text-neutral-500 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/70 border border-black/5 transition-colors">
+              <span className="text-neutral-500 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/80 hover:bg-white border border-black/5 transition-colors">
                 <RotateCcw className="size-3" />
                 <span className="hidden min-[400px]:inline">Flip back</span>
               </span>
