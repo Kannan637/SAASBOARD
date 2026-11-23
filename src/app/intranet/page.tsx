@@ -23,6 +23,7 @@ const INTRANET_FEATURES: ServiceDeliverableItem[] = [
   {
     title: "Multi-Branch Point-to-Point Links",
     tag: "Private Optical WAN",
+    imageSrc: "/Cards/Connected Branch Network.png",
     description:
       "Connect your head office, manufacturing plant, and retail branches over a private optical layer without traversing the public internet.",
     points: [
@@ -35,6 +36,7 @@ const INTRANET_FEATURES: ServiceDeliverableItem[] = [
   {
     title: "Isolated VLAN & Security",
     tag: "Layer-2 / Layer-3",
+    imageSrc: "/Cards/Secure Network Shield and Isolated Devices.png",
     description:
       "Dedicated Layer-2 / Layer-3 network segmentation keeps sensitive ERP, billing, and patient records isolated and protected.",
     points: [
@@ -47,6 +49,7 @@ const INTRANET_FEATURES: ServiceDeliverableItem[] = [
   {
     title: "High-Speed Local File & Voice Sharing",
     tag: "Sub-ms Latency",
+    imageSrc: "/Cards/High-Speed File and Voice Hub.png",
     description:
       "Run IP PBXs, shared NAS storage, and centralised CCTV feeds across multiple locations with sub-millisecond local latency.",
     points: [
@@ -59,6 +62,7 @@ const INTRANET_FEATURES: ServiceDeliverableItem[] = [
   {
     title: "Managed by Local Network Engineers",
     tag: "24/7 NOC Monitoring",
+    imageSrc: "/Cards/Glossy Network Support Engineer Illustration.png",
     description:
       "Proactive link monitoring and rapid field support from our Thiruvallur network operations desk.",
     points: [
