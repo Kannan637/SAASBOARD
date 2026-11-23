@@ -543,9 +543,8 @@ function AnimatedDeliverableMediaStage({
                   <div
                     className="anim-sash-push rounded-2xl bg-white p-2.5 sm:p-3 shadow-[0_8px_20px_rgba(1,13,59,0.08)] border border-[#E2E5EE] flex items-center gap-2.5"
                     style={{
-                      animation: shouldReduceMotion
-                        ? "none"
-                        : "sashPhonePush 5.6s cubic-bezier(0.16, 1, 0.3, 1) infinite",
+                      animation:
+                        "sashPhonePush 5.6s cubic-bezier(0.16, 1, 0.3, 1) infinite",
                     }}
                   >
                     <Avatar size="sm" className="size-7 sm:size-8 rounded-xl bg-brand-red text-white shrink-0 after:hidden">
@@ -572,9 +571,8 @@ function AnimatedDeliverableMediaStage({
                   <div
                     className="anim-sash-live rounded-2xl bg-brand-navy text-white p-3 sm:p-3.5 shadow-[0_12px_26px_rgba(1,13,59,0.18)] flex flex-col justify-between h-[104px] min-[360px]:h-[114px] sm:h-[124px] relative overflow-hidden"
                     style={{
-                      animation: shouldReduceMotion
-                        ? "none"
-                        : "sashPhoneLive 5.6s cubic-bezier(0.16, 1, 0.3, 1) infinite",
+                      animation:
+                        "sashPhoneLive 5.6s cubic-bezier(0.16, 1, 0.3, 1) infinite",
                     }}
                   >
                     {/* Subtle optical grid inside stream */}
@@ -617,9 +615,7 @@ function AnimatedDeliverableMediaStage({
                             className="anim-sash-wave w-0.5 bg-emerald-400 rounded-full origin-bottom"
                             style={{
                               height: `${h * 12}px`,
-                              animation: shouldReduceMotion
-                                ? "none"
-                                : `sashWaveBar ${0.8 + bIdx * 0.15}s ease-in-out infinite`,
+                              animation: `sashWaveBar ${0.8 + bIdx * 0.15}s ease-in-out infinite`,
                             }}
                           />
                         ))}
@@ -718,9 +714,8 @@ function AnimatedDeliverableMediaStage({
             key={msgIndex}
             className="anim-sash-pill truncate max-w-[160px] sm:max-w-[210px]"
             style={{
-              animation: shouldReduceMotion
-                ? "none"
-                : "sashPillSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+              animation:
+                "sashPillSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards",
             }}
           >
             {config.pillMessages[msgIndex]}
@@ -753,9 +748,7 @@ function AnimatedDeliverableMediaStage({
                   <span
                     className="anim-sash-led size-1.5 rounded-full bg-white"
                     style={{
-                      animation: shouldReduceMotion
-                        ? "none"
-                        : "sashLedPulse 1.2s ease-in-out infinite",
+                      animation: "sashLedPulse 1.2s ease-in-out infinite",
                     }}
                   />
                   REC 4K
@@ -781,9 +774,8 @@ function AnimatedDeliverableMediaStage({
                 aria-hidden="true"
                 className="anim-sash-scan pointer-events-none absolute inset-x-0 h-[1.5px] bg-linear-to-r from-transparent via-[#5551FF] to-transparent shadow-[0_0_8px_#5551FF]"
                 style={{
-                  animation: shouldReduceMotion
-                    ? "none"
-                    : "sashScanSweep 3.4s ease-in-out infinite alternate",
+                  animation:
+                    "sashScanSweep 3.4s ease-in-out infinite alternate",
                 }}
               />
 
@@ -791,9 +783,7 @@ function AnimatedDeliverableMediaStage({
               <div
                 className="anim-sash-track relative z-10 flex flex-col items-start"
                 style={{
-                  animation: shouldReduceMotion
-                    ? "none"
-                    : "sashTargetTrack 5s ease-in-out infinite",
+                  animation: "sashTargetTrack 5s ease-in-out infinite",
                 }}
               >
                 <span className="mb-1 inline-flex items-center gap-1 rounded-md bg-[#5551FF] px-1.5 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-wider text-white shadow-2xs">
@@ -865,12 +855,7 @@ function AnimatedDeliverableMediaStage({
                     key={bIdx}
                     className="anim-sash-cell h-3.5 sm:h-4 rounded-[4px] border border-[#E2E5EE] bg-[#F3F4F7]"
                     style={{
-                      backgroundColor: shouldReduceMotion
-                        ? "#010D3B"
-                        : undefined,
-                      animation: shouldReduceMotion
-                        ? "none"
-                        : "sashNvrCell 6s ease-in-out infinite",
+                      animation: "sashNvrCell 6s ease-in-out infinite",
                       animationDelay: `${bIdx * 0.11}s`,
                     }}
                   />
@@ -966,9 +951,7 @@ function AnimatedDeliverableMediaStage({
                         fill="#10B981"
                         className="anim-sash-led"
                         style={{
-                          animation: shouldReduceMotion
-                            ? "none"
-                            : `sashLedPulse ${1.1 + led * 0.25}s ease-in-out infinite`,
+                          animation: `sashLedPulse ${1.1 + led * 0.25}s ease-in-out infinite`,
                         }}
                       />
                     </g>
@@ -1018,9 +1001,7 @@ function AnimatedDeliverableMediaStage({
                       strokeDasharray="38 182"
                       className="anim-sash-poe"
                       style={{
-                        animation: shouldReduceMotion
-                          ? "none"
-                          : "sashPoePulse 2.4s linear infinite",
+                        animation: "sashPoePulse 2.4s linear infinite",
                         animationDelay: route.delay,
                       }}
                     />
