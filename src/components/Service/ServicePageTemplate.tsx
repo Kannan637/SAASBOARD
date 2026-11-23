@@ -733,80 +733,116 @@ function AnimatedDeliverableMediaStage({
           </Card>
         )}
 
-        {/* CARD 3: Live Smartphone Monitoring (Cropped Phone Frame + Shadcn Card Push Alert with Avatar + Shadcn Card LIVE 4K Preview with Button/Badge) */}
+        {/* CARD 3: Live Smartphone Monitoring (Real iPhone Frame Image + Sliding Shadcn Card Push Alert + Popping Shadcn Card LIVE 4K Preview) */}
         {config.variant === "phone-live" && (
-          <div className="relative w-[256px] sm:w-[276px] h-[228px] sm:h-[240px] translate-y-2 rounded-t-[28px] bg-[#0F172A] p-2.5 pb-0 shadow-[0_14px_34px_rgba(88,28,135,0.24)] border-t-[3px] border-x-[3px] border-slate-700 overflow-hidden flex flex-col">
-            {/* Phone Speaker / Dynamic Island Notch */}
-            <div className="mx-auto w-16 h-3.5 rounded-full bg-black mb-2 flex items-center justify-end pr-1.5">
-              <span className="size-1.5 rounded-full bg-emerald-400" />
-            </div>
-
-            {/* Inner Phone Screen */}
-            <div className="flex-1 rounded-t-2xl bg-slate-900/95 p-2.5 flex flex-col gap-2 overflow-hidden border-t border-x border-white/10">
-              {/* Sliding Push Notification built with Shadcn Card + Avatar */}
-              <Card
-                size="sm"
-                className="anim-phone-push rounded-xl bg-white/95 py-2 px-2.5 shadow-md ring-1 ring-purple-200/80 flex flex-row items-center gap-2.5"
-                style={{
-                  animation: shouldReduceMotion
-                    ? "none"
-                    : "phonePushSlide 5.4s cubic-bezier(0.16, 1, 0.3, 1) infinite",
-                }}
-              >
-                <Avatar size="sm" className="size-6 bg-purple-600 text-white">
-                  <AvatarFallback className="bg-purple-600 text-white text-[9.5px] font-bold">
-                    S
-                  </AvatarFallback>
-                  <AvatarBadge className="bg-emerald-500" />
-                </Avatar>
-                <div className="min-w-0 leading-tight">
-                  <p className="text-[10.5px] font-semibold text-slate-900 truncate">
-                    Motion at Entrance Cam 01.
-                  </p>
-                  <p className="text-[9.5px] text-slate-500 truncate">
-                    Clip saved to NVR.
-                  </p>
-                </div>
-              </Card>
-
-              {/* Popping LIVE 4K Video Preview built with Shadcn Card + Badge + Button */}
-              <Card
-                size="sm"
-                className="anim-phone-live relative flex-1 rounded-xl bg-linear-to-br from-slate-800 via-indigo-950 to-slate-900 ring-1 ring-purple-400/30 p-2.5 flex flex-col justify-between overflow-hidden"
-                style={{
-                  animation: shouldReduceMotion
-                    ? "none"
-                    : "phoneLivePop 5.4s cubic-bezier(0.16, 1, 0.3, 1) infinite",
-                }}
-              >
-                <div className="flex items-center justify-between">
-                  <Badge
-                    variant="live"
-                    className="rounded-md px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider"
-                  >
-                    <span className="size-1.5 rounded-full bg-white animate-pulse" />
-                    LIVE 4K
-                  </Badge>
-                  <Badge
-                    variant="outline"
-                    className="bg-white/10 text-purple-200 border-white/15 font-mono text-[9px] px-2 py-0"
-                  >
-                    0 ms Fibre
-                  </Badge>
+          <div className="relative w-[244px] sm:w-[262px] h-[236px] sm:h-[250px] translate-y-3 overflow-hidden select-none flex justify-center">
+            {/* Aspect-Ratio Matched Container for the Top Half of the iPhone (484 : 877 full phone ratio -> 248px wide x 450px tall, cropped at bottom) */}
+            <div className="relative w-[238px] sm:w-[254px] h-[431px] sm:h-[460px] shrink-0">
+              {/* Inner iPhone Screen Surface (positioned inside the exact inner bezel bounds: left 4.2%, right 4.6%, top 2.1%, bottom 2%) */}
+              <div className="absolute left-[4.2%] right-[4.6%] top-[2.1%] h-[228px] sm:h-[242px] rounded-t-[34px] bg-linear-to-b from-slate-950 via-slate-900 to-indigo-950 pt-[34px] sm:pt-[36px] px-2.5 pb-2.5 flex flex-col gap-2 overflow-hidden z-10">
+                {/* Subtle iOS Status Bar Indicators flanking the Dynamic Island */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute top-2.5 inset-x-4 flex items-center justify-between text-[8.5px] font-semibold text-white/80"
+                >
+                  <span>9:41</span>
+                  <span>5G · 100%</span>
                 </div>
 
-                {/* Stylized Camera Feed Control using Shadcn Button */}
-                <div className="my-auto flex items-center justify-center">
-                  <Button
-                    variant="secondary"
-                    size="xs"
-                    className="pointer-events-none h-7 rounded-full bg-white/12 text-white border-white/20 backdrop-blur-xs px-3 text-[10px]"
-                  >
-                    <Video className="size-3 text-purple-300" />
-                    <span>Entrance Cam 01 · Playing</span>
-                  </Button>
-                </div>
-              </Card>
+                {/* Sliding Push Notification built with Shadcn Card + Avatar + Badge */}
+                <Card
+                  size="sm"
+                  className="anim-phone-push rounded-2xl bg-white/95 backdrop-blur-md py-2 px-2.5 shadow-[0_8px_20px_rgba(0,0,0,0.28)] ring-1 ring-purple-200/80 flex flex-row items-center gap-2"
+                  style={{
+                    animation: shouldReduceMotion
+                      ? "none"
+                      : "phonePushSlide 5.4s cubic-bezier(0.16, 1, 0.3, 1) infinite",
+                  }}
+                >
+                  <Avatar size="sm" className="size-6 bg-purple-600 text-white shrink-0">
+                    <AvatarFallback className="bg-purple-600 text-white text-[9px] font-bold">
+                      S
+                    </AvatarFallback>
+                    <AvatarBadge className="bg-emerald-500" />
+                  </Avatar>
+                  <div className="min-w-0 flex-1 leading-tight">
+                    <div className="flex items-center justify-between gap-1">
+                      <p className="text-[10px] font-semibold text-slate-900 truncate">
+                        Motion at Entrance Cam 01.
+                      </p>
+                      <span className="text-[8px] font-medium text-purple-600 shrink-0">
+                        now
+                      </span>
+                    </div>
+                    <p className="text-[9px] text-slate-500 truncate mt-0.5">
+                      Clip saved to NVR.
+                    </p>
+                  </div>
+                </Card>
+
+                {/* Popping LIVE 4K Video Preview built with Shadcn Card + CardHeader + Badge + Button */}
+                <Card
+                  size="sm"
+                  className="anim-phone-live relative flex-1 rounded-2xl bg-linear-to-br from-slate-800/95 via-indigo-950/95 to-slate-900/95 ring-1 ring-purple-400/30 p-2.5 flex flex-col justify-between overflow-hidden shadow-inner"
+                  style={{
+                    animation: shouldReduceMotion
+                      ? "none"
+                      : "phoneLivePop 5.4s cubic-bezier(0.16, 1, 0.3, 1) infinite",
+                  }}
+                >
+                  {/* Subtle Camera Grid inside Live Feed */}
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 opacity-15"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(to right, rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.12) 1px, transparent 1px)",
+                      backgroundSize: "18px 18px",
+                    }}
+                  />
+
+                  <CardHeader className="relative z-10 p-0 flex flex-row items-center justify-between">
+                    <Badge
+                      variant="live"
+                      className="rounded-md px-1.5 py-0.5 text-[8.5px] font-bold uppercase tracking-wider"
+                    >
+                      <span className="size-1.5 rounded-full bg-white animate-pulse" />
+                      LIVE 4K
+                    </Badge>
+                    <CardAction>
+                      <Badge
+                        variant="outline"
+                        className="bg-white/10 text-purple-200 border-white/15 font-mono text-[8.5px] px-1.5 py-0"
+                      >
+                        0 ms Fibre
+                      </Badge>
+                    </CardAction>
+                  </CardHeader>
+
+                  {/* Stylized Camera Feed Control using Shadcn Button */}
+                  <CardContent className="relative z-10 p-0 my-auto flex items-center justify-center">
+                    <Button
+                      variant="secondary"
+                      size="xs"
+                      tabIndex={-1}
+                      className="pointer-events-none h-6.5 rounded-full bg-white/15 text-white border-white/25 backdrop-blur-xs px-2.5 text-[9.5px] shadow-sm"
+                    >
+                      <Video className="size-3 text-purple-300" />
+                      <span>Entrance Cam 01 · Playing</span>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Real iPhone Frame Overlay (/Frame/Iphone Frame.png: 1706x922 total, phone bbox x:612..1096 [484px], y:27..904 [877px]) */}
+              <Image
+                src="/Frame/Iphone Frame.png"
+                alt="iPhone frame showing SASH live 4K CCTV monitoring app"
+                width={1706}
+                height={922}
+                sizes="320px"
+                className="pointer-events-none absolute left-1/2 -translate-x-1/2 -top-[3.08%] w-[352.48%] max-w-none h-[105.13%] z-20 select-none drop-shadow-[0_14px_30px_rgba(88,28,135,0.22)]"
+              />
             </div>
           </div>
         )}
