@@ -41,6 +41,88 @@ import {
 
 const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
+export interface FeatureCardTheme {
+  borderColor: string;
+  cardShadow: string;
+  mediaGradient: string;
+  mediaInnerShadow: string;
+  bottomBridgeGradient: string;
+  titleAreaGradient: string;
+  titleAreaInnerShadow: string;
+  eyebrowColor: string;
+}
+
+export const FEATURE_CARD_THEMES: Record<string, FeatureCardTheme> = {
+  // Card 1: Minimal Pastel Rose-Pink + Soft Crimson Inner Shadow
+  fibre: {
+    borderColor: "rgba(225, 29, 72, 0.10)",
+    cardShadow:
+      "inset 0 0 18px rgba(225, 29, 72, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
+    mediaGradient:
+      "linear-gradient(145deg, #FFF5F6 0%, #FEE9EC 40%, #FDD5DA 75%, #FCC3CB 100%)",
+    mediaInnerShadow:
+      "inset 0 0 32px rgba(225, 29, 72, 0.10), inset 0 6px 16px rgba(251, 113, 133, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
+    bottomBridgeGradient:
+      "linear-gradient(180deg, rgba(255,228,233,0) 0%, rgba(255,228,233,0.45) 55%, #FFF2F4 100%)",
+    titleAreaGradient:
+      "linear-gradient(180deg, #FFF2F4 0%, #FFF9FA 45%, #FFFFFF 100%)",
+    titleAreaInnerShadow:
+      "inset 0 -8px 18px rgba(225, 29, 72, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+    eyebrowColor: "text-rose-600",
+  },
+  // Card 2: Minimal Pastel Sky-Blue + Soft Cobalt Inner Shadow
+  router: {
+    borderColor: "rgba(2, 132, 199, 0.10)",
+    cardShadow:
+      "inset 0 0 18px rgba(2, 132, 199, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
+    mediaGradient:
+      "linear-gradient(145deg, #F0F9FF 0%, #E0F2FE 40%, #BAE6FD 75%, #93C5FD 100%)",
+    mediaInnerShadow:
+      "inset 0 0 32px rgba(2, 132, 199, 0.10), inset 0 6px 16px rgba(56, 189, 248, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
+    bottomBridgeGradient:
+      "linear-gradient(180deg, rgba(224,242,254,0) 0%, rgba(224,242,254,0.45) 55%, #EDF8FF 100%)",
+    titleAreaGradient:
+      "linear-gradient(180deg, #EDF8FF 0%, #F7FCFF 45%, #FFFFFF 100%)",
+    titleAreaInnerShadow:
+      "inset 0 -8px 18px rgba(2, 132, 199, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+    eyebrowColor: "text-sky-600",
+  },
+  // Card 3: Minimal Pastel Lavender-Violet + Soft Amethyst Inner Shadow
+  isp: {
+    borderColor: "rgba(124, 58, 237, 0.10)",
+    cardShadow:
+      "inset 0 0 18px rgba(124, 58, 237, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
+    mediaGradient:
+      "linear-gradient(145deg, #FAF5FF 0%, #F3E8FF 40%, #E9D5FF 75%, #D8B4FE 100%)",
+    mediaInnerShadow:
+      "inset 0 0 32px rgba(124, 58, 237, 0.10), inset 0 6px 16px rgba(168, 85, 247, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
+    bottomBridgeGradient:
+      "linear-gradient(180deg, rgba(243,232,255,0) 0%, rgba(243,232,255,0.45) 55%, #F6EEFF 100%)",
+    titleAreaGradient:
+      "linear-gradient(180deg, #F6EEFF 0%, #FBF8FF 45%, #FFFFFF 100%)",
+    titleAreaInnerShadow:
+      "inset 0 -8px 18px rgba(124, 58, 237, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+    eyebrowColor: "text-purple-600",
+  },
+  // Card 4: Minimal Pastel Peach-Amber + Soft Tangerine Inner Shadow
+  support: {
+    borderColor: "rgba(234, 88, 12, 0.10)",
+    cardShadow:
+      "inset 0 0 18px rgba(234, 88, 12, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
+    mediaGradient:
+      "linear-gradient(145deg, #FFF7ED 0%, #FFEDD5 40%, #FED7AA 75%, #FDBA74 100%)",
+    mediaInnerShadow:
+      "inset 0 0 32px rgba(234, 88, 12, 0.10), inset 0 6px 16px rgba(251, 146, 60, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
+    bottomBridgeGradient:
+      "linear-gradient(180deg, rgba(255,237,213,0) 0%, rgba(255,237,213,0.45) 55%, #FFF1E2 100%)",
+    titleAreaGradient:
+      "linear-gradient(180deg, #FFF1E2 0%, #FFF9F3 45%, #FFFFFF 100%)",
+    titleAreaInnerShadow:
+      "inset 0 -8px 18px rgba(234, 88, 12, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+    eyebrowColor: "text-orange-600",
+  },
+};
+
 const CARD_BG_GRADIENT =
   "bg-[linear-gradient(145deg,#FFF8F8_0%,#FEEBEA_40%,#FDD7D5_75%,#FCC7C3_100%)]";
 
@@ -73,12 +155,14 @@ export interface FlippableFeatureCardProps {
   frontContent: React.ReactNode;
   backContent: React.ReactNode;
   autoFlip?: boolean;
+  theme?: FeatureCardTheme;
 }
 
 /**
  * 3D Flippable Feature Card:
  * Flips 180deg on desktop hover or mobile tap to reveal full description and feature points.
- * Front face shows visual stage + title only.
+ * Front face shows visual stage + title only with matching pastel border & inner shadow.
+ * Back face remains clean white with no inner shadow.
  */
 export function FlippableFeatureCard({
   className = "",
@@ -86,6 +170,7 @@ export function FlippableFeatureCard({
   frontContent,
   backContent,
   autoFlip = false,
+  theme,
 }: FlippableFeatureCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: true, amount: 0.35 });
@@ -140,10 +225,12 @@ export function FlippableFeatureCard({
           transform: isFlipped && !shouldReduceMotion ? "rotateY(180deg)" : "rotateY(0deg)",
         }}
       >
-        {/* Front Face: Visual Stage + Title Only */}
+        {/* Front Face: Visual Stage + Title with Matching Pastel Border & Inner Shadow */}
         <div
-          className="w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden"
+          className="w-full h-full flex flex-col justify-between bg-white text-brand-navy border rounded-[28px] overflow-hidden"
           style={{
+            borderColor: theme?.borderColor || "rgba(0, 0, 0, 0.08)",
+            boxShadow: theme?.cardShadow || "none",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
           }}
@@ -151,7 +238,7 @@ export function FlippableFeatureCard({
           {frontContent}
         </div>
 
-        {/* Back Face: Description, Bullet Points, and Action */}
+        {/* Back Face: Clean White Surface (No inner shadow, no pastel gradient) */}
         <div
           className="absolute inset-0 w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden p-7 sm:p-8 lg:p-9 z-20"
           style={{
@@ -213,6 +300,7 @@ export function FibreSpeedCard() {
   const shouldReduceMotion = useReducedMotion();
   const [stepIndex, setStepIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const theme = FEATURE_CARD_THEMES.fibre;
 
   useEffect(() => {
     if (!isInView || shouldReduceMotion) return;
@@ -231,6 +319,7 @@ export function FibreSpeedCard() {
       autoFlip={true}
       ariaLabel="100% Optical Fibre — Up to 1 Gbps"
       className="col-span-12 md:col-span-6"
+      theme={theme}
       frontContent={
         <CardContent
           ref={gaugeRef}
@@ -238,12 +327,24 @@ export function FibreSpeedCard() {
           onMouseLeave={() => setIsHovered(false)}
           className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full"
         >
-          {/* Top iPhone Section with Card Gradient Background (Edge-to-Edge) */}
+          {/* Top iPhone Section with Pastel Gradient Background (Edge-to-Edge) */}
           <div
-            className={`relative w-full overflow-hidden ${CARD_BG_GRADIENT} pt-3 min-[360px]:pt-4 sm:pt-6 px-3 flex justify-center`}
+            className="relative w-full overflow-hidden pt-3 min-[360px]:pt-4 sm:pt-6 px-3 flex justify-center"
+            style={{ background: theme.mediaGradient }}
           >
-            {/* Smooth Blend into Bottom White Section */}
-            <div aria-hidden="true" className={`${CARD_BOTTOM_BLEND} z-20`} />
+            {/* Colored Inner Shadow Overlay */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 z-20"
+              style={{ boxShadow: theme.mediaInnerShadow }}
+            />
+
+            {/* Smooth Blend into Bottom Title Area */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 z-20"
+              style={{ background: theme.bottomBridgeGradient }}
+            />
 
             {/* iPhone Hardware Mockup (Top-Center Aligned Speed Meter) */}
             <div className="relative z-10 mx-auto w-[270px] min-[360px]:w-[300px] sm:w-[340px] shrink-0">
@@ -308,10 +409,16 @@ export function FibreSpeedCard() {
             </div>
           </div>
 
-          {/* Front Bottom: Title Only */}
-          <div className="relative z-20 bg-white px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between">
+          {/* Front Bottom: Title Area with Matching Pastel Gradient & Inner Shadow */}
+          <div
+            className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between"
+            style={{
+              background: theme.titleAreaGradient,
+              boxShadow: theme.titleAreaInnerShadow,
+            }}
+          >
             <div>
-              <p className="text-[11px] font-semibold text-brand-red uppercase tracking-wider mb-1">
+              <p className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${theme.eyebrowColor}`}>
                 100% Optical Fibre
               </p>
               <CardTitle className="text-brand-navy !text-lg min-[360px]:!text-xl sm:!text-2xl font-semibold tracking-normal">
@@ -386,21 +493,36 @@ export function FibreSpeedCard() {
  * Card 02 — Free Router & Setup (Top-Right: 6 of 12 columns on desktop)
  */
 export function RouterSetupCard() {
+  const theme = FEATURE_CARD_THEMES.router;
+
   return (
     <FlippableFeatureCard
       ariaLabel="Free router and setup — ₹0 Setup Cost"
       className="col-span-12 md:col-span-6"
+      theme={theme}
       frontContent={
         <CardContent className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
-          {/* Top Visual Stage with Gradient Background (Edge-to-Edge) */}
+          {/* Top Visual Stage with Pastel Gradient Background (Edge-to-Edge) */}
           <div
-            className={`relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/router`}
+            className="relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/router"
+            style={{ background: theme.mediaGradient }}
           >
-            {/* Smooth Blend into Bottom White Section */}
-            <div aria-hidden="true" className={`${CARD_BOTTOM_BLEND} z-10`} />
+            {/* Colored Inner Shadow Overlay */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 z-20"
+              style={{ boxShadow: theme.mediaInnerShadow }}
+            />
+
+            {/* Smooth Blend into Bottom Title Area */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 z-20"
+              style={{ background: theme.bottomBridgeGradient }}
+            />
 
             {/* Top Badges Bar: ₹0 Setup Cost */}
-            <div className="relative z-20 w-full flex items-center justify-between gap-2">
+            <div className="relative z-30 w-full flex items-center justify-between gap-2">
               <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/20">
                 <Router className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>₹0 Setup Cost</span>
@@ -408,7 +530,7 @@ export function RouterSetupCard() {
             </div>
 
             {/* Centered Router Product Visual */}
-            <div className="relative z-20 flex-1 flex flex-col items-center justify-center my-auto py-1">
+            <div className="relative z-10 flex-1 flex flex-col items-center justify-center my-auto py-1">
               <div className="relative w-36 h-36 min-[360px]:w-44 min-[360px]:h-44 sm:w-52 sm:h-52 flex items-center justify-center drop-shadow-[0_16px_32px_rgba(1,13,59,0.26)] transition-transform duration-300 ease-out group-hover/router:scale-[1.06]">
                 <Image
                   src="/Service/BroadBand.webp"
@@ -422,10 +544,16 @@ export function RouterSetupCard() {
             </div>
           </div>
 
-          {/* Front Bottom: Title Only */}
-          <div className="relative z-20 bg-white px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between">
+          {/* Front Bottom: Title Area with Matching Pastel Gradient & Inner Shadow */}
+          <div
+            className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between"
+            style={{
+              background: theme.titleAreaGradient,
+              boxShadow: theme.titleAreaInnerShadow,
+            }}
+          >
             <div>
-              <p className="text-[11px] font-semibold text-brand-red uppercase tracking-wider mb-1">
+              <p className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${theme.eyebrowColor}`}>
                 Hardware & Setup
               </p>
               <CardTitle className="text-brand-navy !text-lg min-[360px]:!text-xl sm:!text-2xl font-semibold tracking-normal">
@@ -521,19 +649,33 @@ const TAMIL_NADU_ONLY_MARKER: StickerMarker[] = [
  */
 export function LicensedISPCARD() {
   const shouldReduceMotion = useReducedMotion();
+  const theme = FEATURE_CARD_THEMES.isp;
 
   return (
     <FlippableFeatureCard
       ariaLabel="Licensed ISP serving Tamil Nadu"
       className="col-span-12 md:col-span-6"
+      theme={theme}
       frontContent={
         <CardContent className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
-          {/* Top Globe Visual Stage: Tamil Nadu Clearly Visible on Card Gradient (Edge-to-Edge) */}
+          {/* Top Globe Visual Stage: Tamil Nadu Clearly Visible on Pastel Gradient (Edge-to-Edge) */}
           <div
-            className={`relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/globe`}
+            className="relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/globe"
+            style={{ background: theme.mediaGradient }}
           >
+            {/* Colored Inner Shadow Overlay */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 z-20"
+              style={{ boxShadow: theme.mediaInnerShadow }}
+            />
+
             {/* Smooth Blend at the Meeting Point */}
-            <div aria-hidden="true" className={`${CARD_BOTTOM_BLEND} z-10`} />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 z-20"
+              style={{ background: theme.bottomBridgeGradient }}
+            />
 
             {/* Top Badges Bar: Tamil Nadu Circle */}
             <div className="relative z-30 w-full flex items-center justify-between gap-2 pointer-events-none">
@@ -544,7 +686,7 @@ export function LicensedISPCARD() {
             </div>
 
             {/* 3D Cobe Globe: Rotating Light-Theme Globe Matched to Card Gradient */}
-            <div className="pointer-events-auto absolute -bottom-[80px] min-[360px]:-bottom-[90px] sm:-bottom-[100px] left-1/2 -translate-x-1/2 w-[340px] h-[340px] min-[360px]:w-[380px] min-[360px]:h-[380px] sm:w-[410px] sm:h-[410px] flex items-center justify-center">
+            <div className="pointer-events-auto absolute -bottom-[80px] min-[360px]:-bottom-[90px] sm:-bottom-[100px] left-1/2 -translate-x-1/2 w-[340px] h-[340px] min-[360px]:w-[380px] min-[360px]:h-[380px] sm:w-[410px] sm:h-[410px] flex items-center justify-center z-10">
               <GlobeStickers
                 markers={TAMIL_NADU_ONLY_MARKER}
                 initialPhi={3.36}
@@ -562,10 +704,16 @@ export function LicensedISPCARD() {
             </div>
           </div>
 
-          {/* Front Bottom: Title Only */}
-          <div className="relative z-20 bg-white px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between">
+          {/* Front Bottom: Title Area with Matching Pastel Gradient & Inner Shadow */}
+          <div
+            className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between"
+            style={{
+              background: theme.titleAreaGradient,
+              boxShadow: theme.titleAreaInnerShadow,
+            }}
+          >
             <div>
-              <p className="text-[11px] font-semibold text-brand-red uppercase tracking-wider mb-1">
+              <p className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${theme.eyebrowColor}`}>
                 Telecom Compliance
               </p>
               <CardTitle className="text-brand-navy !text-lg min-[360px]:!text-xl sm:!text-2xl font-semibold tracking-normal">
@@ -710,19 +858,33 @@ function CenterAvatarIcon({ className = "w-7 h-7" }: { className?: string }) {
  */
 export function SupportCard() {
   const shouldReduceMotion = useReducedMotion();
+  const theme = FEATURE_CARD_THEMES.support;
 
   return (
     <FlippableFeatureCard
       ariaLabel="Always connected to local support — 24/7 NOC & Field Desk"
       className="col-span-12 md:col-span-6"
+      theme={theme}
       frontContent={
         <CardContent className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
           {/* Top Status Stage with Concentric Radar Waves (Edge-to-Edge) */}
           <div
-            className={`relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support`}
+            className="relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support"
+            style={{ background: theme.mediaGradient }}
           >
+            {/* Colored Inner Shadow Overlay */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 z-20"
+              style={{ boxShadow: theme.mediaInnerShadow }}
+            />
+
             {/* Smooth Blend at the Meeting Point */}
-            <div aria-hidden="true" className={`${CARD_BOTTOM_BLEND} z-10`} />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 z-20"
+              style={{ background: theme.bottomBridgeGradient }}
+            />
 
             {/* Top Badges Bar: 24/7 Local Support Desk */}
             <div className="relative z-30 w-full flex items-center justify-between gap-2 pointer-events-none">
@@ -860,10 +1022,16 @@ export function SupportCard() {
             </div>
           </div>
 
-          {/* Front Bottom: Title Only */}
-          <div className="relative z-20 bg-white px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between">
+          {/* Front Bottom: Title Area with Matching Pastel Gradient & Inner Shadow */}
+          <div
+            className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between"
+            style={{
+              background: theme.titleAreaGradient,
+              boxShadow: theme.titleAreaInnerShadow,
+            }}
+          >
             <div>
-              <p className="text-[11px] font-semibold text-brand-red uppercase tracking-wider mb-1">
+              <p className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${theme.eyebrowColor}`}>
                 Local Care Desk
               </p>
               <CardTitle className="text-brand-navy !text-lg min-[360px]:!text-xl sm:!text-2xl font-semibold tracking-normal">
