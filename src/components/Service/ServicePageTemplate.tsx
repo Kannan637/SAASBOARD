@@ -43,7 +43,20 @@ import {
   AvatarImage,
   AvatarFallback,
   AvatarGroup,
+  AvatarBadge,
 } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardAction,
+  CardFooter,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import {
   AppleReveal,
   AppleStagger,
@@ -479,7 +492,7 @@ function AnimatedDeliverableMediaStage({
           background: "linear-gradient(155deg, var(--bg1) 0%, var(--bg2) 100%)",
         } as React.CSSProperties
       }
-      className="relative w-full h-[300px] overflow-hidden select-none flex flex-col items-center justify-between pt-6 pb-4 px-4 sm:px-6"
+      className="relative w-full flex-1 min-h-[340px] min-[360px]:min-h-[355px] sm:min-h-[375px] overflow-hidden select-none flex flex-col items-center justify-between pt-6 pb-5 px-4 sm:px-6"
     >
       {/* Embedded Keyframe Animations + Reduced Motion Override */}
       <style>{`
@@ -490,7 +503,7 @@ function AnimatedDeliverableMediaStage({
         }
         @keyframes cctvPersonWalk {
           0%, 100% { transform: translateX(0px); }
-          50% { transform: translateX(108px); }
+          50% { transform: translateX(118px); }
         }
         @keyframes cctvRecBlink {
           0%, 100% { opacity: 1; }
@@ -548,7 +561,7 @@ function AnimatedDeliverableMediaStage({
       <div
         aria-hidden="true"
         style={{ backgroundColor: "var(--acc)" }}
-        className="pointer-events-none absolute -top-12 -right-12 w-56 h-56 rounded-full opacity-60 blur-[60px]"
+        className="pointer-events-none absolute -top-12 -right-12 w-60 h-60 rounded-full opacity-60 blur-[60px]"
       />
 
       {/* Bottom 70px Smooth Fade into White (No empty gap between media and title) */}
@@ -557,11 +570,14 @@ function AnimatedDeliverableMediaStage({
         className="pointer-events-none absolute inset-x-0 bottom-0 h-[70px] z-10 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.65)_48%,#FFFFFF_100%)]"
       />
 
-      {/* ANIMATED SUBJECT STAGE */}
-      <div className="relative z-10 w-full max-w-[360px] flex-1 flex items-center justify-center">
-        {/* CARD 1: Indoor & Outdoor HD IP Cameras (Dark Camera Viewfinder + Scan Line + Walking Person & Green Detection Box) */}
+      {/* ANIMATED SUBJECT STAGE BUILT WITH SHADCN UI COMPONENTS */}
+      <div className="relative z-10 w-full max-w-[390px] flex-1 flex items-center justify-center my-auto">
+        {/* CARD 1: Indoor & Outdoor HD IP Cameras (Shadcn Card Viewfinder + Badge + Separator + Walking Person & Green Detection Box) */}
         {config.variant === "cctv-camera" && (
-          <div className="relative w-full h-[186px] rounded-2xl bg-[#0F172A] border border-white/20 shadow-[0_14px_34px_rgba(15,23,42,0.22)] overflow-hidden p-3.5 flex flex-col justify-between">
+          <Card
+            size="sm"
+            className="relative w-full h-[220px] sm:h-[234px] rounded-2xl bg-[#0F172A] text-white ring-1 ring-white/20 shadow-[0_14px_34px_rgba(15,23,42,0.24)] overflow-hidden py-3 flex flex-col justify-between"
+          >
             {/* Subtle Night-Vision Grid Overlay */}
             <div
               aria-hidden="true"
@@ -584,9 +600,12 @@ function AnimatedDeliverableMediaStage({
               }}
             />
 
-            {/* Top HUD Bar: Blinking Red REC · Main Gate + 4K Badge */}
-            <div className="relative z-10 flex items-center justify-between text-[11px] font-mono text-white/90">
-              <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-xs px-2.5 py-1 rounded-full border border-white/10">
+            {/* Shadcn CardHeader with Live REC Badge & 4K Action Badge */}
+            <CardHeader className="relative z-10 flex flex-row items-center justify-between px-3.5 py-0">
+              <Badge
+                variant="outline"
+                className="bg-black/45 text-white border-white/15 backdrop-blur-xs px-2.5 py-0.5 text-[10.5px] font-mono"
+              >
                 <span
                   className="anim-cctv-rec size-2 rounded-full bg-red-500 shadow-[0_0_8px_#EF4444]"
                   style={{
@@ -595,17 +614,20 @@ function AnimatedDeliverableMediaStage({
                       : "cctvRecBlink 1.2s ease-in-out infinite",
                   }}
                 />
-                <span className="font-semibold tracking-wide text-[10.5px]">
-                  REC · Main Gate
-                </span>
-              </div>
-              <span className="text-[10px] text-emerald-400 bg-emerald-950/70 border border-emerald-500/30 px-2 py-0.5 rounded-md">
-                4K HDR · IR
-              </span>
-            </div>
+                REC · Main Gate
+              </Badge>
+              <CardAction>
+                <Badge
+                  variant="success"
+                  className="bg-emerald-950/80 text-emerald-400 border-emerald-500/30 font-mono text-[10px] rounded-md px-2 py-0.5"
+                >
+                  4K HDR · IR
+                </Badge>
+              </CardAction>
+            </CardHeader>
 
-            {/* Walking Person Silhouette + Following Green "Person" Detection Box */}
-            <div className="relative z-10 h-[108px] w-full flex items-end pb-1 pl-6">
+            {/* Shadcn CardContent: Walking Person Silhouette + Following Green "Person" Detection Box */}
+            <CardContent className="relative z-10 flex-1 flex items-end pb-1 pl-7 px-3.5">
               <div
                 className="anim-cctv-walk relative flex flex-col items-start"
                 style={{
@@ -614,14 +636,13 @@ function AnimatedDeliverableMediaStage({
                     : "cctvPersonWalk 5.2s ease-in-out infinite",
                 }}
               >
-                {/* Green AI Detection Tag */}
-                <span className="mb-1 inline-flex items-center gap-1 rounded-t-md rounded-br-md bg-emerald-500 px-1.5 py-0.5 text-[9.5px] font-bold uppercase tracking-wider text-slate-950 shadow-xs">
+                {/* Shadcn Badge for AI Detection Tag */}
+                <Badge className="mb-1 rounded-t-md rounded-br-md rounded-bl-none bg-emerald-500 text-slate-950 border-transparent px-1.5 py-0.5 text-[9.5px] font-bold uppercase tracking-wider shadow-xs">
                   Person · 99%
-                </span>
+                </Badge>
 
                 {/* Green Bounding Box around Walking Person SVG */}
-                <div className="relative w-12 h-16 rounded-md border-2 border-emerald-400 bg-emerald-400/10 shadow-[0_0_16px_rgba(52,211,153,0.25)] flex items-center justify-center">
-                  {/* Corner targeting ticks */}
+                <div className="relative w-13 h-18 rounded-md border-2 border-emerald-400 bg-emerald-400/10 shadow-[0_0_16px_rgba(52,211,153,0.25)] flex items-center justify-center">
                   <span className="absolute -top-0.5 -left-0.5 size-2 border-t-2 border-l-2 border-white" />
                   <span className="absolute -top-0.5 -right-0.5 size-2 border-t-2 border-r-2 border-white" />
                   <span className="absolute -bottom-0.5 -left-0.5 size-2 border-b-2 border-l-2 border-white" />
@@ -629,7 +650,7 @@ function AnimatedDeliverableMediaStage({
 
                   <svg
                     viewBox="0 0 36 52"
-                    className="w-8 h-12 text-white/90 fill-current"
+                    className="w-8 h-13 text-white/90 fill-current"
                     aria-hidden="true"
                   >
                     <circle cx="18" cy="10" r="5.5" />
@@ -637,38 +658,55 @@ function AnimatedDeliverableMediaStage({
                   </svg>
                 </div>
               </div>
-            </div>
+            </CardContent>
 
-            {/* Bottom Viewfinder Timestamp */}
-            <div className="relative z-10 flex items-center justify-between text-[9.5px] font-mono text-slate-400">
-              <span>CAM-01 · IP67 BULLET</span>
-              <span>2160p · 60 FPS</span>
+            {/* Shadcn Separator + CardFooter Telemetry */}
+            <div className="relative z-10 px-3.5">
+              <Separator className="bg-white/10 mb-2" />
+              <div className="flex items-center justify-between text-[9.5px] font-mono text-slate-400">
+                <span>CAM-01 · IP67 BULLET</span>
+                <span>2160p · 60 FPS</span>
+              </div>
             </div>
-          </div>
+          </Card>
         )}
 
-        {/* CARD 2: NVR Storage & Cloud Backup (60+ Days + 30 Sequential Recording Day Blocks) */}
+        {/* CARD 2: NVR Storage & Cloud Backup (Shadcn Card + CardHeader + Badge + Separator + 30 Sequential Recording Day Blocks) */}
         {config.variant === "nvr-blocks" && (
-          <div className="w-full h-[186px] rounded-2xl bg-white/90 backdrop-blur-md border border-white shadow-[0_12px_32px_rgba(2,132,199,0.12)] p-4 flex flex-col justify-between">
-            <div className="flex items-start justify-between gap-2">
+          <Card
+            size="sm"
+            className="w-full h-[220px] sm:h-[234px] rounded-2xl bg-white/92 backdrop-blur-md ring-1 ring-sky-900/10 shadow-[0_12px_32px_rgba(2,132,199,0.12)] py-3.5 flex flex-col justify-between"
+          >
+            <CardHeader className="px-4 py-0">
               <div>
-                <div className="text-[28px] sm:text-[30px] font-bold tracking-tight text-[#0f1b3d] leading-none">
+                <CardTitle className="text-[28px] sm:text-[32px] font-bold tracking-tight text-[#0f1b3d] leading-none">
                   60+ days
-                </div>
-                <p className="text-[11.5px] font-medium text-slate-500 mt-1">
+                </CardTitle>
+                <CardDescription className="text-[11.5px] font-medium text-slate-500 mt-1">
                   Continuous 24/7 recording
-                </p>
+                </CardDescription>
               </div>
-              <span className="inline-flex items-center rounded-full bg-sky-500/12 border border-sky-500/25 px-2.5 py-1 text-[10.5px] font-semibold text-sky-700 shrink-0">
-                H.265+ · 50% less storage
-              </span>
+              <CardAction>
+                <Badge variant="info" className="px-2.5 py-1 text-[10.5px]">
+                  H.265+ · 50% less storage
+                </Badge>
+              </CardAction>
+            </CardHeader>
+
+            <div className="px-4">
+              <Separator className="bg-sky-900/10" />
             </div>
 
-            {/* 30 Small Blocks (10 x 3 Grid) that fill one by one and loop */}
-            <div className="mt-2">
-              <div className="flex items-center justify-between text-[10px] font-medium text-slate-400 mb-1.5">
+            {/* Shadcn CardContent: 30 Small Blocks (10 x 3 Grid) that fill one by one and loop */}
+            <CardContent className="px-4">
+              <div className="flex items-center justify-between text-[10px] font-medium text-slate-400 mb-2">
                 <span>NVR Retention Loop (30-Day Window)</span>
-                <span className="text-sky-600 font-semibold">FIFO Active</span>
+                <Badge
+                  variant="secondary"
+                  className="bg-sky-50 text-sky-700 border-sky-200/70 px-2 py-0 text-[9.5px]"
+                >
+                  FIFO Active
+                </Badge>
               </div>
               <div
                 className="grid grid-cols-10 gap-1.5"
@@ -678,7 +716,7 @@ function AnimatedDeliverableMediaStage({
                 {Array.from({ length: 30 }).map((_, bIdx) => (
                   <span
                     key={bIdx}
-                    className="anim-nvr-block h-4 rounded-[5px]"
+                    className="anim-nvr-block h-4 sm:h-4.5 rounded-[5px]"
                     style={{
                       backgroundColor: shouldReduceMotion
                         ? "var(--acc)"
@@ -691,45 +729,50 @@ function AnimatedDeliverableMediaStage({
                   />
                 ))}
               </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         )}
 
-        {/* CARD 3: Live Smartphone Monitoring (Cropped Phone Frame + Sliding Push Alert + Popping LIVE 4K Preview) */}
+        {/* CARD 3: Live Smartphone Monitoring (Cropped Phone Frame + Shadcn Card Push Alert with Avatar + Shadcn Card LIVE 4K Preview with Button/Badge) */}
         {config.variant === "phone-live" && (
-          <div className="relative w-[240px] sm:w-[256px] h-[196px] translate-y-2 rounded-t-[26px] bg-[#0F172A] p-2.5 pb-0 shadow-[0_14px_34px_rgba(88,28,135,0.22)] border-t-[3px] border-x-[3px] border-slate-700 overflow-hidden flex flex-col">
+          <div className="relative w-[256px] sm:w-[276px] h-[228px] sm:h-[240px] translate-y-2 rounded-t-[28px] bg-[#0F172A] p-2.5 pb-0 shadow-[0_14px_34px_rgba(88,28,135,0.24)] border-t-[3px] border-x-[3px] border-slate-700 overflow-hidden flex flex-col">
             {/* Phone Speaker / Dynamic Island Notch */}
-            <div className="mx-auto w-14 h-3.5 rounded-full bg-black mb-2 flex items-center justify-end pr-1.5">
+            <div className="mx-auto w-16 h-3.5 rounded-full bg-black mb-2 flex items-center justify-end pr-1.5">
               <span className="size-1.5 rounded-full bg-emerald-400" />
             </div>
 
             {/* Inner Phone Screen */}
             <div className="flex-1 rounded-t-2xl bg-slate-900/95 p-2.5 flex flex-col gap-2 overflow-hidden border-t border-x border-white/10">
-              {/* Sliding Push Notification */}
-              <div
-                className="anim-phone-push rounded-xl bg-white/95 p-2 shadow-md border border-purple-200/80 flex items-start gap-2"
+              {/* Sliding Push Notification built with Shadcn Card + Avatar */}
+              <Card
+                size="sm"
+                className="anim-phone-push rounded-xl bg-white/95 py-2 px-2.5 shadow-md ring-1 ring-purple-200/80 flex flex-row items-center gap-2.5"
                 style={{
                   animation: shouldReduceMotion
                     ? "none"
                     : "phonePushSlide 5.4s cubic-bezier(0.16, 1, 0.3, 1) infinite",
                 }}
               >
-                <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md bg-purple-600 text-white text-[9px] font-bold">
-                  S
-                </span>
+                <Avatar size="sm" className="size-6 bg-purple-600 text-white">
+                  <AvatarFallback className="bg-purple-600 text-white text-[9.5px] font-bold">
+                    S
+                  </AvatarFallback>
+                  <AvatarBadge className="bg-emerald-500" />
+                </Avatar>
                 <div className="min-w-0 leading-tight">
-                  <p className="text-[10px] font-semibold text-slate-900">
+                  <p className="text-[10.5px] font-semibold text-slate-900 truncate">
                     Motion at Entrance Cam 01.
                   </p>
-                  <p className="text-[9.5px] text-slate-500">
+                  <p className="text-[9.5px] text-slate-500 truncate">
                     Clip saved to NVR.
                   </p>
                 </div>
-              </div>
+              </Card>
 
-              {/* Popping LIVE 4K Video Preview */}
-              <div
-                className="anim-phone-live relative flex-1 rounded-xl bg-linear-to-br from-slate-800 via-indigo-950 to-slate-900 border border-purple-400/30 p-2.5 flex flex-col justify-between overflow-hidden"
+              {/* Popping LIVE 4K Video Preview built with Shadcn Card + Badge + Button */}
+              <Card
+                size="sm"
+                className="anim-phone-live relative flex-1 rounded-xl bg-linear-to-br from-slate-800 via-indigo-950 to-slate-900 ring-1 ring-purple-400/30 p-2.5 flex flex-col justify-between overflow-hidden"
                 style={{
                   animation: shouldReduceMotion
                     ? "none"
@@ -737,205 +780,228 @@ function AnimatedDeliverableMediaStage({
                 }}
               >
                 <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1 rounded-md bg-red-600 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white">
+                  <Badge
+                    variant="live"
+                    className="rounded-md px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider"
+                  >
                     <span className="size-1.5 rounded-full bg-white animate-pulse" />
                     LIVE 4K
-                  </span>
-                  <span className="text-[9px] font-mono text-purple-200">
+                  </Badge>
+                  <Badge
+                    variant="outline"
+                    className="bg-white/10 text-purple-200 border-white/15 font-mono text-[9px] px-2 py-0"
+                  >
                     0 ms Fibre
-                  </span>
+                  </Badge>
                 </div>
 
-                {/* Stylized Camera Feed Silhouette inside Phone */}
+                {/* Stylized Camera Feed Control using Shadcn Button */}
                 <div className="my-auto flex items-center justify-center">
-                  <div className="flex items-center gap-1.5 rounded-full bg-white/10 backdrop-blur-xs px-2.5 py-1 border border-white/15">
+                  <Button
+                    variant="secondary"
+                    size="xs"
+                    className="pointer-events-none h-7 rounded-full bg-white/12 text-white border-white/20 backdrop-blur-xs px-3 text-[10px]"
+                  >
                     <Video className="size-3 text-purple-300" />
-                    <span className="text-[9.5px] font-medium text-white">
-                      Entrance Cam 01 · Playing
-                    </span>
-                  </div>
+                    <span>Entrance Cam 01 · Playing</span>
+                  </Button>
                 </div>
-              </div>
+              </Card>
             </div>
           </div>
         )}
 
-        {/* CARD 4: Clean Cabling & Local AMC Support (SVG PoE Switch + 3 Right-Angle Drawing Cables + Data Pulses + 3 Cameras) */}
+        {/* CARD 4: Clean Cabling & Local AMC Support (Shadcn Card + Header + Badge + Separator + SVG PoE Switch & 3 Right-Angle Cables) */}
         {config.variant === "poe-cabling" && (
-          <div className="w-full h-[186px] rounded-2xl bg-white/90 backdrop-blur-md border border-white shadow-[0_12px_32px_rgba(5,150,105,0.12)] p-3.5 flex items-center justify-center">
-            <svg
-              viewBox="0 0 320 148"
-              className="w-full h-full overflow-visible"
-              role="img"
-              aria-label="PoE switch routing structured right-angle cables with data pulses to 3 IP cameras"
-            >
-              {/* Left Node: PoE Switch Box with 3 Blinking Green LEDs */}
-              <g transform="translate(8, 30)">
-                <rect
-                  x="0"
-                  y="0"
-                  width="74"
-                  height="88"
-                  rx="12"
-                  fill="#0F172A"
-                />
-                <text
-                  x="37"
-                  y="24"
-                  textAnchor="middle"
-                  fill="#FFFFFF"
-                  fontSize="9.5"
-                  fontWeight="700"
-                  fontFamily="monospace"
-                >
-                  PoE+ SWITCH
-                </text>
-                <text
-                  x="37"
-                  y="36"
-                  textAnchor="middle"
-                  fill="#6EE7B7"
-                  fontSize="8"
-                  fontFamily="monospace"
-                >
-                  48V · CAT6
-                </text>
-                {/* 3 Blinking Green Port LEDs */}
-                {[0, 1, 2].map((led) => (
-                  <g
-                    key={led}
-                    transform={`translate(${16 + led * 16}, 54)`}
+          <Card
+            size="sm"
+            className="w-full h-[220px] sm:h-[234px] rounded-2xl bg-white/92 backdrop-blur-md ring-1 ring-emerald-900/10 shadow-[0_12px_32px_rgba(5,150,105,0.12)] py-3 flex flex-col justify-between"
+          >
+            <CardHeader className="px-3.5 py-0 flex flex-row items-center justify-between">
+              <CardTitle className="text-xs font-semibold text-[#0f1b3d]">
+                PoE+ Switch &amp; Structured Cat6 Drop
+              </CardTitle>
+              <CardAction>
+                <Badge variant="success" className="text-[10px] px-2 py-0.5">
+                  48V Active
+                </Badge>
+              </CardAction>
+            </CardHeader>
+
+            <div className="px-3.5">
+              <Separator className="bg-emerald-900/10" />
+            </div>
+
+            <CardContent className="px-3.5 flex-1 flex items-center justify-center">
+              <svg
+                viewBox="0 0 320 140"
+                className="w-full h-full overflow-visible"
+                role="img"
+                aria-label="PoE switch routing structured right-angle cables with data pulses to 3 IP cameras"
+              >
+                {/* Left Node: PoE Switch Box with 3 Blinking Green LEDs */}
+                <g transform="translate(8, 26)">
+                  <rect
+                    x="0"
+                    y="0"
+                    width="74"
+                    height="88"
+                    rx="12"
+                    fill="#0F172A"
+                  />
+                  <text
+                    x="37"
+                    y="24"
+                    textAnchor="middle"
+                    fill="#FFFFFF"
+                    fontSize="9.5"
+                    fontWeight="700"
+                    fontFamily="monospace"
                   >
-                    <rect
-                      x="0"
-                      y="0"
-                      width="10"
-                      height="10"
-                      rx="2"
-                      fill="#1E293B"
-                      stroke="#334155"
-                      strokeWidth="1"
+                    PoE+ SWITCH
+                  </text>
+                  <text
+                    x="37"
+                    y="36"
+                    textAnchor="middle"
+                    fill="#6EE7B7"
+                    fontSize="8"
+                    fontFamily="monospace"
+                  >
+                    48V · CAT6
+                  </text>
+                  {[0, 1, 2].map((led) => (
+                    <g key={led} transform={`translate(${16 + led * 16}, 54)`}>
+                      <rect
+                        x="0"
+                        y="0"
+                        width="10"
+                        height="10"
+                        rx="2"
+                        fill="#1E293B"
+                        stroke="#334155"
+                        strokeWidth="1"
+                      />
+                      <circle
+                        cx="5"
+                        cy="5"
+                        r="2.8"
+                        fill="#10B981"
+                        className="anim-cctv-rec"
+                        style={{
+                          animation: shouldReduceMotion
+                            ? "none"
+                            : `cctvRecBlink ${1 + led * 0.3}s ease-in-out infinite`,
+                        }}
+                      />
+                    </g>
+                  ))}
+                </g>
+
+                {/* 3 Neat Parallel Right-Angle Cable Paths + Data Pulses */}
+                {[
+                  {
+                    id: "poe-path-1",
+                    d: "M 82 50 L 145 50 L 145 22 L 236 22",
+                    camY: 6,
+                    delay: "0s",
+                  },
+                  {
+                    id: "poe-path-2",
+                    d: "M 82 70 L 236 70",
+                    camY: 54,
+                    delay: "0.35s",
+                  },
+                  {
+                    id: "poe-path-3",
+                    d: "M 82 90 L 145 90 L 145 118 L 236 118",
+                    camY: 102,
+                    delay: "0.7s",
+                  },
+                ].map((cable, cIdx) => (
+                  <g key={cable.id}>
+                    <path
+                      d={cable.d}
+                      fill="none"
+                      stroke="#D1FAE5"
+                      strokeWidth="3.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
-                    <circle
-                      cx="5"
-                      cy="5"
-                      r="2.8"
-                      fill="#10B981"
-                      className="anim-cctv-rec"
+                    <path
+                      id={cable.id}
+                      d={cable.d}
+                      fill="none"
+                      stroke="#059669"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeDasharray="180"
+                      className="anim-poe-cable"
                       style={{
                         animation: shouldReduceMotion
                           ? "none"
-                          : `cctvRecBlink ${1 + led * 0.3}s ease-in-out infinite`,
+                          : `poeCableDraw 4.8s ease-in-out infinite`,
+                        animationDelay: cable.delay,
                       }}
                     />
+                    {!shouldReduceMotion && (
+                      <circle r="3.5" fill="#10B981">
+                        <animateMotion
+                          dur="2.4s"
+                          begin={cable.delay}
+                          repeatCount="indefinite"
+                          path={cable.d}
+                        />
+                      </circle>
+                    )}
+
+                    <g
+                      transform={`translate(238, ${cable.camY})`}
+                      className="anim-poe-cam"
+                      style={{
+                        transformOrigin: "270px 70px",
+                        animation: shouldReduceMotion
+                          ? "none"
+                          : `poeCameraFade 4.8s ease-in-out infinite`,
+                        animationDelay: cable.delay,
+                      }}
+                    >
+                      <rect
+                        x="0"
+                        y="0"
+                        width="72"
+                        height="32"
+                        rx="9"
+                        fill="#ECFDF5"
+                        stroke="#10B981"
+                        strokeWidth="1.5"
+                      />
+                      <circle cx="16" cy="16" r="7" fill="#059669" />
+                      <circle cx="16" cy="16" r="2.5" fill="#FFFFFF" />
+                      <text
+                        x="30"
+                        y="19"
+                        fill="#065F46"
+                        fontSize="9.5"
+                        fontWeight="700"
+                      >
+                        {`CAM 0${cIdx + 1}`}
+                      </text>
+                    </g>
                   </g>
                 ))}
-              </g>
-
-              {/* 3 Neat Parallel Right-Angle Cable Paths + Data Pulses */}
-              {[
-                {
-                  id: "poe-path-1",
-                  d: "M 82 54 L 145 54 L 145 26 L 236 26",
-                  camY: 10,
-                  delay: "0s",
-                },
-                {
-                  id: "poe-path-2",
-                  d: "M 82 74 L 236 74",
-                  camY: 58,
-                  delay: "0.35s",
-                },
-                {
-                  id: "poe-path-3",
-                  d: "M 82 94 L 145 94 L 145 122 L 236 122",
-                  camY: 106,
-                  delay: "0.7s",
-                },
-              ].map((cable, cIdx) => (
-                <g key={cable.id}>
-                  {/* Base Conduit Track */}
-                  <path
-                    d={cable.d}
-                    fill="none"
-                    stroke="#D1FAE5"
-                    strokeWidth="3.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  {/* Self-Drawing Active Green Cable */}
-                  <path
-                    id={cable.id}
-                    d={cable.d}
-                    fill="none"
-                    stroke="#059669"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeDasharray="180"
-                    className="anim-poe-cable"
-                    style={{
-                      animation: shouldReduceMotion
-                        ? "none"
-                        : `poeCableDraw 4.8s ease-in-out infinite`,
-                      animationDelay: cable.delay,
-                    }}
-                  />
-                  {/* Travelling Green Data Pulse via SVG animateMotion */}
-                  {!shouldReduceMotion && (
-                    <circle r="3.5" fill="#10B981">
-                      <animateMotion
-                        dur="2.4s"
-                        begin={cable.delay}
-                        repeatCount="indefinite"
-                        path={cable.d}
-                      />
-                    </circle>
-                  )}
-
-                  {/* Camera Node on Right (fades in as cable finishes) */}
-                  <g
-                    transform={`translate(238, ${cable.camY})`}
-                    className="anim-poe-cam"
-                    style={{
-                      transformOrigin: "270px 74px",
-                      animation: shouldReduceMotion
-                        ? "none"
-                        : `poeCameraFade 4.8s ease-in-out infinite`,
-                      animationDelay: cable.delay,
-                    }}
-                  >
-                    <rect
-                      x="0"
-                      y="0"
-                      width="72"
-                      height="32"
-                      rx="9"
-                      fill="#ECFDF5"
-                      stroke="#10B981"
-                      strokeWidth="1.5"
-                    />
-                    <circle cx="16" cy="16" r="7" fill="#059669" />
-                    <circle cx="16" cy="16" r="2.5" fill="#FFFFFF" />
-                    <text
-                      x="30"
-                      y="19"
-                      fill="#065F46"
-                      fontSize="9.5"
-                      fontWeight="700"
-                    >
-                      {`CAM 0${cIdx + 1}`}
-                    </text>
-                  </g>
-                </g>
-              ))}
-            </svg>
-          </div>
+              </svg>
+            </CardContent>
+          </Card>
         )}
       </div>
 
-      {/* Bottom Frosted-Glass Pill with Pulsing Dot & 3 Cycling Messages (Every 3s) */}
-      <div className="relative z-20 mt-2 inline-flex items-center gap-2 rounded-full bg-white/88 backdrop-blur-[12px] px-3.5 py-1.5 shadow-[0_6px_20px_rgba(15,27,61,0.08)] border border-white">
+      {/* Bottom Frosted-Glass Pill built with Shadcn Badge + Pulsing Dot & 3 Cycling Messages */}
+      <Badge
+        variant="outline"
+        className="relative z-20 mt-2 gap-2 rounded-full bg-white/88 backdrop-blur-[12px] px-3.5 py-1.5 shadow-[0_6px_20px_rgba(15,27,61,0.08)] border-white font-medium text-[#0f1b3d]"
+      >
         <span className="relative flex size-2 shrink-0">
           <span
             style={{ backgroundColor: "var(--acc)" }}
@@ -957,7 +1023,7 @@ function AnimatedDeliverableMediaStage({
         >
           {config.pillMessages[msgIndex]}
         </span>
-      </div>
+      </Badge>
     </div>
   );
 }
@@ -1004,7 +1070,7 @@ export function FlippableDeliverableCard({
     <motion.article
       ref={cardRef}
       variants={cardItemVariants}
-      className="group/flip relative h-full min-h-[420px] [perspective:1200px] select-none col-span-12 md:col-span-6 cursor-pointer"
+      className="group/flip relative h-full min-h-[440px] min-[360px]:min-h-[460px] sm:min-h-[480px] [perspective:1200px] select-none col-span-12 md:col-span-6 cursor-pointer"
       onClick={handleCardClick}
       role="button"
       tabIndex={0}
@@ -1078,12 +1144,12 @@ export function FlippableDeliverableCard({
             )}
 
             {/* Front Bottom: Small Red Eyebrow (12px) + 22px Medium Dark Navy Title + Black Rounded "+" Button */}
-            <div className="relative z-20 bg-white px-5 min-[360px]:px-6 sm:px-7 pt-2 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between">
+            <div className="relative z-20 bg-white px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between">
               <div className="pr-3">
                 <p className="text-[12px] font-semibold text-brand-red uppercase tracking-wider mb-1">
                   {item.tag || `Feature 0${idx + 1}`}
                 </p>
-                <h3 className="text-[#0f1b3d] !text-[20px] sm:!text-[22px] font-medium tracking-tight leading-snug">
+                <h3 className="text-[#0f1b3d] !text-lg min-[360px]:!text-xl sm:!text-[22px] font-medium tracking-tight leading-snug">
                   {item.title}
                 </h3>
               </div>
