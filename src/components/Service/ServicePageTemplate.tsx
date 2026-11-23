@@ -533,11 +533,7 @@ function getDeliverableCardImage(title: string, explicitImageSrc?: string): stri
 interface CardPastelInnerShadowTheme {
   borderColor: string;
   cardShadow: string;
-  mediaVignette: string;
-  mediaInnerShadow: string;
-  bottomBridgeGradient: string;
-  titleAreaGradient: string;
-  titleAreaInnerShadow: string;
+  cardGradient: string;
   tagPillStyle: string;
   eyebrowColor: string;
   solidBackdropColor: string;
@@ -549,17 +545,9 @@ const CARD_PASTEL_THEMES: CardPastelInnerShadowTheme[] = [
   {
     borderColor: "rgba(225, 29, 72, 0.15)",
     cardShadow:
-      "inset 0 0 20px rgba(225, 29, 72, 0.05), 0 8px 24px rgba(15, 27, 61, 0.04)",
-    mediaVignette:
-      "radial-gradient(ellipse 70% 65% at 50% 48%, rgba(255,240,243,0.3) 0%, rgba(255,228,233,0.6) 75%, rgba(255,204,214,0.9) 100%)",
-    mediaInnerShadow:
-      "inset 0 0 36px rgba(225, 29, 72, 0.10), inset 0 2px 4px rgba(255, 255, 255, 0.8)",
-    bottomBridgeGradient:
-      "linear-gradient(180deg, rgba(255,228,233,0) 0%, rgba(255,204,214,0.5) 100%)",
-    titleAreaGradient:
-      "linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 218, 226, 0.75) 100%)",
-    titleAreaInnerShadow:
-      "inset 0 -8px 18px rgba(225, 29, 72, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
+      "inset 0 0 28px rgba(225, 29, 72, 0.08), 0 8px 24px rgba(15, 27, 61, 0.04)",
+    cardGradient:
+      "linear-gradient(175deg, #FFF0F3 0%, #FFE4E9 40%, #FFD6DF 75%, #FFCAD6 100%)",
     tagPillStyle:
       "bg-white/90 text-rose-700 border-rose-200/60 shadow-[0_2px_8px_rgba(225,29,72,0.06)]",
     eyebrowColor: "text-rose-600",
@@ -570,17 +558,9 @@ const CARD_PASTEL_THEMES: CardPastelInnerShadowTheme[] = [
   {
     borderColor: "rgba(2, 132, 199, 0.15)",
     cardShadow:
-      "inset 0 0 20px rgba(2, 132, 199, 0.05), 0 8px 24px rgba(15, 27, 61, 0.04)",
-    mediaVignette:
-      "radial-gradient(ellipse 70% 65% at 50% 48%, rgba(240,249,255,0.3) 0%, rgba(224,242,254,0.6) 75%, rgba(186,230,253,0.9) 100%)",
-    mediaInnerShadow:
-      "inset 0 0 36px rgba(2, 132, 199, 0.10), inset 0 2px 4px rgba(255, 255, 255, 0.8)",
-    bottomBridgeGradient:
-      "linear-gradient(180deg, rgba(224,242,254,0) 0%, rgba(186,230,253,0.5) 100%)",
-    titleAreaGradient:
-      "linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(186, 230, 253, 0.75) 100%)",
-    titleAreaInnerShadow:
-      "inset 0 -8px 18px rgba(2, 132, 199, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
+      "inset 0 0 28px rgba(2, 132, 199, 0.08), 0 8px 24px rgba(15, 27, 61, 0.04)",
+    cardGradient:
+      "linear-gradient(175deg, #F0F9FF 0%, #E0F2FE 40%, #BAE6FD 75%, #A5D8F7 100%)",
     tagPillStyle:
       "bg-white/90 text-sky-700 border-sky-200/60 shadow-[0_2px_8px_rgba(2,132,199,0.06)]",
     eyebrowColor: "text-sky-600",
@@ -591,17 +571,9 @@ const CARD_PASTEL_THEMES: CardPastelInnerShadowTheme[] = [
   {
     borderColor: "rgba(124, 58, 237, 0.15)",
     cardShadow:
-      "inset 0 0 20px rgba(124, 58, 237, 0.05), 0 8px 24px rgba(15, 27, 61, 0.04)",
-    mediaVignette:
-      "radial-gradient(ellipse 70% 65% at 50% 48%, rgba(250,245,255,0.3) 0%, rgba(243,232,255,0.6) 75%, rgba(233,213,255,0.9) 100%)",
-    mediaInnerShadow:
-      "inset 0 0 36px rgba(124, 58, 237, 0.10), inset 0 2px 4px rgba(255, 255, 255, 0.8)",
-    bottomBridgeGradient:
-      "linear-gradient(180deg, rgba(243,232,255,0) 0%, rgba(233,213,255,0.5) 100%)",
-    titleAreaGradient:
-      "linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(233, 213, 255, 0.75) 100%)",
-    titleAreaInnerShadow:
-      "inset 0 -8px 18px rgba(124, 58, 237, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
+      "inset 0 0 28px rgba(124, 58, 237, 0.08), 0 8px 24px rgba(15, 27, 61, 0.04)",
+    cardGradient:
+      "linear-gradient(175deg, #FAF5FF 0%, #F3E8FF 40%, #E9D5FF 75%, #DFC3FE 100%)",
     tagPillStyle:
       "bg-white/90 text-purple-700 border-purple-200/60 shadow-[0_2px_8px_rgba(124,58,237,0.06)]",
     eyebrowColor: "text-purple-600",
@@ -612,17 +584,9 @@ const CARD_PASTEL_THEMES: CardPastelInnerShadowTheme[] = [
   {
     borderColor: "rgba(234, 88, 12, 0.15)",
     cardShadow:
-      "inset 0 0 20px rgba(234, 88, 12, 0.05), 0 8px 24px rgba(15, 27, 61, 0.04)",
-    mediaVignette:
-      "radial-gradient(ellipse 70% 65% at 50% 48%, rgba(255,247,237,0.3) 0%, rgba(255,237,213,0.6) 75%, rgba(254,215,170,0.9) 100%)",
-    mediaInnerShadow:
-      "inset 0 0 36px rgba(234, 88, 12, 0.10), inset 0 2px 4px rgba(255, 255, 255, 0.8)",
-    bottomBridgeGradient:
-      "linear-gradient(180deg, rgba(255,237,213,0) 0%, rgba(254,215,170,0.5) 100%)",
-    titleAreaGradient:
-      "linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(254, 215, 170, 0.75) 100%)",
-    titleAreaInnerShadow:
-      "inset 0 -8px 18px rgba(234, 88, 12, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
+      "inset 0 0 28px rgba(234, 88, 12, 0.08), 0 8px 24px rgba(15, 27, 61, 0.04)",
+    cardGradient:
+      "linear-gradient(175deg, #FFF7ED 0%, #FFEDD5 40%, #FED7AA 75%, #FDC58C 100%)",
     tagPillStyle:
       "bg-white/90 text-orange-700 border-orange-200/60 shadow-[0_2px_8px_rgba(234,88,12,0.06)]",
     eyebrowColor: "text-orange-600",
@@ -696,11 +660,11 @@ export function FlippableDeliverableCard({
           transform: isFlipped && !shouldReduceMotion ? "rotateY(180deg)" : "rotateY(0deg)",
         }}
       >
-        {/* Front Face: 3D Card Illustration Media Stage + Full Pastel Canvas */}
+        {/* Front Face: 3D Card Illustration Media Stage + Seamless Pastel Gradient */}
         <div
           className="w-full h-full flex flex-col justify-between text-brand-navy border rounded-[28px] overflow-hidden"
           style={{
-            background: pastelTheme.solidBackdropColor,
+            background: pastelTheme.cardGradient,
             borderColor: pastelTheme.borderColor,
             boxShadow: pastelTheme.cardShadow,
             backfaceVisibility: "hidden",
@@ -708,7 +672,7 @@ export function FlippableDeliverableCard({
           }}
         >
           <div className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
-            {/* Top Media Stage with Custom 3D Card Artwork + Pastel Radial Inner Shadow */}
+            {/* Top Media Stage with Custom 3D Card Artwork */}
             <div className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[320px] overflow-hidden bg-transparent flex flex-col justify-between p-4 sm:p-5 select-none group/stage">
               {/* Top Badges Bar: Step number + Tag */}
               <div className="relative z-30 w-full flex items-center justify-between gap-2">
@@ -735,35 +699,10 @@ export function FlippableDeliverableCard({
                   className="object-contain object-center select-none transition-transform duration-500 ease-out group-hover/stage:scale-[1.04]"
                 />
               </div>
-
-              {/* Pastel Radial Vignette & Colored Inner Shadow Overlay */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 z-20"
-                style={{
-                  background: pastelTheme.mediaVignette,
-                  boxShadow: pastelTheme.mediaInnerShadow,
-                }}
-              />
-
-              {/* Smooth Pastel Gradient Bridge into Bottom Title Area */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-14 z-20"
-                style={{
-                  background: pastelTheme.bottomBridgeGradient,
-                }}
-              />
             </div>
 
-            {/* Front Bottom: Title Area with Matching Pastel Gradient & Inner Shadow */}
-            <div
-              className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-3.5 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between"
-              style={{
-                background: pastelTheme.titleAreaGradient,
-                boxShadow: pastelTheme.titleAreaInnerShadow,
-              }}
-            >
+            {/* Front Bottom: Title Area seamlessly blended into Card Gradient */}
+            <div className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-3 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between bg-transparent">
               <div className="pr-2">
                 <p
                   className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${pastelTheme.eyebrowColor}`}

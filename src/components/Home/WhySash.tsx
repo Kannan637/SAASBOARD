@@ -45,9 +45,6 @@ export interface FeatureCardTheme {
   borderColor: string;
   cardShadow: string;
   mediaGradient: string;
-  mediaInnerShadow: string;
-  titleAreaGradient: string;
-  titleAreaInnerShadow: string;
   eyebrowColor: string;
   solidBackdropColor: string;
   backFaceBorder: string;
@@ -58,15 +55,9 @@ export const FEATURE_CARD_THEMES: Record<string, FeatureCardTheme> = {
   fibre: {
     borderColor: "rgba(225, 29, 72, 0.15)",
     cardShadow:
-      "inset 0 0 20px rgba(225, 29, 72, 0.05), 0 8px 24px rgba(15, 27, 61, 0.04)",
+      "inset 0 0 28px rgba(225, 29, 72, 0.08), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaGradient:
-      "linear-gradient(170deg, #FFF0F3 0%, #FFE4E9 45%, #FFD6DF 80%, #FFCAD6 100%)",
-    mediaInnerShadow:
-      "inset 0 0 36px rgba(225, 29, 72, 0.10), inset 0 2px 4px rgba(255, 255, 255, 0.8)",
-    titleAreaGradient:
-      "linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 218, 226, 0.75) 100%)",
-    titleAreaInnerShadow:
-      "inset 0 -8px 18px rgba(225, 29, 72, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
+      "linear-gradient(175deg, #FFF0F3 0%, #FFE4E9 40%, #FFD6DF 75%, #FFCAD6 100%)",
     eyebrowColor: "text-rose-600",
     solidBackdropColor: "#FFEBF0",
     backFaceBorder: "rgba(225, 29, 72, 0.18)",
@@ -75,15 +66,9 @@ export const FEATURE_CARD_THEMES: Record<string, FeatureCardTheme> = {
   router: {
     borderColor: "rgba(2, 132, 199, 0.15)",
     cardShadow:
-      "inset 0 0 20px rgba(2, 132, 199, 0.05), 0 8px 24px rgba(15, 27, 61, 0.04)",
+      "inset 0 0 28px rgba(2, 132, 199, 0.08), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaGradient:
-      "linear-gradient(170deg, #F0F9FF 0%, #E0F2FE 45%, #BAE6FD 80%, #A5D8F7 100%)",
-    mediaInnerShadow:
-      "inset 0 0 36px rgba(2, 132, 199, 0.10), inset 0 2px 4px rgba(255, 255, 255, 0.8)",
-    titleAreaGradient:
-      "linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(186, 230, 253, 0.75) 100%)",
-    titleAreaInnerShadow:
-      "inset 0 -8px 18px rgba(2, 132, 199, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
+      "linear-gradient(175deg, #F0F9FF 0%, #E0F2FE 40%, #BAE6FD 75%, #A5D8F7 100%)",
     eyebrowColor: "text-sky-600",
     solidBackdropColor: "#EBF5FE",
     backFaceBorder: "rgba(2, 132, 199, 0.18)",
@@ -92,15 +77,9 @@ export const FEATURE_CARD_THEMES: Record<string, FeatureCardTheme> = {
   isp: {
     borderColor: "rgba(124, 58, 237, 0.15)",
     cardShadow:
-      "inset 0 0 20px rgba(124, 58, 237, 0.05), 0 8px 24px rgba(15, 27, 61, 0.04)",
+      "inset 0 0 28px rgba(124, 58, 237, 0.08), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaGradient:
-      "linear-gradient(170deg, #FAF5FF 0%, #F3E8FF 45%, #E9D5FF 80%, #DFC3FE 100%)",
-    mediaInnerShadow:
-      "inset 0 0 36px rgba(124, 58, 237, 0.10), inset 0 2px 4px rgba(255, 255, 255, 0.8)",
-    titleAreaGradient:
-      "linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(233, 213, 255, 0.75) 100%)",
-    titleAreaInnerShadow:
-      "inset 0 -8px 18px rgba(124, 58, 237, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
+      "linear-gradient(175deg, #FAF5FF 0%, #F3E8FF 40%, #E9D5FF 75%, #DFC3FE 100%)",
     eyebrowColor: "text-purple-600",
     solidBackdropColor: "#F6EDFF",
     backFaceBorder: "rgba(124, 58, 237, 0.18)",
@@ -109,15 +88,9 @@ export const FEATURE_CARD_THEMES: Record<string, FeatureCardTheme> = {
   support: {
     borderColor: "rgba(234, 88, 12, 0.15)",
     cardShadow:
-      "inset 0 0 20px rgba(234, 88, 12, 0.05), 0 8px 24px rgba(15, 27, 61, 0.04)",
+      "inset 0 0 28px rgba(234, 88, 12, 0.08), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaGradient:
-      "linear-gradient(170deg, #FFF7ED 0%, #FFEDD5 45%, #FED7AA 80%, #FDC58C 100%)",
-    mediaInnerShadow:
-      "inset 0 0 36px rgba(234, 88, 12, 0.10), inset 0 2px 4px rgba(255, 255, 255, 0.8)",
-    titleAreaGradient:
-      "linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(254, 215, 170, 0.75) 100%)",
-    titleAreaInnerShadow:
-      "inset 0 -8px 18px rgba(234, 88, 12, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
+      "linear-gradient(175deg, #FFF7ED 0%, #FFEDD5 40%, #FED7AA 75%, #FDC58C 100%)",
     eyebrowColor: "text-orange-600",
     solidBackdropColor: "#FFF1E3",
     backFaceBorder: "rgba(234, 88, 12, 0.18)",
@@ -334,13 +307,6 @@ export function FibreSpeedCard() {
         >
           {/* Top iPhone Section with Pastel Gradient Background (Edge-to-Edge) */}
           <div className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[310px] overflow-hidden pt-3 min-[360px]:pt-4 sm:pt-6 px-3 flex flex-col justify-between">
-            {/* Colored Inner Shadow Overlay */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 z-20"
-              style={{ boxShadow: theme.mediaInnerShadow }}
-            />
-
             {/* iPhone Hardware Mockup (Top-Center Aligned Speed Meter) */}
             <div className="relative z-10 mx-auto w-[270px] min-[360px]:w-[300px] sm:w-[340px] shrink-0">
               {/* Visible Viewport Window */}
@@ -404,14 +370,8 @@ export function FibreSpeedCard() {
             </div>
           </div>
 
-          {/* Front Bottom: Title Area with Matching Pastel Gradient & Inner Shadow */}
-          <div
-            className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between"
-            style={{
-              background: theme.titleAreaGradient,
-              boxShadow: theme.titleAreaInnerShadow,
-            }}
-          >
+          {/* Front Bottom: Title Area seamlessly blended into Card Gradient */}
+          <div className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-3 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between bg-transparent">
             <div>
               <p className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${theme.eyebrowColor}`}>
                 100% Optical Fibre
@@ -499,13 +459,6 @@ export function RouterSetupCard() {
         <CardContent className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
           {/* Top Visual Stage with Pastel Gradient Background (Edge-to-Edge) */}
           <div className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[310px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/router">
-            {/* Colored Inner Shadow Overlay */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 z-20"
-              style={{ boxShadow: theme.mediaInnerShadow }}
-            />
-
             {/* Top Badges Bar: ₹0 Setup Cost */}
             <div className="relative z-30 w-full flex items-center justify-between gap-2">
               <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/20">
@@ -529,14 +482,8 @@ export function RouterSetupCard() {
             </div>
           </div>
 
-          {/* Front Bottom: Title Area with Matching Pastel Gradient & Inner Shadow */}
-          <div
-            className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between"
-            style={{
-              background: theme.titleAreaGradient,
-              boxShadow: theme.titleAreaInnerShadow,
-            }}
-          >
+          {/* Front Bottom: Title Area seamlessly blended into Card Gradient */}
+          <div className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-3 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between bg-transparent">
             <div>
               <p className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${theme.eyebrowColor}`}>
                 Hardware & Setup
@@ -645,13 +592,6 @@ export function LicensedISPCARD() {
         <CardContent className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
           {/* Top Globe Visual Stage: Tamil Nadu Clearly Visible on Pastel Gradient (Edge-to-Edge) */}
           <div className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[310px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/globe">
-            {/* Colored Inner Shadow Overlay */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 z-20"
-              style={{ boxShadow: theme.mediaInnerShadow }}
-            />
-
             {/* Top Badges Bar: Tamil Nadu Circle */}
             <div className="relative z-30 w-full flex items-center justify-between gap-2 pointer-events-none">
               <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/20">
@@ -679,14 +619,8 @@ export function LicensedISPCARD() {
             </div>
           </div>
 
-          {/* Front Bottom: Title Area with Matching Pastel Gradient & Inner Shadow */}
-          <div
-            className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between"
-            style={{
-              background: theme.titleAreaGradient,
-              boxShadow: theme.titleAreaInnerShadow,
-            }}
-          >
+          {/* Front Bottom: Title Area seamlessly blended into Card Gradient */}
+          <div className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-3 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between bg-transparent">
             <div>
               <p className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${theme.eyebrowColor}`}>
                 Telecom Compliance
@@ -844,13 +778,6 @@ export function SupportCard() {
         <CardContent className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
           {/* Top Status Stage with Concentric Radar Waves (Edge-to-Edge) */}
           <div className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[310px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support">
-            {/* Colored Inner Shadow Overlay */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 z-20"
-              style={{ boxShadow: theme.mediaInnerShadow }}
-            />
-
             {/* Top Badges Bar: 24/7 Local Support Desk */}
             <div className="relative z-30 w-full flex items-center justify-between gap-2 pointer-events-none">
               <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/20">
@@ -987,14 +914,8 @@ export function SupportCard() {
             </div>
           </div>
 
-          {/* Front Bottom: Title Area with Matching Pastel Gradient & Inner Shadow */}
-          <div
-            className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between"
-            style={{
-              background: theme.titleAreaGradient,
-              boxShadow: theme.titleAreaInnerShadow,
-            }}
-          >
+          {/* Front Bottom: Title Area seamlessly blended into Card Gradient */}
+          <div className="relative z-20 px-5 min-[360px]:px-6 sm:px-7 pt-3 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between bg-transparent">
             <div>
               <p className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${theme.eyebrowColor}`}>
                 Local Care Desk
