@@ -540,93 +540,84 @@ interface CardPastelInnerShadowTheme {
   titleAreaInnerShadow: string;
   tagPillStyle: string;
   eyebrowColor: string;
-  backFaceGradient: string;
 }
 
 const CARD_PASTEL_THEMES: CardPastelInnerShadowTheme[] = [
-  // Card 1: Pastel Rose-Pink + Deep Crimson Berry Inner Shadow
+  // Card 1: Minimal Pastel Rose-Pink + Soft Crimson Inner Shadow
   {
-    borderColor: "rgba(225, 29, 72, 0.18)",
+    borderColor: "rgba(225, 29, 72, 0.10)",
     cardShadow:
-      "inset 0 0 28px rgba(225, 29, 72, 0.12), 0 12px 32px rgba(225, 29, 72, 0.07)",
+      "inset 0 0 18px rgba(225, 29, 72, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaVignette:
-      "radial-gradient(ellipse 64% 60% at 50% 48%, rgba(255,255,255,0) 32%, rgba(255,228,234,0.72) 70%, rgba(254,205,215,0.96) 100%)",
+      "radial-gradient(ellipse 70% 65% at 50% 48%, rgba(255,255,255,0) 48%, rgba(255,241,243,0.45) 78%, rgba(255,228,233,0.72) 100%)",
     mediaInnerShadow:
-      "inset 0 0 52px rgba(225, 29, 72, 0.26), inset 0 14px 32px rgba(251, 113, 133, 0.20), inset 0 2px 4px rgba(255, 255, 255, 0.9)",
+      "inset 0 0 32px rgba(225, 29, 72, 0.10), inset 0 6px 16px rgba(251, 113, 133, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
     bottomBridgeGradient:
-      "linear-gradient(180deg, rgba(254,205,215,0) 0%, rgba(254,205,215,0.82) 55%, #FFDCE3 100%)",
+      "linear-gradient(180deg, rgba(255,228,233,0) 0%, rgba(255,228,233,0.45) 55%, #FFF2F4 100%)",
     titleAreaGradient:
-      "linear-gradient(180deg, #FFDCE3 0%, #FFF0F3 48%, #FFFFFF 100%)",
+      "linear-gradient(180deg, #FFF2F4 0%, #FFF9FA 45%, #FFFFFF 100%)",
     titleAreaInnerShadow:
-      "inset 0 -14px 28px rgba(225, 29, 72, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.65)",
+      "inset 0 -8px 18px rgba(225, 29, 72, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
     tagPillStyle:
-      "bg-white/90 text-rose-700 border-rose-300/60 shadow-[0_2px_10px_rgba(225,29,72,0.10)]",
+      "bg-white/90 text-rose-700 border-rose-200/60 shadow-[0_2px_8px_rgba(225,29,72,0.06)]",
     eyebrowColor: "text-rose-600",
-    backFaceGradient:
-      "linear-gradient(165deg, #FFF5F7 0%, #FFFFFF 50%, #FFE4E9 100%)",
   },
-  // Card 2: Pastel Sky-Blue + Deep Ocean Cobalt Inner Shadow
+  // Card 2: Minimal Pastel Sky-Blue + Soft Cobalt Inner Shadow
   {
-    borderColor: "rgba(2, 132, 199, 0.18)",
+    borderColor: "rgba(2, 132, 199, 0.10)",
     cardShadow:
-      "inset 0 0 28px rgba(2, 132, 199, 0.12), 0 12px 32px rgba(2, 132, 199, 0.07)",
+      "inset 0 0 18px rgba(2, 132, 199, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaVignette:
-      "radial-gradient(ellipse 64% 60% at 50% 48%, rgba(255,255,255,0) 32%, rgba(224,242,254,0.74) 70%, rgba(186,230,253,0.96) 100%)",
+      "radial-gradient(ellipse 70% 65% at 50% 48%, rgba(255,255,255,0) 48%, rgba(240,249,255,0.45) 78%, rgba(224,242,254,0.72) 100%)",
     mediaInnerShadow:
-      "inset 0 0 52px rgba(2, 132, 199, 0.26), inset 0 14px 32px rgba(56, 189, 248, 0.22), inset 0 2px 4px rgba(255, 255, 255, 0.9)",
+      "inset 0 0 32px rgba(2, 132, 199, 0.10), inset 0 6px 16px rgba(56, 189, 248, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
     bottomBridgeGradient:
-      "linear-gradient(180deg, rgba(186,230,253,0) 0%, rgba(186,230,253,0.82) 55%, #D5EFFF 100%)",
+      "linear-gradient(180deg, rgba(224,242,254,0) 0%, rgba(224,242,254,0.45) 55%, #EDF8FF 100%)",
     titleAreaGradient:
-      "linear-gradient(180deg, #D5EFFF 0%, #EEF8FF 48%, #FFFFFF 100%)",
+      "linear-gradient(180deg, #EDF8FF 0%, #F7FCFF 45%, #FFFFFF 100%)",
     titleAreaInnerShadow:
-      "inset 0 -14px 28px rgba(2, 132, 199, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.65)",
+      "inset 0 -8px 18px rgba(2, 132, 199, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
     tagPillStyle:
-      "bg-white/90 text-sky-700 border-sky-300/60 shadow-[0_2px_10px_rgba(2,132,199,0.10)]",
+      "bg-white/90 text-sky-700 border-sky-200/60 shadow-[0_2px_8px_rgba(2,132,199,0.06)]",
     eyebrowColor: "text-sky-600",
-    backFaceGradient:
-      "linear-gradient(165deg, #F2FAFF 0%, #FFFFFF 50%, #E0F2FE 100%)",
   },
-  // Card 3: Pastel Lavender-Violet + Deep Royal Amethyst Inner Shadow
+  // Card 3: Minimal Pastel Lavender-Violet + Soft Amethyst Inner Shadow
   {
-    borderColor: "rgba(124, 58, 237, 0.18)",
+    borderColor: "rgba(124, 58, 237, 0.10)",
     cardShadow:
-      "inset 0 0 28px rgba(124, 58, 237, 0.12), 0 12px 32px rgba(124, 58, 237, 0.07)",
+      "inset 0 0 18px rgba(124, 58, 237, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaVignette:
-      "radial-gradient(ellipse 64% 60% at 50% 48%, rgba(255,255,255,0) 32%, rgba(243,232,255,0.74) 70%, rgba(233,213,255,0.96) 100%)",
+      "radial-gradient(ellipse 70% 65% at 50% 48%, rgba(255,255,255,0) 48%, rgba(250,245,255,0.45) 78%, rgba(243,232,255,0.72) 100%)",
     mediaInnerShadow:
-      "inset 0 0 52px rgba(124, 58, 237, 0.26), inset 0 14px 32px rgba(168, 85, 247, 0.20), inset 0 2px 4px rgba(255, 255, 255, 0.9)",
+      "inset 0 0 32px rgba(124, 58, 237, 0.10), inset 0 6px 16px rgba(168, 85, 247, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
     bottomBridgeGradient:
-      "linear-gradient(180deg, rgba(233,213,255,0) 0%, rgba(233,213,255,0.82) 55%, #EAD8FF 100%)",
+      "linear-gradient(180deg, rgba(243,232,255,0) 0%, rgba(243,232,255,0.45) 55%, #F6EEFF 100%)",
     titleAreaGradient:
-      "linear-gradient(180deg, #EAD8FF 0%, #F7F0FF 48%, #FFFFFF 100%)",
+      "linear-gradient(180deg, #F6EEFF 0%, #FBF8FF 45%, #FFFFFF 100%)",
     titleAreaInnerShadow:
-      "inset 0 -14px 28px rgba(124, 58, 237, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.65)",
+      "inset 0 -8px 18px rgba(124, 58, 237, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
     tagPillStyle:
-      "bg-white/90 text-purple-700 border-purple-300/60 shadow-[0_2px_10px_rgba(124,58,237,0.10)]",
+      "bg-white/90 text-purple-700 border-purple-200/60 shadow-[0_2px_8px_rgba(124,58,237,0.06)]",
     eyebrowColor: "text-purple-600",
-    backFaceGradient:
-      "linear-gradient(165deg, #FAF5FF 0%, #FFFFFF 50%, #F3E8FF 100%)",
   },
-  // Card 4: Pastel Peach-Amber + Deep Sunset Tangerine Inner Shadow
+  // Card 4: Minimal Pastel Peach-Amber + Soft Tangerine Inner Shadow
   {
-    borderColor: "rgba(234, 88, 12, 0.18)",
+    borderColor: "rgba(234, 88, 12, 0.10)",
     cardShadow:
-      "inset 0 0 28px rgba(234, 88, 12, 0.12), 0 12px 32px rgba(234, 88, 12, 0.07)",
+      "inset 0 0 18px rgba(234, 88, 12, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaVignette:
-      "radial-gradient(ellipse 64% 60% at 50% 48%, rgba(255,255,255,0) 32%, rgba(255,237,213,0.74) 70%, rgba(254,215,170,0.96) 100%)",
+      "radial-gradient(ellipse 70% 65% at 50% 48%, rgba(255,255,255,0) 48%, rgba(255,247,237,0.45) 78%, rgba(255,237,213,0.72) 100%)",
     mediaInnerShadow:
-      "inset 0 0 52px rgba(234, 88, 12, 0.26), inset 0 14px 32px rgba(251, 146, 60, 0.20), inset 0 2px 4px rgba(255, 255, 255, 0.9)",
+      "inset 0 0 32px rgba(234, 88, 12, 0.10), inset 0 6px 16px rgba(251, 146, 60, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
     bottomBridgeGradient:
-      "linear-gradient(180deg, rgba(254,215,170,0) 0%, rgba(254,215,170,0.82) 55%, #FFE2C2 100%)",
+      "linear-gradient(180deg, rgba(255,237,213,0) 0%, rgba(255,237,213,0.45) 55%, #FFF1E2 100%)",
     titleAreaGradient:
-      "linear-gradient(180deg, #FFE2C2 0%, #FFF4E8 48%, #FFFFFF 100%)",
+      "linear-gradient(180deg, #FFF1E2 0%, #FFF9F3 45%, #FFFFFF 100%)",
     titleAreaInnerShadow:
-      "inset 0 -14px 28px rgba(234, 88, 12, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.65)",
+      "inset 0 -8px 18px rgba(234, 88, 12, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
     tagPillStyle:
-      "bg-white/90 text-orange-700 border-orange-300/60 shadow-[0_2px_10px_rgba(234,88,12,0.10)]",
+      "bg-white/90 text-orange-700 border-orange-200/60 shadow-[0_2px_8px_rgba(234,88,12,0.06)]",
     eyebrowColor: "text-orange-600",
-    backFaceGradient:
-      "linear-gradient(165deg, #FFF9F2 0%, #FFFFFF 50%, #FFEDD5 100%)",
   },
 ];
 
@@ -800,19 +791,16 @@ export function FlippableDeliverableCard({
           </div>
         </div>
 
-        {/* Back Face: Description, Bullet Points, and Action with Matching Pastel Inner Shadow */}
+        {/* Back Face: Clean White Surface (No inner shadow, no pastel gradient) */}
         <div
-          className="absolute inset-0 w-full h-full flex flex-col justify-between text-brand-navy border rounded-[28px] overflow-hidden p-7 sm:p-8 lg:p-9 z-20 cursor-pointer"
+          className="absolute inset-0 w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden p-7 sm:p-8 lg:p-9 z-20 cursor-pointer"
           style={{
-            background: pastelTheme.backFaceGradient,
-            borderColor: pastelTheme.borderColor,
-            boxShadow: pastelTheme.cardShadow,
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
           }}
         >
-          <div className="flex flex-col justify-between h-full">
+          <div className="flex flex-col justify-between h-full bg-white">
             <div>
               <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
                 <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-red-10 border border-brand-red/20 text-brand-red flex items-center justify-center shrink-0">
