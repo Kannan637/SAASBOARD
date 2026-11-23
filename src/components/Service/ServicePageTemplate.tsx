@@ -8,6 +8,7 @@ import { motion, useInView, useReducedMotion, type Variants } from "framer-motio
 import {
   ArrowRight,
   ArrowUpDown,
+  BatteryFull,
   Cable,
   Camera,
   CheckCircle2,
@@ -23,6 +24,7 @@ import {
   Router,
   Server,
   ShieldCheck,
+  Signal,
   Smartphone,
   Sparkles,
   Star,
@@ -99,13 +101,27 @@ export interface ServiceHeroProps {
   ratingLabel?: string;
 }
 
+export type DeliverableAnimatedVariant =
+  | "cctv-camera"
+  | "nvr-blocks"
+  | "phone-live"
+  | "poe-cabling";
+
+export interface DeliverableMediaConfig {
+  variant: DeliverableAnimatedVariant;
+  bg1: string;
+  bg2: string;
+  acc: string;
+  pillMessages: [string, string, string];
+}
+
 export interface ServiceDeliverableItem {
   title: string;
   description: string;
   tag?: string;
   points?: string[];
   iconName?: string;
-  imageSrc?: string;
+  mediaConfig?: DeliverableMediaConfig;
 }
 
 interface ServiceHeroConfig {
@@ -451,45 +467,597 @@ function getDeliverableIcon(title: string, iconName?: string) {
   return Sparkles;
 }
 
-function getDeliverableCardImage(
-  title: string,
-  explicitImageSrc?: string
-): string | undefined {
-  if (explicitImageSrc) return explicitImageSrc;
-  const t = title.toLowerCase();
-  if (t.includes("address") || t.includes("feasibility"))
-    return "/Cards/Address Feasibility Check.png";
-  if (t.includes("select") && t.includes("plan"))
-    return "/Cards/Select Your Fibre Plan.png";
-  if (t.includes("fibre drop") || t.includes("router setup"))
-    return "/Cards/Free Fibre Drop & Router Setup.png";
-  if (t.includes("instant activation") || t.includes("speed test"))
-    return "/Cards/Instant Activation & Speed Test.png";
-  if (t.includes("uncontended") || t.includes("1:1"))
-    return "/Cards/1.1 Uncontended Bandwidth.png";
-  if (t.includes("static ip pool"))
-    return "/Cards/Static IP pool Included.png";
-  if (t.includes("proactive sla") || t.includes("mttr"))
-    return "/Cards/Proactive sla & fast mttr.png";
-  if (t.includes("scalable") || t.includes("1 gbps"))
-    return "/Cards/Scalable up to 1 Gbps.png";
-  if (t.includes("priority routing") || t.includes("business traffic"))
-    return "/Cards/Business Traffic priority Routing.png";
-  if (t.includes("price lock"))
-    return "/Cards/Unlimited price look Protection.png";
-  if (t.includes("field dispatch") || t.includes("commercial"))
-    return "/Cards/24 7 commerical Field Dispatch.png";
-  if (t.includes("port forwarding"))
-    return "/Cards/Static IP & NVR port Forwading.png";
-  if (t.includes("indoor") || t.includes("ip cameras"))
-    return "/Cards/Minimalist Icy-Blue CCTV Camera.png";
-  if (t.includes("nvr storage") || t.includes("cloud backup"))
-    return "/Cards/Cloud-Connected Storage System.png";
-  if (t.includes("smartphone") || t.includes("live"))
-    return "/Cards/Live Security Camera App.png";
-  if (t.includes("clean cabling") || t.includes("amc"))
-    return "/Cards/Clean NVR with Organized Blue Cabling.png";
-  return undefined;
+function AnimatedDeliverableMediaStage({
+  config,
+  shouldReduceMotion,
+}: {
+  config: DeliverableMediaConfig;
+  shouldReduceMotion: boolean;
+}) {
+  const [msgIndex, setMsgIndex] = useState(0);
+
+  useEffect(() => {
+    if (shouldReduceMotion) return;
+    const interval = setInterval(() => {
+      setMsgIndex((prev) => (prev + 1) % config.pillMessages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [config.pillMessages.length, shouldReduceMotion]);
+
+  // CARD 3: Live Smartphone Monitoring — Uses exact WhySash FibreSpeedCard iPhone hardware mockup geometry
+  if (config.variant === "phone-live") {
+    return (
+      <div
+        className={`relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden ${CARD_BG_GRADIENT} pt-3 min-[360px]:pt-4 sm:pt-6 px-3 flex justify-center select-none`}
+      >
+        <style>{`
+          @keyframes sashPhonePush {
+            0%, 8% { transform: translateY(-18px); opacity: 0; }
+            16%, 84% { transform: translateY(0px); opacity: 1; }
+            94%, 100% { transform: translateY(-6px); opacity: 0; }
+          }
+          @keyframes sashPhoneLive {
+            0%, 20% { transform: scale(0.95) translateY(8px); opacity: 0; }
+            30%, 84% { transform: scale(1) translateY(0px); opacity: 1; }
+            94%, 100% { transform: scale(0.97) translateY(4px); opacity: 0; }
+          }
+          @keyframes sashWaveBar {
+            0%, 100% { transform: scaleY(0.35); }
+            50% { transform: scaleY(1); }
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .anim-sash-push, .anim-sash-live, .anim-sash-wave {
+              animation: none !important;
+              opacity: 1 !important;
+              transform: none !important;
+            }
+          }
+        `}</style>
+
+        {/* Smooth Blend into Bottom White Section */}
+        <div aria-hidden="true" className={`${CARD_BOTTOM_BLEND} z-20`} />
+
+        {/* iPhone Hardware Mockup (Matched 1:1 to WhySash FibreSpeedCard) */}
+        <div className="relative z-10 mx-auto w-[270px] min-[360px]:w-[300px] sm:w-[340px] shrink-0">
+          {/* Visible Viewport Window */}
+          <div className="relative h-[228px] min-[360px]:h-[249px] sm:h-[271px] w-full overflow-hidden">
+            {/* Full iPhone Container */}
+            <div className="relative h-[530px] min-[360px]:h-[590px] sm:h-[665px] w-full">
+              {/* Inner iOS Screen */}
+              <div className="absolute left-[2.9%] right-[2.9%] top-[1.4%] bottom-[1.4%] z-10 overflow-hidden rounded-[38px] min-[360px]:rounded-[46px] sm:rounded-[52px] bg-[#F8F9FC] flex flex-col items-center">
+                {/* iOS Status Bar */}
+                <div className="w-full shrink-0 flex h-[34px] min-[360px]:h-[38px] sm:h-[44px] items-center justify-between px-5 min-[360px]:px-7 sm:px-8 pt-1.5 min-[360px]:pt-2">
+                  <span className="text-[11px] min-[360px]:text-[12px] sm:text-[13px] font-medium text-brand-navy">
+                    9:41
+                  </span>
+                  <div className="flex items-center gap-1.5 text-brand-navy">
+                    <Signal size={13} />
+                    <Wifi size={13} />
+                    <BatteryFull size={15} />
+                  </div>
+                </div>
+
+                {/* iOS App Viewport Content */}
+                <div className="w-full px-3.5 min-[360px]:px-4 sm:px-5 pt-1.5 sm:pt-2 flex flex-col gap-2 sm:gap-2.5">
+                  {/* 1. Sliding Push Notification Card */}
+                  <div
+                    className="anim-sash-push rounded-2xl bg-white p-2.5 sm:p-3 shadow-[0_8px_20px_rgba(1,13,59,0.08)] border border-[#E2E5EE] flex items-center gap-2.5"
+                    style={{
+                      animation: shouldReduceMotion
+                        ? "none"
+                        : "sashPhonePush 5.6s cubic-bezier(0.16, 1, 0.3, 1) infinite",
+                    }}
+                  >
+                    <Avatar size="sm" className="size-7 sm:size-8 rounded-xl bg-brand-red text-white shrink-0 after:hidden">
+                      <AvatarFallback className="rounded-xl bg-brand-red text-white text-[10px] font-semibold">
+                        <Camera className="size-3.5 sm:size-4 text-white" />
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center justify-between gap-1">
+                        <p className="text-[11px] sm:text-[12px] font-medium text-brand-navy truncate">
+                          Motion · Entrance Cam 01
+                        </p>
+                        <span className="text-[9.5px] font-mono text-neutral-600 shrink-0">
+                          now
+                        </span>
+                      </div>
+                      <p className="text-[10px] sm:text-[11px] text-neutral-600 truncate mt-0.5">
+                        HD clip saved to NVR storage
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 2. Popping Live 4K Stream Card */}
+                  <div
+                    className="anim-sash-live rounded-2xl bg-brand-navy text-white p-3 sm:p-3.5 shadow-[0_12px_26px_rgba(1,13,59,0.18)] flex flex-col justify-between h-[104px] min-[360px]:h-[114px] sm:h-[124px] relative overflow-hidden"
+                    style={{
+                      animation: shouldReduceMotion
+                        ? "none"
+                        : "sashPhoneLive 5.6s cubic-bezier(0.16, 1, 0.3, 1) infinite",
+                    }}
+                  >
+                    {/* Subtle optical grid inside stream */}
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 opacity-15"
+                      style={{
+                        backgroundImage:
+                          "radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px)",
+                        backgroundSize: "12px 12px",
+                      }}
+                    />
+
+                    <div className="relative z-10 flex items-center justify-between gap-2">
+                      <Badge
+                        variant="live"
+                        className="bg-brand-red text-white border-transparent px-2 py-0.5 text-[9.5px] sm:text-[10px] font-mono uppercase tracking-wider"
+                      >
+                        <span className="size-1.5 rounded-full bg-white animate-pulse" />
+                        LIVE 4K
+                      </Badge>
+                      <span className="font-mono text-[9.5px] sm:text-[10px] text-white/85 bg-white/12 px-2 py-0.5 rounded-full border border-white/15">
+                        0 ms Fibre
+                      </span>
+                    </div>
+
+                    {/* Bottom Stream Telemetry Bar */}
+                    <div className="relative z-10 flex items-center justify-between gap-2 pt-2 border-t border-white/12">
+                      <div className="flex items-center gap-1.5 min-w-0">
+                        <Video className="size-3.5 text-red-300 shrink-0" />
+                        <span className="text-[10.5px] sm:text-[11.5px] font-medium text-white truncate">
+                          {config.pillMessages[msgIndex]}
+                        </span>
+                      </div>
+                      {/* Animated Live Bitrate Bars */}
+                      <div className="flex items-end gap-0.5 h-3 shrink-0" aria-hidden="true">
+                        {[0.45, 0.9, 0.65, 1, 0.55].map((h, bIdx) => (
+                          <span
+                            key={bIdx}
+                            className="anim-sash-wave w-0.5 bg-emerald-400 rounded-full origin-bottom"
+                            style={{
+                              height: `${h * 12}px`,
+                              animation: shouldReduceMotion
+                                ? "none"
+                                : `sashWaveBar ${0.8 + bIdx * 0.15}s ease-in-out infinite`,
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Hardware iPhone Frame Overlay (/Frame/Iphone Frame.png) */}
+              <Image
+                src="/Frame/Iphone%20Frame.png"
+                alt="iPhone Frame"
+                aria-hidden="true"
+                width={484}
+                height={876}
+                priority
+                className="pointer-events-none select-none absolute left-[-126.45%] top-[-3.2%] w-[352.48%] h-[105.25%] max-w-none z-20"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={`relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3.5 min-[360px]:p-4 sm:p-5 select-none group/stage`}
+    >
+      {/* Embedded Keyframe Animations + Reduced Motion Override */}
+      <style>{`
+        @keyframes sashScanSweep {
+          0% { top: 6%; opacity: 0.25; }
+          50% { opacity: 0.9; }
+          100% { top: 88%; opacity: 0.25; }
+        }
+        @keyframes sashTargetTrack {
+          0%, 100% { transform: translateX(0px); }
+          50% { transform: translateX(88px); }
+        }
+        @keyframes sashLedPulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.25; }
+        }
+        @keyframes sashNvrCell {
+          0%, 10% { background-color: #F3F4F7; border-color: #E2E5EE; }
+          25%, 85% { background-color: #010D3B; border-color: #010D3B; }
+          96%, 100% { background-color: #F3F4F7; border-color: #E2E5EE; }
+        }
+        @keyframes sashPoePulse {
+          0% { stroke-dashoffset: 220; }
+          100% { stroke-dashoffset: 0; }
+        }
+        @keyframes sashPillSlide {
+          0% { opacity: 0; transform: translateY(5px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .anim-sash-scan,
+          .anim-sash-track,
+          .anim-sash-led,
+          .anim-sash-cell,
+          .anim-sash-poe,
+          .anim-sash-pill {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+          }
+        }
+      `}</style>
+
+      {/* Smooth Blend into Bottom White Section (Exact match to WhySash) */}
+      <div aria-hidden="true" className={`${CARD_BOTTOM_BLEND} z-10`} />
+
+      {/* Top Header Bar: Brand Navy Step/Feature Pill + Cycling Status Pill */}
+      <div className="relative z-20 w-full flex items-center justify-between gap-2">
+        <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/20">
+          {config.variant === "cctv-camera" && <Camera className="w-3.5 h-3.5" />}
+          {config.variant === "nvr-blocks" && <HardDrive className="w-3.5 h-3.5" />}
+          {config.variant === "poe-cabling" && <Wrench className="w-3.5 h-3.5" />}
+          <span>
+            {config.variant === "cctv-camera" && "4K IP67 Optics"}
+            {config.variant === "nvr-blocks" && "24/7 NVR Retention"}
+            {config.variant === "poe-cabling" && "PoE+ & Local AMC"}
+          </span>
+        </span>
+
+        {/* Frosted Cycling Status Badge */}
+        <Badge
+          variant="outline"
+          className="min-h-6 rounded-full bg-white/90 backdrop-blur-xs px-2.5 py-0.5 text-[10px] min-[360px]:text-[11px] font-medium text-brand-navy shadow-xs border border-white/60 gap-1.5"
+        >
+          <span className="size-1.5 rounded-full bg-brand-red animate-pulse shrink-0" />
+          <span
+            key={msgIndex}
+            className="anim-sash-pill truncate max-w-[160px] sm:max-w-[210px]"
+            style={{
+              animation: shouldReduceMotion
+                ? "none"
+                : "sashPillSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+            }}
+          >
+            {config.pillMessages[msgIndex]}
+          </span>
+        </Badge>
+      </div>
+
+      {/* CENTER ANIMATED PRODUCT SUBJECT MODULE */}
+      <div className="relative z-20 flex-1 w-full flex items-center justify-center my-auto pt-2 pb-1">
+        {/* CARD 1: Indoor & Outdoor HD IP Cameras */}
+        {config.variant === "cctv-camera" && (
+          <Card className="w-full max-w-[360px] p-0 gap-0 rounded-[20px] bg-white/95 backdrop-blur-md border border-white ring-1 ring-brand-navy/[0.06] shadow-[0_14px_34px_rgba(1,13,59,0.12)] overflow-hidden">
+            {/* Top Bar inside Camera Card */}
+            <div className="flex items-center justify-between px-3.5 sm:px-4 py-2.5 border-b border-[#E2E5EE] bg-white">
+              <div className="flex items-center gap-2 min-w-0">
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-lg bg-red-10 text-brand-red">
+                  <Video className="size-3.5" />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-[12px] sm:text-[13px] font-medium text-brand-navy truncate leading-tight">
+                    Main Gate · Cam 01
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-1.5 shrink-0">
+                <Badge
+                  variant="live"
+                  className="bg-brand-red text-white border-transparent px-2 py-0.5 text-[9.5px] font-mono uppercase"
+                >
+                  <span
+                    className="anim-sash-led size-1.5 rounded-full bg-white"
+                    style={{
+                      animation: shouldReduceMotion
+                        ? "none"
+                        : "sashLedPulse 1.2s ease-in-out infinite",
+                    }}
+                  />
+                  REC 4K
+                </Badge>
+              </div>
+            </div>
+
+            {/* Optical Viewfinder Area */}
+            <div className="relative h-[108px] sm:h-[122px] w-full bg-[#F8F9FC] px-4 py-2.5 flex items-center justify-between overflow-hidden">
+              {/* Halftone dot matrix backdrop */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(rgba(1, 13, 59, 0.12) 1px, transparent 1px)",
+                  backgroundSize: "12px 12px",
+                }}
+              />
+
+              {/* Smooth Vertical Scan Sweep */}
+              <div
+                aria-hidden="true"
+                className="anim-sash-scan pointer-events-none absolute inset-x-0 h-[1.5px] bg-linear-to-r from-transparent via-[#5551FF] to-transparent shadow-[0_0_8px_#5551FF]"
+                style={{
+                  animation: shouldReduceMotion
+                    ? "none"
+                    : "sashScanSweep 3.4s ease-in-out infinite alternate",
+                }}
+              />
+
+              {/* Animated AI Detection Bounding Box */}
+              <div
+                className="anim-sash-track relative z-10 flex flex-col items-start"
+                style={{
+                  animation: shouldReduceMotion
+                    ? "none"
+                    : "sashTargetTrack 5s ease-in-out infinite",
+                }}
+              >
+                <span className="mb-1 inline-flex items-center gap-1 rounded-md bg-[#5551FF] px-1.5 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-wider text-white shadow-2xs">
+                  Person · 99%
+                </span>
+                <div className="relative w-14 h-14 sm:w-15 sm:h-15 rounded-xl border-2 border-[#5551FF] bg-white/85 backdrop-blur-2xs shadow-[0_6px_16px_rgba(85,81,255,0.18)] flex items-center justify-center">
+                  <span className="absolute -top-0.5 -left-0.5 size-2 border-t-2 border-l-2 border-brand-navy" />
+                  <span className="absolute -top-0.5 -right-0.5 size-2 border-t-2 border-r-2 border-brand-navy" />
+                  <span className="absolute -bottom-0.5 -left-0.5 size-2 border-b-2 border-l-2 border-brand-navy" />
+                  <span className="absolute -bottom-0.5 -right-0.5 size-2 border-b-2 border-r-2 border-brand-navy" />
+                  <Users className="size-6 text-brand-navy" />
+                </div>
+              </div>
+
+              {/* Right Hardware Telemetry Pills */}
+              <div className="relative z-10 flex flex-col items-end gap-1.5">
+                <span className="inline-flex items-center gap-1.5 rounded-lg bg-white px-2.5 py-1 text-[10px] font-mono font-medium text-brand-navy border border-[#E2E5EE] shadow-2xs">
+                  <span className="size-1.5 rounded-full bg-emerald-500" />
+                  IP67 Weatherproof
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-lg bg-white px-2.5 py-1 text-[10px] font-mono font-medium text-neutral-600 border border-[#E2E5EE] shadow-2xs">
+                  <ShieldCheck className="size-3 text-[#5551FF]" />
+                  30m Smart IR Night
+                </span>
+              </div>
+            </div>
+          </Card>
+        )}
+
+        {/* CARD 2: NVR Storage & Cloud Backup */}
+        {config.variant === "nvr-blocks" && (
+          <Card className="w-full max-w-[360px] p-0 gap-0 rounded-[20px] bg-white/95 backdrop-blur-md border border-white ring-1 ring-brand-navy/[0.06] shadow-[0_14px_34px_rgba(1,13,59,0.12)] overflow-hidden">
+            {/* Top Metric Row */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-[#E2E5EE] bg-white">
+              <div>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-xl sm:text-2xl font-semibold text-brand-navy tracking-tight leading-none">
+                    60+ Days
+                  </span>
+                  <span className="text-[11px] font-mono text-emerald-600 font-medium">
+                    24/7 Loop
+                  </span>
+                </div>
+                <p className="text-[11px] text-neutral-600 mt-0.5">
+                  Surveillance-grade NVR retention
+                </p>
+              </div>
+              <Badge
+                variant="secondary"
+                className="bg-[#F3F4F7] text-brand-navy border-[#E2E5EE] font-mono text-[10px] px-2.5 py-1"
+              >
+                H.265+ · -50% Size
+              </Badge>
+            </div>
+
+            {/* 30-Day Sequential Storage Block Matrix */}
+            <div className="px-4 py-3 bg-[#F8F9FC]">
+              <div className="flex items-center justify-between text-[10px] font-mono text-neutral-600 mb-2">
+                <span>30-DAY BLOCK TIMELINE</span>
+                <span className="text-brand-navy font-medium">FIFO Healthy</span>
+              </div>
+              <div
+                className="grid grid-cols-10 gap-1.5"
+                role="img"
+                aria-label="30-day NVR storage block timeline filling sequentially"
+              >
+                {Array.from({ length: 30 }).map((_, bIdx) => (
+                  <span
+                    key={bIdx}
+                    className="anim-sash-cell h-3.5 sm:h-4 rounded-[4px] border border-[#E2E5EE] bg-[#F3F4F7]"
+                    style={{
+                      backgroundColor: shouldReduceMotion
+                        ? "#010D3B"
+                        : undefined,
+                      animation: shouldReduceMotion
+                        ? "none"
+                        : "sashNvrCell 6s ease-in-out infinite",
+                      animationDelay: `${bIdx * 0.11}s`,
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          </Card>
+        )}
+
+        {/* CARD 4: Clean Cabling & Local AMC Support */}
+        {config.variant === "poe-cabling" && (
+          <Card className="w-full max-w-[360px] p-0 gap-0 rounded-[20px] bg-white/95 backdrop-blur-md border border-white ring-1 ring-brand-navy/[0.06] shadow-[0_14px_34px_rgba(1,13,59,0.12)] overflow-hidden">
+            {/* Top Bar */}
+            <div className="flex items-center justify-between px-4 py-2.5 border-b border-[#E2E5EE] bg-white">
+              <div className="flex items-center gap-2">
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-lg bg-red-10 text-brand-red">
+                  <Cable className="size-3.5" />
+                </span>
+                <span className="text-[12px] sm:text-[13px] font-medium text-brand-navy">
+                  Cat6 PoE+ Conduit Topology
+                </span>
+              </div>
+              <Badge
+                variant="success"
+                className="bg-emerald-500/12 text-emerald-700 border-emerald-500/25 font-mono text-[10px] px-2 py-0.5"
+              >
+                <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                48V Active
+              </Badge>
+            </div>
+
+            {/* Pipeline Diagram (Inspired by IntegrationsSection ConnectorLines) */}
+            <div className="px-3.5 py-2.5 bg-[#F8F9FC] flex items-center justify-center">
+              <svg
+                viewBox="0 0 310 98"
+                className="w-full h-[94px] sm:h-[104px] overflow-visible"
+                role="img"
+                aria-label="PoE switch routing structured Cat6 cables to 3 IP cameras"
+              >
+                <defs>
+                  <linearGradient id="sashPoeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#5551FF" stopOpacity="0" />
+                    <stop offset="50%" stopColor="#5551FF" stopOpacity="1" />
+                    <stop offset="100%" stopColor="#DE0302" stopOpacity="0.9" />
+                  </linearGradient>
+                </defs>
+
+                {/* Left Hardware Tile: PoE+ Switch */}
+                <g transform="translate(4, 13)">
+                  <rect
+                    x="0"
+                    y="0"
+                    width="78"
+                    height="72"
+                    rx="14"
+                    fill="#010D3B"
+                  />
+                  <text
+                    x="39"
+                    y="24"
+                    textAnchor="middle"
+                    fill="#FFFFFF"
+                    fontSize="9.5"
+                    fontWeight="600"
+                    fontFamily="var(--font-mono), monospace"
+                  >
+                    PoE+ RACK
+                  </text>
+                  <text
+                    x="39"
+                    y="36"
+                    textAnchor="middle"
+                    fill="rgba(255,255,255,0.65)"
+                    fontSize="8"
+                    fontFamily="var(--font-mono), monospace"
+                  >
+                    GIGABIT CAT6
+                  </text>
+                  {[0, 1, 2].map((led) => (
+                    <g key={led} transform={`translate(${17 + led * 17}, 47)`}>
+                      <rect
+                        x="0"
+                        y="0"
+                        width="10"
+                        height="10"
+                        rx="3"
+                        fill="#1A2552"
+                      />
+                      <circle
+                        cx="5"
+                        cy="5"
+                        r="2.5"
+                        fill="#10B981"
+                        className="anim-sash-led"
+                        style={{
+                          animation: shouldReduceMotion
+                            ? "none"
+                            : `sashLedPulse ${1.1 + led * 0.25}s ease-in-out infinite`,
+                        }}
+                      />
+                    </g>
+                  ))}
+                </g>
+
+                {/* 3 Structured Right-Angle Conduit Paths + Animated Pulses */}
+                {[
+                  {
+                    id: "sash-poe-1",
+                    d: "M 82 35 L 138 35 Q 146 35 146 27 L 146 23 Q 146 15 154 15 L 204 15",
+                    camY: 3,
+                    label: "Gate · 4K",
+                    delay: "0s",
+                  },
+                  {
+                    id: "sash-poe-2",
+                    d: "M 82 49 L 204 49",
+                    camY: 37,
+                    label: "Lobby · IR",
+                    delay: "0.4s",
+                  },
+                  {
+                    id: "sash-poe-3",
+                    d: "M 82 63 L 138 63 Q 146 63 146 71 L 146 75 Q 146 83 154 83 L 204 83",
+                    camY: 71,
+                    label: "Yard · IP67",
+                    delay: "0.8s",
+                  },
+                ].map((route) => (
+                  <g key={route.id}>
+                    {/* Base Conduit Line */}
+                    <path
+                      d={route.d}
+                      fill="none"
+                      stroke="#E2E5EE"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                    {/* Animated Pulse Stream */}
+                    <path
+                      d={route.d}
+                      fill="none"
+                      stroke="url(#sashPoeGrad)"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeDasharray="38 182"
+                      className="anim-sash-poe"
+                      style={{
+                        animation: shouldReduceMotion
+                          ? "none"
+                          : "sashPoePulse 2.4s linear infinite",
+                        animationDelay: route.delay,
+                      }}
+                    />
+
+                    {/* Right Camera Endpoint Pill */}
+                    <g transform={`translate(204, ${route.camY})`}>
+                      <rect
+                        x="0"
+                        y="0"
+                        width="102"
+                        height="24"
+                        rx="8"
+                        fill="#FFFFFF"
+                        stroke="#E2E5EE"
+                        strokeWidth="1.25"
+                      />
+                      <circle cx="13" cy="12" r="3.5" fill="#10B981" />
+                      <text
+                        x="24"
+                        y="15.5"
+                        fill="#010D3B"
+                        fontSize="10"
+                        fontWeight="500"
+                        fontFamily="var(--font-sans), sans-serif"
+                      >
+                        {route.label}
+                      </text>
+                    </g>
+                  </g>
+                ))}
+              </svg>
+            </div>
+          </Card>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export function FlippableDeliverableCard({
@@ -507,7 +1075,6 @@ export function FlippableDeliverableCard({
   const hasUserInteracted = useRef(false);
   const shouldReduceMotion = useReducedMotion();
   const IconComponent = getDeliverableIcon(item.title, item.iconName);
-  const resolvedCardImage = getDeliverableCardImage(item.title, item.imageSrc);
 
   useEffect(() => {
     if (!autoFlip || hasUserInteracted.current) return;
@@ -556,9 +1123,9 @@ export function FlippableDeliverableCard({
           transform: isFlipped && !shouldReduceMotion ? "rotateY(180deg)" : "rotateY(0deg)",
         }}
       >
-        {/* Front Face: Media Stage + Title Area */}
+        {/* Front Face: Animated Media Stage + Title Area */}
         <div
-          className="w-full h-full flex flex-col justify-between bg-white text-[#0f1b3d] border border-[rgba(15,27,61,0.07)] rounded-[28px] shadow-[0_8px_30px_rgba(20,20,50,0.06)] overflow-hidden"
+          className="w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -566,21 +1133,11 @@ export function FlippableDeliverableCard({
         >
           <div className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
             {/* Top Media Stage */}
-            {resolvedCardImage ? (
-              <div className="relative w-full flex-1 min-h-[340px] min-[360px]:min-h-[355px] sm:min-h-[375px] overflow-hidden bg-[#EAF4FF] select-none group/stage">
-                <Image
-                  src={resolvedCardImage}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-center select-none transition-transform duration-500 ease-out group-hover/flip:scale-[1.03]"
-                />
-                {/* Smooth Bottom Blend into White Title Section */}
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-14 sm:h-16 z-10 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.55)_50%,#FFFFFF_100%)]"
-                />
-              </div>
+            {item.mediaConfig ? (
+              <AnimatedDeliverableMediaStage
+                config={item.mediaConfig}
+                shouldReduceMotion={!!shouldReduceMotion}
+              />
             ) : (
               /* Default Top Stage with SASH Red Gradient Background (Edge-to-Edge) */
               <div
@@ -618,13 +1175,13 @@ export function FlippableDeliverableCard({
               </div>
             )}
 
-            {/* Front Bottom: Small Red Eyebrow (12px) + 22px Medium Dark Navy Title + Black Rounded "+" Button */}
+            {/* Front Bottom: Title Only */}
             <div className="relative z-20 bg-white px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between">
-              <div className="pr-3">
-                <p className="text-[12px] font-semibold text-brand-red uppercase tracking-wider mb-1">
+              <div className="pr-2">
+                <p className="text-[11px] font-semibold text-brand-red uppercase tracking-wider mb-1">
                   {item.tag || `Feature 0${idx + 1}`}
                 </p>
-                <h3 className="text-[#0f1b3d] !text-lg min-[360px]:!text-xl sm:!text-[22px] font-medium tracking-tight leading-snug">
+                <h3 className="text-brand-navy !text-lg min-[360px]:!text-xl sm:!text-2xl font-semibold tracking-normal">
                   {item.title}
                 </h3>
               </div>
