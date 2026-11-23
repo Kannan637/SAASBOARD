@@ -28,8 +28,12 @@ import {
   Star,
   TrendingUp,
   Users,
+  Video,
+  Wifi,
   Wrench,
   Zap,
+  Activity,
+  Bell,
 } from "lucide-react";
 import CardCanvasPattern, {
   CardPatternType,
@@ -45,7 +49,6 @@ import {
   AppleStagger,
   AppleStaggerItem,
 } from "@/components/ui/apple-scroll";
-import { ServiceDeliverableMediaStage } from "./ServiceDeliverableMedia";
 
 const TOTAL_CLIENT_LOGOS = 34;
 
@@ -83,12 +86,37 @@ export interface ServiceHeroProps {
   ratingLabel?: string;
 }
 
+export type DeliverableMediaTheme = "peach" | "sky" | "purple" | "emerald";
+
+export interface DeliverableMediaRow {
+  id: string;
+  label: string;
+  sublabel?: string;
+  status: string;
+  statusTone: "green" | "blue" | "orange";
+}
+
+export interface DeliverableMediaConfig {
+  theme: DeliverableMediaTheme;
+  mediaType: "status-list" | "metric-chart" | "chat-feed";
+  focalBadgeText?: string;
+  rows?: DeliverableMediaRow[];
+  metricValue?: string;
+  metricDelta?: string;
+  metricSubtitle?: string;
+  brandMessage?: string;
+  brandTimestamp?: string;
+  replyMessage?: string;
+  replyAuthor?: string;
+}
+
 export interface ServiceDeliverableItem {
   title: string;
   description: string;
   tag?: string;
   points?: string[];
   iconName?: string;
+  mediaConfig?: DeliverableMediaConfig;
 }
 
 interface ServiceHeroConfig {
@@ -434,6 +462,90 @@ function getDeliverableIcon(title: string, iconName?: string) {
   return Sparkles;
 }
 
+const MEDIA_THEME_STYLES: Record<
+  DeliverableMediaTheme,
+  {
+    baseBg: string;
+    blob1: string;
+    blob2: string;
+    blob3: string;
+    focalGlow: string;
+    focalIconColor: string;
+    ringBorder: string;
+    chipBg: string;
+  }
+> = {
+  peach: {
+    baseBg: "bg-[#FFF6EE]",
+    blob1: "bg-[#FDBA74]",
+    blob2: "bg-[#FB923C]",
+    blob3: "bg-[#FECDD3]",
+    focalGlow: "from-orange-400/60 via-amber-300/40 to-transparent",
+    focalIconColor: "text-orange-600",
+    ringBorder: "border-orange-400/20",
+    chipBg: "bg-orange-500/10 border-orange-500/20",
+  },
+  sky: {
+    baseBg: "bg-[#EFF8FF]",
+    blob1: "bg-[#7DD3FC]",
+    blob2: "bg-[#38BDF8]",
+    blob3: "bg-[#BFDBFE]",
+    focalGlow: "from-sky-400/60 via-cyan-300/40 to-transparent",
+    focalIconColor: "text-sky-600",
+    ringBorder: "border-sky-400/20",
+    chipBg: "bg-sky-500/10 border-sky-500/20",
+  },
+  purple: {
+    baseBg: "bg-[#FAF2FF]",
+    blob1: "bg-[#D8B4FE]",
+    blob2: "bg-[#F472B6]",
+    blob3: "bg-[#C4B5FD]",
+    focalGlow: "from-purple-400/60 via-pink-300/40 to-transparent",
+    focalIconColor: "text-purple-600",
+    ringBorder: "border-purple-400/20",
+    chipBg: "bg-purple-500/10 border-purple-500/20",
+  },
+  emerald: {
+    baseBg: "bg-[#ECFDF5]",
+    blob1: "bg-[#6EE7B7]",
+    blob2: "bg-[#34D399]",
+    blob3: "bg-[#A7F3D0]",
+    focalGlow: "from-emerald-400/60 via-teal-300/40 to-transparent",
+    focalIconColor: "text-emerald-600",
+    ringBorder: "border-emerald-400/20",
+    chipBg: "bg-emerald-500/10 border-emerald-500/20",
+  },
+};
+
+function MediaStatusPill({
+  label,
+  tone,
+}: {
+  label: string;
+  tone: "green" | "blue" | "orange";
+}) {
+  const styles = {
+    green: "bg-emerald-50 text-emerald-700 border-emerald-200/80",
+    blue: "bg-sky-50 text-sky-700 border-sky-200/80",
+    orange: "bg-orange-50 text-orange-700 border-orange-200/80",
+  }[tone];
+
+  const dotColor = {
+    green: "bg-emerald-500",
+    blue: "bg-sky-500",
+    orange: "bg-orange-500",
+  }[tone];
+
+  return (
+    <span
+      className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-[10px] sm:text-[11px] font-medium leading-none shrink-0 ${styles}`}
+    >
+      <span className={`size-1.5 rounded-full ${dotColor}`} />
+      {label}
+    </span>
+  );
+}
+
 export function FlippableDeliverableCard({
   item,
   idx,
@@ -506,15 +618,375 @@ export function FlippableDeliverableCard({
           }}
         >
           <div className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
-            {/* Top Media Stage: Title-Matched Pipeline Lens or Dual-Panel Tactile Pills */}
-            <div
-              className="relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden select-none group/stage"
-            >
-              <ServiceDeliverableMediaStage title={item.title} idx={idx} />
+            {/* Top Media Stage */}
+            {item.mediaConfig ? (
+              <div
+                className={`relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden ${
+                  MEDIA_THEME_STYLES[item.mediaConfig.theme].baseBg
+                } flex flex-col justify-between p-3.5 min-[360px]:p-4 sm:p-5 select-none group/stage`}
+              >
+                {/* LAYER 1: Mesh Gradient Background (3 blurred radial blobs) */}
+                <div
+                  aria-hidden="true"
+                  className={`pointer-events-none absolute -top-10 -left-10 w-48 h-48 rounded-full ${
+                    MEDIA_THEME_STYLES[item.mediaConfig.theme].blob1
+                  } opacity-60 blur-[55px]`}
+                />
+                <div
+                  aria-hidden="true"
+                  className={`pointer-events-none absolute top-10 -right-10 w-52 h-52 rounded-full ${
+                    MEDIA_THEME_STYLES[item.mediaConfig.theme].blob2
+                  } opacity-60 blur-[60px]`}
+                />
+                <div
+                  aria-hidden="true"
+                  className={`pointer-events-none absolute -bottom-10 left-1/3 w-44 h-44 rounded-full ${
+                    MEDIA_THEME_STYLES[item.mediaConfig.theme].blob3
+                  } opacity-60 blur-[50px]`}
+                />
 
-              {/* Smooth Blend into Bottom White Section */}
-              <div aria-hidden="true" className={`${CARD_BOTTOM_BLEND} z-20`} />
-            </div>
+                {/* Smooth Blend into Bottom White Section */}
+                <div aria-hidden="true" className={`${CARD_BOTTOM_BLEND} z-10`} />
+
+                {/* LAYER 3: Decorative Dot Grid & Concentric Rings */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 opacity-[0.35]"
+                  style={{
+                    backgroundImage:
+                      "radial-gradient(rgba(15, 23, 42, 0.16) 1px, transparent 1px)",
+                    backgroundSize: "14px 14px",
+                    maskImage:
+                      "radial-gradient(circle at 50% 45%, black 35%, transparent 82%)",
+                    WebkitMaskImage:
+                      "radial-gradient(circle at 50% 45%, black 35%, transparent 82%)",
+                  }}
+                />
+                <div
+                  aria-hidden="true"
+                  className={`pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 rounded-full border ${
+                    MEDIA_THEME_STYLES[item.mediaConfig.theme].ringBorder
+                  }`}
+                />
+                <div
+                  aria-hidden="true"
+                  className={`pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full border ${
+                    MEDIA_THEME_STYLES[item.mediaConfig.theme].ringBorder
+                  } opacity-60`}
+                />
+
+                {/* Decorative Floating Micro-Icons with slight rotation & drop shadows */}
+                <div
+                  aria-hidden="true"
+                  className="absolute top-13 left-4 sm:left-6 z-20 -rotate-6 rounded-xl bg-white/90 p-2 shadow-[0_6px_16px_rgba(15,23,42,0.10)] border border-white transition-transform duration-300 group-hover/stage:-translate-y-0.5"
+                >
+                  {item.mediaConfig.theme === "peach" && (
+                    <Video className="size-3.5 text-orange-500" />
+                  )}
+                  {item.mediaConfig.theme === "sky" && (
+                    <HardDrive className="size-3.5 text-sky-600" />
+                  )}
+                  {item.mediaConfig.theme === "purple" && (
+                    <Bell className="size-3.5 text-purple-600" />
+                  )}
+                  {item.mediaConfig.theme === "emerald" && (
+                    <Cable className="size-3.5 text-emerald-600" />
+                  )}
+                </div>
+                <div
+                  aria-hidden="true"
+                  className="absolute top-13 right-4 sm:right-6 z-20 rotate-6 rounded-xl bg-white/90 p-2 shadow-[0_6px_16px_rgba(15,23,42,0.10)] border border-white transition-transform duration-300 group-hover/stage:translate-y-0.5"
+                >
+                  {item.mediaConfig.theme === "peach" && (
+                    <ShieldCheck className="size-3.5 text-emerald-600" />
+                  )}
+                  {item.mediaConfig.theme === "sky" && (
+                    <Activity className="size-3.5 text-sky-500" />
+                  )}
+                  {item.mediaConfig.theme === "purple" && (
+                    <Wifi className="size-3.5 text-pink-500" />
+                  )}
+                  {item.mediaConfig.theme === "emerald" && (
+                    <Wrench className="size-3.5 text-teal-600" />
+                  )}
+                </div>
+
+                {/* Top Badges Bar + LAYER 4: Glowing Focal Element */}
+                <div className="relative z-20 w-full flex items-center justify-between gap-2">
+                  <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/20">
+                    <span>0{idx + 1}</span>
+                  </span>
+
+                  {/* Glowing Focal Pill */}
+                  <div className="relative flex items-center justify-center">
+                    <div
+                      aria-hidden="true"
+                      className={`pointer-events-none absolute -inset-2.5 rounded-full bg-radial ${
+                        MEDIA_THEME_STYLES[item.mediaConfig.theme].focalGlow
+                      } blur-md`}
+                    />
+                    <div className="relative flex items-center gap-1.5 rounded-full bg-white px-3 py-1 shadow-[0_8px_20px_rgba(15,23,42,0.10)] border border-white">
+                      <span
+                        className={`flex size-5 items-center justify-center rounded-full border ${
+                          MEDIA_THEME_STYLES[item.mediaConfig.theme].chipBg
+                        }`}
+                      >
+                        <IconComponent
+                          className={`size-3 ${
+                            MEDIA_THEME_STYLES[item.mediaConfig.theme]
+                              .focalIconColor
+                          }`}
+                        />
+                      </span>
+                      <span className="text-[10px] sm:text-[11px] font-semibold tracking-tight text-neutral-800">
+                        {item.mediaConfig.focalBadgeText || item.tag}
+                      </span>
+                    </div>
+                  </div>
+
+                  {item.tag && (
+                    <span className="hidden sm:inline-flex min-h-6 items-center rounded-full bg-white/90 backdrop-blur-xs px-2.5 text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-brand-navy shadow-xs border border-white/40">
+                      {item.tag}
+                    </span>
+                  )}
+                </div>
+
+                {/* LAYER 2: Floating Frosted-Glass UI Mockup (Real HTML/SVG, bottom-cropped & masked) */}
+                <div
+                  className="absolute inset-x-4 sm:inset-x-8 top-[58px] sm:top-[64px] bottom-[-12px] z-20 rounded-[16px] bg-white/85 backdrop-blur-[14px] border border-white/90 shadow-[0_12px_32px_rgba(20,20,50,0.08)] p-3.5 sm:p-4 flex flex-col justify-between"
+                  style={{
+                    maskImage:
+                      "linear-gradient(to bottom, #000 55%, transparent 100%)",
+                    WebkitMaskImage:
+                      "linear-gradient(to bottom, #000 55%, transparent 100%)",
+                  }}
+                >
+                  {/* Status List Mockup (Card 1 & Card 4) */}
+                  {item.mediaConfig.mediaType === "status-list" &&
+                    item.mediaConfig.rows && (
+                      <div className="space-y-2 sm:space-y-2.5">
+                        {item.mediaConfig.rows.map((row, rIdx) => {
+                          const isLast =
+                            rIdx === item.mediaConfig!.rows!.length - 1;
+                          return (
+                            <div
+                              key={row.id}
+                              className={`flex items-center justify-between gap-2 rounded-xl bg-white/95 px-3 py-2 sm:py-2.5 border border-black/[0.04] shadow-[0_2px_8px_rgba(0,0,0,0.02)] ${
+                                isLast ? "blur-[1.5px] opacity-75" : ""
+                              }`}
+                            >
+                              <div className="flex items-center gap-2.5 min-w-0">
+                                <span
+                                  className={`flex size-7 sm:size-8 shrink-0 items-center justify-center rounded-lg border ${
+                                    MEDIA_THEME_STYLES[item.mediaConfig!.theme]
+                                      .chipBg
+                                  }`}
+                                >
+                                  <IconComponent
+                                    className={`size-3.5 sm:size-4 ${
+                                      MEDIA_THEME_STYLES[
+                                        item.mediaConfig!.theme
+                                      ].focalIconColor
+                                    }`}
+                                  />
+                                </span>
+                                <div className="min-w-0">
+                                  <p className="text-xs sm:text-[13px] font-medium text-neutral-800 truncate leading-tight">
+                                    {row.label}
+                                  </p>
+                                  {row.sublabel && (
+                                    <p className="text-[10px] sm:text-[11px] text-neutral-400 truncate leading-tight mt-0.5">
+                                      {row.sublabel}
+                                    </p>
+                                  )}
+                                </div>
+                              </div>
+                              <MediaStatusPill
+                                label={row.status}
+                                tone={row.statusTone}
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                  {/* Metric + Smooth SVG Curve Mockup (Card 2) */}
+                  {item.mediaConfig.mediaType === "metric-chart" && (
+                    <div className="flex flex-col h-full justify-between">
+                      <div className="flex items-start justify-between gap-2 px-1">
+                        <div>
+                          <p className="text-[10px] sm:text-[11px] font-medium uppercase tracking-wider text-neutral-400">
+                            {item.mediaConfig.metricSubtitle}
+                          </p>
+                          <div className="text-2xl sm:text-[28px] font-bold tracking-tight text-neutral-900 leading-tight mt-0.5">
+                            {item.mediaConfig.metricValue}
+                          </div>
+                        </div>
+                        <span className="inline-flex items-center gap-1 rounded-full bg-sky-50 border border-sky-200/80 px-2.5 py-1 text-[10px] sm:text-[11px] font-semibold text-sky-700">
+                          <Sparkles className="size-3 text-sky-500" />
+                          {item.mediaConfig.metricDelta}
+                        </span>
+                      </div>
+
+                      <div className="relative w-full h-[105px] sm:h-[125px] mt-1">
+                        <svg
+                          viewBox="0 0 280 95"
+                          className="w-full h-full overflow-visible"
+                          aria-hidden="true"
+                        >
+                          <defs>
+                            <linearGradient
+                              id={`skyChartArea-${idx}`}
+                              x1="0"
+                              y1="0"
+                              x2="0"
+                              y2="1"
+                            >
+                              <stop
+                                offset="0%"
+                                stopColor="#0284C7"
+                                stopOpacity="0.28"
+                              />
+                              <stop
+                                offset="100%"
+                                stopColor="#38BDF8"
+                                stopOpacity="0.0"
+                              />
+                            </linearGradient>
+                            <linearGradient
+                              id={`skyChartLine-${idx}`}
+                              x1="0"
+                              y1="0"
+                              x2="1"
+                              y2="0"
+                            >
+                              <stop offset="0%" stopColor="#38BDF8" />
+                              <stop offset="50%" stopColor="#0284C7" />
+                              <stop offset="100%" stopColor="#0369A1" />
+                            </linearGradient>
+                          </defs>
+                          <line
+                            x1="0"
+                            y1="24"
+                            x2="280"
+                            y2="24"
+                            stroke="rgba(15,23,42,0.05)"
+                            strokeDasharray="3 3"
+                          />
+                          <line
+                            x1="0"
+                            y1="56"
+                            x2="280"
+                            y2="56"
+                            stroke="rgba(15,23,42,0.05)"
+                            strokeDasharray="3 3"
+                          />
+                          <path
+                            d="M 0 72 C 45 64, 75 38, 115 44 C 155 48, 185 18, 230 22 C 250 24, 265 12, 280 10 L 280 95 L 0 95 Z"
+                            fill={`url(#skyChartArea-${idx})`}
+                          />
+                          <path
+                            d="M 0 72 C 45 64, 75 38, 115 44 C 155 48, 185 18, 230 22 C 250 24, 265 12, 280 10"
+                            fill="none"
+                            stroke={`url(#skyChartLine-${idx})`}
+                            strokeWidth="2.75"
+                            strokeLinecap="round"
+                          />
+                          <circle
+                            cx="230"
+                            cy="22"
+                            r="6.5"
+                            fill="#0284C7"
+                            fillOpacity="0.2"
+                          />
+                          <circle
+                            cx="230"
+                            cy="22"
+                            r="3.5"
+                            fill="#FFFFFF"
+                            stroke="#0284C7"
+                            strokeWidth="2"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Chat Bubble Feed Mockup (Card 3) */}
+                  {item.mediaConfig.mediaType === "chat-feed" && (
+                    <div className="flex flex-col gap-2.5 sm:gap-3 pt-0.5">
+                      <div className="flex items-start gap-2.5">
+                        <div className="flex size-7 sm:size-8 shrink-0 items-center justify-center rounded-full bg-purple-600 text-white text-[11px] font-bold shadow-xs">
+                          S
+                        </div>
+                        <div className="rounded-2xl rounded-tl-xs bg-white px-3.5 py-2.5 shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-purple-100 max-w-[85%]">
+                          <p className="text-xs sm:text-[13px] font-medium text-neutral-800 leading-snug">
+                            {item.mediaConfig.brandMessage}
+                          </p>
+                          <span className="block text-[10px] text-purple-500 font-medium mt-0.5">
+                            {item.mediaConfig.brandTimestamp}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-end justify-end gap-2.5">
+                        <div className="rounded-2xl rounded-br-xs bg-linear-to-r from-orange-500 to-pink-500 text-white px-3.5 py-2.5 shadow-[0_6px_16px_rgba(249,115,22,0.25)] max-w-[82%]">
+                          <p className="text-xs sm:text-[13px] font-medium leading-snug">
+                            {item.mediaConfig.replyMessage}
+                          </p>
+                        </div>
+                        <div className="flex size-7 sm:size-8 shrink-0 items-center justify-center rounded-full bg-orange-100 text-orange-700 border border-white text-[10px] font-bold shadow-xs">
+                          {item.mediaConfig.replyAuthor}
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-purple-50/80 border border-purple-100/70 text-[11px] text-purple-700">
+                        <CheckCircle2 className="size-3.5 text-emerald-500 shrink-0" />
+                        <span className="truncate">
+                          Instant push alerts &amp; zero-lag SASH fibre playback
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ) : (
+              /* Default Top Stage with SASH Red Gradient Background (Edge-to-Edge) */
+              <div
+                className={`relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden ${CARD_BG_GRADIENT} flex flex-col justify-between p-3.5 min-[360px]:p-4 sm:p-5 select-none group/stage`}
+              >
+                {/* Smooth Blend into Bottom White Section */}
+                <div aria-hidden="true" className={`${CARD_BOTTOM_BLEND} z-10`} />
+
+                {/* Top Badges Bar: Step number + Tag */}
+                <div className="relative z-20 w-full flex items-center justify-between gap-2">
+                  <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/20">
+                    <span>0{idx + 1}</span>
+                  </span>
+
+                  {item.tag && (
+                    <span className="inline-flex min-h-6 items-center rounded-full bg-white/90 backdrop-blur-xs px-2.5 text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-brand-navy shadow-xs border border-white/40">
+                      {item.tag}
+                    </span>
+                  )}
+                </div>
+
+                {/* Centered Visual Element: Glossy 3D Orb with Concentric Rings */}
+                <div className="relative z-20 flex-1 flex flex-col items-center justify-center my-auto py-1">
+                  {/* Subtle concentric rings */}
+                  <div className="absolute w-36 h-36 rounded-full border border-white/20 pointer-events-none" />
+                  <div className="absolute w-48 h-48 rounded-full border border-white/10 pointer-events-none" />
+
+                  {/* Glossy orb */}
+                  <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[radial-gradient(circle_at_35%_25%,#FFFFFF_0%,#FDEBEB_30%,#FCA5A5_60%,#DE0302_90%,#991B1B_100%)] shadow-[0_16px_36px_rgba(0,0,0,0.3),0_0_24px_rgba(222,3,2,0.4),inset_0_3px_5px_rgba(255,255,255,0.75),inset_0_-4px_8px_rgba(153,27,27,0.45)] flex items-center justify-center p-3 select-none transition-transform duration-300 ease-out group-hover/stage:scale-110">
+                    {/* Specular gloss highlight crescent */}
+                    <div className="pointer-events-none absolute top-1.5 left-2 w-7 h-4 rounded-full bg-gradient-to-b from-white/60 to-transparent blur-[1px]" />
+                    <IconComponent className="relative z-10 w-9 h-9 sm:w-10 sm:h-10 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]" />
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Front Bottom: Title Only */}
             <div className="relative z-20 bg-white px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between">

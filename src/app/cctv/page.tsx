@@ -3,10 +3,11 @@ import Contactus from "@/components/Home/Contactus";
 import Testimonial from "@/components/Home/Testimonial";
 import Faq from "@/components/Home/Faq";
 import {
+  ServiceDeliverablesSection,
   ServiceHero,
   SingleClientMarquee,
+  type ServiceDeliverableItem,
 } from "@/components/Service/ServicePageTemplate";
-import CctvDeliverablesCards from "@/components/Service/CctvDeliverablesCards";
 
 export const metadata: Metadata = {
   title: "CCTV Installation & Surveillance in Tamil Nadu",
@@ -17,6 +18,130 @@ export const metadata: Metadata = {
     languages: { "en-IN": "/cctv" },
   },
 };
+
+const CAMERA_SOLUTIONS: ServiceDeliverableItem[] = [
+  {
+    title: "Indoor & Outdoor HD IP Cameras",
+    tag: "IP67 Weatherproof",
+    description:
+      "Weatherproof (IP67) bullet and dome cameras with infrared night vision for clear 24-hour perimeter security.",
+    points: [
+      "Full 1080p, 2K, and 4K ultra-high definition optics",
+      "IP67 weatherproof casing built for extreme sun & rain",
+      "Smart IR and Full-Color night vision up to 30 meters",
+      "Wide-angle panoramic field of view with zero distortion",
+    ],
+    mediaConfig: {
+      theme: "peach",
+      mediaType: "status-list",
+      focalBadgeText: "IP67 4K Optics",
+      rows: [
+        {
+          id: "cam-01",
+          label: "Main Gate • 4K Bullet",
+          sublabel: "IP67 Weatherproof • Color Night",
+          status: "Listed",
+          statusTone: "green",
+        },
+        {
+          id: "cam-02",
+          label: "Warehouse • IR Dome",
+          sublabel: "30m Smart IR • Wide Angle",
+          status: "In Progress",
+          statusTone: "blue",
+        },
+        {
+          id: "cam-03",
+          label: "Perimeter • 2K Turret",
+          sublabel: "24/7 Motion Zone Active",
+          status: "Listed",
+          statusTone: "orange",
+        },
+      ],
+    },
+  },
+  {
+    title: "NVR Storage & Cloud Backup",
+    tag: "24/7 Recording",
+    description:
+      "Multi-week continuous and motion-triggered recording on high-reliability Network Video Recorders (NVRs).",
+    points: [
+      "High-reliability surveillance-grade WD Purple / SkyHawk drives",
+      "Continuous 24/7 recording and smart motion-detection triggers",
+      "15 to 60+ days of historical video storage before FIFO loop",
+      "H.265+ high-efficiency compression saves 50% storage space",
+    ],
+    mediaConfig: {
+      theme: "sky",
+      mediaType: "metric-chart",
+      focalBadgeText: "H.265+ Smart NVR",
+      metricValue: "60+ Days",
+      metricDelta: "+50% vs standard H.264",
+      metricSubtitle: "Continuous 24/7 NVR retention",
+    },
+  },
+  {
+    title: "Live Smartphone Monitoring",
+    tag: "iOS & Android",
+    description:
+      "Paired with your SASH Broadband fibre line for smooth, zero-lag live viewing on Android and iOS devices from anywhere.",
+    points: [
+      "Secure iOS and Android smartphone viewing application",
+      "Zero-lag live video streaming paired with SASH fibre",
+      "Instant motion alert push notifications to your mobile",
+      "Remote playback and video clipping directly to phone gallery",
+    ],
+    mediaConfig: {
+      theme: "purple",
+      mediaType: "chat-feed",
+      focalBadgeText: "iOS & Android Live",
+      brandMessage: "Motion detected at Entrance Cam 01 • HD clip saved to NVR.",
+      brandTimestamp: "SASH Smart Alert • Just now",
+      replyMessage: "Live 4K feed opened on mobile • 0ms lag!",
+      replyAuthor: "KC",
+    },
+  },
+  {
+    title: "Clean Cabling & Local AMC Support",
+    tag: "PoE & Maintenance",
+    description:
+      "Neat conduit routing, PoE switch setup, and ongoing maintenance by our Thiruvallur technical team.",
+    points: [
+      "Structured concealed PVC conduit and Cat6 cabling runs",
+      "Power over Ethernet (PoE) setup eliminating power adapters",
+      "Annual Maintenance Contracts (AMC) with periodic lens audits",
+      "Local Thiruvallur field engineers on call for rapid fixes",
+    ],
+    mediaConfig: {
+      theme: "emerald",
+      mediaType: "status-list",
+      focalBadgeText: "PoE & Local AMC",
+      rows: [
+        {
+          id: "amc-01",
+          label: "Cat6 Concealed PVC Conduit",
+          sublabel: "Structured Indoor & Outdoor Drop",
+          status: "Listed",
+          statusTone: "green",
+        },
+        {
+          id: "amc-02",
+          label: "Gigabit PoE+ Switch Rack",
+          sublabel: "48V Single-Cable Power & Data",
+          status: "In Progress",
+          statusTone: "blue",
+        },
+        {
+          id: "amc-03",
+          label: "Thiruvallur AMC Field Team",
+          sublabel: "Periodic Lens & Health Audits",
+          status: "Listed",
+          statusTone: "green",
+        },
+      ],
+    },
+  },
+];
 
 const CCTV_FAQS = [
   {
@@ -67,10 +192,11 @@ export default function CctvPage() {
       {/* Single-Row Client Logo Marquee */}
       <SingleClientMarquee />
 
-      <CctvDeliverablesCards
+      <ServiceDeliverablesSection
         eyebrow="What We Deliver"
         heading="End-to-end CCTV hardware, cabling, and network setup"
         subtitle="Turnkey surveillance installations engineered and maintained by our local team."
+        items={CAMERA_SOLUTIONS}
       />
 
       <Testimonial />
@@ -89,4 +215,3 @@ export default function CctvPage() {
     </>
   );
 }
-
