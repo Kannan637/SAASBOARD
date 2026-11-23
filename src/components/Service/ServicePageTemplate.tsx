@@ -540,84 +540,94 @@ interface CardPastelInnerShadowTheme {
   titleAreaInnerShadow: string;
   tagPillStyle: string;
   eyebrowColor: string;
+  solidBackdropColor: string;
+  backFaceBorder: string;
 }
 
 const CARD_PASTEL_THEMES: CardPastelInnerShadowTheme[] = [
-  // Card 1: Minimal Pastel Rose-Pink + Soft Crimson Inner Shadow
+  // Card 1: Pastel Rose-Pink
   {
-    borderColor: "rgba(225, 29, 72, 0.10)",
+    borderColor: "rgba(225, 29, 72, 0.15)",
     cardShadow:
-      "inset 0 0 18px rgba(225, 29, 72, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
+      "inset 0 0 20px rgba(225, 29, 72, 0.05), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaVignette:
-      "radial-gradient(ellipse 70% 65% at 50% 48%, rgba(255,255,255,0) 48%, rgba(255,241,243,0.45) 78%, rgba(255,228,233,0.72) 100%)",
+      "radial-gradient(ellipse 70% 65% at 50% 48%, rgba(255,240,243,0.3) 0%, rgba(255,228,233,0.6) 75%, rgba(255,204,214,0.9) 100%)",
     mediaInnerShadow:
-      "inset 0 0 32px rgba(225, 29, 72, 0.10), inset 0 6px 16px rgba(251, 113, 133, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
+      "inset 0 0 36px rgba(225, 29, 72, 0.10), inset 0 2px 4px rgba(255, 255, 255, 0.8)",
     bottomBridgeGradient:
-      "linear-gradient(180deg, rgba(255,228,233,0) 0%, rgba(255,228,233,0.45) 55%, #FFF2F4 100%)",
+      "linear-gradient(180deg, rgba(255,228,233,0) 0%, rgba(255,204,214,0.5) 100%)",
     titleAreaGradient:
-      "linear-gradient(180deg, #FFF2F4 0%, #FFF9FA 45%, #FFFFFF 100%)",
+      "linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 218, 226, 0.75) 100%)",
     titleAreaInnerShadow:
-      "inset 0 -8px 18px rgba(225, 29, 72, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+      "inset 0 -8px 18px rgba(225, 29, 72, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
     tagPillStyle:
       "bg-white/90 text-rose-700 border-rose-200/60 shadow-[0_2px_8px_rgba(225,29,72,0.06)]",
     eyebrowColor: "text-rose-600",
+    solidBackdropColor: "#FFEBF0",
+    backFaceBorder: "rgba(225, 29, 72, 0.18)",
   },
-  // Card 2: Minimal Pastel Sky-Blue + Soft Cobalt Inner Shadow
+  // Card 2: Pastel Sky-Blue
   {
-    borderColor: "rgba(2, 132, 199, 0.10)",
+    borderColor: "rgba(2, 132, 199, 0.15)",
     cardShadow:
-      "inset 0 0 18px rgba(2, 132, 199, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
+      "inset 0 0 20px rgba(2, 132, 199, 0.05), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaVignette:
-      "radial-gradient(ellipse 70% 65% at 50% 48%, rgba(255,255,255,0) 48%, rgba(240,249,255,0.45) 78%, rgba(224,242,254,0.72) 100%)",
+      "radial-gradient(ellipse 70% 65% at 50% 48%, rgba(240,249,255,0.3) 0%, rgba(224,242,254,0.6) 75%, rgba(186,230,253,0.9) 100%)",
     mediaInnerShadow:
-      "inset 0 0 32px rgba(2, 132, 199, 0.10), inset 0 6px 16px rgba(56, 189, 248, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
+      "inset 0 0 36px rgba(2, 132, 199, 0.10), inset 0 2px 4px rgba(255, 255, 255, 0.8)",
     bottomBridgeGradient:
-      "linear-gradient(180deg, rgba(224,242,254,0) 0%, rgba(224,242,254,0.45) 55%, #EDF8FF 100%)",
+      "linear-gradient(180deg, rgba(224,242,254,0) 0%, rgba(186,230,253,0.5) 100%)",
     titleAreaGradient:
-      "linear-gradient(180deg, #EDF8FF 0%, #F7FCFF 45%, #FFFFFF 100%)",
+      "linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(186, 230, 253, 0.75) 100%)",
     titleAreaInnerShadow:
-      "inset 0 -8px 18px rgba(2, 132, 199, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+      "inset 0 -8px 18px rgba(2, 132, 199, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
     tagPillStyle:
       "bg-white/90 text-sky-700 border-sky-200/60 shadow-[0_2px_8px_rgba(2,132,199,0.06)]",
     eyebrowColor: "text-sky-600",
+    solidBackdropColor: "#EBF5FE",
+    backFaceBorder: "rgba(2, 132, 199, 0.18)",
   },
-  // Card 3: Minimal Pastel Lavender-Violet + Soft Amethyst Inner Shadow
+  // Card 3: Pastel Lavender-Violet
   {
-    borderColor: "rgba(124, 58, 237, 0.10)",
+    borderColor: "rgba(124, 58, 237, 0.15)",
     cardShadow:
-      "inset 0 0 18px rgba(124, 58, 237, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
+      "inset 0 0 20px rgba(124, 58, 237, 0.05), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaVignette:
-      "radial-gradient(ellipse 70% 65% at 50% 48%, rgba(255,255,255,0) 48%, rgba(250,245,255,0.45) 78%, rgba(243,232,255,0.72) 100%)",
+      "radial-gradient(ellipse 70% 65% at 50% 48%, rgba(250,245,255,0.3) 0%, rgba(243,232,255,0.6) 75%, rgba(233,213,255,0.9) 100%)",
     mediaInnerShadow:
-      "inset 0 0 32px rgba(124, 58, 237, 0.10), inset 0 6px 16px rgba(168, 85, 247, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
+      "inset 0 0 36px rgba(124, 58, 237, 0.10), inset 0 2px 4px rgba(255, 255, 255, 0.8)",
     bottomBridgeGradient:
-      "linear-gradient(180deg, rgba(243,232,255,0) 0%, rgba(243,232,255,0.45) 55%, #F6EEFF 100%)",
+      "linear-gradient(180deg, rgba(243,232,255,0) 0%, rgba(233,213,255,0.5) 100%)",
     titleAreaGradient:
-      "linear-gradient(180deg, #F6EEFF 0%, #FBF8FF 45%, #FFFFFF 100%)",
+      "linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(233, 213, 255, 0.75) 100%)",
     titleAreaInnerShadow:
-      "inset 0 -8px 18px rgba(124, 58, 237, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+      "inset 0 -8px 18px rgba(124, 58, 237, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
     tagPillStyle:
       "bg-white/90 text-purple-700 border-purple-200/60 shadow-[0_2px_8px_rgba(124,58,237,0.06)]",
     eyebrowColor: "text-purple-600",
+    solidBackdropColor: "#F6EDFF",
+    backFaceBorder: "rgba(124, 58, 237, 0.18)",
   },
-  // Card 4: Minimal Pastel Peach-Amber + Soft Tangerine Inner Shadow
+  // Card 4: Pastel Peach-Amber
   {
-    borderColor: "rgba(234, 88, 12, 0.10)",
+    borderColor: "rgba(234, 88, 12, 0.15)",
     cardShadow:
-      "inset 0 0 18px rgba(234, 88, 12, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
+      "inset 0 0 20px rgba(234, 88, 12, 0.05), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaVignette:
-      "radial-gradient(ellipse 70% 65% at 50% 48%, rgba(255,255,255,0) 48%, rgba(255,247,237,0.45) 78%, rgba(255,237,213,0.72) 100%)",
+      "radial-gradient(ellipse 70% 65% at 50% 48%, rgba(255,247,237,0.3) 0%, rgba(255,237,213,0.6) 75%, rgba(254,215,170,0.9) 100%)",
     mediaInnerShadow:
-      "inset 0 0 32px rgba(234, 88, 12, 0.10), inset 0 6px 16px rgba(251, 146, 60, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
+      "inset 0 0 36px rgba(234, 88, 12, 0.10), inset 0 2px 4px rgba(255, 255, 255, 0.8)",
     bottomBridgeGradient:
-      "linear-gradient(180deg, rgba(255,237,213,0) 0%, rgba(255,237,213,0.45) 55%, #FFF1E2 100%)",
+      "linear-gradient(180deg, rgba(255,237,213,0) 0%, rgba(254,215,170,0.5) 100%)",
     titleAreaGradient:
-      "linear-gradient(180deg, #FFF1E2 0%, #FFF9F3 45%, #FFFFFF 100%)",
+      "linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(254, 215, 170, 0.75) 100%)",
     titleAreaInnerShadow:
-      "inset 0 -8px 18px rgba(234, 88, 12, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+      "inset 0 -8px 18px rgba(234, 88, 12, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
     tagPillStyle:
       "bg-white/90 text-orange-700 border-orange-200/60 shadow-[0_2px_8px_rgba(234,88,12,0.06)]",
     eyebrowColor: "text-orange-600",
+    solidBackdropColor: "#FFF1E3",
+    backFaceBorder: "rgba(234, 88, 12, 0.18)",
   },
 ];
 
@@ -686,10 +696,11 @@ export function FlippableDeliverableCard({
           transform: isFlipped && !shouldReduceMotion ? "rotateY(180deg)" : "rotateY(0deg)",
         }}
       >
-        {/* Front Face: 3D Card Illustration Media Stage + Pastel Inner Shadow & Title Area */}
+        {/* Front Face: 3D Card Illustration Media Stage + Full Pastel Canvas */}
         <div
-          className="w-full h-full flex flex-col justify-between bg-white text-brand-navy border rounded-[28px] overflow-hidden"
+          className="w-full h-full flex flex-col justify-between text-brand-navy border rounded-[28px] overflow-hidden"
           style={{
+            background: pastelTheme.solidBackdropColor,
             borderColor: pastelTheme.borderColor,
             boxShadow: pastelTheme.cardShadow,
             backfaceVisibility: "hidden",
@@ -698,7 +709,7 @@ export function FlippableDeliverableCard({
         >
           <div className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
             {/* Top Media Stage with Custom 3D Card Artwork + Pastel Radial Inner Shadow */}
-            <div className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[320px] overflow-hidden bg-white flex flex-col justify-between p-4 sm:p-5 select-none group/stage">
+            <div className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[320px] overflow-hidden bg-transparent flex flex-col justify-between p-4 sm:p-5 select-none group/stage">
               {/* Top Badges Bar: Step number + Tag */}
               <div className="relative z-30 w-full flex items-center justify-between gap-2">
                 <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/25">
@@ -791,22 +802,25 @@ export function FlippableDeliverableCard({
           </div>
         </div>
 
-        {/* Back Face: Clean White Surface (No inner shadow, no pastel gradient) */}
+        {/* Back Face: Solid Pastel Surface matching front */}
         <div
-          className="absolute inset-0 w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden p-7 sm:p-8 lg:p-9 z-20 cursor-pointer"
+          className="absolute inset-0 w-full h-full flex flex-col justify-between text-brand-navy border rounded-[28px] overflow-hidden p-7 sm:p-8 lg:p-9 z-20 cursor-pointer"
           style={{
+            backgroundColor: pastelTheme.solidBackdropColor,
+            borderColor: pastelTheme.backFaceBorder,
+            boxShadow: "none",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
           }}
         >
-          <div className="flex flex-col justify-between h-full bg-white">
+          <div className="flex flex-col justify-between h-full bg-transparent">
             <div>
               <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
-                <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-red-10 border border-brand-red/20 text-brand-red flex items-center justify-center shrink-0">
+                <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white/80 border border-brand-red/20 text-brand-red flex items-center justify-center shrink-0 shadow-xs">
                   <IconComponent className="size-6 sm:size-7" />
                 </div>
-                <span className="text-neutral-400 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 transition-colors">
+                <span className="text-neutral-500 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/70 border border-black/5 transition-colors">
                   <RotateCcw className="size-3" />
                   <span className="hidden min-[400px]:inline">Flip back</span>
                 </span>

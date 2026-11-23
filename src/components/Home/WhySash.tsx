@@ -46,80 +46,81 @@ export interface FeatureCardTheme {
   cardShadow: string;
   mediaGradient: string;
   mediaInnerShadow: string;
-  bottomBridgeGradient: string;
   titleAreaGradient: string;
   titleAreaInnerShadow: string;
   eyebrowColor: string;
+  solidBackdropColor: string;
+  backFaceBorder: string;
 }
 
 export const FEATURE_CARD_THEMES: Record<string, FeatureCardTheme> = {
-  // Card 1: Minimal Pastel Rose-Pink + Soft Crimson Inner Shadow
+  // Card 1: Pastel Rose-Pink
   fibre: {
-    borderColor: "rgba(225, 29, 72, 0.10)",
+    borderColor: "rgba(225, 29, 72, 0.15)",
     cardShadow:
-      "inset 0 0 18px rgba(225, 29, 72, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
+      "inset 0 0 20px rgba(225, 29, 72, 0.05), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaGradient:
-      "linear-gradient(145deg, #FFF5F6 0%, #FEE9EC 40%, #FDD5DA 75%, #FCC3CB 100%)",
+      "linear-gradient(170deg, #FFF0F3 0%, #FFE4E9 45%, #FFD6DF 80%, #FFCAD6 100%)",
     mediaInnerShadow:
-      "inset 0 0 32px rgba(225, 29, 72, 0.10), inset 0 6px 16px rgba(251, 113, 133, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
-    bottomBridgeGradient:
-      "linear-gradient(180deg, rgba(255,228,233,0) 0%, rgba(255,228,233,0.45) 55%, #FFF2F4 100%)",
+      "inset 0 0 36px rgba(225, 29, 72, 0.10), inset 0 2px 4px rgba(255, 255, 255, 0.8)",
     titleAreaGradient:
-      "linear-gradient(180deg, #FFF2F4 0%, #FFF9FA 45%, #FFFFFF 100%)",
+      "linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 218, 226, 0.75) 100%)",
     titleAreaInnerShadow:
-      "inset 0 -8px 18px rgba(225, 29, 72, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+      "inset 0 -8px 18px rgba(225, 29, 72, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
     eyebrowColor: "text-rose-600",
+    solidBackdropColor: "#FFEBF0",
+    backFaceBorder: "rgba(225, 29, 72, 0.18)",
   },
-  // Card 2: Minimal Pastel Sky-Blue + Soft Cobalt Inner Shadow
+  // Card 2: Pastel Sky-Blue
   router: {
-    borderColor: "rgba(2, 132, 199, 0.10)",
+    borderColor: "rgba(2, 132, 199, 0.15)",
     cardShadow:
-      "inset 0 0 18px rgba(2, 132, 199, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
+      "inset 0 0 20px rgba(2, 132, 199, 0.05), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaGradient:
-      "linear-gradient(145deg, #F0F9FF 0%, #E0F2FE 40%, #BAE6FD 75%, #93C5FD 100%)",
+      "linear-gradient(170deg, #F0F9FF 0%, #E0F2FE 45%, #BAE6FD 80%, #A5D8F7 100%)",
     mediaInnerShadow:
-      "inset 0 0 32px rgba(2, 132, 199, 0.10), inset 0 6px 16px rgba(56, 189, 248, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
-    bottomBridgeGradient:
-      "linear-gradient(180deg, rgba(224,242,254,0) 0%, rgba(224,242,254,0.45) 55%, #EDF8FF 100%)",
+      "inset 0 0 36px rgba(2, 132, 199, 0.10), inset 0 2px 4px rgba(255, 255, 255, 0.8)",
     titleAreaGradient:
-      "linear-gradient(180deg, #EDF8FF 0%, #F7FCFF 45%, #FFFFFF 100%)",
+      "linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(186, 230, 253, 0.75) 100%)",
     titleAreaInnerShadow:
-      "inset 0 -8px 18px rgba(2, 132, 199, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+      "inset 0 -8px 18px rgba(2, 132, 199, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
     eyebrowColor: "text-sky-600",
+    solidBackdropColor: "#EBF5FE",
+    backFaceBorder: "rgba(2, 132, 199, 0.18)",
   },
-  // Card 3: Minimal Pastel Lavender-Violet + Soft Amethyst Inner Shadow
+  // Card 3: Pastel Lavender-Violet
   isp: {
-    borderColor: "rgba(124, 58, 237, 0.10)",
+    borderColor: "rgba(124, 58, 237, 0.15)",
     cardShadow:
-      "inset 0 0 18px rgba(124, 58, 237, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
+      "inset 0 0 20px rgba(124, 58, 237, 0.05), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaGradient:
-      "linear-gradient(145deg, #FAF5FF 0%, #F3E8FF 40%, #E9D5FF 75%, #D8B4FE 100%)",
+      "linear-gradient(170deg, #FAF5FF 0%, #F3E8FF 45%, #E9D5FF 80%, #DFC3FE 100%)",
     mediaInnerShadow:
-      "inset 0 0 32px rgba(124, 58, 237, 0.10), inset 0 6px 16px rgba(168, 85, 247, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
-    bottomBridgeGradient:
-      "linear-gradient(180deg, rgba(243,232,255,0) 0%, rgba(243,232,255,0.45) 55%, #F6EEFF 100%)",
+      "inset 0 0 36px rgba(124, 58, 237, 0.10), inset 0 2px 4px rgba(255, 255, 255, 0.8)",
     titleAreaGradient:
-      "linear-gradient(180deg, #F6EEFF 0%, #FBF8FF 45%, #FFFFFF 100%)",
+      "linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(233, 213, 255, 0.75) 100%)",
     titleAreaInnerShadow:
-      "inset 0 -8px 18px rgba(124, 58, 237, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+      "inset 0 -8px 18px rgba(124, 58, 237, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
     eyebrowColor: "text-purple-600",
+    solidBackdropColor: "#F6EDFF",
+    backFaceBorder: "rgba(124, 58, 237, 0.18)",
   },
-  // Card 4: Minimal Pastel Peach-Amber + Soft Tangerine Inner Shadow
+  // Card 4: Pastel Peach-Amber
   support: {
-    borderColor: "rgba(234, 88, 12, 0.10)",
+    borderColor: "rgba(234, 88, 12, 0.15)",
     cardShadow:
-      "inset 0 0 18px rgba(234, 88, 12, 0.04), 0 8px 24px rgba(15, 27, 61, 0.04)",
+      "inset 0 0 20px rgba(234, 88, 12, 0.05), 0 8px 24px rgba(15, 27, 61, 0.04)",
     mediaGradient:
-      "linear-gradient(145deg, #FFF7ED 0%, #FFEDD5 40%, #FED7AA 75%, #FDBA74 100%)",
+      "linear-gradient(170deg, #FFF7ED 0%, #FFEDD5 45%, #FED7AA 80%, #FDC58C 100%)",
     mediaInnerShadow:
-      "inset 0 0 32px rgba(234, 88, 12, 0.10), inset 0 6px 16px rgba(251, 146, 60, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8)",
-    bottomBridgeGradient:
-      "linear-gradient(180deg, rgba(255,237,213,0) 0%, rgba(255,237,213,0.45) 55%, #FFF1E2 100%)",
+      "inset 0 0 36px rgba(234, 88, 12, 0.10), inset 0 2px 4px rgba(255, 255, 255, 0.8)",
     titleAreaGradient:
-      "linear-gradient(180deg, #FFF1E2 0%, #FFF9F3 45%, #FFFFFF 100%)",
+      "linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(254, 215, 170, 0.75) 100%)",
     titleAreaInnerShadow:
-      "inset 0 -8px 18px rgba(234, 88, 12, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+      "inset 0 -8px 18px rgba(234, 88, 12, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
     eyebrowColor: "text-orange-600",
+    solidBackdropColor: "#FFF1E3",
+    backFaceBorder: "rgba(234, 88, 12, 0.18)",
   },
 };
 
@@ -225,10 +226,11 @@ export function FlippableFeatureCard({
           transform: isFlipped && !shouldReduceMotion ? "rotateY(180deg)" : "rotateY(0deg)",
         }}
       >
-        {/* Front Face: Visual Stage + Title with Matching Pastel Border & Inner Shadow */}
+        {/* Front Face: Full-Bleed Pastel Canvas (No white gap in center) */}
         <div
-          className="w-full h-full flex flex-col justify-between bg-white text-brand-navy border rounded-[28px] overflow-hidden"
+          className="w-full h-full flex flex-col justify-between text-brand-navy border rounded-[28px] overflow-hidden"
           style={{
+            background: theme?.mediaGradient || "#FFFFFF",
             borderColor: theme?.borderColor || "rgba(0, 0, 0, 0.08)",
             boxShadow: theme?.cardShadow || "none",
             backfaceVisibility: "hidden",
@@ -238,10 +240,13 @@ export function FlippableFeatureCard({
           {frontContent}
         </div>
 
-        {/* Back Face: Clean White Surface (No inner shadow, no pastel gradient) */}
+        {/* Back Face: Solid Pastel Surface matching front */}
         <div
-          className="absolute inset-0 w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden p-7 sm:p-8 lg:p-9 z-20"
+          className="absolute inset-0 w-full h-full flex flex-col justify-between text-brand-navy border rounded-[28px] overflow-hidden p-7 sm:p-8 lg:p-9 z-20"
           style={{
+            backgroundColor: theme?.solidBackdropColor || "#FFF5F7",
+            borderColor: theme?.backFaceBorder || theme?.borderColor || "rgba(0, 0, 0, 0.08)",
+            boxShadow: "none",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
@@ -328,22 +333,12 @@ export function FibreSpeedCard() {
           className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full"
         >
           {/* Top iPhone Section with Pastel Gradient Background (Edge-to-Edge) */}
-          <div
-            className="relative w-full overflow-hidden pt-3 min-[360px]:pt-4 sm:pt-6 px-3 flex justify-center"
-            style={{ background: theme.mediaGradient }}
-          >
+          <div className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[310px] overflow-hidden pt-3 min-[360px]:pt-4 sm:pt-6 px-3 flex flex-col justify-between">
             {/* Colored Inner Shadow Overlay */}
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 z-20"
               style={{ boxShadow: theme.mediaInnerShadow }}
-            />
-
-            {/* Smooth Blend into Bottom Title Area */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 z-20"
-              style={{ background: theme.bottomBridgeGradient }}
             />
 
             {/* iPhone Hardware Mockup (Top-Center Aligned Speed Meter) */}
@@ -453,13 +448,13 @@ export function FibreSpeedCard() {
         </CardContent>
       }
       backContent={
-        <div className="flex flex-col justify-between h-full bg-white">
+        <div className="flex flex-col justify-between h-full bg-transparent">
           <div>
             <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
-              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-red-10 border border-brand-red/20 text-brand-red flex items-center justify-center shrink-0">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white/80 border border-brand-red/20 text-brand-red flex items-center justify-center shrink-0 shadow-xs">
                 <Zap className="size-6 sm:size-7" />
               </div>
-              <span className="text-neutral-400 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 transition-colors">
+              <span className="text-neutral-500 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/70 border border-black/5 transition-colors">
                 <RotateCcw className="size-3" />
                 <span className="hidden min-[400px]:inline">Flip back</span>
               </span>
@@ -503,22 +498,12 @@ export function RouterSetupCard() {
       frontContent={
         <CardContent className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
           {/* Top Visual Stage with Pastel Gradient Background (Edge-to-Edge) */}
-          <div
-            className="relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/router"
-            style={{ background: theme.mediaGradient }}
-          >
+          <div className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[310px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/router">
             {/* Colored Inner Shadow Overlay */}
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 z-20"
               style={{ boxShadow: theme.mediaInnerShadow }}
-            />
-
-            {/* Smooth Blend into Bottom Title Area */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 z-20"
-              style={{ background: theme.bottomBridgeGradient }}
             />
 
             {/* Top Badges Bar: ₹0 Setup Cost */}
@@ -588,13 +573,13 @@ export function RouterSetupCard() {
         </CardContent>
       }
       backContent={
-        <div className="flex flex-col justify-between h-full bg-white">
+        <div className="flex flex-col justify-between h-full bg-transparent">
           <div>
             <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
-              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-red-10 border border-brand-red/20 text-brand-red flex items-center justify-center shrink-0">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white/80 border border-sky-600/20 text-sky-600 flex items-center justify-center shrink-0 shadow-xs">
                 <Router className="size-6 sm:size-7" />
               </div>
-              <span className="text-neutral-400 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 transition-colors">
+              <span className="text-neutral-500 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/70 border border-black/5 transition-colors">
                 <RotateCcw className="size-3" />
                 <span className="hidden min-[400px]:inline">Flip back</span>
               </span>
@@ -659,22 +644,12 @@ export function LicensedISPCARD() {
       frontContent={
         <CardContent className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
           {/* Top Globe Visual Stage: Tamil Nadu Clearly Visible on Pastel Gradient (Edge-to-Edge) */}
-          <div
-            className="relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/globe"
-            style={{ background: theme.mediaGradient }}
-          >
+          <div className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[310px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/globe">
             {/* Colored Inner Shadow Overlay */}
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 z-20"
               style={{ boxShadow: theme.mediaInnerShadow }}
-            />
-
-            {/* Smooth Blend at the Meeting Point */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 z-20"
-              style={{ background: theme.bottomBridgeGradient }}
             />
 
             {/* Top Badges Bar: Tamil Nadu Circle */}
@@ -748,13 +723,13 @@ export function LicensedISPCARD() {
         </CardContent>
       }
       backContent={
-        <div className="flex flex-col justify-between h-full bg-white">
+        <div className="flex flex-col justify-between h-full bg-transparent">
           <div>
             <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
-              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-red-10 border border-brand-red/20 text-brand-red flex items-center justify-center shrink-0">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white/80 border border-purple-600/20 text-purple-600 flex items-center justify-center shrink-0 shadow-xs">
                 <Globe className="size-6 sm:size-7" />
               </div>
-              <span className="text-neutral-400 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 transition-colors">
+              <span className="text-neutral-500 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/70 border border-black/5 transition-colors">
                 <RotateCcw className="size-3" />
                 <span className="hidden min-[400px]:inline">Flip back</span>
               </span>
@@ -868,22 +843,12 @@ export function SupportCard() {
       frontContent={
         <CardContent className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
           {/* Top Status Stage with Concentric Radar Waves (Edge-to-Edge) */}
-          <div
-            className="relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support"
-            style={{ background: theme.mediaGradient }}
-          >
+          <div className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[310px] overflow-hidden flex flex-col justify-between p-3 min-[360px]:p-3.5 sm:p-4 select-none group/support">
             {/* Colored Inner Shadow Overlay */}
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 z-20"
               style={{ boxShadow: theme.mediaInnerShadow }}
-            />
-
-            {/* Smooth Blend at the Meeting Point */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 z-20"
-              style={{ background: theme.bottomBridgeGradient }}
             />
 
             {/* Top Badges Bar: 24/7 Local Support Desk */}
@@ -1066,13 +1031,13 @@ export function SupportCard() {
         </CardContent>
       }
       backContent={
-        <div className="flex flex-col justify-between h-full bg-white">
+        <div className="flex flex-col justify-between h-full bg-transparent">
           <div>
             <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
-              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-red-10 border border-brand-red/20 text-brand-red flex items-center justify-center shrink-0">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white/80 border border-orange-600/20 text-orange-600 flex items-center justify-center shrink-0 shadow-xs">
                 <Headphones className="size-6 sm:size-7" />
               </div>
-              <span className="text-neutral-400 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 transition-colors">
+              <span className="text-neutral-500 hover:text-brand-navy text-xs font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/70 border border-black/5 transition-colors">
                 <RotateCcw className="size-3" />
                 <span className="hidden min-[400px]:inline">Flip back</span>
               </span>
