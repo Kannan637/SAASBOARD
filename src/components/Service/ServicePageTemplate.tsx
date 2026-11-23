@@ -108,6 +108,7 @@ export interface ServiceDeliverableItem {
   points?: string[];
   iconName?: string;
   imageSrc?: string;
+  mediaConfig?: Record<string, unknown>;
 }
 
 interface ServiceHeroConfig {
