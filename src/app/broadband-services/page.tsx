@@ -28,6 +28,7 @@ const INSTALLATION_STEPS: ServiceDeliverableItem[] = [
   {
     title: "Address Feasibility Check",
     tag: "Step 01",
+    imageSrc: "/Cards/Address Feasibility Check.png",
     description:
       "Share your street address or pincode in Thiruvallur or Tamil Nadu via our enquiry form or WhatsApp.",
     points: [
@@ -40,6 +41,7 @@ const INSTALLATION_STEPS: ServiceDeliverableItem[] = [
   {
     title: "Select Your Fibre Plan",
     tag: "Step 02",
+    imageSrc: "/Cards/Select Your Fibre Plan.png",
     description:
       "Choose between our Personal Pack (50 Mbps), Family Pack (100 Mbps), or custom high-speed tiers up to 1 Gbps.",
     points: [
@@ -52,6 +54,7 @@ const INSTALLATION_STEPS: ServiceDeliverableItem[] = [
   {
     title: "Free Fibre Drop & Router Setup",
     tag: "Step 03",
+    imageSrc: "/Cards/Free Fibre Drop & Router Setup.png",
     description:
       "Our local technicians run an optical fibre cable to your home and configure your Wi-Fi router at zero setup cost.",
     points: [
@@ -64,6 +67,7 @@ const INSTALLATION_STEPS: ServiceDeliverableItem[] = [
   {
     title: "Instant Activation & Speed Test",
     tag: "Step 04",
+    imageSrc: "/Cards/Instant Activation & Speed Test.png",
     description:
       "We verify signal strength and speed across your devices before handing over your active connection.",
     points: [

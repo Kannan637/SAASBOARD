@@ -23,6 +23,7 @@ const SLA_HIGHLIGHTS: ServiceDeliverableItem[] = [
   {
     title: "1:1 Uncontended Bandwidth",
     tag: "Symmetrical Speed",
+    imageSrc: "/Cards/1.1 Uncontended Bandwidth.png",
     description:
       "Dedicated fibre circuit with zero bandwidth sharing—your subscribed upload and download speeds remain identical 24/7.",
     points: [
@@ -35,6 +36,7 @@ const SLA_HIGHLIGHTS: ServiceDeliverableItem[] = [
   {
     title: "Static IP Pool Included",
     tag: "IPv4 / IPv6",
+    imageSrc: "/Cards/Static IP pool Included.png",
     description:
       "Host on-premise servers, VPN gateways, cloud ERPs, and remote branches with dedicated public IPv4/IPv6 addressing.",
     points: [
@@ -47,6 +49,7 @@ const SLA_HIGHLIGHTS: ServiceDeliverableItem[] = [
   {
     title: "Proactive SLA & Fast MTTR",
     tag: "99.5%+ Uptime SLA",
+    imageSrc: "/Cards/Proactive sla & fast mttr.png",
     description:
       "Backed by an enterprise Service Level Agreement and local Thiruvallur field engineers for rapid fault restoration.",
     points: [
@@ -59,6 +62,7 @@ const SLA_HIGHLIGHTS: ServiceDeliverableItem[] = [
   {
     title: "Scalable up to 1 Gbps+",
     tag: "Enterprise Scale",
+    imageSrc: "/Cards/Scalable up to 1 Gbps.png",
     description:
       "Upgrade your committed information rate (CIR) seamlessly as your factory, campus, or corporate office expands.",
     points: [

@@ -25,6 +25,7 @@ const SME_CAPABILITIES: ServiceDeliverableItem[] = [
   {
     title: "Business Traffic Priority Routing",
     tag: "Low Latency",
+    imageSrc: "/Cards/Business Traffic priority Routing.png",
     description:
       "Optimised optical routing ensures uninterrupted POS billing, cloud ERP sync, and crystal-clear multi-seat video conferencing.",
     points: [
@@ -37,6 +38,7 @@ const SME_CAPABILITIES: ServiceDeliverableItem[] = [
   {
     title: "Unlimited Price Lock Protection",
     tag: "Fixed Tariff",
+    imageSrc: "/Cards/Unlimited price look Protection.png",
     description:
       "Shield your monthly IT budget with our Corporate Pack unlimited price lock starting at ₹1,499/month with GST billing.",
     points: [
@@ -49,6 +51,7 @@ const SME_CAPABILITIES: ServiceDeliverableItem[] = [
   {
     title: "24/7 Commercial Field Dispatch",
     tag: "Priority Support",
+    imageSrc: "/Cards/24 7 commerical Field Dispatch.png",
     description:
       "Dedicated commercial desk and local field splicers in Thiruvallur District for faster mean time to repair.",
     points: [
@@ -61,6 +64,7 @@ const SME_CAPABILITIES: ServiceDeliverableItem[] = [
   {
     title: "Static IP & NVR Port Forwarding",
     tag: "Ready for CCTV/VPN",
+    imageSrc: "/Cards/Static IP & NVR port Forwading.png",
     description:
       "Pre-configured support for remote CCTV monitoring, branch VPN tunnels, and hosted accounting servers.",
     points: [

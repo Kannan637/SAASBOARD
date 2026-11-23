@@ -23,6 +23,7 @@ const CAMERA_SOLUTIONS: ServiceDeliverableItem[] = [
   {
     title: "Indoor & Outdoor HD IP Cameras",
     tag: "IP67 Weatherproof",
+    imageSrc: "/Cards/Minimalist Icy-Blue CCTV Camera.png",
     description:
       "Weatherproof (IP67) bullet and dome cameras with infrared night vision for clear 24-hour perimeter security.",
     points: [
@@ -31,21 +32,11 @@ const CAMERA_SOLUTIONS: ServiceDeliverableItem[] = [
       "Smart IR and Full-Color night vision up to 30 meters",
       "Wide-angle panoramic field of view with zero distortion",
     ],
-    mediaConfig: {
-      variant: "cctv-camera",
-      bg1: "#FFF5ED",
-      bg2: "#FFE3CC",
-      acc: "#EA580C",
-      pillMessages: [
-        "4K recording · Main Gate",
-        "Color night vision active",
-        "IP67 weatherproof · Online",
-      ],
-    },
   },
   {
     title: "NVR Storage & Cloud Backup",
     tag: "24/7 Recording",
+    imageSrc: "/Cards/Cloud-Connected Storage System.png",
     description:
       "Multi-week continuous and motion-triggered recording on high-reliability Network Video Recorders (NVRs).",
     points: [
@@ -54,21 +45,11 @@ const CAMERA_SOLUTIONS: ServiceDeliverableItem[] = [
       "15 to 60+ days of historical video storage before FIFO loop",
       "H.265+ high-efficiency compression saves 50% storage space",
     ],
-    mediaConfig: {
-      variant: "nvr-blocks",
-      bg1: "#F0F9FF",
-      bg2: "#D8EEFF",
-      acc: "#0284C7",
-      pillMessages: [
-        "Recording · 4 cameras",
-        "Cloud backup synced",
-        "Storage healthy · 62 days kept",
-      ],
-    },
   },
   {
     title: "Live Smartphone Monitoring",
     tag: "iOS & Android",
+    imageSrc: "/Cards/Live Security Camera App.png",
     description:
       "Paired with your SASH Broadband fibre line for smooth, zero-lag live viewing on Android and iOS devices from anywhere.",
     points: [
@@ -77,21 +58,11 @@ const CAMERA_SOLUTIONS: ServiceDeliverableItem[] = [
       "Instant motion alert push notifications to your mobile",
       "Remote playback and video clipping directly to phone gallery",
     ],
-    mediaConfig: {
-      variant: "phone-live",
-      bg1: "#FAF2FF",
-      bg2: "#EFE0FF",
-      acc: "#9333EA",
-      pillMessages: [
-        "Push alert sent instantly",
-        "Live 4K opened · 0 ms lag",
-        "iOS & Android app",
-      ],
-    },
   },
   {
     title: "Clean Cabling & Local AMC Support",
     tag: "PoE & Maintenance",
+    imageSrc: "/Cards/Clean NVR with Organized Blue Cabling.png",
     description:
       "Neat conduit routing, PoE switch setup, and ongoing maintenance by our Thiruvallur technical team.",
     points: [
@@ -100,17 +71,6 @@ const CAMERA_SOLUTIONS: ServiceDeliverableItem[] = [
       "Annual Maintenance Contracts (AMC) with periodic lens audits",
       "Local Thiruvallur field engineers on call for rapid fixes",
     ],
-    mediaConfig: {
-      variant: "poe-cabling",
-      bg1: "#ECFDF5",
-      bg2: "#D1FAE5",
-      acc: "#059669",
-      pillMessages: [
-        "Cable health check passed",
-        "Technician assigned · Thiruvallur",
-        "Next AMC visit · Friday",
-      ],
-    },
   },
 ];
 
