@@ -594,25 +594,25 @@ export function FlippableDeliverableCard({
           transform: isFlipped && !shouldReduceMotion ? "rotateY(180deg)" : "rotateY(0deg)",
         }}
       >
-        {/* Front Face: 3D Card Illustration Media Stage + Title Area */}
+        {/* Front Face: 3D Card Illustration Media Stage + Matching Inner Shadow & Bottom Title Gradient */}
         <div
-          className="w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden"
+          className="w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-[#F3CFCB]/85 rounded-[28px] shadow-[0_10px_30px_rgba(1,13,59,0.05),inset_0_0_40px_rgba(222,3,2,0.09)] overflow-hidden"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
           }}
         >
           <div className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
-            {/* Top Media Stage with Custom 3D Card Artwork from /public/Cards */}
+            {/* Top Media Stage with Custom 3D Card Artwork & Matching Inner Shadow Gradient */}
             <div className="relative w-full flex-1 min-h-[260px] min-[360px]:min-h-[285px] sm:min-h-[320px] overflow-hidden bg-white flex flex-col justify-between p-4 sm:p-5 select-none group/stage">
               {/* Top Badges Bar: Step number + Tag */}
-              <div className="relative z-20 w-full flex items-center justify-between gap-2">
+              <div className="relative z-30 w-full flex items-center justify-between gap-2">
                 <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/20">
                   <span>0{idx + 1}</span>
                 </span>
 
                 {item.tag && (
-                  <span className="inline-flex min-h-6 items-center rounded-full bg-neutral-100/90 backdrop-blur-xs px-2.5 text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-brand-navy border border-black/[0.06]">
+                  <span className="inline-flex min-h-6 items-center rounded-full bg-white/90 backdrop-blur-xs px-2.5 text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-brand-navy shadow-xs border border-[#F3CFCB]/70">
                     {item.tag}
                   </span>
                 )}
@@ -625,19 +625,25 @@ export function FlippableDeliverableCard({
                   alt={item.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-contain object-center select-none transition-transform duration-500 ease-out group-hover/stage:scale-[1.04]"
+                  className="object-contain object-center scale-[1.02] select-none transition-transform duration-500 ease-out group-hover/stage:scale-[1.07]"
                 />
               </div>
 
-              {/* Subtle Bottom Blend into Title Area */}
+              {/* Perimeter Inner Shadow Gradient Overlay (Frames 3D artwork & dissolves white image edges) */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-10 z-10 bg-[linear-gradient(to_bottom,transparent_0%,#FFFFFF_100%)]"
+                className="pointer-events-none absolute inset-0 z-20 bg-[radial-gradient(ellipse_76%_72%_at_50%_46%,transparent_40%,rgba(254,235,234,0.58)_73%,rgba(252,199,195,0.90)_100%)] shadow-[inset_0_0_48px_rgba(222,3,2,0.13),inset_0_12px_28px_rgba(252,199,195,0.38)]"
+              />
+
+              {/* Seamless Gradient Bridge into Bottom Title Area */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 z-20 bg-[linear-gradient(to_bottom,transparent_0%,rgba(254,235,234,0.68)_48%,rgba(253,215,213,0.94)_100%)]"
               />
             </div>
 
-            {/* Front Bottom: Title Only */}
-            <div className="relative z-20 bg-white px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between">
+            {/* Front Bottom: Title Area with Matching Gradient & Inner Shadow */}
+            <div className="relative z-20 bg-[linear-gradient(180deg,rgba(253,215,213,0.94)_0%,#FEEBEA_48%,#FFF6F5_100%)] shadow-[inset_0_-18px_36px_rgba(222,3,2,0.09),inset_0_1px_0_rgba(255,255,255,0.65)] px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between">
               <div className="pr-2">
                 <p className="text-[11px] font-semibold text-brand-red uppercase tracking-wider mb-1">
                   {item.tag || `Feature 0${idx + 1}`}
@@ -674,16 +680,16 @@ export function FlippableDeliverableCard({
           </div>
         </div>
 
-        {/* Back Face: Description, Bullet Points, and Action */}
+        {/* Back Face: Description, Bullet Points, and Action with Matching Inner Shadow Gradient */}
         <div
-          className="absolute inset-0 w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden p-7 sm:p-8 lg:p-9 z-20 cursor-pointer"
+          className="absolute inset-0 w-full h-full flex flex-col justify-between bg-[linear-gradient(165deg,#FFFFFF_0%,#FFF8F8_58%,#FEEBEA_100%)] text-brand-navy border border-[#F3CFCB]/85 rounded-[28px] shadow-[0_10px_30px_rgba(1,13,59,0.05),inset_0_0_44px_rgba(222,3,2,0.10)] overflow-hidden p-7 sm:p-8 lg:p-9 z-20 cursor-pointer"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
           }}
         >
-          <div className="flex flex-col justify-between h-full bg-white">
+          <div className="flex flex-col justify-between h-full">
             <div>
               <div className="flex items-center justify-between gap-2 mb-6 sm:mb-7">
                 <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-red-10 border border-brand-red/20 text-brand-red flex items-center justify-center shrink-0">
