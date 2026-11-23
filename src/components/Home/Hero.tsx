@@ -157,7 +157,7 @@ export default function Hero() {
   const [isPaused, setIsPaused] = useState(false);
   const currentSlide = HERO_SERVICE_SLIDES[activeIndex];
 
-  // Auto-scroll every 4 seconds, paused when user hovers or drags
+  // Auto-scroll every 8 seconds (8000ms), paused when user hovers or drags
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
@@ -165,7 +165,7 @@ export default function Hero() {
       setActiveIndex((prev) =>
         prev === HERO_SERVICE_SLIDES.length - 1 ? 0 : prev + 1
       );
-    }, 4000);
+    }, 8000);
     return () => clearInterval(timer);
   }, [isPaused, activeIndex]);
 
