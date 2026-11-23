@@ -86,28 +86,18 @@ export interface ServiceHeroProps {
   ratingLabel?: string;
 }
 
-export type DeliverableMediaTheme = "peach" | "sky" | "purple" | "emerald";
-
-export interface DeliverableMediaRow {
-  id: string;
-  label: string;
-  sublabel?: string;
-  status: string;
-  statusTone: "green" | "blue" | "orange";
-}
+export type DeliverableAnimatedVariant =
+  | "cctv-camera"
+  | "nvr-blocks"
+  | "phone-live"
+  | "poe-cabling";
 
 export interface DeliverableMediaConfig {
-  theme: DeliverableMediaTheme;
-  mediaType: "status-list" | "metric-chart" | "chat-feed";
-  focalBadgeText?: string;
-  rows?: DeliverableMediaRow[];
-  metricValue?: string;
-  metricDelta?: string;
-  metricSubtitle?: string;
-  brandMessage?: string;
-  brandTimestamp?: string;
-  replyMessage?: string;
-  replyAuthor?: string;
+  variant: DeliverableAnimatedVariant;
+  bg1: string;
+  bg2: string;
+  acc: string;
+  pillMessages: [string, string, string];
 }
 
 export interface ServiceDeliverableItem {
@@ -462,87 +452,513 @@ function getDeliverableIcon(title: string, iconName?: string) {
   return Sparkles;
 }
 
-const MEDIA_THEME_STYLES: Record<
-  DeliverableMediaTheme,
-  {
-    baseBg: string;
-    blob1: string;
-    blob2: string;
-    blob3: string;
-    focalGlow: string;
-    focalIconColor: string;
-    ringBorder: string;
-    chipBg: string;
-  }
-> = {
-  peach: {
-    baseBg: "bg-[#FFF6EE]",
-    blob1: "bg-[#FDBA74]",
-    blob2: "bg-[#FB923C]",
-    blob3: "bg-[#FECDD3]",
-    focalGlow: "from-orange-400/60 via-amber-300/40 to-transparent",
-    focalIconColor: "text-orange-600",
-    ringBorder: "border-orange-400/20",
-    chipBg: "bg-orange-500/10 border-orange-500/20",
-  },
-  sky: {
-    baseBg: "bg-[#EFF8FF]",
-    blob1: "bg-[#7DD3FC]",
-    blob2: "bg-[#38BDF8]",
-    blob3: "bg-[#BFDBFE]",
-    focalGlow: "from-sky-400/60 via-cyan-300/40 to-transparent",
-    focalIconColor: "text-sky-600",
-    ringBorder: "border-sky-400/20",
-    chipBg: "bg-sky-500/10 border-sky-500/20",
-  },
-  purple: {
-    baseBg: "bg-[#FAF2FF]",
-    blob1: "bg-[#D8B4FE]",
-    blob2: "bg-[#F472B6]",
-    blob3: "bg-[#C4B5FD]",
-    focalGlow: "from-purple-400/60 via-pink-300/40 to-transparent",
-    focalIconColor: "text-purple-600",
-    ringBorder: "border-purple-400/20",
-    chipBg: "bg-purple-500/10 border-purple-500/20",
-  },
-  emerald: {
-    baseBg: "bg-[#ECFDF5]",
-    blob1: "bg-[#6EE7B7]",
-    blob2: "bg-[#34D399]",
-    blob3: "bg-[#A7F3D0]",
-    focalGlow: "from-emerald-400/60 via-teal-300/40 to-transparent",
-    focalIconColor: "text-emerald-600",
-    ringBorder: "border-emerald-400/20",
-    chipBg: "bg-emerald-500/10 border-emerald-500/20",
-  },
-};
-
-function MediaStatusPill({
-  label,
-  tone,
+function AnimatedDeliverableMediaStage({
+  config,
+  shouldReduceMotion,
 }: {
-  label: string;
-  tone: "green" | "blue" | "orange";
+  config: DeliverableMediaConfig;
+  shouldReduceMotion: boolean;
 }) {
-  const styles = {
-    green: "bg-emerald-50 text-emerald-700 border-emerald-200/80",
-    blue: "bg-sky-50 text-sky-700 border-sky-200/80",
-    orange: "bg-orange-50 text-orange-700 border-orange-200/80",
-  }[tone];
+  const [msgIndex, setMsgIndex] = useState(0);
 
-  const dotColor = {
-    green: "bg-emerald-500",
-    blue: "bg-sky-500",
-    orange: "bg-orange-500",
-  }[tone];
+  useEffect(() => {
+    if (shouldReduceMotion) return;
+    const interval = setInterval(() => {
+      setMsgIndex((prev) => (prev + 1) % config.pillMessages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [config.pillMessages.length, shouldReduceMotion]);
 
   return (
-    <span
-      className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-[10px] sm:text-[11px] font-medium leading-none shrink-0 ${styles}`}
+    <div
+      style={
+        {
+          "--bg1": config.bg1,
+          "--bg2": config.bg2,
+          "--acc": config.acc,
+          background: "linear-gradient(155deg, var(--bg1) 0%, var(--bg2) 100%)",
+        } as React.CSSProperties
+      }
+      className="relative w-full h-[300px] overflow-hidden select-none flex flex-col items-center justify-between pt-6 pb-4 px-4 sm:px-6"
     >
-      <span className={`size-1.5 rounded-full ${dotColor}`} />
-      {label}
-    </span>
+      {/* Embedded Keyframe Animations + Reduced Motion Override */}
+      <style>{`
+        @keyframes cctvScanLine {
+          0% { top: 8%; opacity: 0.25; }
+          50% { opacity: 0.85; }
+          100% { top: 88%; opacity: 0.25; }
+        }
+        @keyframes cctvPersonWalk {
+          0%, 100% { transform: translateX(0px); }
+          50% { transform: translateX(108px); }
+        }
+        @keyframes cctvRecBlink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.2; }
+        }
+        @keyframes nvrBlockFill {
+          0%, 12% { background-color: rgba(2, 132, 199, 0.14); transform: scale(0.96); }
+          25%, 85% { background-color: var(--acc); transform: scale(1); }
+          95%, 100% { background-color: rgba(2, 132, 199, 0.14); transform: scale(0.96); }
+        }
+        @keyframes phonePushSlide {
+          0%, 8% { transform: translateY(-38px); opacity: 0; }
+          16%, 82% { transform: translateY(0px); opacity: 1; }
+          92%, 100% { transform: translateY(-10px); opacity: 0; }
+        }
+        @keyframes phoneLivePop {
+          0%, 24% { transform: scale(0.92) translateY(10px); opacity: 0; }
+          34%, 82% { transform: scale(1) translateY(0px); opacity: 1; }
+          92%, 100% { transform: scale(0.96) translateY(6px); opacity: 0; }
+        }
+        @keyframes poeCableDraw {
+          0%, 10% { stroke-dashoffset: 180; }
+          45%, 85% { stroke-dashoffset: 0; }
+          96%, 100% { stroke-dashoffset: 180; }
+        }
+        @keyframes poeCameraFade {
+          0%, 35% { opacity: 0.25; transform: scale(0.9); }
+          50%, 85% { opacity: 1; transform: scale(1); }
+          96%, 100% { opacity: 0.25; transform: scale(0.9); }
+        }
+        @keyframes pillMsgEnter {
+          0% { opacity: 0; transform: translateY(7px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .anim-cctv-scan,
+          .anim-cctv-walk,
+          .anim-cctv-rec,
+          .anim-nvr-block,
+          .anim-phone-push,
+          .anim-phone-live,
+          .anim-poe-cable,
+          .anim-poe-cam,
+          .anim-pill-msg,
+          .anim-pulse-dot {
+            animation: none !important;
+            stroke-dashoffset: 0 !important;
+            opacity: 1 !important;
+            transform: none !important;
+          }
+        }
+      `}</style>
+
+      {/* Large Blurred Blob in Top-Right Corner (blur 60px, opacity 0.6) */}
+      <div
+        aria-hidden="true"
+        style={{ backgroundColor: "var(--acc)" }}
+        className="pointer-events-none absolute -top-12 -right-12 w-56 h-56 rounded-full opacity-60 blur-[60px]"
+      />
+
+      {/* Bottom 70px Smooth Fade into White (No empty gap between media and title) */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[70px] z-10 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.65)_48%,#FFFFFF_100%)]"
+      />
+
+      {/* ANIMATED SUBJECT STAGE */}
+      <div className="relative z-10 w-full max-w-[360px] flex-1 flex items-center justify-center">
+        {/* CARD 1: Indoor & Outdoor HD IP Cameras (Dark Camera Viewfinder + Scan Line + Walking Person & Green Detection Box) */}
+        {config.variant === "cctv-camera" && (
+          <div className="relative w-full h-[186px] rounded-2xl bg-[#0F172A] border border-white/20 shadow-[0_14px_34px_rgba(15,23,42,0.22)] overflow-hidden p-3.5 flex flex-col justify-between">
+            {/* Subtle Night-Vision Grid Overlay */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 opacity-20"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px)",
+                backgroundSize: "24px 24px",
+              }}
+            />
+
+            {/* Moving Horizontal Scan Line */}
+            <div
+              aria-hidden="true"
+              className="anim-cctv-scan pointer-events-none absolute inset-x-0 h-[2px] bg-linear-to-r from-transparent via-emerald-400/80 to-transparent shadow-[0_0_10px_#34D399]"
+              style={{
+                animation: shouldReduceMotion
+                  ? "none"
+                  : "cctvScanLine 3.6s ease-in-out infinite alternate",
+              }}
+            />
+
+            {/* Top HUD Bar: Blinking Red REC · Main Gate + 4K Badge */}
+            <div className="relative z-10 flex items-center justify-between text-[11px] font-mono text-white/90">
+              <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-xs px-2.5 py-1 rounded-full border border-white/10">
+                <span
+                  className="anim-cctv-rec size-2 rounded-full bg-red-500 shadow-[0_0_8px_#EF4444]"
+                  style={{
+                    animation: shouldReduceMotion
+                      ? "none"
+                      : "cctvRecBlink 1.2s ease-in-out infinite",
+                  }}
+                />
+                <span className="font-semibold tracking-wide text-[10.5px]">
+                  REC · Main Gate
+                </span>
+              </div>
+              <span className="text-[10px] text-emerald-400 bg-emerald-950/70 border border-emerald-500/30 px-2 py-0.5 rounded-md">
+                4K HDR · IR
+              </span>
+            </div>
+
+            {/* Walking Person Silhouette + Following Green "Person" Detection Box */}
+            <div className="relative z-10 h-[108px] w-full flex items-end pb-1 pl-6">
+              <div
+                className="anim-cctv-walk relative flex flex-col items-start"
+                style={{
+                  animation: shouldReduceMotion
+                    ? "none"
+                    : "cctvPersonWalk 5.2s ease-in-out infinite",
+                }}
+              >
+                {/* Green AI Detection Tag */}
+                <span className="mb-1 inline-flex items-center gap-1 rounded-t-md rounded-br-md bg-emerald-500 px-1.5 py-0.5 text-[9.5px] font-bold uppercase tracking-wider text-slate-950 shadow-xs">
+                  Person · 99%
+                </span>
+
+                {/* Green Bounding Box around Walking Person SVG */}
+                <div className="relative w-12 h-16 rounded-md border-2 border-emerald-400 bg-emerald-400/10 shadow-[0_0_16px_rgba(52,211,153,0.25)] flex items-center justify-center">
+                  {/* Corner targeting ticks */}
+                  <span className="absolute -top-0.5 -left-0.5 size-2 border-t-2 border-l-2 border-white" />
+                  <span className="absolute -top-0.5 -right-0.5 size-2 border-t-2 border-r-2 border-white" />
+                  <span className="absolute -bottom-0.5 -left-0.5 size-2 border-b-2 border-l-2 border-white" />
+                  <span className="absolute -bottom-0.5 -right-0.5 size-2 border-b-2 border-r-2 border-white" />
+
+                  <svg
+                    viewBox="0 0 36 52"
+                    className="w-8 h-12 text-white/90 fill-current"
+                    aria-hidden="true"
+                  >
+                    <circle cx="18" cy="10" r="5.5" />
+                    <path d="M12 20 C12 17.5, 24 17.5, 24 20 L26 33 L23 33 L21.5 24 L20.5 34 L24 48 L20 48 L17.5 37 L15 48 L11 48 L14.5 34 L13.5 24 L12 33 L9 33 Z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Viewfinder Timestamp */}
+            <div className="relative z-10 flex items-center justify-between text-[9.5px] font-mono text-slate-400">
+              <span>CAM-01 · IP67 BULLET</span>
+              <span>2160p · 60 FPS</span>
+            </div>
+          </div>
+        )}
+
+        {/* CARD 2: NVR Storage & Cloud Backup (60+ Days + 30 Sequential Recording Day Blocks) */}
+        {config.variant === "nvr-blocks" && (
+          <div className="w-full h-[186px] rounded-2xl bg-white/90 backdrop-blur-md border border-white shadow-[0_12px_32px_rgba(2,132,199,0.12)] p-4 flex flex-col justify-between">
+            <div className="flex items-start justify-between gap-2">
+              <div>
+                <div className="text-[28px] sm:text-[30px] font-bold tracking-tight text-[#0f1b3d] leading-none">
+                  60+ days
+                </div>
+                <p className="text-[11.5px] font-medium text-slate-500 mt-1">
+                  Continuous 24/7 recording
+                </p>
+              </div>
+              <span className="inline-flex items-center rounded-full bg-sky-500/12 border border-sky-500/25 px-2.5 py-1 text-[10.5px] font-semibold text-sky-700 shrink-0">
+                H.265+ · 50% less storage
+              </span>
+            </div>
+
+            {/* 30 Small Blocks (10 x 3 Grid) that fill one by one and loop */}
+            <div className="mt-2">
+              <div className="flex items-center justify-between text-[10px] font-medium text-slate-400 mb-1.5">
+                <span>NVR Retention Loop (30-Day Window)</span>
+                <span className="text-sky-600 font-semibold">FIFO Active</span>
+              </div>
+              <div
+                className="grid grid-cols-10 gap-1.5"
+                role="img"
+                aria-label="30-day NVR storage block timeline filling sequentially"
+              >
+                {Array.from({ length: 30 }).map((_, bIdx) => (
+                  <span
+                    key={bIdx}
+                    className="anim-nvr-block h-4 rounded-[5px]"
+                    style={{
+                      backgroundColor: shouldReduceMotion
+                        ? "var(--acc)"
+                        : "rgba(2, 132, 199, 0.14)",
+                      animation: shouldReduceMotion
+                        ? "none"
+                        : `nvrBlockFill 6s ease-in-out infinite`,
+                      animationDelay: `${bIdx * 0.12}s`,
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* CARD 3: Live Smartphone Monitoring (Cropped Phone Frame + Sliding Push Alert + Popping LIVE 4K Preview) */}
+        {config.variant === "phone-live" && (
+          <div className="relative w-[240px] sm:w-[256px] h-[196px] translate-y-2 rounded-t-[26px] bg-[#0F172A] p-2.5 pb-0 shadow-[0_14px_34px_rgba(88,28,135,0.22)] border-t-[3px] border-x-[3px] border-slate-700 overflow-hidden flex flex-col">
+            {/* Phone Speaker / Dynamic Island Notch */}
+            <div className="mx-auto w-14 h-3.5 rounded-full bg-black mb-2 flex items-center justify-end pr-1.5">
+              <span className="size-1.5 rounded-full bg-emerald-400" />
+            </div>
+
+            {/* Inner Phone Screen */}
+            <div className="flex-1 rounded-t-2xl bg-slate-900/95 p-2.5 flex flex-col gap-2 overflow-hidden border-t border-x border-white/10">
+              {/* Sliding Push Notification */}
+              <div
+                className="anim-phone-push rounded-xl bg-white/95 p-2 shadow-md border border-purple-200/80 flex items-start gap-2"
+                style={{
+                  animation: shouldReduceMotion
+                    ? "none"
+                    : "phonePushSlide 5.4s cubic-bezier(0.16, 1, 0.3, 1) infinite",
+                }}
+              >
+                <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md bg-purple-600 text-white text-[9px] font-bold">
+                  S
+                </span>
+                <div className="min-w-0 leading-tight">
+                  <p className="text-[10px] font-semibold text-slate-900">
+                    Motion at Entrance Cam 01.
+                  </p>
+                  <p className="text-[9.5px] text-slate-500">
+                    Clip saved to NVR.
+                  </p>
+                </div>
+              </div>
+
+              {/* Popping LIVE 4K Video Preview */}
+              <div
+                className="anim-phone-live relative flex-1 rounded-xl bg-linear-to-br from-slate-800 via-indigo-950 to-slate-900 border border-purple-400/30 p-2.5 flex flex-col justify-between overflow-hidden"
+                style={{
+                  animation: shouldReduceMotion
+                    ? "none"
+                    : "phoneLivePop 5.4s cubic-bezier(0.16, 1, 0.3, 1) infinite",
+                }}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="inline-flex items-center gap-1 rounded-md bg-red-600 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white">
+                    <span className="size-1.5 rounded-full bg-white animate-pulse" />
+                    LIVE 4K
+                  </span>
+                  <span className="text-[9px] font-mono text-purple-200">
+                    0 ms Fibre
+                  </span>
+                </div>
+
+                {/* Stylized Camera Feed Silhouette inside Phone */}
+                <div className="my-auto flex items-center justify-center">
+                  <div className="flex items-center gap-1.5 rounded-full bg-white/10 backdrop-blur-xs px-2.5 py-1 border border-white/15">
+                    <Video className="size-3 text-purple-300" />
+                    <span className="text-[9.5px] font-medium text-white">
+                      Entrance Cam 01 · Playing
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* CARD 4: Clean Cabling & Local AMC Support (SVG PoE Switch + 3 Right-Angle Drawing Cables + Data Pulses + 3 Cameras) */}
+        {config.variant === "poe-cabling" && (
+          <div className="w-full h-[186px] rounded-2xl bg-white/90 backdrop-blur-md border border-white shadow-[0_12px_32px_rgba(5,150,105,0.12)] p-3.5 flex items-center justify-center">
+            <svg
+              viewBox="0 0 320 148"
+              className="w-full h-full overflow-visible"
+              role="img"
+              aria-label="PoE switch routing structured right-angle cables with data pulses to 3 IP cameras"
+            >
+              {/* Left Node: PoE Switch Box with 3 Blinking Green LEDs */}
+              <g transform="translate(8, 30)">
+                <rect
+                  x="0"
+                  y="0"
+                  width="74"
+                  height="88"
+                  rx="12"
+                  fill="#0F172A"
+                />
+                <text
+                  x="37"
+                  y="24"
+                  textAnchor="middle"
+                  fill="#FFFFFF"
+                  fontSize="9.5"
+                  fontWeight="700"
+                  fontFamily="monospace"
+                >
+                  PoE+ SWITCH
+                </text>
+                <text
+                  x="37"
+                  y="36"
+                  textAnchor="middle"
+                  fill="#6EE7B7"
+                  fontSize="8"
+                  fontFamily="monospace"
+                >
+                  48V · CAT6
+                </text>
+                {/* 3 Blinking Green Port LEDs */}
+                {[0, 1, 2].map((led) => (
+                  <g
+                    key={led}
+                    transform={`translate(${16 + led * 16}, 54)`}
+                  >
+                    <rect
+                      x="0"
+                      y="0"
+                      width="10"
+                      height="10"
+                      rx="2"
+                      fill="#1E293B"
+                      stroke="#334155"
+                      strokeWidth="1"
+                    />
+                    <circle
+                      cx="5"
+                      cy="5"
+                      r="2.8"
+                      fill="#10B981"
+                      className="anim-cctv-rec"
+                      style={{
+                        animation: shouldReduceMotion
+                          ? "none"
+                          : `cctvRecBlink ${1 + led * 0.3}s ease-in-out infinite`,
+                      }}
+                    />
+                  </g>
+                ))}
+              </g>
+
+              {/* 3 Neat Parallel Right-Angle Cable Paths + Data Pulses */}
+              {[
+                {
+                  id: "poe-path-1",
+                  d: "M 82 54 L 145 54 L 145 26 L 236 26",
+                  camY: 10,
+                  delay: "0s",
+                },
+                {
+                  id: "poe-path-2",
+                  d: "M 82 74 L 236 74",
+                  camY: 58,
+                  delay: "0.35s",
+                },
+                {
+                  id: "poe-path-3",
+                  d: "M 82 94 L 145 94 L 145 122 L 236 122",
+                  camY: 106,
+                  delay: "0.7s",
+                },
+              ].map((cable, cIdx) => (
+                <g key={cable.id}>
+                  {/* Base Conduit Track */}
+                  <path
+                    d={cable.d}
+                    fill="none"
+                    stroke="#D1FAE5"
+                    strokeWidth="3.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  {/* Self-Drawing Active Green Cable */}
+                  <path
+                    id={cable.id}
+                    d={cable.d}
+                    fill="none"
+                    stroke="#059669"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeDasharray="180"
+                    className="anim-poe-cable"
+                    style={{
+                      animation: shouldReduceMotion
+                        ? "none"
+                        : `poeCableDraw 4.8s ease-in-out infinite`,
+                      animationDelay: cable.delay,
+                    }}
+                  />
+                  {/* Travelling Green Data Pulse via SVG animateMotion */}
+                  {!shouldReduceMotion && (
+                    <circle r="3.5" fill="#10B981">
+                      <animateMotion
+                        dur="2.4s"
+                        begin={cable.delay}
+                        repeatCount="indefinite"
+                        path={cable.d}
+                      />
+                    </circle>
+                  )}
+
+                  {/* Camera Node on Right (fades in as cable finishes) */}
+                  <g
+                    transform={`translate(238, ${cable.camY})`}
+                    className="anim-poe-cam"
+                    style={{
+                      transformOrigin: "270px 74px",
+                      animation: shouldReduceMotion
+                        ? "none"
+                        : `poeCameraFade 4.8s ease-in-out infinite`,
+                      animationDelay: cable.delay,
+                    }}
+                  >
+                    <rect
+                      x="0"
+                      y="0"
+                      width="72"
+                      height="32"
+                      rx="9"
+                      fill="#ECFDF5"
+                      stroke="#10B981"
+                      strokeWidth="1.5"
+                    />
+                    <circle cx="16" cy="16" r="7" fill="#059669" />
+                    <circle cx="16" cy="16" r="2.5" fill="#FFFFFF" />
+                    <text
+                      x="30"
+                      y="19"
+                      fill="#065F46"
+                      fontSize="9.5"
+                      fontWeight="700"
+                    >
+                      {`CAM 0${cIdx + 1}`}
+                    </text>
+                  </g>
+                </g>
+              ))}
+            </svg>
+          </div>
+        )}
+      </div>
+
+      {/* Bottom Frosted-Glass Pill with Pulsing Dot & 3 Cycling Messages (Every 3s) */}
+      <div className="relative z-20 mt-2 inline-flex items-center gap-2 rounded-full bg-white/88 backdrop-blur-[12px] px-3.5 py-1.5 shadow-[0_6px_20px_rgba(15,27,61,0.08)] border border-white">
+        <span className="relative flex size-2 shrink-0">
+          <span
+            style={{ backgroundColor: "var(--acc)" }}
+            className="anim-pulse-dot absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"
+          />
+          <span
+            style={{ backgroundColor: "var(--acc)" }}
+            className="relative inline-flex size-2 rounded-full"
+          />
+        </span>
+        <span
+          key={msgIndex}
+          className="anim-pill-msg text-[12px] font-medium text-[#0f1b3d] tracking-tight whitespace-nowrap"
+          style={{
+            animation: shouldReduceMotion
+              ? "none"
+              : "pillMsgEnter 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+          }}
+        >
+          {config.pillMessages[msgIndex]}
+        </span>
+      </div>
+    </div>
   );
 }
 
@@ -588,7 +1004,7 @@ export function FlippableDeliverableCard({
     <motion.article
       ref={cardRef}
       variants={cardItemVariants}
-      className="group/flip relative h-full min-h-[440px] min-[360px]:min-h-[460px] sm:min-h-[480px] [perspective:1200px] select-none col-span-12 md:col-span-6 cursor-pointer"
+      className="group/flip relative h-full min-h-[420px] [perspective:1200px] select-none col-span-12 md:col-span-6 cursor-pointer"
       onClick={handleCardClick}
       role="button"
       tabIndex={0}
@@ -609,9 +1025,9 @@ export function FlippableDeliverableCard({
           transform: isFlipped && !shouldReduceMotion ? "rotateY(180deg)" : "rotateY(0deg)",
         }}
       >
-        {/* Front Face: Visual Stage + Title Only */}
+        {/* Front Face: Animated Media Stage + Title Area */}
         <div
-          className="w-full h-full flex flex-col justify-between bg-white text-brand-navy border border-black/[0.08] rounded-[28px] shadow-none overflow-hidden"
+          className="w-full h-full flex flex-col justify-between bg-white text-[#0f1b3d] border border-[rgba(15,27,61,0.07)] rounded-[28px] shadow-[0_8px_30px_rgba(20,20,50,0.06)] overflow-hidden"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -620,337 +1036,10 @@ export function FlippableDeliverableCard({
           <div className="relative z-10 p-0 flex-1 flex flex-col justify-between overflow-hidden h-full">
             {/* Top Media Stage */}
             {item.mediaConfig ? (
-              <div
-                className={`relative w-full h-[240px] min-[360px]:h-[265px] sm:h-[295px] overflow-hidden ${
-                  MEDIA_THEME_STYLES[item.mediaConfig.theme].baseBg
-                } flex flex-col justify-between p-3.5 min-[360px]:p-4 sm:p-5 select-none group/stage`}
-              >
-                {/* LAYER 1: Mesh Gradient Background (3 blurred radial blobs) */}
-                <div
-                  aria-hidden="true"
-                  className={`pointer-events-none absolute -top-10 -left-10 w-48 h-48 rounded-full ${
-                    MEDIA_THEME_STYLES[item.mediaConfig.theme].blob1
-                  } opacity-60 blur-[55px]`}
-                />
-                <div
-                  aria-hidden="true"
-                  className={`pointer-events-none absolute top-10 -right-10 w-52 h-52 rounded-full ${
-                    MEDIA_THEME_STYLES[item.mediaConfig.theme].blob2
-                  } opacity-60 blur-[60px]`}
-                />
-                <div
-                  aria-hidden="true"
-                  className={`pointer-events-none absolute -bottom-10 left-1/3 w-44 h-44 rounded-full ${
-                    MEDIA_THEME_STYLES[item.mediaConfig.theme].blob3
-                  } opacity-60 blur-[50px]`}
-                />
-
-                {/* Smooth Blend into Bottom White Section */}
-                <div aria-hidden="true" className={`${CARD_BOTTOM_BLEND} z-10`} />
-
-                {/* LAYER 3: Decorative Dot Grid & Concentric Rings */}
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 opacity-[0.35]"
-                  style={{
-                    backgroundImage:
-                      "radial-gradient(rgba(15, 23, 42, 0.16) 1px, transparent 1px)",
-                    backgroundSize: "14px 14px",
-                    maskImage:
-                      "radial-gradient(circle at 50% 45%, black 35%, transparent 82%)",
-                    WebkitMaskImage:
-                      "radial-gradient(circle at 50% 45%, black 35%, transparent 82%)",
-                  }}
-                />
-                <div
-                  aria-hidden="true"
-                  className={`pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 rounded-full border ${
-                    MEDIA_THEME_STYLES[item.mediaConfig.theme].ringBorder
-                  }`}
-                />
-                <div
-                  aria-hidden="true"
-                  className={`pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full border ${
-                    MEDIA_THEME_STYLES[item.mediaConfig.theme].ringBorder
-                  } opacity-60`}
-                />
-
-                {/* Decorative Floating Micro-Icons with slight rotation & drop shadows */}
-                <div
-                  aria-hidden="true"
-                  className="absolute top-13 left-4 sm:left-6 z-20 -rotate-6 rounded-xl bg-white/90 p-2 shadow-[0_6px_16px_rgba(15,23,42,0.10)] border border-white transition-transform duration-300 group-hover/stage:-translate-y-0.5"
-                >
-                  {item.mediaConfig.theme === "peach" && (
-                    <Video className="size-3.5 text-orange-500" />
-                  )}
-                  {item.mediaConfig.theme === "sky" && (
-                    <HardDrive className="size-3.5 text-sky-600" />
-                  )}
-                  {item.mediaConfig.theme === "purple" && (
-                    <Bell className="size-3.5 text-purple-600" />
-                  )}
-                  {item.mediaConfig.theme === "emerald" && (
-                    <Cable className="size-3.5 text-emerald-600" />
-                  )}
-                </div>
-                <div
-                  aria-hidden="true"
-                  className="absolute top-13 right-4 sm:right-6 z-20 rotate-6 rounded-xl bg-white/90 p-2 shadow-[0_6px_16px_rgba(15,23,42,0.10)] border border-white transition-transform duration-300 group-hover/stage:translate-y-0.5"
-                >
-                  {item.mediaConfig.theme === "peach" && (
-                    <ShieldCheck className="size-3.5 text-emerald-600" />
-                  )}
-                  {item.mediaConfig.theme === "sky" && (
-                    <Activity className="size-3.5 text-sky-500" />
-                  )}
-                  {item.mediaConfig.theme === "purple" && (
-                    <Wifi className="size-3.5 text-pink-500" />
-                  )}
-                  {item.mediaConfig.theme === "emerald" && (
-                    <Wrench className="size-3.5 text-teal-600" />
-                  )}
-                </div>
-
-                {/* Top Badges Bar + LAYER 4: Glowing Focal Element */}
-                <div className="relative z-20 w-full flex items-center justify-between gap-2">
-                  <span className="inline-flex min-h-6 items-center gap-1.5 rounded-full bg-brand-navy px-2.5 font-mono text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-white shadow-xs border border-white/20">
-                    <span>0{idx + 1}</span>
-                  </span>
-
-                  {/* Glowing Focal Pill */}
-                  <div className="relative flex items-center justify-center">
-                    <div
-                      aria-hidden="true"
-                      className={`pointer-events-none absolute -inset-2.5 rounded-full bg-radial ${
-                        MEDIA_THEME_STYLES[item.mediaConfig.theme].focalGlow
-                      } blur-md`}
-                    />
-                    <div className="relative flex items-center gap-1.5 rounded-full bg-white px-3 py-1 shadow-[0_8px_20px_rgba(15,23,42,0.10)] border border-white">
-                      <span
-                        className={`flex size-5 items-center justify-center rounded-full border ${
-                          MEDIA_THEME_STYLES[item.mediaConfig.theme].chipBg
-                        }`}
-                      >
-                        <IconComponent
-                          className={`size-3 ${
-                            MEDIA_THEME_STYLES[item.mediaConfig.theme]
-                              .focalIconColor
-                          }`}
-                        />
-                      </span>
-                      <span className="text-[10px] sm:text-[11px] font-semibold tracking-tight text-neutral-800">
-                        {item.mediaConfig.focalBadgeText || item.tag}
-                      </span>
-                    </div>
-                  </div>
-
-                  {item.tag && (
-                    <span className="hidden sm:inline-flex min-h-6 items-center rounded-full bg-white/90 backdrop-blur-xs px-2.5 text-[10px] min-[360px]:text-[11px] font-semibold uppercase tracking-wider text-brand-navy shadow-xs border border-white/40">
-                      {item.tag}
-                    </span>
-                  )}
-                </div>
-
-                {/* LAYER 2: Floating Frosted-Glass UI Mockup (Real HTML/SVG, bottom-cropped & masked) */}
-                <div
-                  className="absolute inset-x-4 sm:inset-x-8 top-[58px] sm:top-[64px] bottom-[-12px] z-20 rounded-[16px] bg-white/85 backdrop-blur-[14px] border border-white/90 shadow-[0_12px_32px_rgba(20,20,50,0.08)] p-3.5 sm:p-4 flex flex-col justify-between"
-                  style={{
-                    maskImage:
-                      "linear-gradient(to bottom, #000 55%, transparent 100%)",
-                    WebkitMaskImage:
-                      "linear-gradient(to bottom, #000 55%, transparent 100%)",
-                  }}
-                >
-                  {/* Status List Mockup (Card 1 & Card 4) */}
-                  {item.mediaConfig.mediaType === "status-list" &&
-                    item.mediaConfig.rows && (
-                      <div className="space-y-2 sm:space-y-2.5">
-                        {item.mediaConfig.rows.map((row, rIdx) => {
-                          const isLast =
-                            rIdx === item.mediaConfig!.rows!.length - 1;
-                          return (
-                            <div
-                              key={row.id}
-                              className={`flex items-center justify-between gap-2 rounded-xl bg-white/95 px-3 py-2 sm:py-2.5 border border-black/[0.04] shadow-[0_2px_8px_rgba(0,0,0,0.02)] ${
-                                isLast ? "blur-[1.5px] opacity-75" : ""
-                              }`}
-                            >
-                              <div className="flex items-center gap-2.5 min-w-0">
-                                <span
-                                  className={`flex size-7 sm:size-8 shrink-0 items-center justify-center rounded-lg border ${
-                                    MEDIA_THEME_STYLES[item.mediaConfig!.theme]
-                                      .chipBg
-                                  }`}
-                                >
-                                  <IconComponent
-                                    className={`size-3.5 sm:size-4 ${
-                                      MEDIA_THEME_STYLES[
-                                        item.mediaConfig!.theme
-                                      ].focalIconColor
-                                    }`}
-                                  />
-                                </span>
-                                <div className="min-w-0">
-                                  <p className="text-xs sm:text-[13px] font-medium text-neutral-800 truncate leading-tight">
-                                    {row.label}
-                                  </p>
-                                  {row.sublabel && (
-                                    <p className="text-[10px] sm:text-[11px] text-neutral-400 truncate leading-tight mt-0.5">
-                                      {row.sublabel}
-                                    </p>
-                                  )}
-                                </div>
-                              </div>
-                              <MediaStatusPill
-                                label={row.status}
-                                tone={row.statusTone}
-                              />
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
-
-                  {/* Metric + Smooth SVG Curve Mockup (Card 2) */}
-                  {item.mediaConfig.mediaType === "metric-chart" && (
-                    <div className="flex flex-col h-full justify-between">
-                      <div className="flex items-start justify-between gap-2 px-1">
-                        <div>
-                          <p className="text-[10px] sm:text-[11px] font-medium uppercase tracking-wider text-neutral-400">
-                            {item.mediaConfig.metricSubtitle}
-                          </p>
-                          <div className="text-2xl sm:text-[28px] font-bold tracking-tight text-neutral-900 leading-tight mt-0.5">
-                            {item.mediaConfig.metricValue}
-                          </div>
-                        </div>
-                        <span className="inline-flex items-center gap-1 rounded-full bg-sky-50 border border-sky-200/80 px-2.5 py-1 text-[10px] sm:text-[11px] font-semibold text-sky-700">
-                          <Sparkles className="size-3 text-sky-500" />
-                          {item.mediaConfig.metricDelta}
-                        </span>
-                      </div>
-
-                      <div className="relative w-full h-[105px] sm:h-[125px] mt-1">
-                        <svg
-                          viewBox="0 0 280 95"
-                          className="w-full h-full overflow-visible"
-                          aria-hidden="true"
-                        >
-                          <defs>
-                            <linearGradient
-                              id={`skyChartArea-${idx}`}
-                              x1="0"
-                              y1="0"
-                              x2="0"
-                              y2="1"
-                            >
-                              <stop
-                                offset="0%"
-                                stopColor="#0284C7"
-                                stopOpacity="0.28"
-                              />
-                              <stop
-                                offset="100%"
-                                stopColor="#38BDF8"
-                                stopOpacity="0.0"
-                              />
-                            </linearGradient>
-                            <linearGradient
-                              id={`skyChartLine-${idx}`}
-                              x1="0"
-                              y1="0"
-                              x2="1"
-                              y2="0"
-                            >
-                              <stop offset="0%" stopColor="#38BDF8" />
-                              <stop offset="50%" stopColor="#0284C7" />
-                              <stop offset="100%" stopColor="#0369A1" />
-                            </linearGradient>
-                          </defs>
-                          <line
-                            x1="0"
-                            y1="24"
-                            x2="280"
-                            y2="24"
-                            stroke="rgba(15,23,42,0.05)"
-                            strokeDasharray="3 3"
-                          />
-                          <line
-                            x1="0"
-                            y1="56"
-                            x2="280"
-                            y2="56"
-                            stroke="rgba(15,23,42,0.05)"
-                            strokeDasharray="3 3"
-                          />
-                          <path
-                            d="M 0 72 C 45 64, 75 38, 115 44 C 155 48, 185 18, 230 22 C 250 24, 265 12, 280 10 L 280 95 L 0 95 Z"
-                            fill={`url(#skyChartArea-${idx})`}
-                          />
-                          <path
-                            d="M 0 72 C 45 64, 75 38, 115 44 C 155 48, 185 18, 230 22 C 250 24, 265 12, 280 10"
-                            fill="none"
-                            stroke={`url(#skyChartLine-${idx})`}
-                            strokeWidth="2.75"
-                            strokeLinecap="round"
-                          />
-                          <circle
-                            cx="230"
-                            cy="22"
-                            r="6.5"
-                            fill="#0284C7"
-                            fillOpacity="0.2"
-                          />
-                          <circle
-                            cx="230"
-                            cy="22"
-                            r="3.5"
-                            fill="#FFFFFF"
-                            stroke="#0284C7"
-                            strokeWidth="2"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Chat Bubble Feed Mockup (Card 3) */}
-                  {item.mediaConfig.mediaType === "chat-feed" && (
-                    <div className="flex flex-col gap-2.5 sm:gap-3 pt-0.5">
-                      <div className="flex items-start gap-2.5">
-                        <div className="flex size-7 sm:size-8 shrink-0 items-center justify-center rounded-full bg-purple-600 text-white text-[11px] font-bold shadow-xs">
-                          S
-                        </div>
-                        <div className="rounded-2xl rounded-tl-xs bg-white px-3.5 py-2.5 shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-purple-100 max-w-[85%]">
-                          <p className="text-xs sm:text-[13px] font-medium text-neutral-800 leading-snug">
-                            {item.mediaConfig.brandMessage}
-                          </p>
-                          <span className="block text-[10px] text-purple-500 font-medium mt-0.5">
-                            {item.mediaConfig.brandTimestamp}
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="flex items-end justify-end gap-2.5">
-                        <div className="rounded-2xl rounded-br-xs bg-linear-to-r from-orange-500 to-pink-500 text-white px-3.5 py-2.5 shadow-[0_6px_16px_rgba(249,115,22,0.25)] max-w-[82%]">
-                          <p className="text-xs sm:text-[13px] font-medium leading-snug">
-                            {item.mediaConfig.replyMessage}
-                          </p>
-                        </div>
-                        <div className="flex size-7 sm:size-8 shrink-0 items-center justify-center rounded-full bg-orange-100 text-orange-700 border border-white text-[10px] font-bold shadow-xs">
-                          {item.mediaConfig.replyAuthor}
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-purple-50/80 border border-purple-100/70 text-[11px] text-purple-700">
-                        <CheckCircle2 className="size-3.5 text-emerald-500 shrink-0" />
-                        <span className="truncate">
-                          Instant push alerts &amp; zero-lag SASH fibre playback
-                        </span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
+              <AnimatedDeliverableMediaStage
+                config={item.mediaConfig}
+                shouldReduceMotion={!!shouldReduceMotion}
+              />
             ) : (
               /* Default Top Stage with SASH Red Gradient Background (Edge-to-Edge) */
               <div
@@ -988,13 +1077,13 @@ export function FlippableDeliverableCard({
               </div>
             )}
 
-            {/* Front Bottom: Title Only */}
-            <div className="relative z-20 bg-white px-5 min-[360px]:px-6 sm:px-7 pt-4 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between">
-              <div className="pr-2">
-                <p className="text-[11px] font-semibold text-brand-red uppercase tracking-wider mb-1">
+            {/* Front Bottom: Small Red Eyebrow (12px) + 22px Medium Dark Navy Title + Black Rounded "+" Button */}
+            <div className="relative z-20 bg-white px-5 min-[360px]:px-6 sm:px-7 pt-2 pb-5 sm:pb-6 mt-auto w-full flex items-center justify-between">
+              <div className="pr-3">
+                <p className="text-[12px] font-semibold text-brand-red uppercase tracking-wider mb-1">
                   {item.tag || `Feature 0${idx + 1}`}
                 </p>
-                <h3 className="text-brand-navy !text-lg min-[360px]:!text-xl sm:!text-2xl font-semibold tracking-normal">
+                <h3 className="text-[#0f1b3d] !text-[20px] sm:!text-[22px] font-medium tracking-tight leading-snug">
                   {item.title}
                 </h3>
               </div>
