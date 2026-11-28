@@ -155,7 +155,16 @@ export default function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
+  const [mountAllCanvases, setMountAllCanvases] = useState(false);
   const currentSlide = HERO_SERVICE_SLIDES[activeIndex];
+
+  // Defer mounting inactive canvas layers until after initial LCP & main-thread idle
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setMountAllCanvases(true);
+    }, 900);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   // Auto-scroll every 8 seconds (8000ms), paused when user hovers or drags
   useEffect(() => {
@@ -223,50 +232,50 @@ export default function Hero() {
 
   return (
     <>
-      {/* 1. Hero Section with Increased Width and 5 Distinct Pastel Gradient Backgrounds */}
+      {/* 1. Full-Width Hero Section with 5 Distinct Canvas Pattern Backgrounds */}
       <section
         data-apple-manual="true"
         aria-labelledby="hero-heading"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
-        className="w-full bg-white py-2 sm:py-3 lg:py-4 font-sans antialiased"
+        data-pattern={currentSlide.pattern}
+        className="relative w-full h-[700px] sm:h-[740px] lg:h-[540px] overflow-hidden select-none font-sans antialiased"
       >
-        {/* Increased Width Container (Max 1440px / 1520px on 2xl screens) */}
-        <div className="w-full max-w-[1440px] 2xl:max-w-[1520px] mx-auto px-3 sm:px-6 lg:px-8">
-          {/* Floating Deep-Rounded Banner Card: Standard Uniform Dimensions Across All Devices & Slides */}
-          <div
-            className="relative w-full h-[700px] sm:h-[740px] lg:h-[520px] rounded-[28px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden border border-black/[0.06] select-none"
-            data-pattern={currentSlide.pattern}
-          >
-            {/* 5 Distinct Canvas Background Pattern Layers with Smooth 700ms Cross-Fade */}
-            {HERO_SERVICE_SLIDES.map((slide, idx) => (
-              <div
-                key={`canvas-bg-${slide.id}`}
-                aria-hidden="true"
-                data-pattern={slide.pattern}
-                className={`absolute inset-0 transition-opacity duration-700 ease-in-out pointer-events-none z-0 ${
-                  idx === activeIndex ? "opacity-100" : "opacity-0"
-                }`}
-              >
-                <CardCanvasPattern pattern={slide.pattern} />
-                {/* Subtle Content Contrast Scrim for Text Readability without altering the canvas pattern */}
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 bg-black/15 lg:bg-transparent lg:bg-gradient-to-r lg:from-black/45 lg:via-black/20 lg:to-transparent pointer-events-none"
-                />
-              </div>
-            ))}
-
-            <motion.div
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.25}
-              onDragStart={() => setIsPaused(true)}
-              onDragEnd={handleDragEnd}
-              className="w-full h-full flex flex-col justify-between lg:grid lg:grid-cols-12 items-stretch relative z-10 cursor-grab active:cursor-grabbing touch-pan-y"
+        {/* 5 Distinct Full-Bleed Canvas Background Pattern Layers with Smooth 700ms Cross-Fade */}
+        {HERO_SERVICE_SLIDES.map((slide, idx) => {
+          const isCurrent = idx === activeIndex;
+          if (!isCurrent && !mountAllCanvases) return null;
+          return (
+            <div
+              key={`canvas-bg-${slide.id}`}
+              aria-hidden="true"
+              data-pattern={slide.pattern}
+              className={`absolute inset-0 transition-opacity duration-700 ease-in-out pointer-events-none z-0 ${
+                isCurrent ? "opacity-100" : "opacity-0"
+              }`}
             >
-              {/* Left Content Column (7 of 12 columns on desktop): Centered on mobile, left-aligned on desktop */}
-              <div className="lg:col-span-7 flex flex-col justify-between items-center lg:items-start text-center lg:text-left p-5 sm:p-8 lg:p-10 xl:p-12 z-20 flex-1 lg:flex-none min-h-0">
+              <CardCanvasPattern pattern={slide.pattern} />
+              {/* Subtle Content Contrast Scrim for Text Readability without altering the canvas pattern */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-black/15 lg:bg-transparent lg:bg-gradient-to-r lg:from-black/45 lg:via-black/20 lg:to-transparent pointer-events-none"
+              />
+            </div>
+          );
+        })}
+
+        {/* Centered Foreground Content Container Aligned to 12-Column Grid */}
+        <div className="container-sash h-full relative z-10">
+          <motion.div
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.25}
+            onDragStart={() => setIsPaused(true)}
+            onDragEnd={handleDragEnd}
+            className="w-full h-full flex flex-col justify-between lg:grid lg:grid-cols-12 items-stretch relative cursor-grab active:cursor-grabbing touch-pan-y"
+          >
+            {/* Left Content Column (7 of 12 columns on desktop): Centered on mobile, left-aligned on desktop */}
+            <div className="lg:col-span-7 flex flex-col justify-between items-center lg:items-start text-center lg:text-left py-6 px-2 sm:py-8 sm:px-0 lg:py-10 xl:py-12 z-20 flex-1 lg:flex-none min-h-0">
                 <AnimatePresence mode="wait" custom={direction}>
                   <motion.div
                     key={currentSlide.id}
@@ -418,23 +427,23 @@ export default function Hero() {
                     alt={currentSlide.imageAlt}
                     width={currentSlide.imageWidth}
                     height={currentSlide.imageHeight}
-                    priority
+                    priority={activeIndex === 0}
+                    fetchPriority={activeIndex === 0 ? "high" : "auto"}
                     sizes="(max-width: 640px) 320px, (max-width: 1024px) 420px, 520px"
-                    className="block w-full h-auto max-h-[260px] sm:max-h-[320px] lg:max-h-[525px] object-contain object-bottom align-bottom mx-auto lg:mx-0"
+                    className="block w-full h-auto max-h-[260px] sm:max-h-[320px] lg:max-h-[540px] object-contain object-bottom align-bottom mx-auto lg:mx-0"
                   />
                 </div>
               </div>
             </motion.div>
-          </div>
         </div>
       </section>
 
-      {/* 2. Trusted Company Logos Strip */}
+      {/* 2. Trusted Company Logos Grid */}
       <SingleClientMarquee
         heading="Trusted by leading companies and institutions across Tamil Nadu"
-        headingClassName="text-center text-xs sm:text-sm font-normal text-neutral-500 tracking-[-0.05px] mb-5 sm:mb-6"
-        variant="minimal"
-        className="border-b border-black/[0.05] py-7 sm:py-8"
+        headingClassName="text-center text-xs sm:text-sm font-normal text-neutral-500 tracking-[-0.05px]"
+        variant="grid"
+        className="border-b border-black/[0.05] py-10 sm:py-14"
       />
     </>
   );

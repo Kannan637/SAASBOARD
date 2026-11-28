@@ -154,7 +154,7 @@ function LoopingRibbonBackground() {
 }
 
 /**
- * Apple-style Digital Speed Meter synchronized to page scroll (0 Mbps -> 50 Mbps)
+ * Apple-style Digital Speed Meter synchronized to page scroll (0 Mbps -> 100 Mbps)
  * Replaces the analog dial/needle with a crisp digital readout + 20-segment digital bar meter.
  */
 function ScrollDigitalSpeedometer({
@@ -170,12 +170,12 @@ function ScrollDigitalSpeedometer({
     const updateMeter = (progress: number) => {
       // Map section scroll progress [0.02 .. 0.86] -> [0 .. 1]
       const normalized = Math.max(0, Math.min(1, (progress - 0.02) / 0.84));
-      const exactMbps = normalized * 50;
+      const exactMbps = normalized * 100;
       const roundedMbps = Math.round(exactMbps);
 
       setFillPercent(Math.round(normalized * 100));
       setDisplayMbps(roundedMbps);
-      setDisplayUpload(Math.round(roundedMbps * 0.5));
+      setDisplayUpload(roundedMbps);
     };
 
     updateMeter(smoothProgress.get());
@@ -191,7 +191,7 @@ function ScrollDigitalSpeedometer({
       {/* Large Apple-Style Digital Counter Readout */}
       <div className="flex flex-col items-center justify-center py-2">
         <div className="flex items-baseline justify-center gap-1.5">
-          <span className="text-[64px] sm:text-[72px] font-medium tracking-[-3px] text-brand-navy tabular-nums leading-none">
+          <span className="text-[56px] min-[360px]:text-[64px] sm:text-[72px] font-medium tracking-[-3px] text-brand-navy tabular-nums leading-none">
             {displayMbps.toString().padStart(2, "0")}
           </span>
           <span className="text-[20px] sm:text-[22px] font-medium tracking-[-0.5px] text-brand-red">
@@ -373,7 +373,7 @@ function PhoneMockup({
             aria-hidden="true"
             width={484}
             height={876}
-            priority
+            loading="lazy"
             className="pointer-events-none select-none absolute left-[-126.45%] top-[-3.2%] w-[352.48%] h-[105.25%] max-w-none z-30"
           />
         </div>

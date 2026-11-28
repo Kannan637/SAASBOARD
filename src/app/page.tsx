@@ -1,14 +1,16 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import Hero from "@/components/Home/Hero";
 import Pricing from "@/components/Home/Pricing";
-import WhySash from "@/components/Home/WhySash";
-import Service from "@/components/Home/Service";
-import Business from "@/components/Home/Business";
-import Faq from "@/components/Home/Faq";
-import Contactus from "@/components/Home/Contactus";
-import Speed from "@/components/Home/Speed";
-import Aboutus from "@/components/Home/Aboutus";
-import Testimonial from "@/components/Home/Testimonial";
+
+const WhySash = dynamic(() => import("@/components/Home/WhySash"));
+const Aboutus = dynamic(() => import("@/components/Home/Aboutus"));
+const Service = dynamic(() => import("@/components/Home/Service"));
+const Business = dynamic(() => import("@/components/Home/Business"));
+const Testimonial = dynamic(() => import("@/components/Home/Testimonial"));
+const Speed = dynamic(() => import("@/components/Home/Speed"));
+const Faq = dynamic(() => import("@/components/Home/Faq"));
+const Contactus = dynamic(() => import("@/components/Home/Contactus"));
 
 const homepageJsonLd = {
   "@context": "https://schema.org",

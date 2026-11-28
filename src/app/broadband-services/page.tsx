@@ -177,7 +177,7 @@ export default function BroadbandServicesPage() {
                     alt="4K Smart TV displaying high-bitrate OTT streaming apps & digital IPTV"
                     width={736}
                     height={506}
-                    priority
+                    loading="lazy"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 500px, 560px"
                     className="relative z-10 w-full h-auto object-contain"
                   />

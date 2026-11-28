@@ -137,8 +137,8 @@ export default function Aboutus() {
                   alt="Tamil Nadu Halftone Optical Network Coverage Map"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
+                  loading="lazy"
                   className="object-contain object-center pointer-events-none select-none opacity-90"
-                  priority
                 />
               </div>
 

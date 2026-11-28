@@ -26,6 +26,7 @@ const FOOTER_NAV_LINKS = [
   { label: "CCTV", href: "/cctv" },
   { label: "Intranet", href: "/intranet" },
   { label: "About", href: "/about" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 

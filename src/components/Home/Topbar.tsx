@@ -68,7 +68,6 @@ export default function Topbar() {
 
     const sections = [
       { id: "contact", name: "contact" },
-      { id: "faq", name: "faq" },
       { id: "plans", name: "plans" },
     ];
 
@@ -279,7 +278,7 @@ export default function Topbar() {
 
       {/* Responsive Navbar (Borderless) */}
       <header className="relative z-50 bg-white">
-        <div className="container-sash h-14 sm:h-16 flex items-center justify-between gap-3">
+        <div className="container-sash h-[62px] sm:h-[70px] flex items-center justify-between gap-3">
           {/* Brand Logo */}
           <Link
             href="/"
@@ -427,17 +426,17 @@ export default function Topbar() {
               About
             </Link>
 
-            {/* FAQ */}
+            {/* Blog */}
             <Link
-              href="/#faq"
-              onClick={() => handleNavClick("/#faq")}
+              href="/blog"
+              onClick={() => handleNavClick("/blog")}
               className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors h-9 inline-flex items-center ${
-                pathname === "/" && activeSection === "faq"
+                pathname === "/blog" || pathname.startsWith("/blog/")
                   ? "text-brand-red font-semibold"
                   : "text-brand-navy hover:text-brand-red"
               }`}
             >
-              FAQ
+              Blog
             </Link>
 
             {/* Contact */}
@@ -535,7 +534,7 @@ export default function Topbar() {
           <div
             aria-hidden="true"
             onClick={() => setMobileMenuOpen(false)}
-            className="lg:hidden fixed inset-0 top-[104px] sm:top-[120px] bg-brand-navy/40 backdrop-blur-xs z-40 transition-opacity"
+            className="lg:hidden fixed inset-0 top-[110px] sm:top-[126px] bg-brand-navy/40 backdrop-blur-xs z-40 transition-opacity"
           />
         )}
 
@@ -546,7 +545,7 @@ export default function Topbar() {
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation menu"
-            className="lg:hidden absolute top-full inset-x-0 max-h-[calc(100dvh-4rem)] sm:max-h-[calc(100dvh-5rem)] bg-white z-50 overflow-y-auto border-t border-brand-navy/10 shadow-[0_20px_40px_rgba(1,13,59,0.18)] flex flex-col justify-between px-5 pt-4 pb-8"
+            className="lg:hidden absolute top-full inset-x-0 max-h-[calc(100dvh-4.5rem)] sm:max-h-[calc(100dvh-5.5rem)] bg-white z-50 overflow-y-auto border-t border-brand-navy/10 shadow-[0_20px_40px_rgba(1,13,59,0.18)] flex flex-col justify-between px-5 pt-4 pb-8"
           >
             <nav aria-label="Mobile navigation" className="flex flex-col gap-1">
               {/* Home */}
@@ -656,17 +655,17 @@ export default function Topbar() {
                 <span>About Us</span>
               </Link>
 
-              {/* FAQ */}
+              {/* Blog */}
               <Link
-                href="/#faq"
-                onClick={() => handleNavClick("/#faq")}
+                href="/blog"
+                onClick={() => handleNavClick("/blog")}
                 className={`px-4 py-3 rounded-lg text-base font-medium min-h-[46px] flex items-center justify-between transition-colors ${
-                  pathname === "/" && activeSection === "faq"
+                  pathname === "/blog" || pathname.startsWith("/blog/")
                     ? "bg-red-10 text-brand-red"
                     : "text-brand-navy hover:bg-neutral-100"
                 }`}
               >
-                <span>FAQ</span>
+                <span>Blog</span>
               </Link>
 
               {/* Contact */}

@@ -141,7 +141,7 @@ export default function Pricing() {
               <article
                 data-apple-manual="true"
                 aria-label={`${plan.name} - ${plan.price} ${plan.period}`}
-                className={`rounded-[28px] p-7 sm:p-8 lg:p-9 flex flex-col justify-between relative w-full transition-transform duration-300 hover:-translate-y-1.5 ${plan.featured
+                className={`rounded-[28px] min-h-[540px] sm:min-h-[580px] lg:min-h-[620px] px-7 py-9 sm:px-8 sm:py-10 lg:px-10 lg:py-12 flex flex-col justify-between relative w-full transition-transform duration-300 hover:-translate-y-1.5 ${plan.featured
                   ? "bg-brand-navy text-white border border-brand-navy/60 shadow-[0_16px_40px_rgba(1,13,59,0.18)]"
                   : "bg-white text-brand-navy border border-black/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.02)]"
                   }`}
@@ -172,7 +172,7 @@ export default function Pricing() {
 
                 <div className="relative z-10">
                   {/* Plan Title & Speed Pill */}
-                  <div className="flex items-start justify-between gap-3 mb-3">
+                  <div className="flex items-start justify-between gap-3 mb-4">
                     <h3
                       className={`font-semibold text-xl sm:text-2xl tracking-normal ${plan.featured ? "text-white" : "text-brand-navy"
                         }`}
@@ -190,7 +190,7 @@ export default function Pricing() {
                   </div>
 
                   <p
-                    className={`text-sm mb-5 min-h-[40px] font-normal leading-relaxed ${plan.featured ? "text-white/85" : "text-neutral-600"
+                    className={`text-sm mb-7 min-h-[44px] font-normal leading-relaxed ${plan.featured ? "text-white/85" : "text-neutral-600"
                       }`}
                   >
                     {plan.description}
@@ -198,12 +198,12 @@ export default function Pricing() {
 
                   {/* Price Display */}
                   <div
-                    className={`pb-5 mb-5 border-b ${plan.featured ? "border-white/20" : "border-neutral-100"
+                    className={`pb-7 mb-7 border-b ${plan.featured ? "border-white/20" : "border-neutral-100"
                       }`}
                   >
                     <div className="flex items-baseline gap-2">
                       <span
-                        className={`text-3xl sm:text-4xl font-semibold tracking-tight ${plan.featured ? "text-white" : "text-brand-navy"
+                        className={`text-3xl sm:text-[42px] font-semibold tracking-tight leading-none ${plan.featured ? "text-white" : "text-brand-navy"
                           }`}
                       >
                         {plan.price}
@@ -217,7 +217,7 @@ export default function Pricing() {
                     </div>
                     {plan.speedNote && (
                       <p
-                        className={`text-xs font-medium mt-2 px-3 py-1 rounded-full ${plan.featured
+                        className={`text-xs font-medium mt-3 px-3 py-1 rounded-full inline-block ${plan.featured
                           ? "text-white bg-white/15"
                           : "text-brand-red bg-red-10"
                           }`}
@@ -228,15 +228,15 @@ export default function Pricing() {
                   </div>
 
                   {/* Feature Checklist */}
-                  <ul className="space-y-3 mb-6" aria-label={`${plan.name} features`}>
+                  <ul className="space-y-4 mb-9" aria-label={`${plan.name} features`}>
                     {plan.features.map((feature) => (
                       <li
                         key={feature}
-                        className={`flex items-start gap-2.5 text-sm font-normal ${plan.featured ? "text-white" : "text-brand-navy"
+                        className={`flex items-start gap-3 text-sm sm:text-[15px] font-normal ${plan.featured ? "text-white" : "text-brand-navy"
                           }`}
                       >
                         <svg
-                          className={`w-4 h-4 shrink-0 mt-0.5 ${plan.featured ? "text-white" : "text-brand-red"
+                          className={`w-4 h-4 shrink-0 mt-1 ${plan.featured ? "text-white" : "text-brand-red"
                             }`}
                           viewBox="0 0 24 24"
                           fill="none"
@@ -254,11 +254,11 @@ export default function Pricing() {
                   </ul>
                 </div>
 
-                {/* Action CTA: 48px height, 16px base font */}
+                {/* Action CTA: 48px-52px height, 16px base font */}
                 <button
                   type="button"
                   onClick={() => handleSelectPlan(plan)}
-                  className={`group/plan relative z-10 btn-pill btn-primary-red w-full h-12 min-h-[48px] text-base font-medium cursor-pointer ${plan.featured
+                  className={`group/plan relative z-10 mt-auto btn-pill btn-primary-red w-full h-12 sm:h-[52px] min-h-[48px] text-base font-medium cursor-pointer ${plan.featured
                     ? "shadow-[0_8px_24px_rgba(0,0,0,0.35)] ring-1 ring-white/25"
                     : ""
                     }`}

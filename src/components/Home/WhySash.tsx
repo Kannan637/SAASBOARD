@@ -409,7 +409,7 @@ export function FibreSpeedCard() {
                     aria-hidden="true"
                     width={484}
                     height={876}
-                    priority
+                    loading="lazy"
                     className="pointer-events-none select-none absolute left-[-126.45%] top-[-3.2%] w-[352.48%] h-[105.25%] max-w-none z-20"
                   />
                 </div>
@@ -545,7 +545,7 @@ export function RouterSetupCard() {
                   alt="Pre-configured dual-band Wi-Fi router"
                   width={220}
                   height={220}
-                  priority
+                  loading="lazy"
                   className="w-full h-full object-contain select-none"
                 />
               </div>
@@ -1251,7 +1251,7 @@ export function PriceLockCard() {
                       alt={activeService.label}
                       width={136}
                       height={136}
-                      priority
+                      loading="lazy"
                       className="w-full h-full object-contain select-none transition-transform duration-300 ease-out group-hover/service:scale-105"
                     />
                   </div>
